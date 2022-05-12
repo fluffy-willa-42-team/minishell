@@ -6,7 +6,7 @@
 #    By: awillems <awillems@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/11 10:38:34 by awillems         ###   ########.fr        #
+#    Updated: 2022/05/12 14:44:12 by awillems         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ CODE_EXT	= .c
 HEAD_EXT	= .h
 INC			= -I include
 FLAGS		= -Wall -Wextra -Werror -pthread
+FLAGS_COMP	= -lreadline
 
 # **************************************************************************** #
 
@@ -90,7 +91,7 @@ $(INC_DIR)/%$(HEAD_EXT): %$(HEAD_EXT)
 
 # Takes an name of executable and compiles everything into it
 $(NAME): print $(HEADER) $(OBJ)
-	@$(CC) $(FLAGS) $(OBJ) $(INC) $(LIB) -o $(NAME)
+	@$(CC) $(FLAGS) $(FLAGS_COMP) $(OBJ) $(INC) $(LIB) -o $(NAME)
 	@chmod 777 $(NAME)
 	@printf "\n"
 
