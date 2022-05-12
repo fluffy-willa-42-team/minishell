@@ -60,3 +60,4 @@ dkms.conf
 include/
 obj/
 minishell_exe
+.vscode
