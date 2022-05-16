@@ -476,12 +476,12 @@ a terminal; otherwise 0 is returned, and errno is set to indicate
 the error.
 
 ERRORS
-	EBADF  fd is not a valid file descriptor.
+    EBADF  fd is not a valid file descriptor.
 
-	ENOTTY fd refers to a file other than a terminal.  On some older
-		kernels, some types of files resulted in the error EINVAL
-		in this case (which is a violation of POSIX, which
-		specifies the error ENOTTY).
+    ENOTTY fd refers to a file other than a terminal.  On some older
+        kernels, some types of files resulted in the error EINVAL
+        in this case (which is a violation of POSIX, which
+        specifies the error ENOTTY).
 
 ---
 
@@ -510,12 +510,12 @@ ERRORS:
 EBADF  Bad file descriptor.
 
 ENODEV fd refers to a slave pseudoterminal device but the
-		corresponding pathname could not be found (see NOTES).
+        corresponding pathname could not be found (see NOTES).
 
 ENOTTY fd does not refer to a terminal device.
 
 ERANGE (ttyname_r()) buflen was too small to allow storing the
-		pathname.
+        pathname.
 
 ---
 
