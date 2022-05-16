@@ -477,6 +477,7 @@ the error.
 
 ERRORS
     EBADF  fd is not a valid file descriptor.
+
     ENOTTY fd refers to a file other than a terminal.  On some older
         kernels, some types of files resulted in the error EINVAL
         in this case (which is a violation of POSIX, which
