@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:16:20 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/16 15:24:45 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/16 17:20:47 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void sighandler(int signum)
 	(void)signum;
 	// printf("\nsignum get %d\n", signum);
 	printf("\n%s", PROMPT_TXT);
+	signal(SIGINT, sighandler);
+	signal(SIGQUIT, sighandler);
 }
 
 int	main(int argc, char *argv[])
@@ -62,9 +64,10 @@ int	main(int argc, char *argv[])
 	(void) argv;
 	//DEBUG TODO REMOVE
 	setbuf(stdout, NULL);
-	//TODO check why when we spam c-c readline idle but if we do c-c and c-\ the readline return null.
+
 	signal(SIGINT, sighandler);
 	signal(SIGQUIT, sighandler);
+
 	prompt();
 	//TODO make custom exit function that free stuff befor quit
 	return (0);
