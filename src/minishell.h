@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:38:26 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/16 15:15:25 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/17 16:56:26 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include "sys/resource.h"
 # include "sys/wait.h"
 # include "sys/ioctl.h"
-# include "readline/readline.h"
-# include "readline/history.h"
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # include "libft.h"
 
