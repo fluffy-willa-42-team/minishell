@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:16:20 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/16 17:20:47 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/17 16:37:41 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void sighandler(int signum)
 	printf("\n%s", PROMPT_TXT);
 	signal(SIGINT, sighandler);
 	signal(SIGQUIT, sighandler);
+	rl_replace_line("",0);
 }
 
 int	main(int argc, char *argv[])
