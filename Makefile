@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/16 13:34:55 by mahadad          ###   ########.fr        #
+#    Updated: 2022/05/17 16:00:32 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,12 @@ endif
 
 ifeq ($(DEBUG), 1)
 	FLAGS += -g3
+endif
+
+ifeq ($(OS),Windows_NT)     # is Windows_NT on XP, 2000, 7, Vista, 10...
+    CURRENT_OS = Windows
+else
+    CURRENT_OS = $(shell uname)  # same as "uname -s"
 endif
 
 # **************************************************************************** #
@@ -146,6 +152,9 @@ re: fclean all
 exe: all
 	@./$(NAME)
 
+detect_os:
+	echo $(CURRENT_OS)
+
 # **************************************************************************** #
 
-.PHONY: all, fclean, clean, re, print_src, $(ALL_LIB)
+.PHONY: all, fclean, clean, re, print_src, $(ALL_LIB), detect_os, exe
