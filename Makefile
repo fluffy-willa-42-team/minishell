@@ -22,7 +22,7 @@ OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:$(CODE_EXT)=$(OBJ_EXT)))
 ALL_LIB		= $(shell find $(LIB_DIR)/ -maxdepth 1 -mindepth 1 -type d)
 
 # Finds all the compiled libraries in ALL_LIB
-LIB			= $(shell find $(LIB_DIR)/ -type f -name "*.a")
+LIB			= $(shell find $(LIB_DIR) -type f -name "*.a")
 
 # Finds all headers in the SRC_DIR and creates links to the original header files
 HEADER		= $(addprefix $(INC_DIR)/, $(notdir $(shell find $(SRC_DIR)/ -type f -name "*$(HEAD_EXT)")))
@@ -59,8 +59,8 @@ CC			= gcc
 OBJ_EXT		= .o
 CODE_EXT	= .c
 HEAD_EXT	= .h
-INC			= -I include
-FLAGS		= -Wall -Wextra -Werror -pthread
+INC			= -I include -I lib/libft/include
+FLAGS		= -Wall -Wextra -Werror -g3
 FLAGS_COMP	= -lreadline
 
 # **************************************************************************** #

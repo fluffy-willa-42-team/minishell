@@ -12,9 +12,11 @@
 
 #include "minishell.h"
 
-int	main(int argc, char *argv[])
+int	main(void)
 {
-	(void) argc;
-	(void) argv;
-	printf("hello");
+	t_vector line = init_vector_str("Lorem ipsum dolor sit amet. Rem commodi earum");
+	char *line_read = readline("[test] ");
+
+	print_vector(line);
+	insert_vector(&line, line_read, 10);
 }
