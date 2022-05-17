@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: awillems <awillems@student.42.fr>          +#+  +:+       +#+         #
+#    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/12 14:44:51 by awillems         ###   ########.fr        #
+#    Updated: 2022/05/16 13:34:55 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,11 +65,27 @@ FLAGS_COMP	= -lreadline
 
 # **************************************************************************** #
 
+DEBUG		= 0
+SANI		= 0
+
+ifeq ($(SANI), 1)
+	FLAGS += -fsanitize=address
+	DEBUG = 1
+endif
+
+ifeq ($(DEBUG), 1)
+	FLAGS += -g3
+endif
+
+# **************************************************************************** #
+
 NAME		= minishell_exe
 
 # **************************************************************************** #
 
 all: $(DIR) $(ALL_LIB) $(NAME)
+	@if [ $(DEBUG) = 1 ]; then printf "Flag used:\n"; printf "    %s\n" $(FLAGS); fi
+
 
 # Creates every repositories if it does not exist
 $(DIR):
