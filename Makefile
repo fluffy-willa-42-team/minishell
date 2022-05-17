@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/17 16:41:16 by mahadad          ###   ########.fr        #
+#    Updated: 2022/05/17 16:49:47 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,6 @@ NAME		= minishell_exe
 
 all: $(DIR) $(ALL_LIB) $(NAME)
 	@if [ $(DEBUG) = 1 ]; then printf "Flag used:\n"; printf "    %s\n" $(FLAGS); fi
-
 
 # Creates every repositories if it does not exist
 $(DIR):
