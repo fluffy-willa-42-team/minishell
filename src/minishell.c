@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:16:20 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 12:18:27 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/18 14:28:15 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	main(int argc, char *argv[])
 	signal(SIGINT, sighandler);
 	signal(SIGQUIT, sighandler);
 
-	sigaction()
 
 	prompt();
 	//TODO make custom exit function that free stuff befor quit
