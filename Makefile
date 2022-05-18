@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
+#    By: awillems <awillems@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/18 14:25:09 by mahadad          ###   ########.fr        #
+#    Updated: 2022/05/18 14:27:25 by awillems         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,7 @@ NAME		= minishell_exe
 
 # **************************************************************************** #
 
-all: $(DIR) $(ALL_LIB) $(NAME)
+all: $(DIR) lib_comp $(NAME)
 	@if [ $(DEBUG) = 1 ]; then printf "Flag used:\n"; printf "    %s\n" $(FLAGS); fi
 
 # Creates every repositories if it does not exist
