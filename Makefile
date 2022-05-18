@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/18 12:19:27 by mahadad          ###   ########.fr        #
+#    Updated: 2022/05/18 14:25:09 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,8 +78,8 @@ ifeq ($(DEBUG), 1)
 endif
 
 ifeq ($(shell uname),Darwin)
-	INC += -I $(shell brew --prefix readline)include/readline/
-	# INC += -L $(shell brew --prefix readline)/lib
+	INC += -I$(shell brew --prefix readline)/include
+	FLAGS_COMP += -L$(shell brew --prefix readline)/lib
 endif
 
 
@@ -97,8 +97,10 @@ $(DIR):
 	@mkdir $@
 
 # Compiles every lib in the lib repository
-$(ALL_LIB): 
-	@make -sC $@
+lib_comp:
+	@for path in $(ALL_LIB); do \
+		make -sC $$path all;\
+	done
 
 # Takes any C/CPP files and transforms into an object into the OBJ_DIR
 $(OBJ_DIR)/%$(OBJ_EXT): %$(CODE_EXT) $(HEADER)
@@ -112,7 +114,7 @@ $(INC_DIR)/%$(HEAD_EXT): %$(HEAD_EXT)
 
 # Takes an name of executable and compiles everything into it
 $(NAME): print $(HEADER) $(OBJ)
-	@$(CC) $(FLAGS) $(FLAGS_COMP) $(OBJ) $(INC) $(LIB) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) $(INC) $(FLAGS_COMP) $(LIB) -o $(NAME)
 	@chmod 777 $(NAME)
 	@printf "\n"
 
@@ -151,9 +153,11 @@ re: fclean all
 exe: all
 	@./$(NAME)
 
-test:
+dbg:
+	@echo $(FLAGS)
 	@echo $(INC)
+	@echo $(LIB)
 
 # **************************************************************************** #
 
-.PHONY: all, fclean, clean, re, print_src, $(ALL_LIB), exe
+.PHONY: all, fclean, clean, re, print_src, $(ALL_LIB), exe, lib_comp
