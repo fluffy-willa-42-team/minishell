@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   msh_prompt.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 10:16:20 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/19 16:58:10 by mahadad          ###   ########.fr       */
+/*   Created: 2022/05/19 16:45:29 by mahadad           #+#    #+#             */
+/*   Updated: 2022/05/19 16:57:33 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "msh_prompt.h"
+#ifndef MSH_PROMPT_H
+# define MSH_PROMPT_H
 
-int	main(int argc, char *argv[])
-{
-	(void) argc;
-	(void) argv;
-	//DEBUG TODO REMOVE
-	setbuf(stdout, NULL);
-	
-	prompt();
-	//TODO make custom exit function that free stuff befor quit
-	return (0);
-}
+# include <stdio.h>
+# include <unistd.h>
+ #include <stdlib.h>
+# include <signal.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+
+# define PROMPT_TXT "UwU $> "
+
+void prompt (void);
+
+# endif
