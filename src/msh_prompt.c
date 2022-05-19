@@ -70,13 +70,25 @@ void set_sigaction(void)
 	if (debug_sigaction != -1)
 		printf("SIGINT Ok\n");
 	else
-		printf("SIGINT [KO]: %d !!\n%s\n", debug_sigaction, strerror(errno));
+		printf("SIGINT [KO]: %d !!\n"
+			"SIGINT=%d\n"
+			"%s\n",
+			debug_sigaction,
+			SIGINT,
+			strerror(errno)
+		);
 
 	debug_sigaction = sigaction(SIGQUIT, &sigquit, NULL);
 	if (debug_sigaction != -1)
 		printf("SIGQUIT Ok\n");
 	else
-		printf("SIGQUIT [KO]: %d !!\n%s\n", debug_sigaction, strerror(errno));
+		printf("SIGQUIT [KO]: %d !!\n"
+			"SIGQUIT=%d\n"
+			"%s\n",
+			debug_sigaction,
+			SIGQUIT,
+			strerror(errno)
+		);
 }
 
 /**
