@@ -48,11 +48,17 @@ Install readline lib
 ## Compile
 
 To compile
+
 ```make```
+
 Compile and run
+
 ```make exe```
+
 Compile with `fsanitize=address`
+
 ```make SANI=1```
 
+---
 
 This work is published under the terms of **[42 Unlicense](https://github.com/gcamerli/42unlicense)**.
