@@ -6,12 +6,13 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:44:08 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/19 21:56:50 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/19 22:08:39 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_prompt.h"
 #include "msh_debug.h"
+#include "libft.h"
 
 /**
  * @brief Function call by `sigaction` when catch signals.
@@ -36,26 +37,33 @@ static void sighandler(int signum)
 }
 
 /**
- * @brief Debbuger for the sigaction return.
+ * @brief Checker for the sigaction return.
  * 
  * @param debug_sigaction `int` that `sigation` return.
  * @param name Name of the signal macro.
  */
-static void msh_debug_sigaction(int debug_sigaction, char *name)
+static void msh_check_sigaction(int sigaction_return, char *name)
 {
-	if (MSH_DEBUG)
+	/**
+	 * sigaction() returns `0` on success; on error, `-1` is returned, and
+	 * `errno` is set to indicate the error.
+	 */
+	if (sigaction_return != -1)
 	{
-		if (debug_sigaction != -1)
+		if (MSH_DEBUG)
 			printf("%s Ok\n", name);
-		else
-			printf("%s [KO]: %d !!\n"
-				"%s\n",
-				name,
-				debug_sigaction,
-				strerror(errno)
-			);
+		return ;
 	}
-}
+	if (MSH_DEBUG)
+		printf("%s [KO]: %d !!\n"
+			"%s\n",
+			name,
+			sigaction_return,
+			strerror(errno)
+		);
+	//TODO make a clean exit function, like msh_exit(EXIT_FAILURE, strerror(errno), <...>);
+	exit(EXIT_FAILURE);
+	}
 
 /**
  * @brief Set sigaction. For `C-c` (SIGINT) will clear the readline buff and 
@@ -88,8 +96,8 @@ static void set_sigaction(void)
 	sigquit.sa_mask = sig_set;
 
 	// Start to catch signal.
-	msh_debug_sigaction(sigaction(SIGINT, &sigint, NULL), "SIGINT");
-	msh_debug_sigaction(sigaction(SIGQUIT, &sigquit, NULL), "SIGQUIT");
+	msh_check_sigaction(sigaction(SIGINT, &sigint, NULL), "SIGINT");
+	msh_check_sigaction(sigaction(SIGQUIT, &sigquit, NULL), "SIGQUIT");
 }
 
 /**
@@ -104,11 +112,12 @@ void prompt (void)
 
 	while (!line_read)
 	{
+		// `readline` wait a user imput from the prompt. Will return a string.
 		line_read = readline(PROMPT_TXT);
 		if (line_read)
 		{
 			// Check if readline dont return a EOF aka `C-D`
-			if (strlen(line_read))
+			if (ft_strlen(line_read))
 			{
 				//TODO run paser function
 				if (MSH_DEBUG)
