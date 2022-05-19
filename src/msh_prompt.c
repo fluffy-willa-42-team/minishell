@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:44:08 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/19 16:56:36 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/19 17:04:50 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void set_sigaction(void)
 	struct sigaction	sigint;
 	struct sigaction	sigquit;
 	sigset_t			sig_set;
+	int					debug_sigaction;
 
 	/**
 	 * Init mask, mask allow to specify a set of signal that aren't permitted
@@ -65,10 +66,18 @@ void set_sigaction(void)
 	sigquit.sa_mask = sig_set;
 
 	// Start to catch signal.
-	if (sigaction(SIGINT, &sigint, NULL) != -1)
+	debug_sigaction = sigaction(SIGINT, &sigint, NULL);
+	if (debug_sigaction != -1)
 		printf("SIGINT Ok\n");
-	if (sigaction(SIGQUIT, &sigquit, NULL) != -1)
-		printf("SIGINT Ok\n");
+	else
+		printf("SIGINT [KO] !!\n");
+
+	debug_sigaction = sigaction(SIGQUIT, &sigquit, NULL);
+
+	if (debug_sigaction != -1)
+		printf("SIGQUIT Ok\n");
+	else
+		printf("SIGQUIT [KO] !!\n");
 }
 
 /**
