@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:44:08 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/19 17:10:58 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/19 17:11:56 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ void set_sigaction(void)
 	if (debug_sigaction != -1)
 		printf("SIGINT Ok\n");
 	else
-		printf("SIGINT [KO]: %d !!\n%s", debug_sigaction, strerror(errno));
+		printf("SIGINT [KO]: %d !!\n%s\n", debug_sigaction, strerror(errno));
 
 	debug_sigaction = sigaction(SIGQUIT, &sigquit, NULL);
 	if (debug_sigaction != -1)
 		printf("SIGQUIT Ok\n");
 	else
-		printf("SIGQUIT [KO]: %d !!\n%s", debug_sigaction, strerror(errno));
+		printf("SIGQUIT [KO]: %d !!\n%s\n", debug_sigaction, strerror(errno));
 }
 
 /**
