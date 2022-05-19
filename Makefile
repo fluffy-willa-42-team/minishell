@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: awillems <awillems@student.42.fr>          +#+  +:+       +#+         #
+#    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/18 14:27:25 by awillems         ###   ########.fr        #
+#    Updated: 2022/05/19 21:54:11 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,7 @@ endif
 
 ifeq ($(DEBUG), 1)
 	FLAGS += -g3
+	FLAGS += -D MSH_DEBUG=1
 endif
 
 ifeq ($(shell uname),Darwin)

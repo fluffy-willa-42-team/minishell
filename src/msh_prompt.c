@@ -6,16 +6,17 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:44:08 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/19 17:11:56 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/19 21:56:50 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_prompt.h"
+#include "msh_debug.h"
 
 /**
  * @brief Function call by `sigaction` when catch signals.
  */
-void sighandler(int signum)
+static void sighandler(int signum)
 {
 	if (signum == SIGINT)
 	{
@@ -35,17 +36,38 @@ void sighandler(int signum)
 }
 
 /**
+ * @brief Debbuger for the sigaction return.
+ * 
+ * @param debug_sigaction `int` that `sigation` return.
+ * @param name Name of the signal macro.
+ */
+static void msh_debug_sigaction(int debug_sigaction, char *name)
+{
+	if (MSH_DEBUG)
+	{
+		if (debug_sigaction != -1)
+			printf("%s Ok\n", name);
+		else
+			printf("%s [KO]: %d !!\n"
+				"%s\n",
+				name,
+				debug_sigaction,
+				strerror(errno)
+			);
+	}
+}
+
+/**
  * @brief Set sigaction. For `C-c` (SIGINT) will clear the readline buff and 
  *          show up a new prompt.   Will ignore `C-\` (SIGQUIT).
  *
  */
-void set_sigaction(void)
+static void set_sigaction(void)
 {
 	// Settings for the `C-c`
 	struct sigaction	sigint;
 	struct sigaction	sigquit;
 	sigset_t			sig_set;
-	int					debug_sigaction;
 
 	/**
 	 * Init mask, mask allow to specify a set of signal that aren't permitted
@@ -66,29 +88,8 @@ void set_sigaction(void)
 	sigquit.sa_mask = sig_set;
 
 	// Start to catch signal.
-	debug_sigaction = sigaction(SIGINT, &sigint, NULL);
-	if (debug_sigaction != -1)
-		printf("SIGINT Ok\n");
-	else
-		printf("SIGINT [KO]: %d !!\n"
-			"SIGINT=%d\n"
-			"%s\n",
-			debug_sigaction,
-			SIGINT,
-			strerror(errno)
-		);
-
-	debug_sigaction = sigaction(SIGQUIT, &sigquit, NULL);
-	if (debug_sigaction != -1)
-		printf("SIGQUIT Ok\n");
-	else
-		printf("SIGQUIT [KO]: %d !!\n"
-			"SIGQUIT=%d\n"
-			"%s\n",
-			debug_sigaction,
-			SIGQUIT,
-			strerror(errno)
-		);
+	msh_debug_sigaction(sigaction(SIGINT, &sigint, NULL), "SIGINT");
+	msh_debug_sigaction(sigaction(SIGQUIT, &sigquit, NULL), "SIGQUIT");
 }
 
 /**
@@ -110,18 +111,21 @@ void prompt (void)
 			if (strlen(line_read))
 			{
 				//TODO run paser function
-				printf("[%s]\n", line_read);
+				if (MSH_DEBUG)
+					printf("[%s]\n", line_read);
 				free(line_read);
 				line_read = NULL;
 			}
 			else
 			{
-				printf("        Empty line\n");
+				if (MSH_DEBUG)
+					printf("\nEmpty line\n");
 			}
 		}
 		else
 		{
-			printf("\n        null line_read\n");
+			if (MSH_DEBUG)
+				printf("\n[NULL] line_read\n");
 			return ;
 		}
 		line_read = NULL;
