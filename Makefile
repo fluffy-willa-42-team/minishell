@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/20 13:23:01 by mahadad          ###   ########.fr        #
+#    Updated: 2022/05/20 13:36:40 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ NAME		= minishell_exe
 # **************************************************************************** #
 
 all: $(DIR) lib_comp $(NAME)
-	@if [ $(DEBUG) = 1 ]; then printf "Flag used:\n"; printf "    %s\n" $(FLAGS); fi
+	@if [ $(DEBUG) = 1 ]; then printf "$(COLOR_RED)/!\ DEBUG ENABLE /!\$(COLOR_NORMAL)\nFlag used:\n"; printf "    %s\n" $(FLAGS); fi
 
 # Creates every repositories if it does not exist
 $(DIR):
