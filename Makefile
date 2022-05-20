@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/19 21:54:11 by mahadad          ###   ########.fr        #
+#    Updated: 2022/05/20 13:23:01 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,11 +71,13 @@ SANI		= 0
 ifeq ($(SANI), 1)
 	FLAGS += -fsanitize=address
 	DEBUG = 1
+	MAKE_FLAG += SANI=1
 endif
 
 ifeq ($(DEBUG), 1)
 	FLAGS += -g3
 	FLAGS += -D MSH_DEBUG=1
+	MAKE_FLAG += DEBUG=1
 endif
 
 ifeq ($(shell uname),Darwin)
@@ -100,7 +102,7 @@ $(DIR):
 # Compiles every lib in the lib repository
 lib_comp:
 	@for path in $(ALL_LIB); do \
-		make -sC $$path all;\
+		make -sC $$path $(MAKE_FLAG) all;\
 	done
 
 # Takes any C/CPP files and transforms into an object into the OBJ_DIR
@@ -130,6 +132,9 @@ clean:
 		make -sC $$path clean;\
 	done
 
+c:
+	@rm -rf $(OBJ)
+
 # **************************************************************************** #
 
 fclean:
@@ -137,6 +142,9 @@ fclean:
 	@for path in $(ALL_LIB); do \
 		make -sC $$path fclean;\
 	done
+
+fc:
+	@rm -rf $(OBJ) $(INC_DIR)* $(NAME)
 
 # **************************************************************************** #
 
@@ -149,6 +157,8 @@ print_src:
 
 re: fclean all
 
+r: fc all
+
 # **************************************************************************** #
 
 exe: all
@@ -158,6 +168,7 @@ dbg:
 	@echo $(FLAGS)
 	@echo $(INC)
 	@echo $(LIB)
+	@echo $(MAKE_FLAG)
 
 # **************************************************************************** #
 
