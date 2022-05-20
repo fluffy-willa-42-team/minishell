@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/20 13:36:40 by mahadad          ###   ########.fr        #
+#    Updated: 2022/05/20 13:46:38 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -169,7 +169,9 @@ dbg:
 	@echo $(INC)
 	@echo $(LIB)
 	@echo $(MAKE_FLAG)
+	@echo $(ALL_LIB)
+	@echo $(NAME)
 
 # **************************************************************************** #
 
-.PHONY: all, fclean, clean, re, print_src, $(ALL_LIB), exe, lib_comp
+.PHONY: all, fclean, clean, re, print_src, $(ALL_LIB), exe, lib_comp, fc, r, c
