@@ -6,7 +6,14 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:12:13 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/24 11:12:13 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/24 14:57:34 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "msh_prompt.h"
+#include <stdio.h>
+
+void	msh_lexer(const char *line)
+{
+	printf("lexer(\"%s\")\n", line);//TODO
+}

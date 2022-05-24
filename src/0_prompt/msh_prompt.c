@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:44:08 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/24 14:51:43 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/24 14:56:01 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void msh_prompt(void)
 			if (ft_strlen(line_read))
 			{
 				//TODO run paser function
+				msh_lexer(line_read);
 				if (MSH_DEBUG)
 					printf("[%s]\n", line_read);
 				add_history(line_read);
