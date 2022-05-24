@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/24 08:53:25 by mahadad          ###   ########.fr        #
+#    Updated: 2022/05/24 11:52:09 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,7 @@ $(DIR):
 # Compiles every lib in the lib repository
 lib_comp:
 	@for path in $(ALL_LIB); do \
+		printf "[%s]\n" $$path;\
 		make -sC $$path $(MAKE_FLAG) all;\
 	done
 
@@ -129,6 +130,7 @@ print:
 clean:
 	@rm -rf $(OBJ)
 	@for path in $(ALL_LIB); do \
+		printf "[%s]\n" $$path;\
 		make -sC $$path clean;\
 	done
 
@@ -140,6 +142,7 @@ c:
 fclean:
 	@rm -rf $(OBJ) $(INC_DIR)* $(NAME)
 	@for path in $(ALL_LIB); do \
+		printf "[%s]\n" $$path;\
 		make -sC $$path fclean;\
 	done
 
@@ -150,6 +153,7 @@ fc:
 
 print_src:
 	@for elem in $(SRCS_FIND); do \
+		printf "[%s]\n" $$path;\
 		echo $$elem;\
 	done
 
@@ -165,15 +169,34 @@ exe: all
 	@./$(NAME)
 
 dbg:
-	@echo $(FLAGS)
-	@echo $(INC)
-	@echo $(LIB)
-	@echo $(MAKE_FLAG)
-	@echo $(ALL_LIB)
-	@echo $(NAME)
+	@for path in $(ALL_LIB); do \
+		mkdir $$path/.vscode;\
+	done
+	# @echo $(FLAGS)
+	# @echo $(INC)
+	# @echo $(LIB)
+	# @echo $(MAKE_FLAG)
+	# @echo $(ALL_LIB)
+	# @echo $(NAME)
+	# @echo $(shell pwd)
+	# cd lib; ls
+	# ls
+
+STUFF_TO_REMOVE =	\
+					*.O\
+					*.a\
+					.DS_Store\
+					.vscode
+
+remove_stuff:
+	@for stuff in $(STUFF_TO_REMOVE); do \
+	printf "remove all [%s]\n" $$stuff;\
+		find . -name $$stuff -prune -exec rm -rf {} \; ;\
+	done
 
 update_lib:
 	@for path in $(ALL_LIB); do \
+		printf "[%s]\n" $$path;\
 		branch=`git -C $$path symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'`;\
 		git -C $$path pull origin $$branch;\
 		git -C $$path checkout $$branch;\
@@ -181,6 +204,15 @@ update_lib:
 
 update: update_lib
 	git pull origin $(shell git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
+ping:
+	@printf "[%s] pong!\n" $(THISPATH)
+
+ping_lib:
+	@for path in $(ALL_LIB); do \
+		printf "[%s]\n" $$path;\
+		make -C $$path ping;\
+	done
 
 # **************************************************************************** #
 
