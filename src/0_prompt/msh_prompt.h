@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:45:29 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/19 17:10:33 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/24 14:51:43 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 
 # define PROMPT_TXT "UwU $> "
 
-void prompt (void);
+void msh_prompt(void);
 
 # endif

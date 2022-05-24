@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:44:08 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/24 14:44:25 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/24 14:51:43 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static void set_sigaction(void)
 /**
  * @brief Start the prompt and set the signal action.
  */
-void prompt (void)
+void msh_prompt(void)
 {
 	char	*line_read;
 
