@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:44:08 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/19 22:08:39 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/24 14:44:25 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void prompt (void)
 				//TODO run paser function
 				if (MSH_DEBUG)
 					printf("[%s]\n", line_read);
+				add_history(line_read);
 				free(line_read);
 				line_read = NULL;
 			}
