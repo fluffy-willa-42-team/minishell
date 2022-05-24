@@ -24,7 +24,7 @@ or if you have `Oh-My-Zsh`
 gcl git@github.com:fluffy-willa-42-team/minishell.git
 ```
 
-Need the GNU readline lib
+## You need the GNU readline lib
 
 ### MacOS
 
