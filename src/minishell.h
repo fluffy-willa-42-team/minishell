@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:38:26 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/19 16:57:15 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/24 16:22:22 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# include "msh_strcut.h"
 # include "libft.h"
 
 /* ************************************************************************** */
+
+void	msh_bin_indexer(t_minishell *data);
 
 #endif

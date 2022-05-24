@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_strcut.h                                       :+:      :+:    :+:   */
+/*   msh_bin_indexer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/24 16:24:19 by mahadad          ###   ########.fr       */
+/*   Created: 2022/05/24 15:26:44 by mahadad           #+#    #+#             */
+/*   Updated: 2022/05/24 16:27:31 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MSH_STRUCT_H
-# define MSH_STRUCT_H
+#include <stdlib.h>
+#include <stdio.h>
+#include "msh_strcut.h"
+#include "msh_debug.h"
 
-# include <signal.h>
-
-typedef struct sigaction t_sigaction;
-
-typedef struct s_minishell
+static void	get_env(char *bin)
 {
-	char	*env_path;
-}				t_minishell;
 
-#endif
+	bin = getenv("PATH");
+	if (!bin)
+		exit(EXIT_FAILURE);//TODO clean exit function
+	if (MSH_DEBUG)
+		printf("PATH: %s\n", bin);
+}
+
+void msh_bin_indexer(t_minishell *data)
+{
+	get_env(data->env_path);
+	//TODO red tree
+}
