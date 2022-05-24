@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/24 08:10:51 by mahadad          ###   ########.fr        #
+#    Updated: 2022/05/24 08:53:25 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -173,8 +173,15 @@ dbg:
 	@echo $(NAME)
 
 update_lib:
-	git submodule update --recursive
+	@for path in $(ALL_LIB); do \
+		branch=`git -C $$path symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'`;\
+		git -C $$path pull origin $$branch;\
+		git -C $$path checkout $$branch;\
+	done
+
+update: update_lib
+	git pull origin $(shell git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 
 # **************************************************************************** #
 
-.PHONY: all, fclean, clean, re, print_src, $(ALL_LIB), exe, lib_comp, fc, r, c
+.PHONY: all, fclean, clean, re, print_src, $(ALL_LIB), exe, lib_comp, fc, r, c, update, update_lib
