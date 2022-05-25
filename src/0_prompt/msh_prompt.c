@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "msh_prompt.h"
+#include "msh_prompt.h"
 #include "msh_debug.h"
 #include "libft.h"
 
