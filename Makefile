@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
+#    By: awillems <awillems@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/24 11:52:09 by mahadad          ###   ########.fr        #
+#    Updated: 2022/05/25 10:21:03 by awillems         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ CC			= gcc
 OBJ_EXT		= .o
 CODE_EXT	= .c
 HEAD_EXT	= .h
-INC			= -I include -I lib/libft/include
+INC			= -I include -I lib/libft/include -I lib/vector-lib/include
 FLAGS		= -Wall -Wextra -Werror
 FLAGS_COMP	= -lreadline
 
