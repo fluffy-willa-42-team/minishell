@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   msh_debug.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 21:45:23 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/19 21:46:26 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/25 12:05:11 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MSH_DEBUG_H
 # define MSH_DEBUG_H
+
+# include <stdio.h>
 
 #  ifndef MSH_DEBUG
 #   define MSH_DEBUG 0

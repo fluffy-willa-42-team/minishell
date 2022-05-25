@@ -6,13 +6,18 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:08:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/25 11:10:35 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/25 12:06:16 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "msh_prompt.h"
+// #include "msh_prompt.h"
 #include "msh_debug.h"
 #include "libft.h"
+
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <errno.h>
+# include <signal.h>
 
 /**
  * @brief Function call by `sigaction` when catch signals.
