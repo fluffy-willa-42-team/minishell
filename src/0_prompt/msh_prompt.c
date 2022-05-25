@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   msh_prompt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:44:08 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/25 10:01:34 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/25 11:10:56 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_prompt.h"
 #include "msh_debug.h"
 #include "libft.h"
+#include "msh_free.h"
 
 /**
  * @brief Function call by `sigaction` when catch signals.
@@ -124,8 +125,7 @@ void	msh_prompt(void)
 				if (MSH_DEBUG)
 					printf("[%s]\n", line_read);
 				add_history(line_read);
-				free(line_read);
-				line_read = NULL;
+				msh_free(line_read);
 			}
 			else
 			{
