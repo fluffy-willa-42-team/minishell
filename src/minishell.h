@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:38:26 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/24 16:22:22 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/25 10:56:45 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# include "msh_strcut.h"
+# include "msh_struct.h"
 # include "libft.h"
 
 /* ************************************************************************** */

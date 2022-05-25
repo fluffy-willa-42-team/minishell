@@ -6,13 +6,13 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 15:26:44 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/25 10:02:12 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/25 11:07:49 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "msh_strcut.h"
+#include "msh_struct.h"
 #include "msh_debug.h"
 
 static void	get_env(char *bin)
