@@ -1,78 +1,95 @@
 # Allowed functions
+
 ## readline
+
 ```c
 char *readline (const char *prompt);
 ```
+
 get a line from a user with editing
 
 ---
 
 ## rl_clear_history
+
 ```c
 void rl_clear_history (void)
 ```
+
 Clear the history list by deleting all of the entries, in the same manner as the History library's clear_history() function. This differs from clear_history because it frees private data Readline saves in the history list.
 
 ---
 
 ## rl_on_new_line
+
 ```c
 int rl_on_new_line(void);
 ```
-Tell the update functions that we have moved onto a new (empty) line, usually after outputting a newline.
 
+Tell the update functions that we have moved onto a new (empty) line, usually after outputting a newline.
 
 ---
 
 ## rl_replace_line
+
 ```c
 void rl_replace_line (const char *text, int clear_undo)
 ```
+
 Replace the contents of rl_line_buffer with text. The point and mark are preserved, if possible. If clear_undo is non-zero, the undo list associated with the current line is cleared.
 
 ---
 
 ## rl_redisplay
+
 ```c
 void rl_replace_line (const char *text, int clear_undo)
 ```
+
 Replace the contents of rl_line_buffer with text. The point and mark are preserved, if possible. If clear_undo is non-zero, the undo list associated with the current line is cleared.
 
 ---
 
 ## add_history
+
 ```c
 void add_history (char *string);
 ```
+
 Place string at the end of the history list. The associated data field (if any) is set to NULL.
 
 ---
 
 ## printf
+
 ```c
 int printf( const char *format, ... );
 ```
 
-
 ---
 
 ## malloc
+
 ```c
 void *malloc(size_t size);
 ```
+
 The C library function void *malloc(size_t size) allocates the requested memory and returns a pointer to it.
 
 ---
 
 ## free
+
 ```c
 void free(void *ptr);
 ```
+
 The C library function void free(void *ptr) deallocates the memory previously allocated by a call to calloc, malloc, or realloc.
 
 ---
 
 ## write
+
 ```c
 ssize_t write(int fd, const void *buf, size_t count);
 ```
@@ -80,14 +97,17 @@ ssize_t write(int fd, const void *buf, size_t count);
 ---
 
 ## access
+
 ```c
 int access(const char *pathname, int mode);
 ```
+
 access() checks whether the calling process can access the file pathname.  If pathname is a symbolic link, it is dereferenced.
 
 ---
 
 ## open
+
 ```c
 int open(const char *pathname, int flags);
 ```
@@ -95,34 +115,42 @@ int open(const char *pathname, int flags);
 ---
 
 ## read
+
 ```c
 ssize_t read(int fd, void *buf, size_t count);
 ```
+
 read() attempts to read up to count bytes from file descriptor fd into the buffer starting at buf.
 
 ---
 
 ## close
+
 ```c
 int close(int fd);
 ```
+
 close() closes a file descriptor, so that it no longer refers to any file and may be reused.  Any record locks (see fcntl(2)) held on the file it was associated with, and owned by the process, are removed (regardless of the file descriptor that was used to obtain the lock).
 
 ---
 
 ## fork
+
 ```c
 pid_t fork(void);
 ```
+
 fork() creates a new process by duplicating the calling process. The new process is referred to as the child process. The calling process is referred to as the parent process.
 
 ---
 
 ## wait, waitpid
+
 ```c
 pid_t wait(int *wstatus);
 pid_t waitpid(pid_t pid, int *wstatus, int options);
 ```
+
 All of these system calls are used to wait for state changes in a child of the calling process, and obtain information about the child whose state has changed.  A state change is considered to be: the child terminated; the child was stopped by a signal; or the child was resumed by a signal.  In the case of a terminated child, performing a wait allows the system to release the resources associated with the child; if a wait is not performed, then the terminated child remains in a "zombie" state.
 
 If a child has already changed state, then these calls return immediately.  Otherwise, they block until either a child changes state or a signal handler interrupts the call (assuming that system calls are not automatically restarted using the SA_RESTART flag of sigaction(2)).  In the remainder of this page, a child whose state has changed and which has not yet been waited upon by one of these system calls is termed waitable.
@@ -130,32 +158,41 @@ If a child has already changed state, then these calls return immediately.  Othe
 ---
 
 ## wait3, wait4
+
 ```c
 pid_t wait3(int *wstatus, int options, struct rusage *rusage);
 pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage);
 ```
+
 The wait3() and wait4() system calls are similar to waitpid(2),
 but additionally return resource usage information about the
 child in the structure pointed to by rusage.
 
 Other than the use of the rusage argument, the following wait3()
 call:
+
 ```c
 wait3(wstatus, options, rusage);
 ```
+
 is equivalent to:
+
 ```c
 waitpid(-1, wstatus, options);
 ```
 
 Similarly, the following wait4() call:
+
 ```c
 wait4(pid, wstatus, options, rusage);
 ```
+
 is equivalent to:
+
 ```c
 waitpid(pid, wstatus, options);
 ```
+
 In other words, wait3() waits of any child, while wait4() can be
 used to select a specific child, or children, on which to wait.
 See wait(2) for further details.
@@ -165,78 +202,97 @@ be filled with accounting information about the child.  See
 getrusage(2) for details.
 
 ---
+
 ## signal
+
 ```c
 typedef void (*sighandler_t)(int);
 
 sighandler_t signal(int signum, sighandler_t handler);
 ```
+
 signal() sets the disposition of the signal signum to handler, which is either SIG_IGN, SIG_DFL, or the address of a programmer-defined function (a "signal handler").
 
 ---
 
 ## sigaction
+
 ```c
 int sigaction(int signum, const struct sigaction *restrict act, struct sigaction *restrict oldact);
 ```
+
 The sigaction() system call is used to change the action taken by a process on receipt of a specific signal.  (See signal(7) for an overview of signals.)
 
 ---
 
 ## sigemptyset
+
 ```c
 int sigemptyset(sigset_t *set);
 ```
+
 The sigemptyset() function initializes the signal set pointed to by set, such that all signals defined in POSIX.1‐2008 are excluded.
 
 ---
 
 ## sigaddset
+
 ```c
 int sigaddset(sigset_t *set, int signo);
 ```
+
 The sigaddset() function adds the individual signal specified by the signo to the signal set pointed to by set.
 
 ---
 
 ## kill
+
 ```c
 int kill(pid_t pid, int sig);
 ```
+
 The kill() system call can be used to send any signal to any process group or process.
 
 ---
 
 ## exit
+
 ```c
 noreturn void exit(int status);
 ```
+
 The exit() function causes normal process termination and the least significant byte of status (i.e., status & 0xFF) is returned to the parent (see wait(2)).
 
 ---
 
 ## getcwd
+
 ```c
 char *getcwd(char *buf, size_t size);
 ```
+
 These functions return a null-terminated string containing an absolute pathname that is the current working directory of the calling process.  The pathname is returned as the function result and via the argument buf, if present.
 
 ---
 
 ## chdir
+
 ```c
 int chdir(const char *path);
 ```
+
 chdir() changes the current working directory of the calling process to the directory specified in path.
 
 ---
 
 ## stat, lstat, fstat
+
 ```c
 int stat(const char *restrict pathname, struct stat *restrict statbuf);
 int lstat(const char *restrict pathname, struct stat *restrict statbuf);
 int fstat(int fd, struct stat *statbuf);
 ```
+
 These functions return information about a file, in the buffer
 pointed to by statbuf.  No permissions are required on the file
 itself, but—in the case of stat(), fstatat(), and lstat()—execute
@@ -258,9 +314,11 @@ descriptor fd.
 ---
 
 ## unlink
+
 ```c
 int unlink(const char *pathname);
 ```
+
 unlink() deletes a name from the filesystem.  If that name was
 the last link to a file and no processes have the file open, the
 file is deleted and the space it was using is made available for
@@ -269,9 +327,11 @@ reuse.
 ---
 
 ## execve
+
 ```c
 int execve(const char *pathname, char *const argv[], char *const envp[]);
 ```
+
 execve() executes the program referred to by pathname. This
 causes the program that is currently being run by the calling
 process to be replaced with a new program, with newly initialized
@@ -280,9 +340,11 @@ stack, heap, and (initialized and uninitialized) data segments.
 ---
 
 ## dup
+
 ```c
 int dup(int oldfd);  
 ```
+
 The dup() system call allocates a new file descriptor that refers
 to the same open file description as the descriptor oldfd. (For
 an explanation of open file descriptions, see open(2).) The new
@@ -292,9 +354,11 @@ file descriptor that was unused in the calling process.
 ---
 
 ## dup2
+
 ```c
 int dup2(int oldfd, int newfd);
 ```
+
 The dup2() system call performs the same task as dup(), but
 instead of using the lowest-numbered unused file descriptor, it
 uses the file descriptor number specified in newfd. In other
@@ -304,6 +368,7 @@ refers to the same open file description as oldfd.
 ---
 
 ## pipe
+
 ```c
 pipe( );
 ```c
@@ -327,6 +392,7 @@ struct fd_pair {
    };
 struct fd_pair pipe(void);
 ```
+
 pipe() creates a pipe, a unidirectional data channel that can be
 used for interprocess communication.  The array pipefd is used to
 return two file descriptors referring to the ends of the pipe.
@@ -334,7 +400,8 @@ pipefd[0] refers to the read end of the pipe.  pipefd[1] refers
 to the write end of the pipe.  Data written to the write end of
 the pipe is buffered by the kernel until it is read from the read
 end of the pipe.  For further details, see pipe(7).
-```
+
+```c
 (stdin)  +-------+
 -------->| ls -l |--+
          +-------+  |
@@ -354,12 +421,14 @@ end of the pipe.  For further details, see pipe(7).
 ---
 
 ## opendir
+
 ```c
 #include <sys/types.h>
 
 #include <dirent.h>
 DIR *opendir(const char *name);
 ```
+
 The opendir() function opens a directory stream corresponding to
 the directory name, and returns a pointer to the directory
 stream.  The stream is positioned at the first entry in the
@@ -368,11 +437,13 @@ directory.
 ---
 
 ## readdir
+
 ```c
 #include <dirent.h>
 
 struct dirent *readdir(DIR *dirp);
 ```
+
 The readdir() function returns a pointer to a dirent structure
 representing the next directory entry in the directory stream
 pointed to by dirp.  It returns NULL on reaching the end of the
@@ -380,6 +451,7 @@ directory stream or if an error occurred.
 
 In the glibc implementation, the dirent structure is defined as
 follows:
+
 ```c
    struct dirent {
        ino_t          d_ino;       /* Inode number */
@@ -399,12 +471,14 @@ for some further details.
 ---
 
 ## closedir
+
 ```c
 #include <sys/types.h>
 #include <dirent.h>
 
 int closedir(DIR *dirp);
 ```
+
 The closedir() function closes the directory stream associated
 with dirp.  A successful call to closedir() also closes the
 underlying file descriptor associated with dirp.  The directory
@@ -413,15 +487,16 @@ stream descriptor dirp is not available after this call.
 The closedir() function returns 0 on success.  On error, -1 is
 returned, and errno is set to indicate the error.
 
-
 ---
 
 ## strerror
+
 ```c
 #include <string.h>
 
 char *strerror(int errnum);
 ```
+
 The strerror() function returns a pointer to a string that
 describes the error code passed in the argument errnum, possibly
 using the LC_MESSAGES part of the current locale to select the
@@ -434,6 +509,7 @@ function, including perror(3), will modify this string.
 ---
 
 ## perror
+
 ```c
 #include <stdio.h>
 
@@ -463,11 +539,13 @@ use strerror(3) instead.
 ---
 
 ## isatty
+
 ```c
 #include <unistd.h>
 
 int isatty(int fd);
 ```
+
 The isatty() function tests whether fd is an open file descriptor
 referring to a terminal.
 
@@ -486,6 +564,7 @@ ERRORS
 ---
 
 ## ttyname
+
 ```c
 #include <unistd.h>
 
@@ -520,6 +599,7 @@ ERANGE (ttyname_r()) buflen was too small to allow storing the
 ---
 
 ## ttyslot
+
 ```c
 #include <unistd.h>       /* See NOTES */
 
@@ -581,6 +661,7 @@ RETURN VALUE
 ---
 
 ## ioctl
+
 ```c
 #include <sys/ioctl.h>
 
@@ -609,15 +690,16 @@ RETURN VALUE
        value on success.  On error, -1 is returned, and errno is set to
        indicate the error.
 
-
 ---
 
 ## getenv
+
 ```c
 #include <stdlib.h>
 
 char *getenv(const char *name);
 ```
+
 DESCRIPTION
        The getenv() function searches the environment list to find the
        environment variable name, and returns a pointer to the
@@ -653,6 +735,7 @@ RETURN VALUE
 ---
 
 ## tcsetattr
+
 ```c
 #include <termios.h>
 
@@ -749,6 +832,7 @@ ERRORS
 ---
 
 ## tcgetattr
+
 ```c
 #include <termios.h>
 
@@ -786,6 +870,7 @@ ERRORS
 ---
 
 ## tgetent tgetflag tgetnum tgetstr tgoto
+
 ```c
 #include <curses.h>
 #include <term.h>
