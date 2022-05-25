@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_prompt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:44:08 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/24 14:56:01 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/25 10:01:34 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /**
  * @brief Function call by `sigaction` when catch signals.
  */
-static void sighandler(int signum)
+static void	sighandler(int signum)
 {
 	if (signum == SIGINT)
 	{
@@ -42,7 +42,7 @@ static void sighandler(int signum)
  * @param debug_sigaction `int` that `sigation` return.
  * @param name Name of the signal macro.
  */
-static void msh_check_sigaction(int sigaction_return, char *name)
+static void	msh_check_sigaction(int sigaction_return, char *name)
 {
 	/**
 	 * sigaction() returns `0` on success; on error, `-1` is returned, and
@@ -63,14 +63,14 @@ static void msh_check_sigaction(int sigaction_return, char *name)
 		);
 	//TODO make a clean exit function, like msh_exit(EXIT_FAILURE, strerror(errno), <...>);
 	exit(EXIT_FAILURE);
-	}
+}
 
 /**
  * @brief Set sigaction. For `C-c` (SIGINT) will clear the readline buff and 
  *          show up a new prompt.   Will ignore `C-\` (SIGQUIT).
  *
  */
-static void set_sigaction(void)
+static void	set_sigaction(void)
 {
 	// Settings for the `C-c`
 	struct sigaction	sigint;
@@ -103,7 +103,7 @@ static void set_sigaction(void)
 /**
  * @brief Start the prompt and set the signal action.
  */
-void msh_prompt(void)
+void	msh_prompt(void)
 {
 	char	*line_read;
 
