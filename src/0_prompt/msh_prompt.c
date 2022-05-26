@@ -6,17 +6,17 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:44:08 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/26 10:10:13 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/26 11:38:21 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_debug.h"
 #include "libft.h"
 
-# include <readline/readline.h>
-# include <readline/history.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
-# define PROMPT_TXT "UwU $> "
+#include "minishell.h"
 
 /** @file msh_free.c */
 void	msh_free(void *ptr);
@@ -33,7 +33,7 @@ void	msh_prompt(void)
 	char	*line_read;
 
 	set_sigaction();
-	line_read = readline(PROMPT_TXT);
+	line_read = readline(PROMPT_START);
 	while (line_read)
 	{
 		// `readline` wait a user imput from the prompt. Will return a string.
@@ -43,7 +43,7 @@ void	msh_prompt(void)
 			add_history(line_read);
 		}
 		msh_free(line_read);
-		line_read = readline(PROMPT_TXT);
+		line_read = readline(PROMPT_START);
 	}
 	msh_free(line_read);
 }
