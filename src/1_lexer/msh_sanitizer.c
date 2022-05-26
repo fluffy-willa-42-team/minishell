@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:04:23 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/26 10:10:39 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/26 11:49:11 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	check_sanitize(const char *line, int i, int len, int has_char)
 /**
  * @brief Removes all unecessary whitespaces.
  */
-void	sanitize_whitespaces(t_vec *res, const char *line)
+void	san_whitespace(t_vec *res, const char *line)
 {
 	int len = ft_strlen(line);
 	int i = 0;

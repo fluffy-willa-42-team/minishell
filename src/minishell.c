@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:16:20 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/26 11:32:01 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/26 12:46:46 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ t_minishell	g_data;
 
 int	main(void)
 {
+	g_data.prompt_line_opened_char = vec_init(sizeof(char));
+	g_data.str_list = vec_init(sizeof(char));
+	
 	//DEBUG TODO REMOVE
 	setbuf(stdout, NULL);
 	// msh_bin_indexer(&);

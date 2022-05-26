@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:15:00 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/26 11:29:45 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/26 12:11:48 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ void	get_var(const char *env)
 	if (!env_str || MSH_DEBUG)
 	{
 		printf("WARN: getenv dont find the var\n");
+		return ;
 	}
+	printf("ENV: %s\n", env_str);
 	free(env_str);
 }
 
