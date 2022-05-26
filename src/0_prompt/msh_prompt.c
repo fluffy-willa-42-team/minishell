@@ -6,11 +6,10 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:44:08 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/25 12:07:08 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/26 10:10:13 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "msh_prompt.h"
 #include "msh_debug.h"
 #include "libft.h"
 
@@ -19,7 +18,9 @@
 
 # define PROMPT_TXT "UwU $> "
 
+/** @file msh_free.c */
 void	msh_free(void *ptr);
+/** @file set_sigaction.c */
 void	set_sigaction(void);
 
 void	msh_lexer(const char *line);

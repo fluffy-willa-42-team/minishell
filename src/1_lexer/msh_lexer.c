@@ -6,20 +6,22 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:12:13 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/25 10:57:06 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/26 10:10:43 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "msh_prompt.h"
-#include <stdio.h>
+#include "msh_debug.h"
 
-#include "libft.h"
 #include "vector_lib.h"
-#include "msh_struct.h"
+
+/** @file msh_sanitizer.c */
+void	sanitize_whitespaces(t_vec *res, const char *line);
 
 void	msh_lexer(const char *line)
 {
-	printf("lexer(\"%s\")\n", line);//TODO
-
+	t_vec res = vec_init(sizeof(char));
 	
+	sanitize_whitespaces(&res, line);
+	printf("lexer(\"%s\")\n", res.buffer);//TODO REMOVE
+	vec_delete(&res);
 }
