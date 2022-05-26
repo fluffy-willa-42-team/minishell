@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: awillems <awillems@student.42.fr>          +#+  +:+       +#+         #
+#    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/26 09:05:11 by awillems         ###   ########.fr        #
+#    Updated: 2022/05/26 15:16:31 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -216,6 +216,13 @@ ping_lib:
 		printf "[%s]\n" $$path;\
 		make -C $$path ping;\
 	done
+
+git:
+	@git pull
+	@git diff
+	@-git add .
+	@git commit -am "Makefile push `date +'%Y-%m-%d %H:%M:%S'`"
+	@-git push
 
 # **************************************************************************** #
 
