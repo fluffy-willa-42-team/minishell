@@ -31,23 +31,27 @@ void	msh_prompt(void)
 {
 	char	*line_read;
 
-	
 	set_sigaction();
 	line_read = readline(PROMPT_START);
 	while (line_read)
 	{
 		if (line_read[0])
 		{
+			/**
+			 * For online command add the raw line_read,
+			 * If user use `"` or `'` multi line lexer need to return `line_read`
+			 *  and the rest of the input buffer.
+			 * 
+			 * EXPECTED: 
+			 *     add_history(msh_lexer(line_read);
+			 *                    |
+			 *                    -> if oneline return raw `line_read`, if multi line return strcat(`line_read`, `inputbuffer`);
+			 */
 			msh_lexer(line_read);
-			printf("[[%p]]\n", line_read);
 			add_history(line_read);
-			printf("[[%p]]\n", line_read);
-			// vec_delete_content(&g_data.str_list);
-			
+			vec_delete_content(&g_data.str_list);
 		}
-			printf("[[%p]]\n", line_read);
 		msh_free(line_read);
-			printf("[[%p]]\n", line_read);
 		line_read = readline(PROMPT_START);
 	}
 	msh_free(line_read);
