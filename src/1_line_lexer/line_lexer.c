@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/27 11:21:13 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/27 12:09:09 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,7 @@
 #include <stdio.h>
 
 void	interpret_spec_char(t_vec *res, const char *line);
-
-void	clean_whitespace(t_vec *res)
-{
-	int			i;
-	int			is_in_quotes;
-
-	is_in_quotes = 0;
-	i = 0;
-	while (vec_get_char(res, i))
-	{
-		printf("(%c)", vec_get_char(res, i));
-		i++;
-	}
-	printf("\n");
-}
+void	clean_whitespace(t_vec *res);
 
 void	line_lexer(char *line)
 {
