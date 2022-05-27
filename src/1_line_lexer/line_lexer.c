@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interpret_line.c                                   :+:      :+:    :+:   */
+/*   line_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 09:59:33 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/27 10:55:14 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/27 10:55:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
-void	line_lexer(char *line);
+void	interpret_spec_char(t_vec *res, const char *line);
 
-int	interpret_line(char *line)
+void	line_lexer(char *line)
 {
-	printf("\"%s\"\n", line);
-	line_lexer(line);
-	vec_delete_content(&g_data.lexed_command);
-	return (1);
+	// Interpret special char
+	interpret_spec_char(&g_data.lexed_command, line);
+	// Remove whitespaces
+	// expand vars
+	vec_print(&g_data.lexed_command);
+	return ;
 }
