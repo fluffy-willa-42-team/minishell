@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_free.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/25 11:05:48 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/25 12:01:59 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/27 09:48:51 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "msh_debug.h"
+#include "minishell.h"
 
-/**
- * @brief Free an adress and set to `NULL`.
- * 
- * @param ptr Adress to free
- */
-void	msh_free(void *ptr)
+t_minishell	g_data;
+
+int	init_data(void)
 {
-	if (MSH_DEBUG)
-		printf("free [%p]\n", ptr);
-	free(ptr);
-	ptr = NULL;
+	g_data.env_path = NULL;
+	g_data.lexed_comands = vec_init(sizeof(char));
+	if (!g_data.lexed_comands.buffer)
+		return (0);
+	return (1);
+}
+
+int	minishell(void)
+{
+	if (!init_data())
+		return (0);
+	return (1);
+}
+
+int	main(void)
+{
+	return (!minishell());
 }
