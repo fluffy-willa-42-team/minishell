@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_struct.h                                       :+:      :+:    :+:   */
+/*   line_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/26 12:35:27 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/27 12:09:09 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MSH_STRUCT_H
-# define MSH_STRUCT_H
+#include "minishell.h"
+#include "vec_utils.h"
 
-# include <signal.h>
-# include "vector_lib.h"
+#include <stdio.h>
 
-typedef struct sigaction t_sigaction;
+void	interpret_spec_char(t_vec *res, const char *line);
+void	clean_whitespace(t_vec *res);
 
-typedef struct s_minishell
+void	line_lexer(char *line)
 {
-	char	*env_path;
-	t_vec	str_list;
-	t_vec	exec_list;
-	t_vec	buff_input;
-	t_vec	prompt_line_opened_char;
-}				t_minishell;
-
-extern t_minishell	g_data;
-
-#endif
+	// Interpret special char
+	interpret_spec_char(&g_data.lexed_command, line);
+	// Remove whitespaces
+	clean_whitespace(&g_data.lexed_command);
+	// expand vars
+	vec_print(&g_data.lexed_command);
+	return ;
+}

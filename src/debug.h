@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_bin_indexer.c                                  :+:      :+:    :+:   */
+/*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 15:26:44 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/25 11:07:49 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/27 09:38:39 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/27 09:55:29 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "msh_struct.h"
-#include "msh_debug.h"
+#ifndef DEBUG_H
+# define DEBUG_H
 
-static void	get_env(char *bin)
-{
+# ifndef MSH_DEBUG
+#  define MSH_DEBUG 0
+# endif
 
-	bin = getenv("PATH");
-	if (!bin)
-		exit(EXIT_FAILURE);//TODO clean exit function
-	if (MSH_DEBUG)
-		printf("PATH: %s\n", bin);
-}
+# include <stdio.h>
 
-void msh_bin_indexer(t_minishell *data)
-{
-	get_env(data->env_path);
-	//TODO red tree
-}
+#endif

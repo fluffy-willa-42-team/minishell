@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_free.c                                         :+:      :+:    :+:   */
+/*   vec_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/25 11:05:48 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/25 12:01:59 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/27 11:08:26 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/27 11:13:40 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "msh_debug.h"
+# include "vec_utils.h"
 
-/**
- * @brief Free an adress and set to `NULL`.
- * 
- * @param ptr Adress to free
- */
-void	msh_free(void *ptr)
+char	vec_get_char(t_vec *vec, int index)
 {
-	if (MSH_DEBUG)
-		printf("free [%p]\n", ptr);
-	free(ptr);
-	ptr = NULL;
+	return (((char *) vec_get(vec, index))[0]);
+}
+
+char	*vec_get_str(t_vec *vec, int index)
+{
+	return (((char *) vec_get(vec, index)));
 }

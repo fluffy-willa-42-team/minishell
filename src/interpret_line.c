@@ -1,13 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_parser.c                                       :+:      :+:    :+:   */
+/*   interpret_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/16 13:55:33 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/18 14:28:37 by mahadad          ###   ########.fr       */
+/*   Created: 2022/05/27 09:59:33 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/27 10:55:14 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdio.h>
+
+void	line_lexer(char *line);
+
+int	interpret_line(char *line)
+{
+	printf("\"%s\"\n", line);
+	line_lexer(line);
+	vec_delete_content(&g_data.lexed_command);
+	return (1);
+}
