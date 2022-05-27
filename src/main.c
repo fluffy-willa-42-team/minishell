@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/27 10:54:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/27 14:40:38 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ int	init_data(void)
 	g_data.env_path = NULL;
 	g_data.lexed_command = vec_init(sizeof(char));
 	if (!g_data.lexed_command.buffer)
+		return (0);
+	g_data.tmp = vec_init(sizeof(char));
+	if (!g_data.tmp.buffer)
 		return (0);
 	return (1);
 }
