@@ -21,7 +21,7 @@
 int whtspc(t_vec *vec, char *line, int index)
 {
 	if (line[index + 1] != 0 && !ft_is_whitespace(line[index + 1]))
-		vec_fill(vec, FIXED_LEN, " ", 1);
+		vec_fill(vec, FIXED_LEN, "\31", 1);
 	return (index + 1);
 }
 
@@ -76,7 +76,6 @@ int bkslh(t_vec *vec, char *line, int index)
  */
 int sglqot(t_vec *vec, char *line, int index)
 {
-	vec_fill(vec, FIXED_LEN, '\'', 1);
 	index++;
 	while (line[index] && line[index] != '\'')
 	{
@@ -85,7 +84,6 @@ int sglqot(t_vec *vec, char *line, int index)
 	}
 	if (!line[index])
 		return (index);
-	vec_fill(vec, FIXED_LEN, '\'', 1);
 	return (index + 1);
 }
 
@@ -94,15 +92,23 @@ int sglqot(t_vec *vec, char *line, int index)
  */
 int dblqot(t_vec *vec, char *line, int index)
 {
-	vec_fill(vec, FIXED_LEN, '\'', 1);
+	const char *to_find = "$\\";
+	static int	(*func_link[2])() = {varsub, bkslh};
+	char		*ptr;
+
 	index++;
 	while (line[index] && line[index] != '\"')
 	{
-		vec_fill(vec, FIXED_LEN, &line[index], 1);
-		index++;
+		ptr = ft_strrchr(to_find, line[index]);
+		if (ptr)
+			index = func_link[ptr - to_find](vec, line, index);
+		else
+		{
+			vec_fill(vec, FIXED_LEN, &line[index], 1);
+			index++;
+		}
 	}
 	if (!line[index])
 		return (index);
-	vec_fill(vec, FIXED_LEN, '\'', 1);
 	return (index + 1);
 }

@@ -39,9 +39,9 @@ void	line_lexer(t_vec *vec, char *line)
 		whtspc, whtspc, whtspc, whtspc, whtspc, whtspc, 
 		varsub, bkslh, sglqot, dblqot
 	};
-	static char *to_find = " \t\n\v\f\r$\\\'";
+	static char *to_find = " \t\n\v\f\r$\\\'\"";
 	int i;
-	void	*ptr;
+	char	*ptr;
 
 	i = 0;
 	while (line[i] && ft_is_whitespace(line[i]))
@@ -50,12 +50,17 @@ void	line_lexer(t_vec *vec, char *line)
 	{
 		ptr = ft_strrchr(to_find, line[i]);
 		if (ptr)
-			i = func_link[ft_strrchr(to_find, line[i]) - to_find](vec, line, i);
+			i = func_link[ptr - to_find](vec, line, i);
 		else
 		{
 			vec_fill(vec, FIXED_LEN, &line[i], 1);
 			i++;
 		}
+	}
+	for (int i = 0; i < vec->len; i++)
+	{
+		if (((char *) vec->buffer)[i] == '\31')
+			((char *) vec->buffer)[i] = 0;
 	}
 	vec_print(vec);
 	return ;
