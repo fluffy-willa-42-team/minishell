@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 10:32:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 11:24:52 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	minishell(void)
 	return (1);
 }
 
-int	main(void)
+int	main()
 {
 	return (!minishell());
 }
