@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/30 13:45:02 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/30 15:54:05 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_minishell
 typedef struct s_instr
 {
 	int		type;
-	char	*arg;
+	t_vec	arg;
 }				t_instr;
 
 typedef struct sigaction	t_sigaction;

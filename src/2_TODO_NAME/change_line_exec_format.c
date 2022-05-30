@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 14:11:51 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/30 15:35:45 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 #include <stdlib.h>    /** getenv */
 
 #include "debug.h"
+
+/**
+ * @brief 
+ * 
+ */
+char	*set_bin(char *cmd, t_instr *instr)
+{
+	// instr->arg
+	(void)cmd;
+	(void)instr;
+	return (NULL);
+}
+
 
 void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 {
@@ -40,6 +53,7 @@ void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 				if (first_elem)
 				{
 					printf("CMD ");
+					 set_bin(&line->buffer[i], vec_get(instr, 0));
 					first_elem = 0;
 				}
 				else
