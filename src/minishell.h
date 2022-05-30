@@ -33,6 +33,13 @@ typedef struct s_minishell
 	t_vec	tmp;
 }				t_minishell;
 
+typedef struct s_instr
+{
+	int		type;
+	char	*ptr;
+	char	path;
+}				t_instr;
+
 typedef struct sigaction	t_sigaction;
 extern t_minishell			g_data;
 

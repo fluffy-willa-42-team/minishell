@@ -16,7 +16,9 @@
 #include <stdio.h>
 
 /**
- * @brief //TODO
+ * @brief If the char at the index in the line is a white space that is not
+ * followed by another, it will replace it with a unit separator. On the
+ * contrary it will be skipped.
  */
 int whtspc(t_vec *vec, char *line, int index)
 {
@@ -60,7 +62,8 @@ int varsub(t_vec *vec, char *line, int index)
 }
 
 /**
- * @brief //TODO
+ * @brief If the char at the index in the line is a \, it will be either skipped
+ * or save another \ from being skipped.
  */
 int bkslh(t_vec *vec, char *line, int index)
 {
