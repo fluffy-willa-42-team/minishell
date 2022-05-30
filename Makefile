@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/26 15:16:31 by mahadad          ###   ########.fr        #
+#    Updated: 2022/05/30 16:47:32 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -170,20 +170,6 @@ exe: all
 # **************************************************************************** #
 #                               DEV TOOLS
 # **************************************************************************** #
-
-dbg:
-	@for path in $(ALL_LIB); do \
-		mkdir $$path/.vscode;\
-	done
-	# @echo $(FLAGS)
-	# @echo $(INC)
-	# @echo $(LIB)
-	# @echo $(MAKE_FLAG)
-	# @echo $(ALL_LIB)
-	# @echo $(NAME)
-	# @echo $(shell pwd)
-	# cd lib; ls
-	# ls
 
 STUFF_TO_REMOVE =	\
 					*.O\
