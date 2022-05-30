@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/27 14:11:45 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 13:45:02 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,31 @@
 typedef struct s_minishell
 {
 	char	*env_path;
+	// Sanitize command.
 	t_vec	lexed_command;
+	// Lexed commad in struct format.
 	t_vec	lexed_instr;
 	// Always delete content before use !
 	t_vec	tmp;
 }				t_minishell;
 
+/**
+ * Json like representation.
+{
+    [
+    char *arg[
+        char *arg0, // ptr to the bin path and name
+        char *arg1, // first arg
+        char *arg2, // segond arg
+        char *....,
+        ],
+    int type = CMD,
+    ],
+ */
 typedef struct s_instr
 {
 	int		type;
-	char	*ptr;
-	char	path;
+	char	*arg;
 }				t_instr;
 
 typedef struct sigaction	t_sigaction;
