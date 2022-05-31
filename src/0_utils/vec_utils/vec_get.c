@@ -3,18 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   vec_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:08:26 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 13:49:25 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/31 14:33:58 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec_utils.h"
 #include "minishell.h"
 
+#include <stdio.h>
+
 char	vec_get_char(t_vec *vec, int index)
 {
+	if (!vec_get(vec, index))
+		return (0);
 	return (((char *) vec_get(vec, index))[0]);
 }
 
