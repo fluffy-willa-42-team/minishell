@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 17:26:23 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/31 17:38:26 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,28 @@ void	create_new_instr(int type, t_vec *instr)
 	vec_add(instr, &new);
 }
 
+/**
+ * @brief //TODO WIP
+ * 
+ * @param line 
+ * @return char* 
+ */
+char *find_bin_path(char *line)
+{
+	(void)line;
+	return ("WIP/bin");
+}
+
 void	set_bin_path(t_vec *arg, char *line)
 {
-	if (is_bin(line))
+	// Check if the CMD is a bin with path
+	if (access(line, X_OK) != -1)
 	{
 		vec_add(arg, line);
 		return ;
 	}
-	// make else
+	// find the good path
+	vec_add(arg, find_bin_path(line));
 }
 
 void	reset_instr(void)
@@ -46,6 +60,7 @@ void	reset_instr(void)
  * //TODO
  *           Rework all the function
  *           [ ] avoid vec_get_stuff(&(vec_get(&(vec_get)->stuff)))
+ *           [ ] when CMD find the path to the bin
  * //TODO
  * //TODO
  */
