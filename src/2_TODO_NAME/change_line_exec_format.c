@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 15:35:45 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/31 12:37:54 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*set_bin(char *cmd, t_instr *instr)
 
 void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 {
-	int i = 0;
+	size_t i = 0;
 	int	first_elem = 1;
 
 	g_data.env_path = getenv("PATH");

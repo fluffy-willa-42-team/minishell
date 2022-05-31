@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpret_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:59:33 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 10:10:55 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/31 12:08:07 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	interpret_line(char *line)
 	printf("\"%s\"\n", line);
 	line_lexer(&g_data.lexed_command, line);
 	change_line_to_exec_format(&g_data.lexed_command, &g_data.lexed_instr);
-	vec_delete_content(&g_data.lexed_command);
+	vec_delete(&g_data.lexed_command);
 	return (1);
 }

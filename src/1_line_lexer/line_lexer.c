@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/27 15:22:58 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/31 12:35:59 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	line_lexer(t_vec *vec, char *line)
 			i++;
 		}
 	}
-	for (int i = 0; i < vec->len; i++)
+	for (size_t i = 0; i < vec->len; i++)
 	{
 		if (((char *) vec->buffer)[i] == '\31')
 			((char *) vec->buffer)[i] = 0;
