@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 12:35:59 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/31 14:59:43 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,9 @@ void	line_lexer(t_vec *vec, char *line)
 			i = func_link[ptr - to_find](vec, line, i);
 		else
 		{
-			vec_fill(vec, FIXED_LEN, &line[i], 1);
+			vec_add(vec, &line[i]);
 			i++;
 		}
-	}
-	for (size_t i = 0; i < vec->len; i++)
-	{
-		if (((char *) vec->buffer)[i] == '\31')
-			((char *) vec->buffer)[i] = 0;
 	}
 	vec_print(vec);
 	return ;

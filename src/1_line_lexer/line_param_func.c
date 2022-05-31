@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_param_func.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:25:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 12:08:07 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/31 15:00:46 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 int whtspc(t_vec *vec, char *line, int index)
 {
 	if (line[index + 1] != 0 && !ft_is_whitespace(line[index + 1]))
-		vec_fill(vec, FIXED_LEN, "\31", 1);
+		vec_add(vec, "\31");
 	return (index + 1);
 }
 
@@ -44,7 +44,7 @@ int varsub(t_vec *vec, char *line, int index)
 	if (!ft_isalnum(line[index]))
 	{
 		// If not, push `$` and return the index of the char after `$`.
-		vec_fill(vec, FIXED_LEN, "$", 1);
+		vec_add(vec, "$");
 		return (index);
 	}
 	// strlen of the var name
@@ -68,7 +68,7 @@ int varsub(t_vec *vec, char *line, int index)
 int bkslh(t_vec *vec, char *line, int index)
 {
 	if (line[index + 1] && line[index + 1] == '\\'){
-		vec_fill(vec, FIXED_LEN, "\\", 1);
+		vec_add(vec, "\\");
 		return (index + 2);
 	}
 	return (index + 1);
@@ -82,7 +82,7 @@ int sglqot(t_vec *vec, char *line, int index)
 	index++;
 	while (line[index] && line[index] != '\'')
 	{
-		vec_fill(vec, FIXED_LEN, &line[index], 1);
+		vec_add(vec, &line[index]);
 		index++;
 	}
 	if (!line[index])
@@ -107,7 +107,7 @@ int dblqot(t_vec *vec, char *line, int index)
 			index = func_link[ptr - to_find](vec, line, index);
 		else
 		{
-			vec_fill(vec, FIXED_LEN, &line[index], 1);
+			vec_add(vec, &line[index]);
 			index++;
 		}
 	}
