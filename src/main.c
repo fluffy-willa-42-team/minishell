@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 12:56:27 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/31 17:28:09 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,6 @@ int		interpret_line(char *line);
 t_minishell	g_data;
 
 /**
- * @brief 
- * 
- */
-void	alloc_instr(void)
-{
-	printf("\nWIP ALLOC INSTR\n");
-}
-
-/**
  * @brief Init the global var with all data.
  */
 void	init_data(void)
@@ -38,7 +29,6 @@ void	init_data(void)
 	g_data.env_path = NULL;
 	g_data.lexed_command = vec_init(sizeof(char));
 	g_data.lexed_instr = vec_init(sizeof(t_instr));
-	alloc_instr();
 	g_data.tmp = vec_init(sizeof(char));
 }
 
