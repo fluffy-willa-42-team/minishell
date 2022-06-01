@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 17:28:09 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/01 10:48:00 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_data(void)
 /**
  * @brief Inits Data and Start the prompt
  */
-int	minishell(void)
+int	main()
 {
 	char	*line_read;
 
@@ -45,15 +45,11 @@ int	minishell(void)
 	while (line_read)
 	{
 		interpret_line(line_read);
-		add_history(line_read);
+		if (line_read && line_read[0])
+			add_history(line_read);
 		free(line_read);
 		line_read = readline(PROMPT_START);
 	}
 	free(line_read);
-	return (1);
-}
-
-int	main()
-{
-	return (!minishell());
+	return (0);
 }

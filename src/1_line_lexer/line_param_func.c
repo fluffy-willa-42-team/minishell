@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_param_func.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:25:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 12:08:07 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/01 10:23:09 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,19 @@
 int whtspc(t_vec *vec, char *line, int index)
 {
 	if (line[index + 1] != 0 && !ft_is_whitespace(line[index + 1]))
-		vec_fill(vec, FIXED_LEN, "\31", 1);
+		vec_add(vec, "\0");
 	return (index + 1);
+}
+
+static int	get_var_len(char *line, int index)
+{
+	int	len;
+	
+	len = 0;
+	while (ft_isalpha(line[index + len]) || line[index + len] == '_'
+		|| (len != 0 && ft_isdigit(line[index + len])))
+		len++;
+	return (len);
 }
 
 /**
@@ -34,31 +45,20 @@ int whtspc(t_vec *vec, char *line, int index)
  */
 int varsub(t_vec *vec, char *line, int index)
 {
-	int		len;
-	char	*env_str;
+	const int	len = get_var_len(line, index + 1);
+	char		*env_str;
 
-	len = 0;
-	// Skip `$`
-	index++;
-	// Check if the next char is alphanum
-	if (!ft_isalnum(line[index]))
+	if (len == 0)
 	{
-		// If not, push `$` and return the index of the char after `$`.
-		vec_fill(vec, FIXED_LEN, "$", 1);
-		return (index);
+		vec_add(vec, "$");
+		return (index + 1);
 	}
-	// strlen of the var name
-	while (ft_isalnum(line[index + len]))
-		len++;
-	// Put the var name in tmp buffer
 	vec_delete(&g_data.tmp);
-	vec_fill(&g_data.tmp, FIXED_LEN, &line[index], len);
-	// Find the env var with the tmp buffer
+	vec_fill(&g_data.tmp, FIXED_LEN, &line[index + 1], len);
 	env_str = getenv(g_data.tmp.buffer);
-	// If var find push the content in line buffer
 	if (env_str)
 		vec_fill(vec, DEFAULT, env_str);
-	return (index + len);
+	return (index + 1 + len);
 }
 
 /**
@@ -68,7 +68,7 @@ int varsub(t_vec *vec, char *line, int index)
 int bkslh(t_vec *vec, char *line, int index)
 {
 	if (line[index + 1] && line[index + 1] == '\\'){
-		vec_fill(vec, FIXED_LEN, "\\", 1);
+		vec_add(vec, "\\");
 		return (index + 2);
 	}
 	return (index + 1);
@@ -82,7 +82,7 @@ int sglqot(t_vec *vec, char *line, int index)
 	index++;
 	while (line[index] && line[index] != '\'')
 	{
-		vec_fill(vec, FIXED_LEN, &line[index], 1);
+		vec_add(vec, &line[index]);
 		index++;
 	}
 	if (!line[index])
@@ -107,7 +107,7 @@ int dblqot(t_vec *vec, char *line, int index)
 			index = func_link[ptr - to_find](vec, line, index);
 		else
 		{
-			vec_fill(vec, FIXED_LEN, &line[index], 1);
+			vec_add(vec, &line[index]);
 			index++;
 		}
 	}
