@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:25:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 15:00:46 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/01 09:16:02 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,39 @@ int whtspc(t_vec *vec, char *line, int index)
 	return (index + 1);
 }
 
+static int	get_var_len(char *line, int index)
+{
+	int	len;
+	
+	len = 0;
+	while (ft_isalpha(line[index + len]) || line[index + len] == '_'
+		|| (len != 0 && ft_isdigit(line[index + len])))
+		len++;
+	return (len);
+}
+
 /**
  * @brief When a `$` is occur, will check if the next character is `alphanum`,
  *        make `getenv` and push the variable content inside line buffer.   If
  *        the character after `$` is `!alphanum` will push `$` in line buffer.
+ * 
+ * 
  */
 int varsub(t_vec *vec, char *line, int index)
 {
 	int		len;
 	char	*env_str;
 
-	len = 0;
-	// Skip `$`
 	index++;
-	// Check if the next char is alphanum
-	if (!ft_isalnum(line[index]))
+	if (!(ft_isalpha(line[index]) || line[index] == '_'))
 	{
-		// If not, push `$` and return the index of the char after `$`.
 		vec_add(vec, "$");
 		return (index);
 	}
-	// strlen of the var name
-	while (ft_isalnum(line[index + len]))
-		len++;
-	// Put the var name in tmp buffer
+	len = get_var_len(line, index);
 	vec_delete(&g_data.tmp);
 	vec_fill(&g_data.tmp, FIXED_LEN, &line[index], len);
-	// Find the env var with the tmp buffer
 	env_str = getenv(g_data.tmp.buffer);
-	// If var find push the content in line buffer
 	if (env_str)
 		vec_fill(vec, DEFAULT, env_str);
 	return (index + len);
