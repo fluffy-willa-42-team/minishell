@@ -32,10 +32,14 @@ First install Brew
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
+For the 42 mac
+```
+rm -rf $HOME/.brew && git clone --depth=1 https://github.com/Homebrew/brew $HOME/.brew && echo 'export PATH=$HOME/.brew/bin:$PATH' >> $HOME/.zshrc && source $HOME/.zshrc && brew update
+```
 
 Install GNU readline lib
 ```sh
-brew install readline 
+HOMEBREW_FORCE_BREWED_CURL=1 brew install readline 
 ```
 
 ### Debian/Ubuntu
