@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:25:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/01 09:16:02 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:23:09 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 int whtspc(t_vec *vec, char *line, int index)
 {
 	if (line[index + 1] != 0 && !ft_is_whitespace(line[index + 1]))
-		vec_add(vec, "\31");
+		vec_add(vec, "\0");
 	return (index + 1);
 }
 
@@ -42,27 +42,23 @@ static int	get_var_len(char *line, int index)
  * @brief When a `$` is occur, will check if the next character is `alphanum`,
  *        make `getenv` and push the variable content inside line buffer.   If
  *        the character after `$` is `!alphanum` will push `$` in line buffer.
- * 
- * 
  */
 int varsub(t_vec *vec, char *line, int index)
 {
-	int		len;
-	char	*env_str;
+	const int	len = get_var_len(line, index + 1);
+	char		*env_str;
 
-	index++;
-	if (!(ft_isalpha(line[index]) || line[index] == '_'))
+	if (len == 0)
 	{
 		vec_add(vec, "$");
-		return (index);
+		return (index + 1);
 	}
-	len = get_var_len(line, index);
 	vec_delete(&g_data.tmp);
-	vec_fill(&g_data.tmp, FIXED_LEN, &line[index], len);
+	vec_fill(&g_data.tmp, FIXED_LEN, &line[index + 1], len);
 	env_str = getenv(g_data.tmp.buffer);
 	if (env_str)
 		vec_fill(vec, DEFAULT, env_str);
-	return (index + len);
+	return (index + 1 + len);
 }
 
 /**
