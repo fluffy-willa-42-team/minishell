@@ -6,12 +6,13 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 12:45:53 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/30 13:22:27 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/01 15:12:16 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h> /** printf */
 #include "libft.h" /** ft_strlen */
+#include "vec_utils.h"
 
 /**
  * @brief [internal] Free ☭ our ☭ function from the capitalist allocation.

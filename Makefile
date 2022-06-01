@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/31 17:27:45 by mahadad          ###   ########.fr        #
+#    Updated: 2022/06/01 15:38:28 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ FLAGS_COMP	= -lreadline
 
 DEBUG		= 0
 SANI		= 0
+WRA			= 0
 
 ifeq ($(SANI), 1)
 	FLAGS += -fsanitize=address
@@ -85,6 +86,9 @@ ifeq ($(shell uname),Darwin)
 	FLAGS_COMP += -L$(shell brew --prefix readline)/lib
 endif
 
+ifeq ($(WRA), 1)
+        FLAGS += -D WRA -I lib/wraloc
+endif
 
 # **************************************************************************** #
 
@@ -102,7 +106,7 @@ $(DIR):
 lib_comp:
 	@for path in $(ALL_LIB); do \
 		printf "[%s]\n" $$path;\
-		make -sC $$path $(MAKE_FLAG) all;\
+		if [ -f $$path/makefile ]; then make -sC $$path $(MAKE_FLAG) all; else echo "No makefile"; fi; \
 	done
 
 # Takes any C/CPP files and transforms into an object into the OBJ_DIR
@@ -130,7 +134,9 @@ clean:
 	@rm -rf $(OBJ)
 	@for path in $(ALL_LIB); do \
 		printf "[%s]\n" $$path;\
+		if [ -f $$path/makefile ]; then \
 		make -sC $$path clean;\
+		else echo "No makefile"; fi; \
 	done
 
 c:
@@ -142,7 +148,9 @@ fclean:
 	@rm -rf $(OBJ) $(INC_DIR)* $(NAME)
 	@for path in $(ALL_LIB); do \
 		printf "[%s]\n" $$path;\
+		if [ -f $$path/makefile ]; then \
 		make -sC $$path fclean;\
+		else echo "No makefile"; fi; \
 	done
 
 fc:
@@ -185,10 +193,12 @@ remove_stuff:
 
 update_lib:
 	@for path in $(ALL_LIB); do \
-		printf "[%s]\n" $$path;\
+		printf "    [%s]\n" $$path;\
+		if [ -f $$path/makefile ]; then \
 		branch=`git -C $$path symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'`;\
 		git -C $$path pull origin $$branch;\
 		git -C $$path checkout $$branch;\
+		else echo "No makefile"; fi; \
 	done
 
 update: update_lib
@@ -199,8 +209,10 @@ ping:
 
 ping_lib:
 	@for path in $(ALL_LIB); do \
-		printf "[%s]\n" $$path;\
+		printf "    [%s]\n" $$path;\
+		if [ -f $$path/makefile ]; then \
 		make -C $$path ping;\
+		else echo "No makefile"; fi; \
 	done
 
 git:
