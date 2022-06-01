@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:08:26 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 14:33:58 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:36:55 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ char	vec_get_char(t_vec *vec, int index)
 	return (((char *) vec_get(vec, index))[0]);
 }
 
+/**
+ * @brief Get raw index of the buffer to `char *`.
+ * 
+ * @param index The raw index of the buffer
+ */
 char	*vec_get_str(t_vec *vec, int index)
 {
 	return (((char *) vec_get(vec, index)));

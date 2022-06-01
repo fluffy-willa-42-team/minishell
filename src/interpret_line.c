@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:59:33 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 14:47:20 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:53:30 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	interpret_line(char *line)
 {
 	printf("\"%s\"\n", line);
 	line_lexer(&g_data.lexed_command, line);
+	change_line_to_exec_format(&g_data.lexed_command, &g_data.lexed_instr);
 	vec_delete(&g_data.lexed_command);
 	return (1);
 }

@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_utils.h                                        :+:      :+:    :+:   */
+/*   msh_bin_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 11:12:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 17:26:53 by mahadad          ###   ########.fr       */
+/*   Created: 2022/05/30 10:38:57 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/31 16:12:49 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VEC_UTILS_H
-# define VEC_UTILS_H
+#include <stdlib.h>    /** getenv */
+#include "minishell.h"
+#include "vec_utils.h"
+#include "debug.h"
 
-# include "minishell.h"
-# include "vector_lib.h"
+int	is_bin(char *filename)
+{
+	//TODO WIP
+	(void)filename;
+	return (1);//TODO REMOVE
+}
 
-char	vec_get_char(t_vec *vec, int index);
-char	*vec_get_str(t_vec *vec, int index);
-t_instr	*vec_get_instr(t_vec *vec, int index);
-#endif
+/**
+ * @brief 
+ * 
+ */
+char	*set_bin(char *cmd, t_vec *instr)
+{
+	// instr->arg
+	(void)cmd;
+	(void)instr;
+	
+	return (NULL);
+}
