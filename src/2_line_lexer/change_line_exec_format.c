@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_line_exec_format.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/01 12:13:04 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/01 14:41:21 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	create_new_instr(int type, t_vec *instr)
 	new.arg = vec_init(sizeof(char *));
 	new.arg.rate = 8;
 	new.type = type;
-	vec_add(instr, &new);
+	vec_add_instr(instr, new);
 }
 
 /**
@@ -47,24 +47,14 @@ void	set_bin_path(t_vec *line, int index)
 		return ;
 	}
 	// find the good path
-	// vec_add(arg, find_bin_path(line));
 	vec_insert(line, DEFAULT, index, find_bin_path(vec_get_str(line, index)));
 	vec_print(line);
 }
 
-void	reset_instr(void)
-{
-	vec_delete(&g_data.lexed_instr);
-}
-
 /**
- * //TODO
- * //TODO
  *           Rework all the function
  *           [ ] avoid vec_get_stuff(&(vec_get(&(vec_get)->stuff)))
  *           [ ] when CMD find the path to the bin
- * //TODO
- * //TODO
  */
 
 /**
@@ -75,7 +65,7 @@ void	reset_instr(void)
  */
 t_vec	*get_instr_arg(int index)
 {
-	return &(vec_get_instr(&g_data.lexed_instr, index)->arg);
+	return (&(vec_get_instr(&g_data.lexed_instr, index)->arg));
 }
 
 static void	instr_debug(void)
@@ -92,8 +82,7 @@ static void	instr_debug(void)
 		while (uwu)
 		{
 			printf("            [%lu]: \"%s\",\n",
-					owo, *( (char **) vec_get(get_instr_arg(x), owo)));
-					// owo, vec_get_str(get_instr_arg(x), owo));
+					owo, vec_get_str2(get_instr_arg(x), owo));
 			uwu--;
 			owo++;
 		}
@@ -103,14 +92,6 @@ static void	instr_debug(void)
 	printf("]\n");
 }
 
-/**
- * @brief Push a string ptr to a buffer
- */
-static void	vec_add_str_ptr(t_vec *vec, char *str)
-{
-	vec_add(vec, &str);
-}
-
 void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 {
 	size_t i = 0;
@@ -118,11 +99,8 @@ void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 	int	coun_elem = -1;
 
 	g_data.env_path = getenv("PATH");
-	if (MSH_DEBUG)
-		printf("[INFO] env updated, PATH:%s\n", g_data.env_path);
-	
-	reset_instr();
-
+	if (MSH_DEBUG) printf("[INFO] env updated, PATH:%s\n", g_data.env_path);
+	vec_delete(instr);
 	while (i < line->content_len)
 	{
 		if (vec_get_char(line, i) != 0 && ( i == 0 || vec_get_char(line, i - 1) == 0))
@@ -132,7 +110,7 @@ void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 				coun_elem++;
 				printf("PIPE ");
 				create_new_instr(2, instr);
-				vec_add_str_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
+				vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 				first_elem = 1;
 			}
 			else
@@ -146,14 +124,13 @@ void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 					// Create new instrcution struct in the buffer.
 					create_new_instr(0, instr);
 					printf("[%d][[[%s]]]\n",coun_elem , vec_get_str(line, i));
-					vec_add_str_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
-					// instr_debug();
+					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 					printf("CMD ");
 					first_elem = 0;
 				}
 				else
 				{
-					vec_add_str_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
+					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 					printf("ARG ");
 				}
 			}
@@ -162,5 +139,4 @@ void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 		}
 		i++;
 	}
-	// instr_debug();
 }
