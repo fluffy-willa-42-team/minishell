@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:12:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 17:26:53 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/01 11:53:40 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 
 char	vec_get_char(t_vec *vec, int index);
 char	*vec_get_str(t_vec *vec, int index);
+char	*vec_get_str2(t_vec *vec, int index);
 t_instr	*vec_get_instr(t_vec *vec, int index);
 #endif

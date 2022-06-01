@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/01 10:51:39 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/01 12:13:04 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	create_new_instr(int type, t_vec *instr)
 {
 	t_instr	new;
 
-	new.arg = vec_init(sizeof(t_instr));
+	new.arg = vec_init(sizeof(char *));
+	new.arg.rate = 8;
 	new.type = type;
 	vec_add(instr, &new);
 }
@@ -38,12 +39,11 @@ char *find_bin_path(char *line)
 	return ("WIP/bin/");
 }
 
-void	set_bin_path(t_vec *arg, t_vec *line, int index)
+void	set_bin_path(t_vec *line, int index)
 {
 	// Check if the CMD is a bin with path
 	if (access(vec_get_str(line, index), X_OK) != -1)
 	{
-		vec_add(arg, line);
 		return ;
 	}
 	// find the good path
@@ -92,7 +92,8 @@ static void	instr_debug(void)
 		while (uwu)
 		{
 			printf("            [%lu]: \"%s\",\n",
-					owo, vec_get_str(get_instr_arg(x), owo));
+					owo, *( (char **) vec_get(get_instr_arg(x), owo)));
+					// owo, vec_get_str(get_instr_arg(x), owo));
 			uwu--;
 			owo++;
 		}
@@ -100,6 +101,14 @@ static void	instr_debug(void)
 		printf("    },\n");
 	}
 	printf("]\n");
+}
+
+/**
+ * @brief Push a string ptr to a buffer
+ */
+static void	vec_add_str_ptr(t_vec *vec, char *str)
+{
+	vec_add(vec, &str);
 }
 
 void	change_line_to_exec_format(t_vec *line, t_vec *instr)
@@ -123,7 +132,7 @@ void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 				coun_elem++;
 				printf("PIPE ");
 				create_new_instr(2, instr);
-				vec_add((get_instr_arg(coun_elem)), line->buffer + i);
+				vec_add_str_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 				first_elem = 1;
 			}
 			else
@@ -131,20 +140,27 @@ void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 				if (first_elem)
 				{
 					coun_elem++;
-					set_bin_path(get_instr_arg(coun_elem), line, i);
+					// Add the path to the bin in the line buffer.
+					set_bin_path(line, i);
+					vec_print(line);
+					// Create new instrcution struct in the buffer.
 					create_new_instr(0, instr);
+					printf("[%d][[[%s]]]\n",coun_elem , vec_get_str(line, i));
+					vec_add_str_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
+					// instr_debug();
 					printf("CMD ");
 					first_elem = 0;
 				}
 				else
 				{
-					vec_add(get_instr_arg(coun_elem), line->buffer + i);
+					vec_add_str_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 					printf("ARG ");
 				}
 			}
-			printf("[%d]=> [%s]\n", coun_elem, line->buffer + i);
+			printf("[%d]=> [%s]\n", coun_elem, vec_get_str(line, i));
+			instr_debug();
 		}
 		i++;
 	}
-	instr_debug();
+	// instr_debug();
 }

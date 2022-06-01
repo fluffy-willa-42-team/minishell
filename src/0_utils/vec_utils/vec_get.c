@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:08:26 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/01 10:36:55 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/01 11:53:30 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ char	*vec_get_str(t_vec *vec, int index)
 {
 	return (((char *) vec_get(vec, index)));
 }
+
+/**
+ * @brief Get raw index of the buffer to `char *`.
+ * 
+ * @param index The raw index of the buffer
+ */
+char	*vec_get_str2(t_vec *vec, int index)
+{
+	if (!vec_get(vec, index))
+		return (NULL);
+	return (*((char **) vec_get(vec, index)));
+}
+
 
 /**
  * @brief Get the struct from the ptr tab
