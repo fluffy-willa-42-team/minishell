@@ -3,11 +3,75 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
+#    By: awillems <awillems@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/05/31 17:27:45 by mahadad          ###   ########.fr        #
+#    Updated: 2022/06/01 13:55:43 by awillems         ###   ########.fr        #
 #                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
+#                                  CONFIG
+# **************************************************************************** #
+
+NAME		= minishell_exe
+
+# **************************************************************************** #
+
+# SRCS		=	
+
+SRCS		= $(SRCS_FIND)
+
+# **************************************************************************** #
+
+SRC_DIR		= src
+INC_DIR		= include
+OBJ_DIR 	= $(NAME)_obj
+LIB_DIR		= lib
+
+# **************************************************************************** #
+
+CC			= gcc
+OBJ_EXT		= .o
+CODE_EXT	= .c
+HEAD_EXT	= .h
+INC			= -I include -I lib/libft/include -I lib/vector-lib/include
+FLAGS		= -Wall -Wextra -Werror
+FLAGS_COMP	= -lreadline
+
+# **************************************************************************** #
+#                                  PARAMS
+# **************************************************************************** #
+
+COLOR_NORMAL= \033[32;0m
+COLOR_RED	= \033[31;1m
+COLOR_BLUE	= \033[36;1m
+COLOR_GREEN	= \033[32;1m
+
+# **************************************************************************** #
+
+DEBUG		= 0
+SANI		= 0
+
+ifeq ($(SANI), 1)
+	FLAGS += -fsanitize=address
+	DEBUG = 1
+	MAKE_FLAG += SANI=1
+endif
+
+ifeq ($(DEBUG), 1)
+	FLAGS += -g3
+	FLAGS += -D MSH_DEBUG=1
+	MAKE_FLAG += DEBUG=1
+endif
+
+ifeq ($(shell uname),Darwin)
+	INC += -I$(shell brew --prefix readline)/include
+	FLAGS_COMP += -L$(shell brew --prefix readline)/lib
+endif
+
+# **************************************************************************** #
+#                                VARIABLE
 # **************************************************************************** #
 
 VPATH		= $(shell find $(SRC_DIR)/ -type d)
@@ -34,66 +98,11 @@ DIR			= $(SRC_DIR) $(INC_DIR) $(OBJ_DIR) $(LIB_DIR)
 THISPATH	= $(shell pwd)
 
 # **************************************************************************** #
-
-# SRCS		=	
-
-SRCS		= $(SRCS_FIND)
-
-# **************************************************************************** #
-
-COLOR_NORMAL= \033[32;0m
-COLOR_RED	= \033[31;1m
-COLOR_BLUE	= \033[36;1m
-COLOR_GREEN	= \033[32;1m
-
-# **************************************************************************** #
-
-SRC_DIR		= src
-INC_DIR		= include
-OBJ_DIR 	= $(NAME)_obj
-LIB_DIR		= lib
-
-# **************************************************************************** #
-
-CC			= gcc
-OBJ_EXT		= .o
-CODE_EXT	= .c
-HEAD_EXT	= .h
-INC			= -I include -I lib/libft/include -I lib/vector-lib/include
-FLAGS		= -Wall -Wextra -Werror
-FLAGS_COMP	= -lreadline
-
-# **************************************************************************** #
-
-DEBUG		= 0
-SANI		= 0
-
-ifeq ($(SANI), 1)
-	FLAGS += -fsanitize=address
-	DEBUG = 1
-	MAKE_FLAG += SANI=1
-endif
-
-ifeq ($(DEBUG), 1)
-	FLAGS += -g3
-	FLAGS += -D MSH_DEBUG=1
-	MAKE_FLAG += DEBUG=1
-endif
-
-ifeq ($(shell uname),Darwin)
-	INC += -I$(shell brew --prefix readline)/include
-	FLAGS_COMP += -L$(shell brew --prefix readline)/lib
-endif
-
-
-# **************************************************************************** #
-
-NAME		= minishell_exe
-
+#                                 RULES
 # **************************************************************************** #
 
 all: $(DIR) lib_comp $(NAME)
-	@if [ $(DEBUG) = 1 ]; then printf "$(COLOR_RED)/!\ DEBUG ENABLE /!\$(COLOR_NORMAL)\nFlag used:\n"; printf "    %s\n" $(FLAGS); fi
+
 # Creates every repositories if it does not exist
 $(DIR):
 	@mkdir $@
@@ -101,7 +110,6 @@ $(DIR):
 # Compiles every lib in the lib repository
 lib_comp:
 	@for path in $(ALL_LIB); do \
-		printf "[%s]\n" $$path;\
 		make -sC $$path $(MAKE_FLAG) all;\
 	done
 
@@ -120,8 +128,10 @@ $(NAME): print $(HEADER) $(OBJ)
 	@$(CC) $(FLAGS) $(OBJ) $(INC) $(FLAGS_COMP) $(LIB) -o $(NAME)
 	@chmod 777 $(NAME)
 	@printf "\n"
+	@if [ $(DEBUG) = 2 ]; then printf "$(COLOR_RED)/!\ DEBUG ENABLE /!\ $(COLOR_NORMAL)\nFlag used:\n"; printf "    %s\n" $(FLAGS);fi
 
 print:
+	@if [ $(DEBUG) = 1 ]; then printf "$(COLOR_RED)/!\ Debug ➜  $(COLOR_NORMAL)"; fi
 	@printf "$(COLOR_GREEN)$(NAME) : $(COLOR_NORMAL)"
 
 # **************************************************************************** #
@@ -129,7 +139,6 @@ print:
 clean:
 	@rm -rf $(OBJ)
 	@for path in $(ALL_LIB); do \
-		printf "[%s]\n" $$path;\
 		make -sC $$path clean;\
 	done
 
@@ -141,7 +150,6 @@ c:
 fclean:
 	@rm -rf $(OBJ) $(INC_DIR)* $(NAME)
 	@for path in $(ALL_LIB); do \
-		printf "[%s]\n" $$path;\
 		make -sC $$path fclean;\
 	done
 
@@ -166,6 +174,10 @@ r: fc all
 
 exe: all
 	@bash -c "./$(NAME)"
+
+# **************************************************************************** #
+
+.PHONY: all, fclean, clean, re, print_src, $(ALL_LIB), exe, fc, r, c
 
 # **************************************************************************** #
 #                               DEV TOOLS
@@ -212,4 +224,4 @@ git:
 
 # **************************************************************************** #
 
-.PHONY: all, fclean, clean, re, print_src, $(ALL_LIB), exe, lib_comp, fc, r, c, update, update_lib
+.PHONY: remove_stuff, update_lib, update, ping, ping_lib, git
