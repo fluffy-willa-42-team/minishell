@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/01 10:38:51 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/01 10:51:39 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,8 @@ void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 				if (first_elem)
 				{
 					coun_elem++;
-					create_new_instr(0, instr);
 					set_bin_path(get_instr_arg(coun_elem), line, i);
+					create_new_instr(0, instr);
 					printf("CMD ");
 					first_elem = 0;
 				}
