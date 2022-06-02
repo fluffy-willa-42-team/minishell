@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:52:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 15:05:07 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 15:15:42 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 #include <stdio.h>
 
-// void	pipe(void)
-// {
-// 	printf(" |\n V\n");
-// }
+void	msh_pipe(void)
+{
+	printf(" |\n V\n");
+}
 
 void	exec_cmd(t_vec *instr_list, int index)
 {
@@ -37,10 +37,10 @@ void	exec_cmd(t_vec *instr_list, int index)
 	}
 	else if (instr->type == 2)
 	{
-		// const char	**spec_char = {"|", ";", ">>", ">", "<<", "<"};
-		// char		*ptr = *(vec_get_str_array_raw(&instr->arg, 0));
+		const char	*spec_char[] = {"|", ";", ">>", ">", "<<", "<"};
+		char		*ptr = *(vec_get_str_array_raw(&instr->arg, 0));
 
-		// printf("%s == %s\n", spec_char[0], ptr);
+		printf("%s == %s\n", spec_char[0], ptr);
 		
 	}
 			// && *(vec_get_str_array_raw(&instr->arg, 0)) == '|')
