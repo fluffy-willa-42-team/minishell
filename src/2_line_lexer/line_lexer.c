@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 13:37:40 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:47:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,33 +54,24 @@ void	line_lexer(t_vec *line, t_vec *instr)
 			if (ft_strchr("<>|", vec_get_char(line, i)))
 			{
 				coun_elem++;
-				printf("PIPE ");
 				vec_add_instr(instr, 2);
 				vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 				first_elem = 1;
 			}
-			else
+			else if (first_elem)
 			{
-				if (first_elem)
-				{
-					coun_elem++;
-					// Add the path to the bin in the line buffer.
-					set_bin_path(line, i);
-					// Create new instrcution struct in the buffer.
-					vec_add_instr(instr, 0);
-					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
-					printf("CMD ");
-					first_elem = 0;
-				}
-				else
-				{
-					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
-					printf("ARG ");
-				}
+				coun_elem++;
+				// Add the path to the bin in the line buffer.
+				set_bin_path(line, i);
+				// Create new instrcution struct in the buffer.
+				vec_add_instr(instr, 1);
+				vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
+				first_elem = 0;
 			}
-			printf("[%d]=> [%s]\n", coun_elem, vec_get_str(line, i));
+			else
+				vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 		}
 		i++;
 	}
-	print_instr();
+	// print_instr();
 }
