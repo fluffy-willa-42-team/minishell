@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpret_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:59:33 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:51:10 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/02 13:33:21 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	interpret_line(char *line)
 	line_cleaner(&g_data.lexed_command, line);
 	line_lexer(&g_data.lexed_command, &g_data.lexed_instr);
 	//execute
-	destroy_line_alloc(&g_data.lexed_instr);
 	line_executer(&g_data.lexed_instr);
+	destroy_line_alloc(&g_data.lexed_instr);
 
 	vec_delete(&g_data.lexed_command);
 	vec_delete(&g_data.lexed_instr);
