@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:50:00 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/02 12:01:41 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,17 @@ void	line_lexer(t_vec *line, t_vec *instr)
 					// Add the path to the bin in the line buffer.
 					set_bin_path(line, i);
 					// Create new instrcution struct in the buffer.
-					vec_add_instr(instr, coun_elem, 0);
+					/**
+					 * @brief 
+					 * ==24093==The signal is caused by a READ memory access.
+					 * ==24093==Hint: address points to the zero page.
+					 *    #0 0x1093dee62 in vec_add_instr line_lexer.c:50
+					 *    #1 0x1093deb98 in line_lexer line_lexer.c:90
+					 *    #2 0x1093df566 in interpret_line interpret_line.c:42
+					 *    #3 0x1093df44c in main main.c:47
+					 *    #4 0x7fff72f3ecc8 in start+0x0 (libdyld.dylib:x86_64+0x1acc8)
+					 */
+					vec_add_instr(instr, coun_elem, 0);//TODO WIP
 					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 					printf("CMD ");
 					first_elem = 0;
