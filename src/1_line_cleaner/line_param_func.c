@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_param_func.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:25:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/01 10:23:09 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 09:23:51 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int varsub(t_vec *vec, char *line, int index)
 	}
 	vec_delete(&g_data.tmp);
 	vec_fill(&g_data.tmp, FIXED_LEN, &line[index + 1], len);
-	env_str = getenv(g_data.tmp.buffer);
+	env_str = getenv(vec_get_str(&g_data.tmp, 0));
 	if (env_str)
 		vec_fill(vec, DEFAULT, env_str);
 	return (index + 1 + len);
