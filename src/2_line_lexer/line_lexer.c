@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 12:49:26 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:04:52 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,5 @@ void	line_lexer(t_vec *line, t_vec *instr)
 		}
 		i++;
 	}
-	print_instr();
+	// print_instr();
 }

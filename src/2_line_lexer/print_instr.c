@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:20:44 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:38:15 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:05:02 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	print_instr(void)
 		printf("        arg: [\n");
 		while (uwu)
 		{
-			printf("            [%lu]: \"%s\",\n",
-					owo, vec_get_str_array(get_instr_arg(x), owo));
+			printf("            [%lu]: \"%s\",\n", owo,
+				vec_get_str_array(get_instr_arg(x), owo));
 			uwu--;
 			owo++;
 		}
