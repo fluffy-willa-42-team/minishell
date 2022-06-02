@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_add.c                                          :+:      :+:    :+:   */
+/*   p_vec_add.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 14:34:40 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:15:32 by mahadad          ###   ########.fr       */
+/*   Created: 2022/06/02 11:02:19 by mahadad           #+#    #+#             */
+/*   Updated: 2022/06/02 11:23:40 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec_utils.h"
 #include "minishell.h"
 
-t_vec 	*vec_add_char_ptr(t_vec *vec, char *str)
-{
-	return (p_vec_add(vec, &str));
-}
+#include <errno.h>  /* strerror */
+#include <string.h> /* strerror */
 
 /**
- * @brief 
- * 
- * @param vec The instr struct vector.
- * @param type The type of element. //TODO make the macro
- * @return t_vec* 
+ * @brief Protected `vec_add`.   Will check if vec_add dont return a fail
+ *        allocation, if is the case will call `msh_exit` for a clean exit
+ *        failure.
  */
-// t_vec	*vec_add_instr(t_instr *vec, int type)
-// {
-// 	t_instr	new;
+t_vec	*p_vec_add(t_vec *vec, void *new_content)
+{
+	void	*addr;
 
-// 	new.arg = vec_init(sizeof(char *));
-// 	new.arg.rate = 8;
-// 	new.type = type;
-// 	new.state = 1;
-// 	p_vec_add(vec, &new);
-// 	return (vec);
-// }
+	addr = vec_add(vec, new_content);
+	if (addr == NULL)
+		msh_exit(EXIT_FAILURE, strerror(errno));
+	return ((t_vec *)addr);
+}

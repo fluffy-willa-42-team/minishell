@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 12:45:53 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/02 10:16:52 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:06:56 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @brief [internal] Free ☭ our ☭ function from the capitalist allocation.
  * 
  */
-void	exit_minishell(void)
+static void	exit_minishell(void)
 {
 	vec_destroy(&g_data.lexed_command);
 	vec_destroy(&g_data.lexed_instr);

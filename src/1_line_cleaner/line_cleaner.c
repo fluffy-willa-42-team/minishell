@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_cleaner.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 10:18:25 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:15:32 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	line_cleaner(t_vec *vec, char *line)
 			i = func_link[ptr - to_find](vec, line, i);
 		else
 		{
-			vec_add(vec, &line[i]);
+			p_vec_add(vec, &line[i]);
 			i++;
 		}
 	}

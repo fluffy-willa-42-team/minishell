@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:25:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 09:23:51 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/02 11:15:32 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 int whtspc(t_vec *vec, char *line, int index)
 {
 	if (line[index + 1] != 0 && !ft_is_whitespace(line[index + 1]))
-		vec_add(vec, "\0");
+		p_vec_add(vec, "\0");
 	return (index + 1);
 }
 
@@ -50,7 +50,7 @@ int varsub(t_vec *vec, char *line, int index)
 
 	if (len == 0)
 	{
-		vec_add(vec, "$");
+		p_vec_add(vec, "$");
 		return (index + 1);
 	}
 	vec_delete(&g_data.tmp);
@@ -68,7 +68,7 @@ int varsub(t_vec *vec, char *line, int index)
 int bkslh(t_vec *vec, char *line, int index)
 {
 	if (line[index + 1] && line[index + 1] == '\\'){
-		vec_add(vec, "\\");
+		p_vec_add(vec, "\\");
 		return (index + 2);
 	}
 	return (index + 1);
@@ -82,7 +82,7 @@ int sglqot(t_vec *vec, char *line, int index)
 	index++;
 	while (line[index] && line[index] != '\'')
 	{
-		vec_add(vec, &line[index]);
+		p_vec_add(vec, &line[index]);
 		index++;
 	}
 	if (!line[index])
@@ -107,7 +107,7 @@ int dblqot(t_vec *vec, char *line, int index)
 			index = func_link[ptr - to_find](vec, line, index);
 		else
 		{
-			vec_add(vec, &line[index]);
+			p_vec_add(vec, &line[index]);
 			index++;
 		}
 	}

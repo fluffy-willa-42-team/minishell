@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 10:20:25 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:45:11 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,7 @@ void	set_bin_path(t_vec *line, int index)
 	vec_insert(line, DEFAULT, index, find_bin_path(vec_get_str(line, index)));
 }
 
-/**
- *           Rework all the function
- *           [ ] avoid vec_get_stuff(&(vec_get(&(vec_get)->stuff)))
- *           [ ] when CMD find the path to the bin
- */
-
-/**
+ /**
  * @brief Get the arg vector.
  * 
  * @param index The index of element.
@@ -80,6 +74,24 @@ static void	instr_debug(void)
 	printf("]\n");
 }
 
+static void	vec_add_instr(t_vec *instr, int instr_index, int type)
+{
+	t_instr new;
+
+	// Check if the instr vector index exist or if the state is null
+	if (instr_index < (int)instr->content_len ||
+		!vec_get_instr(instr, instr_index)->state)
+	{
+		new.arg = vec_init(sizeof(char *));
+		new.arg.rate = 0;
+		new.type = type;
+		new.state = 1;
+		p_vec_add(instr, &new);
+		return ;
+	}
+	vec_get_instr(instr, instr_index)->type = type;
+}
+
 void	line_lexer(t_vec *line, t_vec *instr)
 {
 	size_t i = 0;
@@ -97,7 +109,7 @@ void	line_lexer(t_vec *line, t_vec *instr)
 			{
 				coun_elem++;
 				printf("PIPE ");
-				vec_add_instr(instr, 2);
+				vec_add_instr(instr, coun_elem, 2);
 				vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 				first_elem = 1;
 			}
@@ -109,7 +121,7 @@ void	line_lexer(t_vec *line, t_vec *instr)
 					// Add the path to the bin in the line buffer.
 					set_bin_path(line, i);
 					// Create new instrcution struct in the buffer.
-					vec_add_instr(instr, 0);
+					vec_add_instr(instr, coun_elem, 0);
 					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 					printf("CMD ");
 					first_elem = 0;

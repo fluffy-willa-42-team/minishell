@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/30 15:54:05 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/02 11:07:32 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,16 @@ typedef struct s_minishell
 typedef struct s_instr
 {
 	int		type;
+	int		state;
 	t_vec	arg;
 }				t_instr;
 
 typedef struct sigaction	t_sigaction;
 extern t_minishell			g_data;
+
+/* ************************************************************************** */
+
+void	msh_exit(int exit_code, char *msg);
 
 /* ************************************************************************** */
 

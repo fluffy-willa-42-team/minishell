@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/06/02 10:25:21 by mahadad          ###   ########.fr        #
+#    Updated: 2022/06/02 11:27:10 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -156,7 +156,8 @@ c:
 fclean:
 	@rm -rf $(OBJ) $(INC_DIR)* $(NAME)
 	@for path in $(ALL_LIB); do \
-		make -sC $$path fclean;\
+		if [ -f $$path/makefile ]; then \
+			make -sC $$path fclean;\
 		else echo "No makefile"; fi; \
 	done
 
