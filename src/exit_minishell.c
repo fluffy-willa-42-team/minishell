@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   msh_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 12:45:53 by mahadad           #+#    #+#             */
-/*   Updated: 2022/05/30 13:22:27 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/02 09:42:27 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include <stdio.h> /** printf */
 #include "libft.h" /** ft_strlen */
 
@@ -17,9 +18,12 @@
  * @brief [internal] Free ☭ our ☭ function from the capitalist allocation.
  * 
  */
-static void	msh_free(void)
+void	exit_minishell(void)
 {
-	//TODO
+	vec_destroy(&g_data.lexed_command);
+	vec_destroy(&g_data.lexed_instr);
+	vec_destroy(&g_data.tmp);
+	vec_destroy(&g_data.env_path);
 }
 
 /**
@@ -43,7 +47,6 @@ void	msh_exit(int exit_code, char *msg)
 		if (msg[ft_strlen(msg)] != '\n')
 			ft_putstr_fd("\n", fd);
 	}
-	//TODO function that free all allocation
-	msh_free();
+	exit_minishell();
 	exit(exit_code);
 }
