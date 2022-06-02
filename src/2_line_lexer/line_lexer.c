@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   change_line_exec_format.c                          :+:      :+:    :+:   */
+/*   line_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 09:23:57 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 10:20:25 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "vec_utils.h"
-#include "msh_bin_handler.h"
 #include <stdlib.h>    /** getenv */
 
 #include "debug.h"
@@ -38,7 +37,6 @@ void	set_bin_path(t_vec *line, int index)
 	}
 	// find the good path
 	vec_insert(line, DEFAULT, index, find_bin_path(vec_get_str(line, index)));
-	vec_print(line);
 }
 
 /**
@@ -82,7 +80,7 @@ static void	instr_debug(void)
 	printf("]\n");
 }
 
-void	change_line_to_exec_format(t_vec *line, t_vec *instr)
+void	line_lexer(t_vec *line, t_vec *instr)
 {
 	size_t i = 0;
 	int	first_elem = 1;
@@ -112,7 +110,6 @@ void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 					set_bin_path(line, i);
 					// Create new instrcution struct in the buffer.
 					vec_add_instr(instr, 0);
-					printf("[%d][[[%s]]]\n",coun_elem , vec_get_str(line, i));
 					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 					printf("CMD ");
 					first_elem = 0;
@@ -124,8 +121,8 @@ void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 				}
 			}
 			printf("[%d]=> [%s]\n", coun_elem, vec_get_str(line, i));
-			instr_debug();
 		}
 		i++;
 	}
+	instr_debug();
 }

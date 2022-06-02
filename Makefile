@@ -6,7 +6,7 @@
 #    By: awillems <awillems@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/06/02 09:50:59 by awillems         ###   ########.fr        #
+#    Updated: 2022/06/02 10:16:16 by awillems         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,9 @@ $(DIR):
 # Compiles every lib in the lib repository
 lib_comp:
 	@for path in $(ALL_LIB); do \
-		make -sC $$path $(MAKE_FLAG) all;\
+		if [ -f $$path/makefile ]; then \
+			make -sC $$path $(MAKE_FLAG) all;\
+		else echo "No makefile"; fi; \
 	done
 
 # Takes any C/CPP files and transforms into an object into the OBJ_DIR
