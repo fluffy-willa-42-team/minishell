@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 10:20:25 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:24:02 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <stdlib.h>    /** getenv */
 
 #include "debug.h"
+
+void	instr_debug(void);
 
 /**
  * @brief //TODO WIP
@@ -37,47 +39,6 @@ void	set_bin_path(t_vec *line, int index)
 	}
 	// find the good path
 	vec_insert(line, DEFAULT, index, find_bin_path(vec_get_str(line, index)));
-}
-
-/**
- *           Rework all the function
- *           [ ] avoid vec_get_stuff(&(vec_get(&(vec_get)->stuff)))
- *           [ ] when CMD find the path to the bin
- */
-
-/**
- * @brief Get the arg vector.
- * 
- * @param index The index of element.
- * @return t_vec* Return a ptr to the vector.
- */
-t_vec	*get_instr_arg(int index)
-{
-	return (&(vec_get_instr(&g_data.lexed_instr, index)->arg));
-}
-
-static void	instr_debug(void)
-{
-	printf("[\n");
-	for (size_t x = 0; x < g_data.lexed_instr.content_len; x++)
-	{
-		printf("    {\n");
-		printf("        type: %d,\n", vec_get_instr(&g_data.lexed_instr, x)->type);
-		size_t owo = 0;
-		size_t uwu = get_instr_arg(x)->content_len;
-		printf("        content_len: %lu,\n", uwu);
-		printf("        arg: [\n");
-		while (uwu)
-		{
-			printf("            [%lu]: \"%s\",\n",
-					owo, vec_get_str_array(get_instr_arg(x), owo));
-			uwu--;
-			owo++;
-		}
-		printf("        ],\n");
-		printf("    },\n");
-	}
-	printf("]\n");
 }
 
 void	line_lexer(t_vec *line, t_vec *instr)
@@ -124,5 +85,5 @@ void	line_lexer(t_vec *line, t_vec *instr)
 		}
 		i++;
 	}
-	instr_debug();
+	// instr_debug();
 }
