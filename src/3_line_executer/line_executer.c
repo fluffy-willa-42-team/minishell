@@ -6,14 +6,26 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:52:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:12:48 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:17:54 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "vec_utils.h"
 
-void	line_executer(t_vec *instr)
+#include <stdio.h>
+
+void	line_executer(t_vec *instr_list)
 {
-	(void) instr;
+	t_instr	*instr;
+	size_t i = 0;
+
+	instr = vec_get_instr(instr_list, 0);
+	while (i < instr_list->content_len)
+	{
+		printf("%lu\n", i);
+		i++;
+		instr = vec_get_instr(instr_list, i);
+	}
 	return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:12:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:47:44 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/02 13:14:57 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "vector_lib.h"
 
 t_vec 	*vec_add_char_ptr(t_vec *vec, char *str);
+t_vec	*vec_add_instr(t_vec *vec, int type);
 
 char	vec_get_char(t_vec *vec, int index);
 char	*vec_get_str(t_vec *vec, int index);
