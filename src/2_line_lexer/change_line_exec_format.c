@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/01 14:41:21 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 09:23:57 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@
 #include <stdlib.h>    /** getenv */
 
 #include "debug.h"
-
-void	create_new_instr(int type, t_vec *instr)
-{
-	t_instr	new;
-
-	new.arg = vec_init(sizeof(char *));
-	new.arg.rate = 8;
-	new.type = type;
-	vec_add_instr(instr, new);
-}
 
 /**
  * @brief //TODO WIP
@@ -82,7 +72,7 @@ static void	instr_debug(void)
 		while (uwu)
 		{
 			printf("            [%lu]: \"%s\",\n",
-					owo, vec_get_str2(get_instr_arg(x), owo));
+					owo, vec_get_str_array(get_instr_arg(x), owo));
 			uwu--;
 			owo++;
 		}
@@ -109,7 +99,7 @@ void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 			{
 				coun_elem++;
 				printf("PIPE ");
-				create_new_instr(2, instr);
+				vec_add_instr(instr, 2);
 				vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 				first_elem = 1;
 			}
@@ -120,9 +110,8 @@ void	change_line_to_exec_format(t_vec *line, t_vec *instr)
 					coun_elem++;
 					// Add the path to the bin in the line buffer.
 					set_bin_path(line, i);
-					vec_print(line);
 					// Create new instrcution struct in the buffer.
-					create_new_instr(0, instr);
+					vec_add_instr(instr, 0);
 					printf("[%d][[[%s]]]\n",coun_elem , vec_get_str(line, i));
 					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 					printf("CMD ");
