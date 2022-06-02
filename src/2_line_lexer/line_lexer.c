@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 15:14:36 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/02 15:49:14 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,29 +45,14 @@ static void	vec_add_instr(t_vec *instr, int instr_index, int type)
 {
 	t_instr new;
 
-	// Check if the instr vector index exist or if the state is null
-	// printf("????:%d\n", !instr->content_len || instr_index < (int)instr->content_len ||
-	// 	!vec_get_instr(instr, instr_index)->state);
-
-	// printf("??:%d\n",!instr->content_len );
-
-	// printf("??:%d\n", instr_index < (int)instr->content_len );
-
-	// printf("?:%d %d\n", instr_index , (int)instr->content_len );
-	if (!instr->len)
-		printf("?:%d\n", !(get_instr_arg_raw(instr_index)) );
-
-	// printf("??:%d\n",!vec_get_instr(instr, instr_index)->state );
-	
-	// if (instr_index < (int)instr->len || !instr->len ||
-	// 	!(vec_get_instr(instr, instr_index)->state))
-	if (vec_is_empty(instr, instr_index))
+	// if (vec_is_empty(instr, instr_index) || vec_is_empty(get_instr_arg(instr_index), instr_index))
+	if (vec_is_empty(instr, instr_index) || !get_instr_arg(instr_index)->len)
 	{
 		new.arg = vec_init(sizeof(char *));
 		new.arg.rate = 8;
 		new.type = type;
 		p_vec_add(instr, &new);
-		printf("new instr !\n");
+		printf("### new instr ! ###\n");
 		return ;
 	}
 	vec_get_instr(instr, instr_index)->type = type;
@@ -86,8 +71,8 @@ void	line_lexer(t_vec *line, t_vec *instr)
 		{
 			if (ft_strchr("<>|", vec_get_char(line, i)))
 			{
+				printf("[##### PIPE #####]\n");
 				coun_elem++;
-				printf("PIPE ");
 				vec_add_instr(instr, coun_elem, 2);
 				vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 				first_elem = 1;
@@ -96,24 +81,24 @@ void	line_lexer(t_vec *line, t_vec *instr)
 			{
 				if (first_elem)
 				{
+						printf("[##### CMD #####]\n");
 					coun_elem++;
 					// Add the path to the bin in the line buffer.
 					set_bin_path(line, i);
 					// Create new instrcution struct in the buffer.
 					vec_add_instr(instr, coun_elem, 0);//TODO WIP
 					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
-					printf("CMD ");
 					first_elem = 0;
 				}
 				else
 				{
+					printf("[##### ARG #####]\n");
 					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
-					printf("ARG ");
 				}
 			}
 			printf("[%d]=> [%s]\n", coun_elem, vec_get_str(line, i));
-			print_instr();
 		}
 		i++;
 	}
+			print_instr();
 }

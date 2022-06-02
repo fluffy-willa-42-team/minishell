@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:20:44 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 14:36:29 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/02 15:27:47 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ t_vec	*get_instr_arg(int index);
 void	print_instr(void)
 {
 	printf("[\n");
+		printf("    content_len: %lu,\n", g_data.lexed_instr.content_len);
 	for (size_t x = 0; x < g_data.lexed_instr.content_len; x++)
 	{
 		printf("    {\n");
 		printf("        type: %d,\n", vec_get_instr(&g_data.lexed_instr, x)->type);
-		printf("        state: %d,\n", vec_get_instr(&g_data.lexed_instr, x)->state);
 		size_t owo = 0;
 		size_t uwu = get_instr_arg(x)->content_len;
-		// printf("        content_len: %lu,\n", uwu);
+		printf("        content_len: %lu,\n", uwu);
 		printf("        arg: [\n");
 		while (uwu)
 		{
