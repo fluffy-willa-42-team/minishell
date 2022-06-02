@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:24:35 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:40:33 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "debug.h"
 
-void	instr_debug(void);
+void	print_instr(void);
 
 /**
  * @brief //TODO WIP
@@ -84,5 +84,5 @@ void	line_lexer(t_vec *line, t_vec *instr)
 		}
 		i++;
 	}
-	// instr_debug();
+	print_instr();
 }

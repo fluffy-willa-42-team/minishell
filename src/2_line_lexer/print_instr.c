@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:20:44 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:22:47 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:38:15 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 t_vec	*get_instr_arg(int index);
 
-void	instr_debug(void)
+void	print_instr(void)
 {
 	printf("[\n");
 	for (size_t x = 0; x < g_data.lexed_instr.content_len; x++)
