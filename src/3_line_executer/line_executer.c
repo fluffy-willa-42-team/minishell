@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:52:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 15:15:42 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 15:38:24 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 
 #include <stdio.h>
 
+void	msh_cmd(t_instr *instr)
+{
+	printf("NEW CMD\n");
+	size_t i = 0;
+	while (vec_get_str_array_raw(&instr->arg, i))
+	{
+		printf("    [%lu] %s\n", i, vec_get_str_array_raw(&instr->arg, i));
+		i++;
+	}
+}
+
 void	msh_pipe(void)
 {
 	printf(" |\n V\n");
@@ -22,28 +33,28 @@ void	msh_pipe(void)
 
 void	exec_cmd(t_vec *instr_list, int index)
 {
+	static char	*spec_str[] = {"|", ";", ">>", ">", "<<", "<"};
+	static void	(*func_link[6])() = {
+		msh_pipe, msh_pipe, msh_pipe, msh_pipe, msh_pipe, msh_pipe
+	};
+
 	t_instr	*instr =  vec_get_instr_raw(instr_list, index);
 	if (instr->type == 0)
 		return ;
 	else if (instr->type == 1)
+		msh_cmd(instr);
+	else if (instr->type == 2)
 	{
-		printf("NEW CMD\n");
-		size_t i = 0;
-		while (vec_get_str_array_raw(&instr->arg, i))
+		char		*ptr = vec_get_str_array_raw(&instr->arg, 0);
+		int			i = 0;
+
+		while (i < 6)
 		{
-			printf("    [%lu] %s\n", i, vec_get_str_array_raw(&instr->arg, i));
+			if (ft_strcmp(ptr, spec_str[i]) == 0)
+				func_link[i]();
 			i++;
 		}
 	}
-	else if (instr->type == 2)
-	{
-		const char	*spec_char[] = {"|", ";", ">>", ">", "<<", "<"};
-		char		*ptr = *(vec_get_str_array_raw(&instr->arg, 0));
-
-		printf("%s == %s\n", spec_char[0], ptr);
-		
-	}
-			// && *(vec_get_str_array_raw(&instr->arg, 0)) == '|')
 	return (exec_cmd(instr_list, index + 1));
 }
 
