@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:24:02 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:24:35 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	line_lexer(t_vec *line, t_vec *instr)
 	int	coun_elem = -1;
 
 	g_data.env_path = getenv("PATH");
-	if (MSH_DEBUG) printf("[INFO] env updated, PATH:%s\n", g_data.env_path);
 	vec_delete(instr);
 	while (i < line->content_len)
 	{
