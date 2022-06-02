@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 12:50:19 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/02 15:14:36 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,28 @@ static void	vec_add_instr(t_vec *instr, int instr_index, int type)
 	t_instr new;
 
 	// Check if the instr vector index exist or if the state is null
-	if (!instr->content_len  || instr_index < (int)instr->content_len ||
-		!vec_get_instr(instr, instr_index)->state)
+	// printf("????:%d\n", !instr->content_len || instr_index < (int)instr->content_len ||
+	// 	!vec_get_instr(instr, instr_index)->state);
+
+	// printf("??:%d\n",!instr->content_len );
+
+	// printf("??:%d\n", instr_index < (int)instr->content_len );
+
+	// printf("?:%d %d\n", instr_index , (int)instr->content_len );
+	if (!instr->len)
+		printf("?:%d\n", !(get_instr_arg_raw(instr_index)) );
+
+	// printf("??:%d\n",!vec_get_instr(instr, instr_index)->state );
+	
+	// if (instr_index < (int)instr->len || !instr->len ||
+	// 	!(vec_get_instr(instr, instr_index)->state))
+	if (vec_is_empty(instr, instr_index))
 	{
 		new.arg = vec_init(sizeof(char *));
 		new.arg.rate = 8;
 		new.type = type;
-		new.state = 1;
 		p_vec_add(instr, &new);
+		printf("new instr !\n");
 		return ;
 	}
 	vec_get_instr(instr, instr_index)->type = type;
@@ -66,7 +80,6 @@ void	line_lexer(t_vec *line, t_vec *instr)
 	int	coun_elem = -1;
 
 	g_data.env_path = getenv("PATH");
-	vec_delete(instr);
 	while (i < line->content_len)
 	{
 		if (vec_get_char(line, i) != 0 && ( i == 0 || vec_get_char(line, i - 1) == 0))
@@ -87,16 +100,6 @@ void	line_lexer(t_vec *line, t_vec *instr)
 					// Add the path to the bin in the line buffer.
 					set_bin_path(line, i);
 					// Create new instrcution struct in the buffer.
-					/**
-					 * @brief 
-					 * ==24093==The signal is caused by a READ memory access.
-					 * ==24093==Hint: address points to the zero page.
-					 *    #0 0x1093dee62 in vec_add_instr line_lexer.c:50
-					 *    #1 0x1093deb98 in line_lexer line_lexer.c:90
-					 *    #2 0x1093df566 in interpret_line interpret_line.c:42
-					 *    #3 0x1093df44c in main main.c:47
-					 *    #4 0x7fff72f3ecc8 in start+0x0 (libdyld.dylib:x86_64+0x1acc8)
-					 */
 					vec_add_instr(instr, coun_elem, 0);//TODO WIP
 					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
 					printf("CMD ");
@@ -109,8 +112,8 @@ void	line_lexer(t_vec *line, t_vec *instr)
 				}
 			}
 			printf("[%d]=> [%s]\n", coun_elem, vec_get_str(line, i));
+			print_instr();
 		}
 		i++;
 	}
-	print_instr();
 }

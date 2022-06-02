@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:08:26 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:23:21 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:53:40 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ t_instr	*vec_get_instr(t_vec *vec, int index)
 	return (((t_instr *) vec_get(vec, index)));
 }
 
+t_instr	*vec_get_instr_raw(t_vec *vec, int index)
+{
+	return (((t_instr *) vec_get_raw(vec, index)));
+}
+
 /**
  * @brief Get the arg vector.
  * 
@@ -62,4 +67,9 @@ t_instr	*vec_get_instr(t_vec *vec, int index)
 t_vec	*get_instr_arg(int index)
 {
 	return (&(vec_get_instr(&g_data.lexed_instr, index)->arg));
+}
+
+t_vec	*get_instr_arg_raw(int index)
+{
+	return (&(vec_get_instr_raw(&g_data.lexed_instr, index)->arg));
 }
