@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:50:00 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/02 12:49:26 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ static void	vec_add_instr(t_vec *instr, int instr_index, int type)
 	t_instr new;
 
 	// Check if the instr vector index exist or if the state is null
-	if (instr_index < (int)instr->content_len ||
+	if (!instr->content_len  || instr_index < (int)instr->content_len ||
 		!vec_get_instr(instr, instr_index)->state)
 	{
 		new.arg = vec_init(sizeof(char *));
-		new.arg.rate = 0;
+		new.arg.rate = 8;
 		new.type = type;
 		new.state = 1;
 		p_vec_add(instr, &new);
