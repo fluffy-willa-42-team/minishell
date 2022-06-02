@@ -6,7 +6,7 @@
 #    By: awillems <awillems@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/06/01 13:55:43 by awillems         ###   ########.fr        #
+#    Updated: 2022/06/02 09:50:59 by awillems         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ COLOR_GREEN	= \033[32;1m
 
 DEBUG		= 0
 SANI		= 0
+WRA			= 0
 
 ifeq ($(SANI), 1)
 	FLAGS += -fsanitize=address
@@ -70,8 +71,10 @@ ifeq ($(shell uname),Darwin)
 	FLAGS_COMP += -L$(shell brew --prefix readline)/lib
 endif
 
-# **************************************************************************** #
-#                                VARIABLE
+ifeq ($(WRA), 1)
+        FLAGS += -D WRA -I lib/wraloc
+endif
+
 # **************************************************************************** #
 
 VPATH		= $(shell find $(SRC_DIR)/ -type d)
@@ -140,6 +143,7 @@ clean:
 	@rm -rf $(OBJ)
 	@for path in $(ALL_LIB); do \
 		make -sC $$path clean;\
+		else echo "No makefile"; fi; \
 	done
 
 c:
@@ -151,6 +155,7 @@ fclean:
 	@rm -rf $(OBJ) $(INC_DIR)* $(NAME)
 	@for path in $(ALL_LIB); do \
 		make -sC $$path fclean;\
+		else echo "No makefile"; fi; \
 	done
 
 fc:
@@ -197,10 +202,12 @@ remove_stuff:
 
 update_lib:
 	@for path in $(ALL_LIB); do \
-		printf "[%s]\n" $$path;\
+		printf "    [%s]\n" $$path;\
+		if [ -f $$path/makefile ]; then \
 		branch=`git -C $$path symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'`;\
 		git -C $$path pull origin $$branch;\
 		git -C $$path checkout $$branch;\
+		else echo "No makefile"; fi; \
 	done
 
 update: update_lib
@@ -211,8 +218,10 @@ ping:
 
 ping_lib:
 	@for path in $(ALL_LIB); do \
-		printf "[%s]\n" $$path;\
+		printf "    [%s]\n" $$path;\
+		if [ -f $$path/makefile ]; then \
 		make -C $$path ping;\
+		else echo "No makefile"; fi; \
 	done
 
 git:

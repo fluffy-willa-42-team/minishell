@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_exit.c                                         :+:      :+:    :+:   */
+/*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 12:45:53 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/02 09:42:27 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 09:50:25 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h> /** printf */
 #include "libft.h" /** ft_strlen */
+#include "vec_utils.h"
 
 /**
  * @brief [internal] Free ☭ our ☭ function from the capitalist allocation.
