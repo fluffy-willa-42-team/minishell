@@ -1,5 +1,5 @@
-#ifndef LEXER_H
-# define LEXER_H
+#ifndef LINE_CLEANER_H
+# define LINE_CLEANER_H
 
 /**
  * @brief Function pointer.

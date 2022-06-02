@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_lexer.c                                       :+:      :+:    :+:   */
+/*   line_cleaner.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 14:59:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 10:18:25 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "vec_utils.h"
-#include "lexer.h"
+#include "line_cleaner.h"
 
 #include <stdio.h>
 
@@ -33,7 +33,7 @@ void	clean_whitespace(t_vec *res);
  *
  */
 
-void	line_lexer(t_vec *vec, char *line)
+void	line_cleaner(t_vec *vec, char *line)
 {
 	static int	(*func_link[10])() = {
 		whtspc, whtspc, whtspc, whtspc, whtspc, whtspc, 

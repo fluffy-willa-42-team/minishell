@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/06/02 10:12:20 by mahadad          ###   ########.fr        #
+#    Updated: 2022/06/02 10:25:21 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,7 +114,7 @@ $(DIR):
 lib_comp:
 	@for path in $(ALL_LIB); do \
 		if [ -f $$path/makefile ]; then \
-		make -sC $$path $(MAKE_FLAG) all;\
+			make -sC $$path $(MAKE_FLAG) all;\
 		else echo "No makefile"; fi; \
 	done
 
