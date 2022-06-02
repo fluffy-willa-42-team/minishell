@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:08:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/27 09:55:13 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:20:41 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,19 @@ static void	msh_check_sigaction(int sigaction_return, char *name)
 	 * sigaction() returns `0` on success; on error, `-1` is returned, and
 	 * `errno` is set to indicate the error.
 	 */
+	(void) name;
 	if (sigaction_return != -1)
 	{
-		if (MSH_DEBUG) printf("%s Ok\n", name);
+		// if (MSH_DEBUG) printf("%s Ok\n", name);
 		return ;
 	}
-	if (MSH_DEBUG)
-		printf("%s [KO]: %d !!\n"
-			"%s\n",
-			name,
-			sigaction_return,
-			strerror(errno)
-		);
+	// if (MSH_DEBUG)
+	// 	printf("%s [KO]: %d !!\n"
+	// 		"%s\n",
+	// 		name,
+	// 		sigaction_return,
+	// 		strerror(errno)
+	// 	);
 	//TODO make a clean exit function, like msh_exit(EXIT_FAILURE, strerror(errno), <...>);
 	exit(EXIT_FAILURE);
 }
