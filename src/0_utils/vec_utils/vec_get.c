@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:08:26 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 09:23:45 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:23:21 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,15 @@ char	*vec_get_str_array(t_vec *vec, int index)
 t_instr	*vec_get_instr(t_vec *vec, int index)
 {
 	return (((t_instr *) vec_get(vec, index)));
+}
+
+/**
+ * @brief Get the arg vector.
+ * 
+ * @param index The index of element.
+ * @return t_vec* Return a ptr to the vector.
+ */
+t_vec	*get_instr_arg(int index)
+{
+	return (&(vec_get_instr(&g_data.lexed_instr, index)->arg));
 }

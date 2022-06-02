@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/06/02 11:27:10 by mahadad          ###   ########.fr        #
+#    Updated: 2022/06/02 11:46:16 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,7 @@ lib_comp:
 	@for path in $(ALL_LIB); do \
 		if [ -f $$path/makefile ]; then \
 			make -sC $$path $(MAKE_FLAG) all;\
-		else echo "No makefile"; fi; \
+		fi; \
 	done
 
 # Takes any C/CPP files and transforms into an object into the OBJ_DIR
@@ -144,8 +144,9 @@ print:
 clean:
 	@rm -rf $(OBJ)
 	@for path in $(ALL_LIB); do \
-		make -sC $$path clean;\
-		else echo "No makefile"; fi; \
+		if [ -f $$path/makefile ]; then \
+			make -sC $$path clean;\
+		fi; \
 	done
 
 c:
@@ -158,7 +159,7 @@ fclean:
 	@for path in $(ALL_LIB); do \
 		if [ -f $$path/makefile ]; then \
 			make -sC $$path fclean;\
-		else echo "No makefile"; fi; \
+		fi; \
 	done
 
 fc:
