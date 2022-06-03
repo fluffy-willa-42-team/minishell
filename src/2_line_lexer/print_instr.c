@@ -12,13 +12,13 @@
 
 t_vec	*get_instr_arg(int index);
 
-void	print_instr(void)
+void	print_instr(size_t len)
 {
 	t_instr	*instr;
 	
 	printf("[\n");
-		printf("    content_len: %lu,\n", g_data.lexed_instr.content_len);
-	for (size_t x = 0; x < g_data.lexed_instr.content_len; x++)
+		printf("    content_len: %lu,\n", len);
+	for (size_t x = 0; x < len; x++)
 	{
 		instr = vec_get_instr(&g_data.lexed_instr, x);
 		printf("    {\n");
@@ -34,7 +34,7 @@ void	print_instr(void)
 			y--;
 			x++;
 		}
-		printf("        ],\n");
+		printf("        ]\n");
 		printf("    },\n");
 	}
 	printf("]\n");

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 12:18:37 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/03 12:47:32 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "debug.h"
 
-void	print_instr(void);
+void	print_instr(size_t len);
 int		is_special_elem(char *elem);
 void	set_bin_path(t_vec *line, int index);
 
@@ -36,24 +36,23 @@ void	new_instr(t_vec* instr, size_t index, int type, char *arg)
 	
 	// CREATE / REUSE INSTR
 	printf("[INSTR]\n");
-	// vec_print(instr);
-	if (index >= instr->content_len){
-		printf("            new INSTR\n");
+	if (index >= instr->content_len)
+	{
+		printf("new INSTR\n");
 		new_instr.type = type;
 		new_instr.arg = vec_init(sizeof(char *));
 		new_instr.arg.rate = 8;
 		vec_add(instr, &new_instr);
+		add_arg(instr, index, arg);
 	}
 	else if (vec_get_instr(instr, index)->type == 0)
 	{
-		printf("            old INSTR\n");
-		printf("%d\n", vec_get_instr(instr, index)->type);
+		printf("old INSTR\n");
+		new_instr.type = type;
+		add_arg(instr, index, arg);
 	}
 	else
-	{
-		printf("            existing INSTR\n");
-	}
-	add_arg(instr, index, arg);
+		printf("existing INSTR\n");
 }
 
 void	line_lexer(t_vec *line, t_vec *instr)
@@ -80,4 +79,5 @@ void	line_lexer(t_vec *line, t_vec *instr)
 		else
 			add_arg(instr, cmd_index, vec_get_str(line, i));
 	}
+	print_instr(cmd_index);
 }
