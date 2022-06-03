@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 11:18:11 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 12:06:52 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	line_cleaner(t_vec *vec, char *line)
 {
 	static int	(*func_link[13])() = {
 		whtspc, whtspc, whtspc, whtspc, whtspc, whtspc,
-		varsub, bkslh, sglqot, dblqot, redir, redir, redir
+		varsub, sglqot, dblqot, redir, redir, redir, bkslh
 	};
-	static char	*to_find = " \t\n\v\f\r$\\\'\"<>|";
+	static char	*to_find = " \t\n\v\f\r$\'\"<>|\\";
 	int			i;
 	char		*ptr;
 
@@ -53,16 +53,19 @@ void	line_cleaner(t_vec *vec, char *line)
 	{
 		ptr = ft_strchr(to_find, line[i]);
 		if (ptr)
+		{
+			printf("[%c]\n", *ptr);
 			i = func_link[ptr - to_find](vec, line, i);
+		}
 		else
 		{
+			printf("Word\n");
 			while (line[i] && !ft_strchr(to_find, line[i]))
 			{
 				p_vec_add(vec, &line[i]);
 				i++;
 			}
 			p_vec_add(vec, "\0");
-			i++;
 		}
 	}
 	vec_print(vec);

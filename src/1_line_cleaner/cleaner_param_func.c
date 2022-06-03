@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:25:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 11:18:25 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 12:03:21 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
  */
 int whtspc(t_vec *vec, char *line, int index)
 {
-	if (line[index + 1] != 0 && !ft_is_whitespace(line[index + 1]))
-		p_vec_add(vec, "\0");
+	(void) vec;
+	(void) line;
+	(void) index;
 	return (index + 1);
 }
 
@@ -124,14 +125,11 @@ int redir(t_vec *vec, char *line, int index)
 	int		i;
 
 	i = 0;
-	// if (index > 0 && (line[index - 1] != ' ' && line[index - 1] != line[index]))
-	// 	p_vec_add(vec, "O");
 	while (line[index + i] && line[index + i] == line[index])
 	{
 		p_vec_add(vec, &line[index + i]);
 		i++;
 	}
-	// if (line[index + i] && line[index + i] != ' ')
-		p_vec_add(vec, "\0");
+	p_vec_add(vec, "\0");
 	return (index + i);
 }
