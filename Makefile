@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/06/02 11:46:16 by mahadad          ###   ########.fr        #
+#    Updated: 2022/06/03 15:21:47 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -196,7 +196,8 @@ STUFF_TO_REMOVE =	\
 					*.o\
 					*.a\
 					.DS_Store\
-					.vscode
+					.vscode\
+					*.dSYM
 
 remove_stuff:
 	@for stuff in $(STUFF_TO_REMOVE); do \
