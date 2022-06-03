@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:15:32 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 08:59:32 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void	clean_whitespace(t_vec *res);
 void	line_cleaner(t_vec *vec, char *line)
 {
 	static int	(*func_link[10])() = {
-		whtspc, whtspc, whtspc, whtspc, whtspc, whtspc, 
+		whtspc, whtspc, whtspc, whtspc, whtspc, whtspc,
 		varsub, bkslh, sglqot, dblqot
 	};
-	static char *to_find = " \t\n\v\f\r$\\\'\"";
-	int i;
-	char	*ptr;
+	static char	*to_find = " \t\n\v\f\r$\\\'\"";
+	int			i;
+	char		*ptr;
 
 	i = 0;
 	while (line[i] && ft_is_whitespace(line[i]))
