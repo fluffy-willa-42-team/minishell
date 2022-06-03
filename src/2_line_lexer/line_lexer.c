@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 13:11:39 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 14:23:18 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	set_bin_path(t_vec *line, int index);
 
 void	add_arg(t_vec* instr, size_t index, char *arg)
 {
-	printf("  [ARG] %s %lu\n", arg, index);
-	// UPDATE LAST CMD
 	vec_add_char_ptr(&vec_get_instr(instr, index)->arg, arg);
 }
 
@@ -32,21 +30,16 @@ void	new_instr(t_vec* instr, size_t index, int type, char *arg)
 {
 	t_instr new_instr;
 	
-	// CREATE / REUSE INSTR
-	printf("[INSTR %lu]\n", index);
+	new_instr.type = type;
 	if (index >= instr->content_len)
 	{
-		new_instr.type = type;
 		new_instr.arg = vec_init(sizeof(char *));
 		new_instr.arg.rate = 8;
 		vec_add(instr, &new_instr);
-		add_arg(instr, index, arg);
 	}
 	else if (vec_get_instr(instr, index)->type == 0)
-	{
 		vec_get_instr(instr, index)->type = type;
-		add_arg(instr, index, arg);
-	}
+	add_arg(instr, index, arg);
 }
 
 void	line_lexer(t_vec *line, t_vec *instr)
@@ -73,6 +66,6 @@ void	line_lexer(t_vec *line, t_vec *instr)
 		else
 			add_arg(instr, cmd_index, vec_get_str(line, i));
 	}
-	printf("\n\n");
-	print_instr(cmd_index + 1);
+	// printf("\n\n");
+	// print_instr(cmd_index + 1);
 }
