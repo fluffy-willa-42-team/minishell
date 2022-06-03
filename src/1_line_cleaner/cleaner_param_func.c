@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:25:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 10:45:11 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 11:18:25 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,19 +122,16 @@ int dblqot(t_vec *vec, char *line, int index)
 int redir(t_vec *vec, char *line, int index)
 {
 	int		i;
-	char	redir_tofind[2];
 
 	i = 0;
-	redir_tofind[0] = line[index];//XXX WIP
-	if (index > 0 && (line[index - 1] != ' ' && !ft_strchr("<>|", line[index - 1])))
-		p_vec_add(vec, "\0");
-	printf("redir: [%d]: [%s]\n", index, &line[index]);
-	while (line[index + i] && ft_strchr("<>|", line[index + i]))
+	// if (index > 0 && (line[index - 1] != ' ' && line[index - 1] != line[index]))
+	// 	p_vec_add(vec, "O");
+	while (line[index + i] && line[index + i] == line[index])
 	{
 		p_vec_add(vec, &line[index + i]);
 		i++;
 	}
-	if (line[index + i] && line[index + i] != ' ')
+	// if (line[index + i] && line[index + i] != ' ')
 		p_vec_add(vec, "\0");
 	return (index + i);
 }

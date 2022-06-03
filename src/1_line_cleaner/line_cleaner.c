@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 09:51:38 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 11:18:11 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ void	line_cleaner(t_vec *vec, char *line)
 			i = func_link[ptr - to_find](vec, line, i);
 		else
 		{
-			p_vec_add(vec, &line[i]);
+			while (line[i] && !ft_strchr(to_find, line[i]))
+			{
+				p_vec_add(vec, &line[i]);
+				i++;
+			}
+			p_vec_add(vec, "\0");
 			i++;
 		}
 	}
