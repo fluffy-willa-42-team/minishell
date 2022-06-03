@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/01 10:48:00 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/03 12:02:20 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	init_data(void)
 	g_data.env_path = NULL;
 	g_data.lexed_command = vec_init(sizeof(char));
 	g_data.lexed_instr = vec_init(sizeof(t_instr));
+	g_data.lexed_instr.rate = 8;
 	g_data.tmp = vec_init(sizeof(char));
 }
 

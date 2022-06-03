@@ -6,11 +6,13 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:12:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 11:18:36 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 11:30:30 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "vec_utils.h"
+// #include <stdlib.h>    /** getenv */
 
 /**
  * @brief //TODO WIP

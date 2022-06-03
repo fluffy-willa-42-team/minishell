@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 11:18:58 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 12:18:37 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,64 @@ void	print_instr(void);
 int		is_special_elem(char *elem);
 void	set_bin_path(t_vec *line, int index);
 
+void	add_arg(t_vec* instr, int index, char *arg)
+{
+	printf("  [ARG] %s\n", arg);
+	// UPDATE LAST CMD
+	(void) instr;
+	(void) index;
+	(void) arg;
+	// vec_add_char_ptr(vec_get_instr(instr, index), arg);
+}
+
+void	new_instr(t_vec* instr, size_t index, int type, char *arg)
+{
+	t_instr new_instr;
+	
+	// CREATE / REUSE INSTR
+	printf("[INSTR]\n");
+	// vec_print(instr);
+	if (index >= instr->content_len){
+		printf("            new INSTR\n");
+		new_instr.type = type;
+		new_instr.arg = vec_init(sizeof(char *));
+		new_instr.arg.rate = 8;
+		vec_add(instr, &new_instr);
+	}
+	else if (vec_get_instr(instr, index)->type == 0)
+	{
+		printf("            old INSTR\n");
+		printf("%d\n", vec_get_instr(instr, index)->type);
+	}
+	else
+	{
+		printf("            existing INSTR\n");
+	}
+	add_arg(instr, index, arg);
+}
+
 void	line_lexer(t_vec *line, t_vec *instr)
 {
-	(void) instr;
 	int	is_cmd = 1;
 	int	cmd_index = 0;
 	for (size_t i = 0; i < line->content_len; i++)
 	{
-		// if (line[i] != 0 && (i == 0 || line[i-1] == 0))
-		if (vec_get_char(line, i) != 0 && (i == 0 || vec_get_char(line, i - 1) == 0))
+		// if (!(line[i] != 0 && (i == 0 || line[i-1] == 0)))
+		if (!(vec_get_char(line, i) != 0 && (i == 0 || vec_get_char(line, i - 1) == 0)))
+			continue;
+		if (is_special_elem(vec_get_str(line, i)) != 0)
 		{
-			// if (is_special_elem(&line[i]) != 0)
-			if (is_special_elem(vec_get_str(line, i)) != 0)
-			{
-				printf("[%d]     %s\n", cmd_index, vec_get_str(line, i));
-				is_cmd = 1;
-				cmd_index++;
-				// CREATE / REUSE REDIRECT INSTR
-			}
-			else if (is_cmd)
-			{
-				printf("[CMD %d] %s\n", cmd_index, vec_get_str(line, i));
-				is_cmd = 0;
-				cmd_index++;
-				// CREATE / REUSE CMD
-			}
-			else
-			{
-				printf("  [ARG] %s\n", vec_get_str(line, i));
-				// UPDATE LAST CMD
-			}
+			is_cmd = 1;
+			new_instr(instr, cmd_index, 2, vec_get_str(line, i));
+			cmd_index++;
 		}
+		else if (is_cmd)
+		{
+			is_cmd = 0;
+			new_instr(instr, cmd_index, 1, vec_get_str(line, i));
+			cmd_index++;
+		}
+		else
+			add_arg(instr, cmd_index, vec_get_str(line, i));
 	}
 }
