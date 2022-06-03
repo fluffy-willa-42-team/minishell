@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_add.c                                          :+:      :+:    :+:   */
+/*   is_special_elem.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 14:34:40 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 11:54:39 by mahadad          ###   ########.fr       */
+/*   Created: 2022/06/03 11:12:41 by awillems          #+#    #+#             */
+/*   Updated: 2022/06/03 11:29:55 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec_utils.h"
-#include "minishell.h"
+#include "libft.h"
 
-t_vec 	*vec_add_char_ptr(t_vec *vec, char *str)
+int	is_special_elem(char *elem)
 {
-	return (p_vec_add(vec, &str));
+	static char	*spec_str[6] = {"|", ";", ">>", ">", "<<", "<"};
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		if (ft_strcmp(elem, spec_str[i]) == 0)
+			return (i + 1);
+		i++;
+	}
+	return (0);
 }

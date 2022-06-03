@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 09:40:42 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 13:11:39 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,64 +17,62 @@
 #include "line_lexer.h"
 #include "debug.h"
 
-void	print_instr(void);
+void	print_instr(size_t len);
+int		is_special_elem(char *elem);
+void	set_bin_path(t_vec *line, int index);
 
-/**
- * @brief //TODO WIP
- * 
- * @param line 
- * @return char* 
- */
-char *find_bin_path(char *line)
+void	add_arg(t_vec* instr, size_t index, char *arg)
 {
-	(void)line;
-	return ("WIP/bin/");
+	printf("  [ARG] %s %lu\n", arg, index);
+	// UPDATE LAST CMD
+	vec_add_char_ptr(&vec_get_instr(instr, index)->arg, arg);
 }
 
-void	set_bin_path(t_vec *line, int index)
+void	new_instr(t_vec* instr, size_t index, int type, char *arg)
 {
-	// Check if the CMD is a bin with path
-	if (access(vec_get_str(line, index), X_OK) != -1)
+	t_instr new_instr;
+	
+	// CREATE / REUSE INSTR
+	printf("[INSTR %lu]\n", index);
+	if (index >= instr->content_len)
 	{
-		return ;
+		new_instr.type = type;
+		new_instr.arg = vec_init(sizeof(char *));
+		new_instr.arg.rate = 8;
+		vec_add(instr, &new_instr);
+		add_arg(instr, index, arg);
 	}
-	// find the good path
-	vec_insert(line, DEFAULT, index, find_bin_path(vec_get_str(line, index)));
+	else if (vec_get_instr(instr, index)->type == 0)
+	{
+		vec_get_instr(instr, index)->type = type;
+		add_arg(instr, index, arg);
+	}
 }
-
-// static void	vec_add_instr(t_vec *instr, int instr_index, int type)
-// {
-// 	t_instr new;
-// 	(void) instr;
-// 	(void) new;
-// 	(void) instr_index;
-// 	(void) type;
-// }
-
-/**
- *  Index   Conv   Function
- *  ------|------|---------
- *   [0]  | ` `  | inredir
- *   [1]  | `<`  | inredir
- *   [2]  | `>`  | outredir
- *   [3]  | `|`  | ppe      // note: `pipe` is a reserved key word <unistd.h>
- * 
- * func_link[index](int line_index, t_vec *line, t_vec *instr)
- */
 
 void	line_lexer(t_vec *line, t_vec *instr)
 {
-	size_t		i;
-	// static int	(*func_link[])() = {inredir, outredir, ppe};
-	// static char	*to_find = " <>|";
-(void)instr;
-	i = 0;
-	while (i < line->content_len)
+	int	is_cmd = 1;
+	int	cmd_index = -1;
+	for (size_t i = 0; i < line->content_len; i++)
 	{
-		if (vec_get_char(line, i) && (i == 0 || !vec_get_char(line, i - 1)))
-			printf("[%lu]: %s\n", i, vec_get_str(line, i));
-		i++;
+		// if (!(line[i] != 0 && (i == 0 || line[i-1] == 0)))
+		if (!(vec_get_char(line, i) != 0 && (i == 0 || vec_get_char(line, i - 1) == 0)))
+			continue;
+		if (is_special_elem(vec_get_str(line, i)) != 0)
+		{
+			cmd_index++;
+			is_cmd = 1;
+			new_instr(instr, cmd_index, 2, vec_get_str(line, i));
+		}
+		else if (is_cmd)
+		{
+			cmd_index++;
+			is_cmd = 0;
+			new_instr(instr, cmd_index, 1, vec_get_str(line, i));
+		}
+		else
+			add_arg(instr, cmd_index, vec_get_str(line, i));
 	}
-	
-	print_instr();
+	printf("\n\n");
+	print_instr(cmd_index + 1);
 }

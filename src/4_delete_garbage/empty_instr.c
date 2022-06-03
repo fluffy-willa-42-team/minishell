@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_add.c                                          :+:      :+:    :+:   */
+/*   empty_instr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 14:34:40 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 11:54:39 by mahadad          ###   ########.fr       */
+/*   Created: 2022/06/03 12:20:06 by awillems          #+#    #+#             */
+/*   Updated: 2022/06/03 12:32:51 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec_utils.h"
 #include "minishell.h"
+#include "vec_utils.h"
 
-t_vec 	*vec_add_char_ptr(t_vec *vec, char *str)
+void	empty_instr(t_vec *instr)
 {
-	return (p_vec_add(vec, &str));
+	size_t i = 0;
+
+	while (i < instr->content_len)
+	{
+		vec_get_instr(instr, i)->type = 0;
+		vec_delete(&(vec_get_instr(instr, i)->arg));
+		i++;
+	}
 }

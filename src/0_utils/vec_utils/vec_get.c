@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:08:26 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 14:53:40 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 10:47:47 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ char	*vec_get_str_array(t_vec *vec, int index)
 	return (*((char **) vec_get(vec, index)));
 }
 
+char	*vec_get_str_array_raw(t_vec *vec, int index)
+{
+	if (!vec_get(vec, index))
+		return (NULL);
+	return (*((char **) vec_get_raw(vec, index)));
+}
 
 /**
  * @brief Get the struct from the ptr tab
