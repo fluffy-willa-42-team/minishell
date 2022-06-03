@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 08:59:32 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 09:51:38 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,19 @@ void	clean_whitespace(t_vec *res);
  *   [5]  | `\r` | whtspc
  *   [6]  | `$`  | varsub
  *   [7]  | `\\` | bkslh
+ *   [7]  | `<`  | redir
+ *   [7]  | `>`  | redir
+ *   [7]  | `|`  | redir
  *
  */
 
 void	line_cleaner(t_vec *vec, char *line)
 {
-	static int	(*func_link[10])() = {
+	static int	(*func_link[13])() = {
 		whtspc, whtspc, whtspc, whtspc, whtspc, whtspc,
-		varsub, bkslh, sglqot, dblqot
+		varsub, bkslh, sglqot, dblqot, redir, redir, redir
 	};
-	static char	*to_find = " \t\n\v\f\r$\\\'\"";
+	static char	*to_find = " \t\n\v\f\r$\\\'\"<>|";
 	int			i;
 	char		*ptr;
 
@@ -48,7 +51,7 @@ void	line_cleaner(t_vec *vec, char *line)
 		i++;
 	while (line[i])
 	{
-		ptr = ft_strrchr(to_find, line[i]);
+		ptr = ft_strchr(to_find, line[i]);
 		if (ptr)
 			i = func_link[ptr - to_find](vec, line, i);
 		else

@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 15:49:14 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 09:40:42 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "vec_utils.h"
 #include <stdlib.h>    /** getenv */
 
+#include "line_lexer.h"
 #include "debug.h"
 
 void	print_instr(void);
@@ -41,64 +42,39 @@ void	set_bin_path(t_vec *line, int index)
 	vec_insert(line, DEFAULT, index, find_bin_path(vec_get_str(line, index)));
 }
 
-static void	vec_add_instr(t_vec *instr, int instr_index, int type)
-{
-	t_instr new;
+// static void	vec_add_instr(t_vec *instr, int instr_index, int type)
+// {
+// 	t_instr new;
+// 	(void) instr;
+// 	(void) new;
+// 	(void) instr_index;
+// 	(void) type;
+// }
 
-	// if (vec_is_empty(instr, instr_index) || vec_is_empty(get_instr_arg(instr_index), instr_index))
-	if (vec_is_empty(instr, instr_index) || !get_instr_arg(instr_index)->len)
-	{
-		new.arg = vec_init(sizeof(char *));
-		new.arg.rate = 8;
-		new.type = type;
-		p_vec_add(instr, &new);
-		printf("### new instr ! ###\n");
-		return ;
-	}
-	vec_get_instr(instr, instr_index)->type = type;
-}
+/**
+ *  Index   Conv   Function
+ *  ------|------|---------
+ *   [0]  | ` `  | inredir
+ *   [1]  | `<`  | inredir
+ *   [2]  | `>`  | outredir
+ *   [3]  | `|`  | ppe      // note: `pipe` is a reserved key word <unistd.h>
+ * 
+ * func_link[index](int line_index, t_vec *line, t_vec *instr)
+ */
 
 void	line_lexer(t_vec *line, t_vec *instr)
 {
-	size_t i = 0;
-	int	first_elem = 1;
-	int	coun_elem = -1;
-
-	g_data.env_path = getenv("PATH");
+	size_t		i;
+	// static int	(*func_link[])() = {inredir, outredir, ppe};
+	// static char	*to_find = " <>|";
+(void)instr;
+	i = 0;
 	while (i < line->content_len)
 	{
-		if (vec_get_char(line, i) != 0 && ( i == 0 || vec_get_char(line, i - 1) == 0))
-		{
-			if (ft_strchr("<>|", vec_get_char(line, i)))
-			{
-				printf("[##### PIPE #####]\n");
-				coun_elem++;
-				vec_add_instr(instr, coun_elem, 2);
-				vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
-				first_elem = 1;
-			}
-			else
-			{
-				if (first_elem)
-				{
-						printf("[##### CMD #####]\n");
-					coun_elem++;
-					// Add the path to the bin in the line buffer.
-					set_bin_path(line, i);
-					// Create new instrcution struct in the buffer.
-					vec_add_instr(instr, coun_elem, 0);//TODO WIP
-					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
-					first_elem = 0;
-				}
-				else
-				{
-					printf("[##### ARG #####]\n");
-					vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
-				}
-			}
-			printf("[%d]=> [%s]\n", coun_elem, vec_get_str(line, i));
-		}
+		if (vec_get_char(line, i) && (i == 0 || !vec_get_char(line, i - 1)))
+			printf("[%lu]: %s\n", i, vec_get_str(line, i));
 		i++;
 	}
-			print_instr();
+	
+	print_instr();
 }

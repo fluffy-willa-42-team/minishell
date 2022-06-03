@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_param_func.c                                  :+:      :+:    :+:   */
+/*   cleaner_param_func.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:25:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:15:32 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 10:45:11 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,27 @@ int dblqot(t_vec *vec, char *line, int index)
 	if (!line[index])
 		return (index);
 	return (index + 1);
+}
+
+/**
+ * @brief Will split string seperate by `<>|`
+ */
+int redir(t_vec *vec, char *line, int index)
+{
+	int		i;
+	char	redir_tofind[2];
+
+	i = 0;
+	redir_tofind[0] = line[index];//XXX WIP
+	if (index > 0 && (line[index - 1] != ' ' && !ft_strchr("<>|", line[index - 1])))
+		p_vec_add(vec, "\0");
+	printf("redir: [%d]: [%s]\n", index, &line[index]);
+	while (line[index + i] && ft_strchr("<>|", line[index + i]))
+	{
+		p_vec_add(vec, &line[index + i]);
+		i++;
+	}
+	if (line[index + i] && line[index + i] != ' ')
+		p_vec_add(vec, "\0");
+	return (index + i);
 }
