@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_add.c                                          :+:      :+:    :+:   */
+/*   get_bin_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 14:34:40 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 11:06:13 by mahadad          ###   ########.fr       */
+/*   Created: 2022/06/03 11:12:41 by awillems          #+#    #+#             */
+/*   Updated: 2022/06/03 11:18:36 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec_utils.h"
 #include "minishell.h"
 
-t_vec 	*vec_add_char_ptr(t_vec *vec, char *str)
+/**
+ * @brief //TODO WIP
+ * 
+ * @param line 
+ * @return char* 
+ */
+char *find_bin_path(char *line)
 {
-	return (p_vec_add(vec, &str));
+	(void)line;
+	return ("WIP/bin/");
 }
 
-/**
- * @brief 
- * 
- * @param vec The instr struct vector.
- * @param type The type of element. //TODO make the macro
- * @return t_vec* 
- */
-t_vec	*vec_add_instr(t_vec *vec, int type)
+void	set_bin_path(t_vec *line, int index)
 {
-	t_instr	new;
-
-	new.arg = vec_init(sizeof(char *));
-	new.arg.rate = 8;
-	new.type = type;
-	vec_add(vec, &new);
-	return (vec);
+	// Check if the CMD is a bin with path
+	if (access(vec_get_str(line, index), X_OK) != -1)
+		return ;
+	// find the good path
+	vec_insert(line, DEFAULT, index, find_bin_path(vec_get_str(line, index)));
 }

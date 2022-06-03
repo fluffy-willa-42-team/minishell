@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 10:48:27 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/03 11:18:58 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,60 +17,39 @@
 #include "debug.h"
 
 void	print_instr(void);
-
-/**
- * @brief //TODO WIP
- * 
- * @param line 
- * @return char* 
- */
-char *find_bin_path(char *line)
-{
-	(void)line;
-	return ("WIP/bin/");
-}
-
-void	set_bin_path(t_vec *line, int index)
-{
-	// Check if the CMD is a bin with path
-	if (access(vec_get_str(line, index), X_OK) != -1)
-		return ;
-	// find the good path
-	vec_insert(line, DEFAULT, index, find_bin_path(vec_get_str(line, index)));
-}
+int		is_special_elem(char *elem);
+void	set_bin_path(t_vec *line, int index);
 
 void	line_lexer(t_vec *line, t_vec *instr)
 {
-	size_t i = 0;
-	int	first_elem = 1;
-	int	coun_elem = -1;
-
-	g_data.env_path = getenv("PATH");
-	while (i < line->content_len)
+	(void) instr;
+	int	is_cmd = 1;
+	int	cmd_index = 0;
+	for (size_t i = 0; i < line->content_len; i++)
 	{
-		if (vec_get_char(line, i) != 0 && ( i == 0 || vec_get_char(line, i - 1) == 0))
+		// if (line[i] != 0 && (i == 0 || line[i-1] == 0))
+		if (vec_get_char(line, i) != 0 && (i == 0 || vec_get_char(line, i - 1) == 0))
 		{
-			if (ft_strchr("<>|", vec_get_char(line, i)))
+			// if (is_special_elem(&line[i]) != 0)
+			if (is_special_elem(vec_get_str(line, i)) != 0)
 			{
-				printf("[##### PIPE #####]\n");
-				coun_elem++;
-				vec_add_instr(instr, 2);
-				vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
-				first_elem = 1;
+				printf("[%d]     %s\n", cmd_index, vec_get_str(line, i));
+				is_cmd = 1;
+				cmd_index++;
+				// CREATE / REUSE REDIRECT INSTR
 			}
-			else if (first_elem)
+			else if (is_cmd)
 			{
-				coun_elem++;
-				// Add the path to the bin in the line buffer.
-				set_bin_path(line, i);
-				// Create new instrcution struct in the buffer.
-				vec_add_instr(instr, 1);
-				vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
-				first_elem = 0;
+				printf("[CMD %d] %s\n", cmd_index, vec_get_str(line, i));
+				is_cmd = 0;
+				cmd_index++;
+				// CREATE / REUSE CMD
 			}
 			else
-				vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
+			{
+				printf("  [ARG] %s\n", vec_get_str(line, i));
+				// UPDATE LAST CMD
+			}
 		}
-		i++;
 	}
 }
