@@ -17,7 +17,7 @@ void	print_instr(size_t len)
 	t_instr	*instr;
 	
 	printf("[\n");
-		printf("    content_len: %lu,\n", len);
+		printf("    content_len: %lu,\n", g_data.lexed_instr.content_len);
 	for (size_t x = 0; x < len; x++)
 	{
 		instr = vec_get_instr(&g_data.lexed_instr, x);
