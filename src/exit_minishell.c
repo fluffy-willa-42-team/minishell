@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 12:45:53 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/02 11:06:56 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 15:15:38 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
  */
 static void	exit_minishell(void)
 {
+	size_t	i;
+
+	i = 0;
+	while (i < g_data.lexed_instr.content_len)
+	{
+		vec_destroy(&vec_get_instr(&g_data.lexed_command, i)->arg);
+		i++;
+	}
 	vec_destroy(&g_data.lexed_command);
 	vec_destroy(&g_data.lexed_instr);
 	vec_destroy(&g_data.tmp);
