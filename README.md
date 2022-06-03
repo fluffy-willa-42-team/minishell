@@ -39,7 +39,7 @@ rm -rf $HOME/.brew && git clone --depth=1 https://github.com/Homebrew/brew $HOME
 
 Install GNU readline lib
 ```sh
-HOMEBREW_FORCE_BREWED_CURL=1 brew install readline 
+brew install readline 
 ```
 
 ### Debian/Ubuntu
