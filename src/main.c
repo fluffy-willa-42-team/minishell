@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 12:02:20 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 15:25:39 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ int	main()
 		line_read = readline(PROMPT_START);
 	}
 	free(line_read);
+	msh_exit(EXIT_SUCCESS, NULL);
 	return (0);
 }
