@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:59:33 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 13:33:21 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/03 10:47:39 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ static void	destroy_line_alloc(t_vec *instr)
 	int	i;
 
 	i = 0;
-	while (i < (int)instr->content_len)
+	while (i < (int)instr->len)
 	{
+		printf("%d ", i);
 		vec_delete(get_instr_arg(i));
 		i++;
 	}
+	printf("\n");
 }
 
 void	line_lexer(t_vec *line, t_vec *instr);
@@ -45,6 +47,6 @@ int	interpret_line(char *line)
 	destroy_line_alloc(&g_data.lexed_instr);
 
 	vec_delete(&g_data.lexed_command);
-	vec_delete(&g_data.lexed_instr);
+	// vec_delete(&g_data.lexed_instr);
 	return (1);
 }

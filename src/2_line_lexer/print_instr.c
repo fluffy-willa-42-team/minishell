@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_instr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:20:44 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 13:31:40 by awillems         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
-
-#include "minishell.h"
 #include "vec_utils.h"
 #include "stdio.h"
 
@@ -21,6 +17,7 @@ void	print_instr(void)
 	t_instr	*instr;
 	
 	printf("[\n");
+		printf("    content_len: %lu,\n", g_data.lexed_instr.content_len);
 	for (size_t x = 0; x < g_data.lexed_instr.content_len; x++)
 	{
 		instr = vec_get_instr(&g_data.lexed_instr, x);

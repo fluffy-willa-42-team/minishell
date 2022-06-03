@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 13:47:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/03 10:48:27 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	line_lexer(t_vec *line, t_vec *instr)
 	int	coun_elem = -1;
 
 	g_data.env_path = getenv("PATH");
-	vec_delete(instr);
 	while (i < line->content_len)
 	{
 		if (vec_get_char(line, i) != 0 && ( i == 0 || vec_get_char(line, i - 1) == 0))
 		{
 			if (ft_strchr("<>|", vec_get_char(line, i)))
 			{
+				printf("[##### PIPE #####]\n");
 				coun_elem++;
 				vec_add_instr(instr, 2);
 				vec_add_char_ptr(get_instr_arg(coun_elem), vec_get_str(line, i));
@@ -73,5 +73,4 @@ void	line_lexer(t_vec *line, t_vec *instr)
 		}
 		i++;
 	}
-	// print_instr();
 }
