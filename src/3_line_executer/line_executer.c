@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:52:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 15:38:24 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:27:49 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,28 @@ void	msh_pipe(void)
 	printf(" |\n V\n");
 }
 
+void	msh_semicolumn(void)
+{
+	printf("----------\n");
+}
+
+void	msh_redir_front(void)
+{
+	printf(" V\n V\n");
+}
+
+void	msh_redir_back(void)
+{
+	printf(" ^\n ^\n");
+}
+
 void	exec_cmd(t_vec *instr_list, int index)
 {
 	static char	*spec_str[] = {"|", ";", ">>", ">", "<<", "<"};
 	static void	(*func_link[6])() = {
-		msh_pipe, msh_pipe, msh_pipe, msh_pipe, msh_pipe, msh_pipe
+		msh_pipe, msh_semicolumn,
+		msh_redir_front, msh_redir_front,
+		msh_redir_back, msh_redir_back
 	};
 
 	t_instr	*instr =  vec_get_instr_raw(instr_list, index);

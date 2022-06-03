@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 14:23:18 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:26:55 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	line_lexer(t_vec *line, t_vec *instr)
 		{
 			cmd_index++;
 			is_cmd = 1;
+			/* /!\ insert path /!\ */
 			new_instr(instr, cmd_index, 2, vec_get_str(line, i));
 		}
 		else if (is_cmd)
