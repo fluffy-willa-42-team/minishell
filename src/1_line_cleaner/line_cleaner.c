@@ -68,6 +68,4 @@ void	line_cleaner(t_vec *vec, char *line)
 			p_vec_add(vec, "\0");
 		}
 	}
-	vec_print(vec);
-	return ;
 }

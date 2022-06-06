@@ -42,7 +42,7 @@ static void	new_instr(t_vec* instr, size_t index, int type, char *arg)
 	add_arg(instr, index, arg);
 }
 
-void	line_lexer(t_vec *line, t_vec *instr)
+int	line_lexer(t_vec *line, t_vec *instr)
 {
 	ssize_t	i;
 	int is_cmd;
@@ -69,7 +69,5 @@ void	line_lexer(t_vec *line, t_vec *instr)
 		}
 		else
 			add_arg(instr, cmd_index, vec_get_str(line, i));
-	printf("\n\n");
-	print_instr(cmd_index + 1);
-	printf("\n\n");
+	return (cmd_index + 1);
 }
