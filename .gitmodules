@@ -4,9 +4,3 @@
 [submodule "lib/wraloc"]
 	path = lib/wraloc
 	url = git@github.com:lorenuars19/wraloc.git
-[submodule "lib/vector-lib"]
-	path = vector-lib
-	url = git@github.com:fluffy-willa-42-team/vector-lib.git
-[submodule "lib/vector_lib"]
-	path = lib/vector_lib
-	url = git@github.com:fluffy-willa-42-team/vector-lib.git
