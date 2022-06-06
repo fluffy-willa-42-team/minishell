@@ -54,5 +54,6 @@ int	main()
 	}
 	exit_minishell();
 	free(line_read);
+	msh_exit(EXIT_SUCCESS, NULL);
 	return (0);
 }

@@ -15,6 +15,11 @@
 #include "libft.h" /** ft_strlen */
 #include "vec_utils.h"
 
+#include "minishell.h"
+#include <stdio.h> /** printf */
+#include "libft.h" /** ft_strlen */
+#include "vec_utils.h"
+
 /**
  * @brief [internal] Free ☭ our ☭ function from the capitalist allocation.
  * 
