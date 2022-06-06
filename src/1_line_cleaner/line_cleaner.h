@@ -11,5 +11,6 @@ int varsub(t_vec *vec, char *line, int index);
 int bkslh(t_vec *vec, char *line, int index);
 int sglqot(t_vec *vec, char *line, int index);
 int dblqot(t_vec *vec, char *line, int index);
+int redir(t_vec *vec, char *line, int index);
 
 #endif /* LEXER_H */

@@ -15,14 +15,24 @@
 #include "vec_utils.h" /* vec_get_instr */
 
 void	line_cleaner(t_vec *vec, char *line);
-void	line_lexer(t_vec *line, t_vec *instr);
+int		line_lexer(t_vec *line, t_vec *instr);
 void	line_executer(t_vec *instr);
 void	empty_g_data(void);
+void	print_instr(size_t len);
 
 int	interpret_line(char *line)
 {
+	printf("[%s]\n", line);
+
 	line_cleaner(&g_data.lexed_command, line);
-	line_lexer(&g_data.lexed_command, &g_data.lexed_instr);
+	vec_print(&g_data.lexed_command);
+
+	int nb_cmd = line_lexer(&g_data.lexed_command, &g_data.lexed_instr);
+	printf("\n\n");
+	print_instr(nb_cmd);
+	printf("\n\n");
+	vec_print(&g_data.lexed_command);
+
 	line_executer(&g_data.lexed_instr);
 	empty_g_data();
 	return (1);

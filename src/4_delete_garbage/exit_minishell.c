@@ -31,7 +31,7 @@ void	exit_minishell(void)
 	i = 0;
 	while (i < g_data.lexed_instr.content_len)
 	{
-		vec_destroy(get_instr_arg_raw(i));
+		vec_destroy(&vec_get_instr(&g_data.lexed_instr, i)->arg);
 		i++;
 	}
 	vec_destroy(&g_data.lexed_command);
