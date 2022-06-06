@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:20:44 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 12:23:09 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 13:16:38 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	print_instr(size_t len)
 	for (size_t arg = 0; arg < get_instr_arg(ind)->content_len; arg++)
 	printf("            [%lu]: \"%s\",\n", arg, get_instr_arg_elem(ind, arg));
 	printf("        ]\n");
+	printf("    },\n");
 	}
 	printf("]\n\n");
 }
