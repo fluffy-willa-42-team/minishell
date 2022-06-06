@@ -15,5 +15,5 @@
 
 t_vec 	*vec_add_char_ptr(t_vec *vec, char *str)
 {
-	return (p_vec_add(vec, &str));
+	return (vec_add(vec, &str));
 }

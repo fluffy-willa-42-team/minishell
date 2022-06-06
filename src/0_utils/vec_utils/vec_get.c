@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:08:26 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 10:47:47 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 11:07:21 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,46 +47,4 @@ char	*vec_get_str_array_raw(t_vec *vec, int index)
 	if (!vec_get(vec, index))
 		return (NULL);
 	return (*((char **) vec_get_raw(vec, index)));
-}
-
-/**
- * @brief Get the struct from the ptr tab
- * 
- * @return t_instr* return the t_instr address
- */
-t_instr	*vec_get_instr(t_vec *vec, int index)
-{
-	return (((t_instr *) vec_get(vec, index)));
-}
-
-t_instr	*vec_get_instr_raw(t_vec *vec, int index)
-{
-	return (((t_instr *) vec_get_raw(vec, index)));
-}
-
-/**
- * @brief Get the arg vector.
- * 
- * @param index The index of element.
- * @return t_vec* Return a ptr to the vector.
- */
-t_vec	*get_instr_arg(int index)
-{
-	return (&(vec_get_instr(&g_data.lexed_instr, index)->arg));
-}
-
-t_vec	*get_instr_arg_raw(int index)
-{
-	return (&(vec_get_instr_raw(&g_data.lexed_instr, index)->arg));
-}
-
-char	*get_vec_instr_arg(int instr_index, int arg_index)
-{
-	return (vec_get_str_array(
-				&vec_get_instr(
-					&g_data.lexed_instr,
-					instr_index
-				)->arg,
-				arg_index)
-			);
 }
