@@ -79,3 +79,14 @@ t_vec	*get_instr_arg_raw(int index)
 {
 	return (&(vec_get_instr_raw(&g_data.lexed_instr, index)->arg));
 }
+
+char	*get_vec_instr_arg(int instr_index, int arg_index)
+{
+	return (vec_get_str_array(
+				&vec_get_instr(
+					&g_data.lexed_instr,
+					instr_index
+				)->arg,
+				arg_index)
+			);
+}

@@ -28,6 +28,6 @@ t_instr	*vec_get_instr_raw(t_vec *vec, int index);
 t_vec	*p_vec_add(t_vec	*vec, void *new_content);
 t_vec	*get_instr_arg(int index);
 t_vec	*get_instr_arg_raw(int index);
-int redir(t_vec *vec, char *line, int index);
+char	*get_vec_instr_arg(int instr_index, int arg_index);
 
 #endif

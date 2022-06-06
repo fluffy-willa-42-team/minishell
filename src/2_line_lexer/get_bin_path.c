@@ -13,6 +13,7 @@
 #include "minishell.h"
 #include "vec_utils.h"
 // #include <stdlib.h>    /** getenv */
+#include <stdio.h>
 
 /**
  * @brief //TODO WIP
@@ -26,8 +27,16 @@ char *find_bin_path(char *line)
 	return ("WIP/bin/");
 }
 
-void	set_bin_path(t_vec *line, int index)
+
+/**
+ * @brief Set the binary path of the argument if its not already one and is not
+ * the argument of the previous line (aka "<<")
+ */
+void	set_bin_path(t_vec *line, int index, int cmd_index)
 {
+	if (ft_strcmp(get_vec_instr_arg(cmd_index, 0), "<<"))
+		printf("hello\n");
+	
 	// Check if the CMD is a bin with path
 	if (access(vec_get_str(line, index), X_OK) != -1)
 		return ;
