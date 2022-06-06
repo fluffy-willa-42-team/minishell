@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:52:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 14:27:49 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:12:41 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 #include <stdio.h>
 
-void	msh_cmd(t_instr *instr)
+void	msh_cmd(t_instr *instr, int index)
 {
 	printf("NEW CMD\n");
 	size_t i = 0;
-	while (vec_get_str_array_raw(&instr->arg, i))
+	(void) instr;
+	while (i < get_instr_arg(index)->content_len)
 	{
-		printf("    [%lu] %s\n", i, vec_get_str_array_raw(&instr->arg, i));
+		printf("    [%lu] %s\n", i, get_instr_arg_elem(index, i));
 		i++;
 	}
 }
@@ -55,14 +56,14 @@ void	exec_cmd(t_vec *instr_list, int index)
 		msh_redir_back, msh_redir_back
 	};
 
-	t_instr	*instr =  vec_get_instr_raw(instr_list, index);
+	t_instr	*instr =  get_raw_instr(index);
 	if (!instr || instr->type == 0)
 		return ;
 	else if (instr->type == 1)
-		msh_cmd(instr);
+		msh_cmd(instr, index);
 	else if (instr->type == 2)
 	{
-		char		*ptr = vec_get_str_array_raw(&instr->arg, 0);
+		char		*ptr = get_instr_arg_elem(index, 0);
 		int			i = 0;
 
 		while (i < 6)

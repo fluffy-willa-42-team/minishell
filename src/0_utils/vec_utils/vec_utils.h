@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:12:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 13:11:04 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/06 12:07:03 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,15 @@ char	vec_get_char(t_vec *vec, int index);
 char	*vec_get_str(t_vec *vec, int index);
 char	*vec_get_str_array(t_vec *vec, int index);
 char	*vec_get_str_array_raw(t_vec *vec, int index);
-t_instr	*vec_get_instr(t_vec *vec, int index);
-t_instr	*vec_get_instr_raw(t_vec *vec, int index);
-t_vec	*p_vec_add(t_vec	*vec, void *new_content);
+
+t_vec	*get_line(void);
+t_vec	*get_instr_list(void);
+t_instr	*get_instr(int index);
 t_vec	*get_instr_arg(int index);
-t_vec	*get_instr_arg_raw(int index);
-char	*get_vec_instr_arg(int instr_index, int arg_index);
+char	*get_instr_arg_elem(int instr_index, int arg_index);
+
+t_instr	*get_raw_instr(int index);
+t_vec	*get_raw_instr_arg(int index);
+char	*get_raw_instr_arg_elem(int instr_index, int arg_index);
 
 #endif

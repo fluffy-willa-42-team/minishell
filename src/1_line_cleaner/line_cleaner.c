@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_cleaner.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 12:06:52 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/06 11:39:55 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	line_cleaner(t_vec *vec, char *line)
 		ptr = ft_strchr(to_find, line[i]);
 		if (ptr)
 		{
-			printf("[%c]\n", *ptr);
+			printf("[ %c]\n", *ptr);
 			i = func_link[ptr - to_find](vec, line, i);
 		}
 		else
@@ -62,10 +62,10 @@ void	line_cleaner(t_vec *vec, char *line)
 			printf("Word\n");
 			while (line[i] && !ft_strchr(to_find, line[i]))
 			{
-				p_vec_add(vec, &line[i]);
+				vec_add(vec, &line[i]);
 				i++;
 			}
-			p_vec_add(vec, "\0");
+			vec_add(vec, "\0");
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 12:45:53 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/03 15:41:02 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 11:34:18 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	exit_minishell(void)
 	i = 0;
 	while (i < g_data.lexed_instr.content_len)
 	{
-		vec_destroy(&vec_get_instr(&g_data.lexed_instr, i)->arg);
+		vec_destroy(get_instr_arg(i));
 		i++;
 	}
 	vec_destroy(&g_data.lexed_command);

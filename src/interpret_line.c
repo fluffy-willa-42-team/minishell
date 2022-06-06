@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:59:33 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 14:51:56 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:00:44 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	interpret_line(char *line)
 	vec_print(&g_data.lexed_command);
 
 	int nb_cmd = line_lexer(&g_data.lexed_command, &g_data.lexed_instr);
-	printf("\n\n");
-	print_instr(nb_cmd);
-	printf("\n\n");
+	
+	(void) nb_cmd;
 	vec_print(&g_data.lexed_command);
+	print_instr(nb_cmd);
 
 	line_executer(&g_data.lexed_instr);
 	empty_g_data();

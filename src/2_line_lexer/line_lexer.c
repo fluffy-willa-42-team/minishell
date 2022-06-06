@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 14:52:11 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 11:16:18 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 int		is_special_elem(char *elem);
 void	set_bin_path(t_vec *line, int index);
 
-static void	add_arg(t_vec* instr, size_t index, char *arg)
+static void	add_arg(size_t index, char *arg)
 {
-	vec_add_char_ptr(&vec_get_instr(instr, index)->arg, arg);
+	vec_add_char_ptr(get_instr_arg(index), arg);
 }
 
 static void	new_instr(t_vec* instr, size_t index, int type, char *arg)
@@ -35,9 +35,9 @@ static void	new_instr(t_vec* instr, size_t index, int type, char *arg)
 		new_instr.arg.rate = 8;
 		vec_add(instr, &new_instr);
 	}
-	else if (vec_get_instr(instr, index)->type == 0)
-		vec_get_instr(instr, index)->type = type;
-	add_arg(instr, index, arg);
+	else if (get_instr(index)->type == 0)
+		get_instr(index)->type = type;
+	add_arg(index, arg);
 }
 
 int	line_lexer(t_vec *line, t_vec *instr)
@@ -66,6 +66,6 @@ int	line_lexer(t_vec *line, t_vec *instr)
 			new_instr(instr, cmd_index, 1, vec_get_str(line, i));
 		}
 		else
-			add_arg(instr, cmd_index, vec_get_str(line, i));
+			add_arg(cmd_index, vec_get_str(line, i));
 	return (cmd_index + 1);
 }

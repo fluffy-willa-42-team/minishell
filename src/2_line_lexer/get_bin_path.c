@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_bin_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:12:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 11:30:30 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/06 11:15:06 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char *find_bin_path(char *line)
  */
 void	set_bin_path(t_vec *line, int index, int cmd_index)
 {
-	if (ft_strcmp(get_vec_instr_arg(cmd_index, 0), "<<"))
+	if (ft_strcmp(get_instr_arg_elem(cmd_index, 0), "<<"))
 		printf("hello\n");
 	
 	// Check if the CMD is a bin with path
