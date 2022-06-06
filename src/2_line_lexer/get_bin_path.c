@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:12:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 11:15:06 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:25:36 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,12 @@ char *find_bin_path(char *line)
  */
 void	set_bin_path(t_vec *line, int index, int cmd_index)
 {
-	if (ft_strcmp(get_instr_arg_elem(cmd_index, 0), "<<"))
-		printf("hello\n");
+	static char *spec_elem[] = {"<<", "<", ">", ">>"};
+	
+	if (cmd_index < 0)
+		for (int i = 0; i < 4; i++)
+			if (ft_strcmp(get_instr_arg_elem(cmd_index - 1, 0), spec_elem[i]))
+				printf("hello\n");
 	
 	// Check if the CMD is a bin with path
 	if (access(vec_get_str(line, index), X_OK) != -1)
