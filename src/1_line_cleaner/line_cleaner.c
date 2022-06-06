@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 11:39:55 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:22:47 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,9 @@ void	line_cleaner(t_vec *vec, char *line)
 	{
 		ptr = ft_strchr(to_find, line[i]);
 		if (ptr)
-		{
-			printf("[ %c]\n", *ptr);
 			i = func_link[ptr - to_find](vec, line, i);
-		}
 		else
 		{
-			printf("Word\n");
 			while (line[i] && !ft_strchr(to_find, line[i]))
 			{
 				vec_add(vec, &line[i]);
