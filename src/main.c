@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 15:25:39 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/03 15:35:54 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 void	set_sigaction(void);
 int		interpret_line(char *line);
+void	exit_minishell(void);
 
 t_minishell	g_data;
 
@@ -51,6 +52,7 @@ int	main()
 		free(line_read);
 		line_read = readline(PROMPT_START);
 	}
+	exit_minishell();
 	free(line_read);
 	msh_exit(EXIT_SUCCESS, NULL);
 	return (0);
