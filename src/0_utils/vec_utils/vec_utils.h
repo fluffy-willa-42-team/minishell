@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:12:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 11:41:46 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:07:03 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,9 @@ t_vec	*get_instr_list(void);
 t_instr	*get_instr(int index);
 t_vec	*get_instr_arg(int index);
 char	*get_instr_arg_elem(int instr_index, int arg_index);
+
+t_instr	*get_raw_instr(int index);
+t_vec	*get_raw_instr_arg(int index);
+char	*get_raw_instr_arg_elem(int instr_index, int arg_index);
 
 #endif

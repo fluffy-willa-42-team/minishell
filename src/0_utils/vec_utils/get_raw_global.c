@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:02:16 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 12:03:40 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:06:59 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,3 @@ char	*get_raw_instr_arg_elem(int instr_index, int arg_index)
 {
 	return (vec_get_str_array(&get_instr(instr_index)->arg, arg_index));
 }
-
-t_instr	*get_raw_instr(int index);
-t_vec	*get_raw_instr_arg(int index);
-char	*get_raw_instr_arg_elem(int instr_index, int arg_index);
