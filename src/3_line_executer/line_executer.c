@@ -56,7 +56,7 @@ void	exec_cmd(t_vec *instr_list, int index)
 	};
 
 	t_instr	*instr =  vec_get_instr_raw(instr_list, index);
-	if (instr->type == 0)
+	if (!instr || instr->type == 0)
 		return ;
 	else if (instr->type == 1)
 		msh_cmd(instr);
