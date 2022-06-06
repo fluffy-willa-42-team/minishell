@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:12:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 12:59:56 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:13:24 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,22 @@ char *find_bin_path(char *line)
  * @brief Set the binary path of the argument if its not already one and is not
  * the argument of the previous line (aka "<<")
  */
-void	set_bin_path(t_vec *line, int index, int cmd_index)
+int	set_bin_path(int line_index, int cmd_index)
 {
-	static char *spec_elem[] = {"<<", "<", ">", ">>"};
+	// static char *spec_elem[] = {"<<", "<", ">", ">>"};
 	
-	if (cmd_index < 0)
-		for (int i = 0; i < 4; i++)
-			if (ft_strcmp(get_instr_arg_elem(cmd_index - 1, 0), spec_elem[i]))
-				printf("hello\n");
+	printf("[%d]%d\n", cmd_index, line_index);
+	// if (cmd_index < 0)
+	// 	for (int i = 0; i < 4; i++)
+	// 		if (ft_strcmp(get_instr_arg_elem(cmd_index - 1, 0), spec_elem[i]))
+	// 			return (0);
 	
 	// Check if the CMD is a bin with path
-	if (access(get_cmd_str(index), X_OK) != -1)
-		return ;
+	if (access(get_cmd_str(line_index), X_OK) != -1)
+		return (0);
 	// find the good path
-	vec_insert(line, DEFAULT, index, find_bin_path(get_cmd_str(index)));
+	char *path = find_bin_path(get_cmd_str(line_index));
+	printf("=> %s\n", path);
+	vec_insert(get_line(), DEFAULT, line_index, "MDR");
+	return (ft_strlen(path));
 }

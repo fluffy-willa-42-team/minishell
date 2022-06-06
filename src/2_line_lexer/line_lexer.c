@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 13:01:39 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:09:31 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 
 #include "line_lexer.h"
 
-int		is_special_elem(char *elem);
-void	set_bin_path(t_vec *line, int index);
+#include "stdio.h"
+
+int	is_special_elem(char *elem);
+int	set_bin_path(int line_index, int cmd_index);
 
 static void	add_arg(size_t index, char *arg)
 {
@@ -49,23 +51,27 @@ int	line_lexer(t_vec *line, t_vec *instr)
 	is_cmd = 1;
 	cmd_index = -1;
 	i = -1;
-	while (++i < (ssize_t) line->content_len)
+	while (++i < (ssize_t) line->content_len){
+		printf("[%lu] %c\n", i, get_cmd_char(i));
 		if (!(i == 0 || get_cmd_char(i - 1) == 0))
 			continue;
 		else if (is_special_elem(get_cmd_str(i)) != 0)
 		{
 			cmd_index++;
 			is_cmd = 1;
-			/* /!\ insert path /!\ */
 			new_instr(instr, cmd_index, 2, get_cmd_str(i));
 		}
 		else if (is_cmd)
 		{
 			cmd_index++;
 			is_cmd = 0;
+			int temp = set_bin_path(i, cmd_index);
 			new_instr(instr, cmd_index, 1, get_cmd_str(i));
+			i += temp;
 		}
 		else
 			add_arg(cmd_index, get_cmd_str(i));
+		
+	}
 	return (cmd_index + 1);
 }
