@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:20:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 14:40:53 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 11:41:05 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	empty_g_data(void)
 {
 	size_t i = 0;
 
-	vec_delete(&g_data.lexed_command);
+	vec_delete(get_line());
 	while (i < g_data.lexed_instr.content_len)
 	{
-		vec_get_instr(&g_data.lexed_instr, i)->type = 0;
-		vec_delete(&(vec_get_instr(&g_data.lexed_instr, i)->arg));
+		get_instr(i)->type = 0;
+		vec_delete(get_instr_arg(i));
 		i++;
 	}
 }

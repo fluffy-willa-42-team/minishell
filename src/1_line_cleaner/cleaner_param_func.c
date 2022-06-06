@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner_param_func.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:25:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 12:03:21 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/06 11:34:49 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int varsub(t_vec *vec, char *line, int index)
 
 	if (len == 0)
 	{
-		p_vec_add(vec, "$");
+		vec_add(vec, "$");
 		return (index + 1);
 	}
 	vec_delete(&g_data.tmp);
@@ -69,7 +69,7 @@ int varsub(t_vec *vec, char *line, int index)
 int bkslh(t_vec *vec, char *line, int index)
 {
 	if (line[index + 1] && line[index + 1] == '\\'){
-		p_vec_add(vec, "\\");
+		vec_add(vec, "\\");
 		return (index + 2);
 	}
 	return (index + 1);
@@ -83,7 +83,7 @@ int sglqot(t_vec *vec, char *line, int index)
 	index++;
 	while (line[index] && line[index] != '\'')
 	{
-		p_vec_add(vec, &line[index]);
+		vec_add(vec, &line[index]);
 		index++;
 	}
 	if (!line[index])
@@ -108,7 +108,7 @@ int dblqot(t_vec *vec, char *line, int index)
 			index = func_link[ptr - to_find](vec, line, index);
 		else
 		{
-			p_vec_add(vec, &line[index]);
+			vec_add(vec, &line[index]);
 			index++;
 		}
 	}
@@ -127,9 +127,9 @@ int redir(t_vec *vec, char *line, int index)
 	i = 0;
 	while (line[index + i] && line[index + i] == line[index])
 	{
-		p_vec_add(vec, &line[index + i]);
+		vec_add(vec, &line[index + i]);
 		i++;
 	}
-	p_vec_add(vec, "\0");
+	vec_add(vec, "\0");
 	return (index + i);
 }
