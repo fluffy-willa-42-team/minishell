@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:20:44 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 13:16:38 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:01:42 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	print_instr(size_t len)
 {
-	printf("\n[\n");
-	printf("    content_len: %lu,\n", get_instr_list()->content_len);
+	printf("\nnb_instr: %lu,\n", get_instr_list()->content_len);
+	printf("instr_list: [\n");
 	for (size_t ind = 0; ind < len; ind++)
 	{
 	printf("    {\n");
