@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:12:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 12:25:36 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:57:46 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	set_bin_path(t_vec *line, int index, int cmd_index)
 				printf("hello\n");
 	
 	// Check if the CMD is a bin with path
-	if (access(vec_get_str(line, index), X_OK) != -1)
+	if (access(get_cmd_str(index), X_OK) != -1)
 		return ;
 	// find the good path
 	vec_insert(line, DEFAULT, index, find_bin_path(vec_get_str(line, index)));

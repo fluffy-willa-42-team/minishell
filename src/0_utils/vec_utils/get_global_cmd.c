@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:29:45 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 12:34:16 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:58:19 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_vec	*get_line(void)
 }
 
 /** @brief get cmd[i] */
-t_vec	*get_cmd_char(int index)
+char	get_cmd_char(int index)
 {
 	if (!vec_get(get_line(), index))
 		return (0);
@@ -28,7 +28,7 @@ t_vec	*get_cmd_char(int index)
 }
 
 /** @brief get &cmd[i] */
-t_vec	*get_cmd_str(int index)
+char	*get_cmd_str(int index)
 {
 	if (!vec_get(get_line(), index))
 		return (0);
