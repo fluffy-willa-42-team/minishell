@@ -6,12 +6,18 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:06:36 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 12:55:30 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 13:05:37 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec_utils.h"
 #include "minishell.h"
+
+/** @brief get instr_list */
+t_vec	*get_instr_list(void)
+{
+	return (&g_data.lexed_instr);
+}
 
 /** @brief get instr_list[ index ] */
 t_instr	*get_instr(int index)

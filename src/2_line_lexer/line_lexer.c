@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 11:16:18 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 13:01:39 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,22 @@ int	line_lexer(t_vec *line, t_vec *instr)
 	cmd_index = -1;
 	i = -1;
 	while (++i < (ssize_t) line->content_len)
-		if (!(i == 0 || vec_get_char(line, i - 1) == 0))
+		if (!(i == 0 || get_cmd_char(i - 1) == 0))
 			continue;
-		else if (is_special_elem(vec_get_str(line, i)) != 0)
+		else if (is_special_elem(get_cmd_str(i)) != 0)
 		{
 			cmd_index++;
 			is_cmd = 1;
 			/* /!\ insert path /!\ */
-			new_instr(instr, cmd_index, 2, vec_get_str(line, i));
+			new_instr(instr, cmd_index, 2, get_cmd_str(i));
 		}
 		else if (is_cmd)
 		{
 			cmd_index++;
 			is_cmd = 0;
-			new_instr(instr, cmd_index, 1, vec_get_str(line, i));
+			new_instr(instr, cmd_index, 1, get_cmd_str(i));
 		}
 		else
-			add_arg(cmd_index, vec_get_str(line, i));
+			add_arg(cmd_index, get_cmd_str(i));
 	return (cmd_index + 1);
 }

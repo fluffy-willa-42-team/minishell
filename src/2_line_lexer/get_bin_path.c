@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:12:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 12:57:46 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:59:56 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ void	set_bin_path(t_vec *line, int index, int cmd_index)
 	if (access(get_cmd_str(index), X_OK) != -1)
 		return ;
 	// find the good path
-	vec_insert(line, DEFAULT, index, find_bin_path(vec_get_str(line, index)));
+	vec_insert(line, DEFAULT, index, find_bin_path(get_cmd_str(index)));
 }
