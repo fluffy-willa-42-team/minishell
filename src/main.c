@@ -52,7 +52,7 @@ int	main()
 		free(line_read);
 		line_read = readline(PROMPT_START);
 	}
-	exit_minishell();
+	// exit_minishell();
 	free(line_read);
 	msh_exit(EXIT_SUCCESS, NULL);
 	return (0);
