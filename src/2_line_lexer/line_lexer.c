@@ -15,9 +15,7 @@
 #include <stdlib.h>    /** getenv */
 
 #include "line_lexer.h"
-#include "debug.h"
 
-void	print_instr(size_t len);
 int		is_special_elem(char *elem);
 void	set_bin_path(t_vec *line, int index);
 

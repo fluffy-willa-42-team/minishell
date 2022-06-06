@@ -18,11 +18,12 @@ void	line_cleaner(t_vec *vec, char *line);
 int		line_lexer(t_vec *line, t_vec *instr);
 void	line_executer(t_vec *instr);
 void	empty_g_data(void);
+void	print_instr(size_t len);
 
 int	interpret_line(char *line)
 {
 	printf("[%s]\n", line);
-	
+
 	line_cleaner(&g_data.lexed_command, line);
 	vec_print(&g_data.lexed_command);
 
