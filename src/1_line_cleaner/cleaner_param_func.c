@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner_param_func.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:25:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 11:34:49 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:25:13 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
  * followed by another, it will replace it with a unit separator. On the
  * contrary it will be skipped.
  */
-int whtspc(t_vec *vec, char *line, int index)
-{
-	(void) vec;
-	(void) line;
-	(void) index;
-	return (index + 1);
-}
+// int whtspc(t_vec *vec, char *line, int index)
+// {
+// 	(void) vec;
+// 	(void) line;
+// 	(void) index;
+// 	return (index + 1);
+// }
 
 static int	get_var_len(char *line, int index)
 {
@@ -68,8 +68,9 @@ int varsub(t_vec *vec, char *line, int index)
  */
 int bkslh(t_vec *vec, char *line, int index)
 {
-	if (line[index + 1] && line[index + 1] == '\\'){
-		vec_add(vec, "\\");
+	if (line[index] && line[index + 1])
+	{
+		vec_add(vec, &line[index + 1]);
 		return (index + 2);
 	}
 	return (index + 1);

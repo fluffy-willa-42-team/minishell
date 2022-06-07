@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_cleaner.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:09:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 11:39:55 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:33:49 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,21 @@ void	clean_whitespace(t_vec *res);
  *   [4]  | `\f` | whtspc
  *   [5]  | `\r` | whtspc
  *   [6]  | `$`  | varsub
- *   [7]  | `\\` | bkslh
- *   [7]  | `<`  | redir
- *   [7]  | `>`  | redir
- *   [7]  | `|`  | redir
+ *   [7]  | `\'` | sglqot
+ *   [8]  | `\"` | dblqot
+ *   [9]  | `<`  | redir
+ *   [A]  | `>`  | redir
+ *   [B]  | `|`  | redir
+ *   [C]  | `\\` | bkslh
  *
  */
 
 void	line_cleaner(t_vec *vec, char *line)
 {
-	static int	(*func_link[13])() = {
-		whtspc, whtspc, whtspc, whtspc, whtspc, whtspc,
+	static int	(*func_link[7])() = {
 		varsub, sglqot, dblqot, redir, redir, redir, bkslh
 	};
-	static char	*to_find = " \t\n\v\f\r$\'\"<>|\\";
+	static char	*to_find = "$\'\"<>|\\";
 	int			i;
 	char		*ptr;
 
@@ -54,18 +55,25 @@ void	line_cleaner(t_vec *vec, char *line)
 		ptr = ft_strchr(to_find, line[i]);
 		if (ptr)
 		{
-			printf("[ %c]\n", *ptr);
+			printf("[_%c_]\n", *ptr);
 			i = func_link[ptr - to_find](vec, line, i);
 		}
 		else
 		{
+			printf("[-%c-]\n", line[i]);
 			printf("Word\n");
-			while (line[i] && !ft_strchr(to_find, line[i]))
+			while (line[i] &&
+					!ft_strchr(to_find, line[i]) &&
+					!ft_is_whitespace(line[i]))
 			{
 				vec_add(vec, &line[i]);
 				i++;
 			}
-			vec_add(vec, "\0");
+			if (line[i] && ft_is_whitespace(line[i]))
+			{
+				vec_add(vec, "\0");
+				i++;
+			}
 		}
 	}
 }
