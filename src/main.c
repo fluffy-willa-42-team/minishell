@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/03 15:35:54 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:45:10 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	main()
 
 	init_data();
 	set_sigaction();
+	setbuf(stdout, NULL);
 	line_read = readline(PROMPT_START);
 	while (line_read)
 	{

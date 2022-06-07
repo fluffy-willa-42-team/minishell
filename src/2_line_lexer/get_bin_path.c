@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:12:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/07 13:04:42 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:54:08 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,24 @@ int	is_spec_elem(int cmd_index)
  * @brief Set the binary path of the argument if its not already one and is not
  * the argument of the previous line (aka "<<")
  */
-int	set_bin_path(int line_index, int cmd_index)
+void	set_bin_path(int line_index, int cmd_index)
 {
+	(void) cmd_index;
+	(void) line_index;
 	// check if the previous instr is a special instruction
-	if (!is_spec_elem(cmd_index))
-		return (0);
+	// if (!is_spec_elem(cmd_index))
+	// 	return (0);
 	
 	// Check if the CMD is a bin with path
-	if (access(get_cmd_str(line_index), X_OK) != -1)
-		return (0);
+	// if (access(get_cmd_str(line_index), X_OK) != -1)
+	// 	return (0);
 	
 	// find the good path
-	char *path = find_bin_path(get_cmd_str(line_index));
+	// printf("here %d %d\n", line_index, cmd_index);
+	// char *path = find_bin_path(get_cmd_str(line_index));
+
+	// printf("NEW PATH : %s\n", path);
 
 	// add the paths
-	vec_insert(get_line(), DEFAULT, line_index, path);
-	return (ft_strlen(path));
+	vec_fill(&g_data.lexed_command, DEFAULT, "WIP/bin/");
 }
