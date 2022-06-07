@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:10:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 14:09:31 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:06:44 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	add_arg(size_t index, char *arg)
 	vec_add_char_ptr(get_instr_arg(index), arg);
 }
 
-static void	new_instr(t_vec* instr, size_t index, int type, char *arg)
+static int	new_instr(t_vec* instr, size_t index, int type, char *arg)
 {
 	t_instr new_instr;
 	
@@ -40,6 +40,7 @@ static void	new_instr(t_vec* instr, size_t index, int type, char *arg)
 	else if (get_instr(index)->type == 0)
 		get_instr(index)->type = type;
 	add_arg(index, arg);
+	return (ft_strlen(arg));
 }
 
 int	line_lexer(t_vec *line, t_vec *instr)
@@ -65,13 +66,11 @@ int	line_lexer(t_vec *line, t_vec *instr)
 		{
 			cmd_index++;
 			is_cmd = 0;
-			int temp = set_bin_path(i, cmd_index);
-			new_instr(instr, cmd_index, 1, get_cmd_str(i));
-			i += temp;
+			set_bin_path(i, cmd_index);
+			i += new_instr(instr, cmd_index, 1, get_cmd_str(i));
 		}
 		else
 			add_arg(cmd_index, get_cmd_str(i));
-		
 	}
 	return (cmd_index + 1);
 }
