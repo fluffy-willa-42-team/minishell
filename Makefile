@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/06/03 15:21:47 by mahadad          ###   ########.fr        #
+#    Updated: 2022/06/08 12:20:47 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,7 @@ $(DIR):
 # Compiles every lib in the lib repository
 lib_comp:
 	@for path in $(ALL_LIB); do \
-		if [ -f $$path/makefile ]; then \
+		if [ -f $$path/Makefile ]; then \
 			make -sC $$path $(MAKE_FLAG) all;\
 		fi; \
 	done
@@ -144,7 +144,7 @@ print:
 clean:
 	@rm -rf $(OBJ)
 	@for path in $(ALL_LIB); do \
-		if [ -f $$path/makefile ]; then \
+		if [ -f $$path/Makefile ]; then \
 			make -sC $$path clean;\
 		fi; \
 	done
@@ -157,7 +157,7 @@ c:
 fclean:
 	@rm -rf $(OBJ) $(INC_DIR)* $(NAME)
 	@for path in $(ALL_LIB); do \
-		if [ -f $$path/makefile ]; then \
+		if [ -f $$path/Makefile ]; then \
 			make -sC $$path fclean;\
 		fi; \
 	done
@@ -208,11 +208,11 @@ remove_stuff:
 update_lib:
 	@for path in $(ALL_LIB); do \
 		printf "    [%s]\n" $$path;\
-		if [ -f $$path/makefile ]; then \
+		if [ -f $$path/Makefile ]; then \
 		branch=`git -C $$path symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'`;\
 		git -C $$path pull origin $$branch;\
 		git -C $$path checkout $$branch;\
-		else echo "No makefile"; fi; \
+		else echo "No Makefile"; fi; \
 	done
 
 update: update_lib
@@ -224,9 +224,9 @@ ping:
 ping_lib:
 	@for path in $(ALL_LIB); do \
 		printf "    [%s]\n" $$path;\
-		if [ -f $$path/makefile ]; then \
+		if [ -f $$path/Makefile ]; then \
 		make -C $$path ping;\
-		else echo "No makefile"; fi; \
+		else echo "No Makefile"; fi; \
 	done
 
 git:
