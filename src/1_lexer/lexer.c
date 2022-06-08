@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/08 14:33:09 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:38:27 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,9 @@ void	line_lexer(char *line)
 	int i = 0;
 	while (line[i])
 	{
-		if (get_elem(&line[i]) != -1){
-			printf("[%d]\t\'%c\'\t=>\t%d\n", i, line[i], get_elem(&line[i]));
+		printf("[%d]\t\'%c\'\n", i, line[i]);
+		if (get_elem(&line[i]) != -1)
 			func_link[get_elem(&line[i])]();
-		}
-		else
-			printf("[%d]\t\'%c\'\n", i, line[i]);
 		i++;
 	}
 }
