@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/08 14:38:27 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:55:09 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ int	get_elem(char *str)
 		"<<", ">>",
 	};
 	
-	for (int j = 0; j < 14; j++){
-		if (*spec_char[j] == *str)
+	for (int i = 0; i < 14; i++){
+		if (*spec_char[i] == *str)
 		{
-			if (ft_strncmp(spec_char[j + 2], str, 2) == 0)
-				return (j + 2);
-			return (j);
+			if (i >= 12 && ft_strncmp(spec_char[i + 2], str, 2) == 0)
+				return (i + 2);
+			return (i);
 		}
 	}
 	return (-1);
@@ -62,7 +62,8 @@ void	line_lexer(char *line)
 	{
 		printf("[%d]\t\'%c\'\n", i, line[i]);
 		if (get_elem(&line[i]) != -1)
-			func_link[get_elem(&line[i])]();
-		i++;
+			i += func_link[get_elem(&line[i])]();
+		else
+			i++;
 	}
 }
