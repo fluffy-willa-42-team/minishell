@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 09:38:39 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/27 09:55:29 by awillems         ###   ########.fr       */
+/*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
+/*   Updated: 2022/06/08 13:17:57 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#include "minishell.h"
 
-# ifndef MSH_DEBUG
-#  define MSH_DEBUG 0
-# endif
-
-# include <stdio.h>
-
-#endif
+int	lexe_line(char *line)
+{
+	printf("%s\n", line);
+	return (1);
+}

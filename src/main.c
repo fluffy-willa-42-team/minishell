@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/08 11:28:08 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:17:21 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ int	main()
 	while (line_read)
 	{
 		if (line_read && line_read[0])
+		{
+			lexe_line(line_read)
 			add_history(line_read);
+		}
 		free(line_read);
 		line_read = readline(PROMPT_START);
 	}
