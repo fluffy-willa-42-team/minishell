@@ -6,14 +6,14 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/08 13:17:57 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:40:53 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "vec_utils.h"
 
-int	lexe_line(char *line)
+void	lexe_line(char *line)
 {
 	printf("%s\n", line);
-	return (1);
 }
