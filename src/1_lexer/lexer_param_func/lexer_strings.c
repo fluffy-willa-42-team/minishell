@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 13:27:34 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 13:32:18 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,13 @@ int varsub(char *line, int index, t_lexer_opt *opt)
 	{
 		vec_fill(get_line(), DEFAULT, value);
 		opt->index_line++;
-		add_arg(opt);
+		if (opt->new_instr == 1)
+		{
+			new_instr(opt, 1);
+			opt->new_instr = 0;
+		}
+		else
+			add_arg(opt);
 		opt->index_line += ft_strlen(value) - 1;
 	}
 	return (len + 1);

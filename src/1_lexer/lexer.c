@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 13:17:57 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 13:29:46 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static	void	init_opt(t_lexer_opt *opt)
 	opt->new_arg = 0;
 	opt->nb_instr = 0;
 	opt->index_line = 0;
-	opt->index_instr = 0;
+	opt->index_instr = 1;
 }
 
 /**
