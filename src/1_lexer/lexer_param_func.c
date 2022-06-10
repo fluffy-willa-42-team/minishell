@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:55 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 10:46:00 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 11:09:41 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,14 @@ int spec_1_arg(char *line, int index, t_lexer_opt *opt)
 		add_char(opt, "\0");
 	add_char(opt, &line[index]);
 	new_instr(opt, 2);
-	if (line[index + 1] && line[index + 1] == '>')
+	if (line[index + 1] && line[index] == '>' && line[index + 1] == '>')
 	{
 		add_char(opt, &line[index]);
 		len += 1;
 	}
 	add_char(opt, "\0");
+	// /!\ arg
+	// cat < Makefile -b  ==  cat -b Makefile
 	opt->new_instr = 1;
 	opt->new_arg = 1;
 	return (len);
