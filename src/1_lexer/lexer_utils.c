@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 10:26:26 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 10:27:31 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	add_char(t_lexer_opt *opt, char *arg)
 
 void	add_arg(t_lexer_opt *opt)
 {
-	printf("[%zu] New Arg (%d %d) %zu\n", opt->nb_instr - 1, opt->new_instr, opt->new_arg, opt->index_line);
-	vec_add_char_ptr(get_instr_arg(opt->nb_instr - 1), vec_get_raw(get_line(), opt->index_line - 1));
+	printf("[%zu] New Arg (%d %d) %zu\n", opt->nb_instr - 1, opt->new_instr, opt->new_arg, opt->index_line - 1);
+	vec_add_char_ptr(get_instr_arg(opt->nb_instr - 1), vec_get(get_line(), opt->index_line - 1));
 	opt->new_instr = 0;
 	opt->new_arg = 0;
 }
