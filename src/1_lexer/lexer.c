@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 09:34:23 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 09:41:55 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	print_instr(size_t len);
 
 static	void	init_opt(t_lexer_opt *opt)
 {
-	opt->new_instr = 0;
+	opt->new_instr = 1;
 	opt->new_arg = 0;
+	opt->nb_instr = 0;
 }
 
 int	get_elem(char *str)
@@ -66,11 +67,8 @@ void	line_lexer(char *line)
 		if (get_elem(&line[i]) != -1)
 			i += func_link[get_elem(&line[i])](line, i, &opt);
 		else
-		{
-			vec_add(get_line(), &line[i]);
-			i++;
-		}
+			i += dflt_char(line, i, &opt);
 	}
 	vec_print(get_line());
-	print_instr(0);
+	print_instr(opt.nb_instr);
 }
