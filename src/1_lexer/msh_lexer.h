@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 09:21:17 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 11:58:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:24:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ typedef struct s_lexer_opt
 
 
 /* ************************************************************************** */
+
+void	add_char(t_lexer_opt *opt, char *arg);
+void	add_arg(t_lexer_opt *opt);
+void	new_instr(t_lexer_opt *opt, int type);
 
 int dflt_char(char *line, int index, t_lexer_opt *opt);
 int	bkslh(char *line, int index, t_lexer_opt *opt);
