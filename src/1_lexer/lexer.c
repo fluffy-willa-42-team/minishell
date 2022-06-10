@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 08:47:27 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 08:55:20 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	line_lexer(char *line)
 			i += func_link[get_elem(&line[i])](line, i);
 		else
 		{
-			
+			vec_add(get_line(), &line[i]);
 			i++;
 		}
 	}

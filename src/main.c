@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/08 13:41:51 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 08:56:48 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	set_sigaction(void);
 void	line_lexer(char *line);
-void	exit_minishell(void);
+void	empty_g_data(void);
 
 t_minishell	g_data;
 
@@ -50,6 +50,7 @@ int	main()
 		{
 			line_lexer(line_read);
 			add_history(line_read);
+			empty_g_data();
 		}
 		free(line_read);
 		line_read = readline(PROMPT_START);
