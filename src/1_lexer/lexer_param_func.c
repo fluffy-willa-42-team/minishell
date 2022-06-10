@@ -6,28 +6,29 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:55 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 09:45:02 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 10:02:13 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_lexer.h"
 
-void	new_instr(size_t index, int type, char *arg, t_lexer_opt *opt);
-void	add_arg(size_t index, char *arg);
+void	add_arg(t_lexer_opt *opt, int index);
+void	new_instr(t_lexer_opt *opt, int type, int index);
 
 int dflt_char(char *line, int index, t_lexer_opt *opt)
 {
 	vec_add(get_line(), &line[index]);
-	printf("%d %d %d\n", opt->new_instr, opt->new_arg, opt->nb_instr);
+	printf("%d %d %d %d\n", opt->new_instr, opt->new_arg, opt->nb_instr, index);
 	if (opt->new_instr == 1)
 	{
-		new_instr(opt->nb_instr, 1, vec_get_str(get_line(), index), opt);
+		new_instr(opt, index, 1);
 		opt->new_instr = 0;
-		opt->nb_instr++;
 	}
-	(void) line;
-	(void) index;
-	(void) opt;
+	else if (opt->new_arg == 1)
+	{
+		add_arg(opt, index);
+		opt->new_arg = 0;
+	}
 	return (1);
 }
 
