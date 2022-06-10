@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 12:57:40 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 13:00:43 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ static	void	init_opt(t_lexer_opt *opt)
    DEFAULT  | dflt_char
 */
 
-lexer_param	lexer_param_func(char *str)
+t_lexer_param	lexer_param_func(char *str)
 {
 	const char			*spec_char[] = {
 		"\\", "\'", "\"", "$", " ", "\t", "\n", "\v", "\f", "\r", "|", ";", "<",
 		">", "<<", ">>",
 	};
-	const lexer_param	func_link[] = {
+	const t_lexer_param	func_link[] = {
 		bkslh, sglqot, dblqot, varsub, whtspc, whtspc, whtspc, whtspc, whtspc,
 		whtspc, spec_0_arg, spec_0_arg, spec_1_arg, spec_1_arg,
 		spec_scndry_prompt, spec_1_arg,

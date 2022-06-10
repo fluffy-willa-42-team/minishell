@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 09:21:17 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 12:41:42 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 13:01:25 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_lexer_opt
 	long	index_instr;
 }	t_lexer_opt;
 
-typedef int (*lexer_param)(char *line, int index, t_lexer_opt *opt);
+typedef int	(*t_lexer_param)(char *line, int index, t_lexer_opt *opt);
 
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ void	add_char(t_lexer_opt *opt, char *arg);
 void	add_arg(t_lexer_opt *opt);
 void	new_instr(t_lexer_opt *opt, int type);
 
-int dflt_char(char *line, int index, t_lexer_opt *opt);
-int	bkslh(char *line, int index, t_lexer_opt *opt);
-int	sglqot(char *line, int index, t_lexer_opt *opt);
-int	dblqot(char *line, int index, t_lexer_opt *opt);
-int	varsub(char *line, int index, t_lexer_opt *opt);
-int	whtspc(char *line, int index, t_lexer_opt *opt);
-int	spec_0_arg(char *line, int index, t_lexer_opt *opt);
-int	spec_1_arg(char *line, int index, t_lexer_opt *opt);
-int	spec_scndry_prompt(char *line, int index, t_lexer_opt *opt);
+int		dflt_char(char *line, int index, t_lexer_opt *opt);
+int		bkslh(char *line, int index, t_lexer_opt *opt);
+int		sglqot(char *line, int index, t_lexer_opt *opt);
+int		dblqot(char *line, int index, t_lexer_opt *opt);
+int		varsub(char *line, int index, t_lexer_opt *opt);
+int		whtspc(char *line, int index, t_lexer_opt *opt);
+int		spec_0_arg(char *line, int index, t_lexer_opt *opt);
+int		spec_1_arg(char *line, int index, t_lexer_opt *opt);
+int		spec_scndry_prompt(char *line, int index, t_lexer_opt *opt);
 
 /* ************************************************************************** */
 
