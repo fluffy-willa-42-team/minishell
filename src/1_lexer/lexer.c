@@ -6,11 +6,13 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 09:26:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 09:34:23 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_lexer.h"
+
+void	print_instr(size_t len);
 
 static	void	init_opt(t_lexer_opt *opt)
 {
@@ -54,7 +56,10 @@ void	line_lexer(char *line)
 	};
 	t_lexer_opt	opt;
 
+	init_opt(&opt);
 	int i = 0;
+	while (line[i] && ft_is_whitespace(line[i]))
+		i++;
 	while (line[i])
 	{
 		printf("[%d]\t\'%c\'\n", i, line[i]);
@@ -67,4 +72,5 @@ void	line_lexer(char *line)
 		}
 	}
 	vec_print(get_line());
+	print_instr(0);
 }
