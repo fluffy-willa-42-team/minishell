@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 09:21:17 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 09:24:53 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 09:26:53 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 
 typedef struct s_lexer_opt
 {
-	int	create_new_arg;
+	int	new_instr;
+	int	new_arg;
 }	t_lexer_opt;
 
 

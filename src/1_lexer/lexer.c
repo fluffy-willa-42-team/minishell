@@ -6,11 +6,17 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 09:25:00 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 09:26:43 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_lexer.h"
+
+static	void	init_opt(t_lexer_opt *opt)
+{
+	opt->new_instr = 0;
+	opt->new_arg = 0;
+}
 
 int	get_elem(char *str)
 {
