@@ -6,21 +6,11 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 08:55:20 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 09:25:00 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "vec_utils.h"
-
-int	bkslh(char *line, int index);
-int	sglqot(char *line, int index);
-int	dblqot(char *line, int index);
-int	varsub(char *line, int index);
-int	whtspc(char *line, int index);
-int	spec_0_arg(char *line, int index);
-int	spec_1_arg(char *line, int index);
-int	spec_scndry_prompt(char *line, int index);
+#include "msh_lexer.h"
 
 int	get_elem(char *str)
 {
@@ -56,13 +46,14 @@ void	line_lexer(char *line)
 		spec_1_arg, spec_1_arg,
 		spec_scndry_prompt, spec_1_arg,
 	};
+	t_lexer_opt	opt;
 
 	int i = 0;
 	while (line[i])
 	{
 		printf("[%d]\t\'%c\'\n", i, line[i]);
 		if (get_elem(&line[i]) != -1)
-			i += func_link[get_elem(&line[i])](line, i);
+			i += func_link[get_elem(&line[i])](line, i, &opt);
 		else
 		{
 			vec_add(get_line(), &line[i]);
