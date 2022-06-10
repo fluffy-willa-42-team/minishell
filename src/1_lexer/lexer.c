@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 10:22:27 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:02:53 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static	void	init_opt(t_lexer_opt *opt)
 	opt->new_arg = 0;
 	opt->nb_instr = 0;
 	opt->index_line = 0;
+	opt->index_instr = 0;
 }
 
 int	get_elem(char *str)
@@ -28,7 +29,7 @@ int	get_elem(char *str)
 		"\\",
 		"\'", "\"",
 		"$",
-		" ", "\t","\n", "\v","\f", "\r",
+		" ", "\t", "\n", "\v","\f", "\r",
 		"|", ";",
 		"<", ">",
 		"<<", ">>",

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:55 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 11:22:02 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:10:43 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,10 @@ int whtspc(char *line, int index, t_lexer_opt *opt)
 	while (line[index + i] && ft_is_whitespace(line[index + i]))
 		i++;
 	if (!opt->new_arg)
+	{
 		add_char(opt, "\0");
-	opt->new_arg = 1;
+		opt->new_arg = 1;
+	}
 	return (i);
 }
 
