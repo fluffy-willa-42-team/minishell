@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:55 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 12:10:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:22:58 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int dflt_char(char *line, int index, t_lexer_opt *opt)
 /** / */
 int bkslh(char *line, int index, t_lexer_opt *opt)
 {
-	(void) line;
-	(void) index;
-	(void) opt;
-	return (1);
+	dflt_char(line, index + 1, opt);
+	if (!line[index + 1])
+		return (1);
+	return (2);
 }
 
 /** ' */
@@ -64,7 +64,7 @@ int sglqot(char *line, int index, t_lexer_opt *opt)
 			add_arg(opt);
 			is_first = 0;
 		}
-		printf("here\n");
+		printf("here %s\n", &line[index + i]);
 		i++;
 	}
 	add_char(opt, "\0");
