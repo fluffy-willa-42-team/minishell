@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 13:00:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 13:17:57 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_lexer_param	lexer_param_func(char *str)
 	};
 	int					i;
 
+	i = 0;
 	while (i < 14)
 	{
 		if (*spec_char[i] == *str)
