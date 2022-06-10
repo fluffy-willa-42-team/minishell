@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:55 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 10:02:13 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 10:11:38 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	new_instr(t_lexer_opt *opt, int type, int index);
 int dflt_char(char *line, int index, t_lexer_opt *opt)
 {
 	vec_add(get_line(), &line[index]);
-	printf("%d %d %d %d\n", opt->new_instr, opt->new_arg, opt->nb_instr, index);
 	if (opt->new_instr == 1)
 	{
 		new_instr(opt, index, 1);
