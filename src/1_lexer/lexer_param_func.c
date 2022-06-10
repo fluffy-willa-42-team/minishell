@@ -6,56 +6,75 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:22:55 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/08 14:37:06 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 08:46:30 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int bkslh(void)
+void	new_instr(t_vec* instr, size_t index, int type, char *arg);
+void	add_arg(size_t index, char *arg);
+
+int bkslh(char *line, int index)
 {
+	(void) line;
+	(void) index;
 	printf("\\\\\n");
 	return (1);
 }
 
-int sglqot(void)
+int sglqot(char *line, int index)
 {
+	(void) line;
+	(void) index;
 	printf("\'\'\n");
 	return (1);
 }
 
-int dblqot(void)
+int dblqot(char *line, int index)
 {
+	(void) line;
+	(void) index;
 	printf("\"\"\n");
 	return (1);
 }
 
-int varsub(void)
+int varsub(char *line, int index)
 {
+	(void) line;
+	(void) index;
 	printf("$$\n");
 	return (1);
 }
 
-int whtspc(void)
+int whtspc(char *line, int index)
 {
+	(void) line;
+	(void) index;
 	printf("whooooooooosh\n");
 	return (1);
 }
 
-int spec_0_arg(void)
+int spec_0_arg(char *line, int index)
 {
+	(void) line;
+	(void) index;
 	printf("spec 0\n");
 	return (1);
 }
 
-int spec_1_arg(void)
+int spec_1_arg(char *line, int index)
 {
+	(void) line;
+	(void) index;
 	printf("spec 1\n");
 	return (1);
 }
 
-int spec_scndry_prompt(void)
+int spec_scndry_prompt(char *line, int index)
 {
+	(void) line;
+	(void) index;
 	printf("spec scndry prmpt\n");
 	return (1);
 }

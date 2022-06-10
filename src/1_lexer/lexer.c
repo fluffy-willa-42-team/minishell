@@ -6,21 +6,21 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/08 14:55:09 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/10 08:47:27 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "vec_utils.h"
 
-int	bkslh(void);
-int	sglqot(void);
-int	dblqot(void);
-int	varsub(void);
-int	whtspc(void);
-int	spec_0_arg(void);
-int	spec_1_arg(void);
-int	spec_scndry_prompt(void);
+int	bkslh(char *line, int index);
+int	sglqot(char *line, int index);
+int	dblqot(char *line, int index);
+int	varsub(char *line, int index);
+int	whtspc(char *line, int index);
+int	spec_0_arg(char *line, int index);
+int	spec_1_arg(char *line, int index);
+int	spec_scndry_prompt(char *line, int index);
 
 int	get_elem(char *str)
 {
@@ -62,8 +62,12 @@ void	line_lexer(char *line)
 	{
 		printf("[%d]\t\'%c\'\n", i, line[i]);
 		if (get_elem(&line[i]) != -1)
-			i += func_link[get_elem(&line[i])]();
+			i += func_link[get_elem(&line[i])](line, i);
 		else
+		{
+			
 			i++;
+		}
 	}
+	vec_print(get_line());
 }
