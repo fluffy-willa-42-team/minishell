@@ -56,14 +56,17 @@ int varsub(char *line, int index, t_lexer_opt *opt)
 	{
 		vec_fill(get_line(), DEFAULT, value);
 		opt->index_line++;
-		if (opt->new_instr == 1)
-		{
-			new_instr(opt, 1);
-			opt->new_instr = 0;
-		}
-		else
-			add_arg(opt);
-		opt->index_line += ft_strlen(value) - 1;
 	}
+	else
+		add_char(opt, "\0");
+	if (opt->new_instr == 1)
+	{
+		new_instr(opt, 1);
+		opt->new_instr = 0;
+	}
+	else
+		add_arg(opt);
+	if (value)
+		opt->index_line += ft_strlen(value) - 1;
 	return (len + 1);
 }
