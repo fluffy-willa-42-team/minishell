@@ -48,10 +48,7 @@ int varsub(char *line, int index, t_lexer_opt *opt)
 	char		*value;
 	
 	if (len == 0)
-	{
-		add_char(opt, "$");
-		return (1);
-	}
+		return (add_char(opt, "$"));
 	vec_fill(&g_data.tmp, FIXED_LEN, &line[index + 1], len);
 	value = getenv(vec_get_str(&g_data.tmp, 0));
 	vec_delete(&g_data.tmp);

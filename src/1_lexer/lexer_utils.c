@@ -12,10 +12,11 @@
 
 #include "msh_lexer.h"
 
-void	add_char(t_lexer_opt *opt, char *arg)
+int	add_char(t_lexer_opt *opt, char *arg)
 {
 	vec_add(get_line(), arg);
 	opt->index_line++;
+	return (1);
 }
 
 void	add_arg(t_lexer_opt *opt)

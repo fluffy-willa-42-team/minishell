@@ -33,7 +33,7 @@ typedef int	(*t_lexer_param)(char *line, int index, t_lexer_opt *opt);
 
 /* ************************************************************************** */
 
-void	add_char(t_lexer_opt *opt, char *arg);
+int		add_char(t_lexer_opt *opt, char *arg);
 void	add_arg(t_lexer_opt *opt);
 void	new_instr(t_lexer_opt *opt, int type);
 
