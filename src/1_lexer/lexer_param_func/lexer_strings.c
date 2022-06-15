@@ -19,43 +19,8 @@ static void	add_instr_or_arg(t_lexer_opt *opt)
 		new_instr(opt, 1);
 		opt->new_instr = 0;
 	}
-	else
+	else if (opt->new_arg == 1)
 		add_arg(opt);
-}
-
-/** ' */
-int sglqot(char *line, int index, t_lexer_opt *opt)
-{
-	int	i;
-	int is_first;
-
-	is_first = 1;
-	i = 1;
-	while (line[index + i] && line[index + i] != '\'')
-	{
-		add_char(opt, &line[index + i]);
-		if (is_first)
-		{
-			add_instr_or_arg(opt);
-			is_first = 0;
-		}
-		i++;
-	}
-	if (line[index + i] != '\'')
-	{
-		printf("/!\\ unclosed single quote\n");
-		return (i);
-	}
-	return (i + 1);
-}
-
-/** " */
-int dblqot(char *line, int index, t_lexer_opt *opt)
-{
-	(void) line;
-	(void) index;
-	(void) opt;
-	return (1);
 }
 
 static int	get_var_len(char *line, int index)
@@ -68,6 +33,79 @@ static int	get_var_len(char *line, int index)
 		len++;
 	return (len);
 }
+
+/* ************************************************************************** */
+
+/** ' */
+int sglqot(char *line, int index, t_lexer_opt *opt)
+{
+	int	i;
+
+	i = 0;
+	opt->index_line++;
+	add_instr_or_arg(opt);
+	opt->index_line--;
+	while (line[index + ++i] && line[index + i] != '\"')
+		add_char(opt, &line[index + i]);
+	if (line[index + i] != '\"')
+	{
+		printf("/!\\ unclosed single quote\n");
+		return (i);
+	}
+	return (i + 1);
+}
+
+static int	add_var_to_line(t_lexer_opt *opt, char *line, int index)
+{
+	const int	len = get_var_len(line, index + 1);
+	char		*value;
+	
+	if (len == 0)
+		return (add_char(opt, "$"));
+	vec_fill(&g_data.tmp, FIXED_LEN, &line[index + 1], len);
+	value = getenv(vec_get_str(&g_data.tmp, 0));
+	vec_delete(&g_data.tmp);
+	if (value)
+	{
+		vec_fill(get_line(), DEFAULT, value);
+		opt->index_line += ft_strlen(value);
+	}
+	return (len + 1);
+}
+
+/* ************************************************************************** */
+
+/** " */
+int dblqot(char *line, int index, t_lexer_opt *opt)
+{
+	int	i;
+
+	i = 0;
+	opt->index_line++;
+	add_instr_or_arg(opt);
+	opt->index_line--;
+	while (line[++i + index] && line[index + i] != '\"')
+	{
+		if (line[index + i] == '\\' && line[index + i] && line[index + i + 1] != '\\')
+		{
+			add_char(opt, &line[index + i + 1]);
+			if (line[index + i + 1])
+				i++;
+		}
+		else if (line[index + i] == '$')
+			i += add_var_to_line(opt, line, index + i) - 1;
+		else
+			add_char(opt, &line[index + i]);
+	}
+	if (line[index + i] != '\"')
+	{
+		printf("/!\\ unclosed double quote\n");
+		return (i);
+	}
+	return (i + 1);
+}
+
+/* ************************************************************************** */
 
 /** $VAR */
 int varsub(char *line, int index, t_lexer_opt *opt)
