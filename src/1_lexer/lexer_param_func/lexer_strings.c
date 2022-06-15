@@ -12,18 +12,36 @@
 
 #include "msh_lexer.h"
 
+static void	add_instr_or_arg(t_lexer_opt *opt)
+{
+	if (opt->new_instr == 1)
+	{
+		new_instr(opt, 1);
+		opt->new_instr = 0;
+	}
+	else
+		add_arg(opt);
+}
+
 /** ' */
 int sglqot(char *line, int index, t_lexer_opt *opt)
 {
 	int	i;
+	int is_first;
 
-	i = index;
-	while (line[i] && line[i] != '\'')
+	is_first = 1;
+	i = 1;
+	while (line[index + i] && line[index + i] != '\'')
 	{
-		add_char(opt, &line[i]);
+		add_char(opt, &line[index + i]);
+		if (is_first)
+		{
+			add_instr_or_arg(opt);
+			is_first = 0;
+		}
 		i++;
 	}
-	return (1);
+	return (i + 1);
 }
 
 /** " */
@@ -64,13 +82,7 @@ int varsub(char *line, int index, t_lexer_opt *opt)
 	}
 	else
 		add_char(opt, "\0");
-	if (opt->new_instr == 1)
-	{
-		new_instr(opt, 1);
-		opt->new_instr = 0;
-	}
-	else
-		add_arg(opt);
+	add_instr_or_arg(opt);
 	if (value)
 		opt->index_line += ft_strlen(value) - 1;
 	return (len + 1);
