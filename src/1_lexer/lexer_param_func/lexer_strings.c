@@ -15,9 +15,14 @@
 /** ' */
 int sglqot(char *line, int index, t_lexer_opt *opt)
 {
-	(void) line;
-	(void) index;
-	(void) opt;
+	int	i;
+
+	i = index;
+	while (line[i] && line[i] != '\'')
+	{
+		add_char(opt, &line[i]);
+		i++;
+	}
 	return (1);
 }
 
