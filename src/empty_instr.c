@@ -13,6 +13,13 @@
 #include "minishell.h"
 #include "vec_utils.h"
 
+int	change_str_to_int(char **input, int *output)
+{
+	(void) input;
+	*output = 0;
+	return (1);
+}
+
 void	empty_g_data(void)
 {
 	size_t i = 0;
@@ -20,8 +27,9 @@ void	empty_g_data(void)
 	vec_delete(get_line());
 	while (i < g_data.lexed_instr.content_len)
 	{
-		get_instr(i)->type = 0;
+		vec_cast(get_instr_arg(i), sizeof(int), change_str_to_int);
 		vec_delete(get_instr_arg(i));
+		get_instr(i)->type = 0;
 		i++;
 	}
 }

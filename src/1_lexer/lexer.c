@@ -74,6 +74,18 @@ t_lexer_param	lexer_param_func(char *str)
 	return (dflt_char);
 }
 
+/**
+ * @brief int => char *
+ * 
+ */
+int change_int_to_ptr(int *input, char **output)
+{
+	if (!(0 <= *input && *input <= (int) get_line()->len))
+		return (0);
+	*output = get_line()->buffer + *input;
+	return (1);
+}
+
 void	line_lexer(char *line)
 {
 	t_lexer_opt	opt;
@@ -89,5 +101,11 @@ void	line_lexer(char *line)
 		i += lexer_param_func(&line[i])(line, i, &opt);
 	}
 	vec_print(get_line());
+	for (size_t j = 0; j < get_instr_list()->content_len; j++)
+	{
+		printf("Cast %lu\n", j);
+		vec_cast(get_instr_arg(j), sizeof(char *), change_int_to_ptr);
+	}
+	printf("Cast Ending %lu\n", get_instr_list()->content_len);
 	print_instr(opt.nb_instr);
 }
