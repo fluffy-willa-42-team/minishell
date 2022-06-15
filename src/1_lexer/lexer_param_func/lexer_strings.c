@@ -41,6 +41,11 @@ int sglqot(char *line, int index, t_lexer_opt *opt)
 		}
 		i++;
 	}
+	if (line[index + i] != '\'')
+	{
+		printf("/!\\ unclosed single quote\n");
+		return (i);
+	}
 	return (i + 1);
 }
 
