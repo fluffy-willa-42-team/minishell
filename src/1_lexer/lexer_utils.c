@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 13:25:05 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:32:03 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,15 @@ void	new_instr(t_lexer_opt *opt, int type)
 	opt->nb_instr++;
 	add_arg(opt);
 	opt->index_instr = -1;
+}
+
+void	add_instr_or_arg(t_lexer_opt *opt)
+{
+	if (opt->new_instr == 1)
+	{
+		new_instr(opt, 1);
+		opt->new_instr = 0;
+	}
+	else if (opt->new_arg == 1)
+		add_arg(opt);
 }

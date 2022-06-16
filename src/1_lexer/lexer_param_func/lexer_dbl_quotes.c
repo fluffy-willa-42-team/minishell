@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:19:03 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 11:31:16 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:35:16 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 void	add_instr_or_arg(t_lexer_opt *opt);
 int		add_varsub(char *line, int index, t_lexer_opt *opt);
 
+/**
+ * @brief Adds the string inside the line buffer with the varsub and / taken
+ * care of.
+ */
 static int	add_dblqot(char *line, int index, t_lexer_opt *opt)
 {
 	int	i;

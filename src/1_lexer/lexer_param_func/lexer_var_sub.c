@@ -6,24 +6,18 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 11:29:56 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:34:04 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_lexer.h"
 
-void	add_instr_or_arg(t_lexer_opt *opt)
-{
-	if (opt->new_instr == 1)
-	{
-		new_instr(opt, 1);
-		opt->new_instr = 0;
-	}
-	else if (opt->new_arg == 1)
-		add_arg(opt);
-}
+void	add_instr_or_arg(t_lexer_opt *opt);
 
-int	get_var_len(char *line, int index)
+/**
+ * @brief Gets the length of the current variable.
+ */
+static int	get_var_len(char *line, int index)
 {
 	int	len;
 	
@@ -34,8 +28,9 @@ int	get_var_len(char *line, int index)
 	return (len);
 }
 
-/* ************************************************************************** */
-
+/**
+ * @brief Adds the variable inside the line buffer.
+ */
 int	add_varsub(char *line, int index, t_lexer_opt *opt)
 {
 	const int	len = get_var_len(line, index + 1);
