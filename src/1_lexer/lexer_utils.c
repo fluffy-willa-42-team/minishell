@@ -6,11 +6,13 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 14:17:01 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:51:02 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_lexer.h"
+
+void	add_cmd_path(t_lexer_opt *opt);
 
 int	add_char(t_lexer_opt *opt, char *arg)
 {
@@ -54,6 +56,10 @@ void	new_instr(t_lexer_opt *opt, int type)
 
 void	add_instr_or_arg(t_lexer_opt *opt)
 {
+	if ((opt->new_instr == 1 || opt->new_arg == 1)
+			&& opt->nb_instr > 0 && get_instr(opt->nb_instr - 1)->type != 2
+			&& get_instr(opt->nb_instr - 1)->arg.content_len == 1)
+		add_cmd_path(opt);
 	if (opt->new_instr == 1)
 	{
 		new_instr(opt, 1);
