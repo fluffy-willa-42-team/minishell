@@ -20,7 +20,7 @@ static	void	init_opt(t_lexer_opt *opt)
 	opt->new_arg = 0;
 	opt->nb_instr = 0;
 	opt->index_line = 0;
-	opt->index_instr = 1;
+	opt->index_instr = -1;
 }
 
 /**

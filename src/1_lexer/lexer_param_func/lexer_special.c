@@ -43,8 +43,9 @@ int spec_1_arg(char *line, int index, t_lexer_opt *opt)
 	add_char(opt, "\0");
 	// /!\ arg
 	// cat < Makefile -b  ==  cat -b Makefile
-	opt->new_instr = 1;
 	opt->new_arg = 1;
+	// opt->new_instr = 1;
+	opt->index_instr = opt->nb_instr - 2;
 	return (len);
 }
 
