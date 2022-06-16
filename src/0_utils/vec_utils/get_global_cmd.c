@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   empty_instr.c                                      :+:      :+:    :+:   */
+/*   get_global_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 12:20:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 11:41:05 by awillems         ###   ########.fr       */
+/*   Created: 2022/06/06 12:29:45 by awillems          #+#    #+#             */
+/*   Updated: 2022/06/06 12:58:19 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "vec_utils.h"
+#include "minishell.h"
 
-void	empty_g_data(void)
+/** @brief get instr_list */
+t_vec	*get_line(void)
 {
-	size_t i = 0;
+	return (&g_data.lexed_command);
+}
 
-	vec_delete(get_line());
-	while (i < g_data.lexed_instr.content_len)
-	{
-		get_instr(i)->type = 0;
-		vec_delete(get_instr_arg(i));
-		i++;
-	}
+/** @brief get cmd[i] */
+char	get_cmd_char(int index)
+{
+	if (!vec_get(get_line(), index))
+		return (0);
+	return (*((char *) vec_get(get_line(), index)));
+}
+
+/** @brief get &cmd[i] */
+char	*get_cmd_str(int index)
+{
+	if (!vec_get(get_line(), index))
+		return (0);
+	return ((char *) vec_get(get_line(), index));
 }
