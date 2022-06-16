@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 11:34:04 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 12:53:40 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int	add_varsub(char *line, int index, t_lexer_opt *opt)
 		vec_fill(get_line(), DEFAULT, value);
 		opt->index_line += ft_strlen(value);
 	}
-	else
-		add_char(opt, "\0");
 	return (len + 1);
 }
 
