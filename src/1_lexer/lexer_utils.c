@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 11:36:33 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 13:08:58 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,13 @@ void	add_arg(t_lexer_opt *opt)
 	printf("[%li] New Arg (%d %d) %zu\n", opt->index_instr, opt->new_instr, opt->new_arg, opt->index_line);
 	if (opt->index_instr == -1)
 		vec_add_int(get_instr_arg(opt->nb_instr - 1), opt->index_line - 1);
-	else
+	else 
 		vec_add_int(get_instr_arg(opt->index_instr), opt->index_line - 1);
+	if (opt->change_instr == 1)
+	{
+		opt->index_instr -= 1;
+		opt->change_instr = 0;
+	}
 	opt->new_instr = 0;
 	opt->new_arg = 0;
 }

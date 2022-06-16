@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 09:21:17 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 13:01:25 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 13:06:46 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_lexer_opt
 	size_t	nb_instr;
 	size_t	index_line;
 	long	index_instr;
+	int		change_instr;
 }	t_lexer_opt;
 
 typedef int	(*t_lexer_param)(char *line, int index, t_lexer_opt *opt);
