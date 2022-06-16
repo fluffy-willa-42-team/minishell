@@ -6,14 +6,14 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 18:50:44 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:42:36 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_lexer.h"
 
 void	print_instr(size_t len);
-void	add_cmd_path(t_lexer_opt *opt);
+void	add_cmd_path(t_lexer_opt *opt, int index);
 
 static	void	init_opt(t_lexer_opt *opt)
 {
@@ -99,18 +99,14 @@ void	line_lexer(char *line)
 		i++;
 	while (line[i])
 	{
-		printf("[%d]\t\'%c\'\n", i, line[i]);
+		// printf("[%d]\t\'%c\'\n", i, line[i]);
 		i += lexer_param_func(&line[i])(line, i, &opt);
 	}
 	if (opt.nb_instr > 0 && get_instr(opt.nb_instr - 1)->type != 2
 		 && get_instr(opt.nb_instr - 1)->arg.content_len == 1)
-		add_cmd_path(&opt);
+		add_cmd_path(&opt, opt.nb_instr - 1);
 	vec_print(get_line());
 	for (size_t j = 0; j < get_instr_list()->content_len; j++)
-	{
-		printf("Cast %lu\n", j);
 		vec_cast(get_instr_arg(j), sizeof(char *), change_int_to_ptr);
-	}
-	printf("Cast Ending %lu\n", get_instr_list()->content_len);
 	print_instr(opt.nb_instr);
 }
