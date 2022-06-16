@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 13:51:47 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 14:10:45 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ int spec_1_arg(char *line, int index, t_lexer_opt *opt)
 		add_char(opt, "\0");
 	add_char(opt, &line[index]);
 	new_instr(opt, 2);
-	if (line[index + 1] && ((line[index] == '>' && line[index + 1] == '>')
-			|| (line[index] == '<' && line[index + 1] == '<')))
+	if (line[index + 1] && line[index] == line[index + 1])
 		len += add_char(opt, &line[index]);
 	add_char(opt, "\0");
 	opt->new_arg = 1;
@@ -52,9 +51,8 @@ int spec_1_arg(char *line, int index, t_lexer_opt *opt)
 /** << */
 int spec_scndry_prompt(char *line, int index, t_lexer_opt *opt)
 {
-	char *line_read;
-	
 	spec_1_arg(line, index, opt);
-	secundary_prompt(SECUNDARY_PROMPT_START, "a");
+	//TODO move to after delimitator is created
+	// secundary_prompt(SECUNDARY_PROMPT_START, "abc");
 	return (2);
 }
