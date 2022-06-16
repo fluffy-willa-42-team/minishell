@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 11:32:03 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:36:33 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,8 @@ void	add_instr_or_arg(t_lexer_opt *opt)
 		opt->new_instr = 0;
 	}
 	else if (opt->new_arg == 1)
+	{
 		add_arg(opt);
+		opt->new_arg = 0;
+	}
 }

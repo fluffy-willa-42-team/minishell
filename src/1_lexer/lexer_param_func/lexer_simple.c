@@ -6,25 +6,18 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:24:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 12:25:36 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:37:22 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_lexer.h"
 
+void	add_instr_or_arg(t_lexer_opt *opt);
+
 int dflt_char(char *line, int index, t_lexer_opt *opt)
 {
 	add_char(opt, &line[index]);
-	if (opt->new_instr == 1)
-	{
-		new_instr(opt, 1);
-		opt->new_instr = 0;
-	}
-	else if (opt->new_arg == 1)
-	{
-		add_arg(opt);
-		opt->new_arg = 0;
-	}
+	add_instr_or_arg(opt);
 	return (1);
 }
 
