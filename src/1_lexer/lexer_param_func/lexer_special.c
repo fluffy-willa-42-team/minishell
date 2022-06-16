@@ -6,11 +6,13 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 13:46:20 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 13:51:47 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_lexer.h"
+
+void	secundary_prompt(char *prompt_start, char *delimitor);
 
 /** | ; */
 int spec_0_arg(char *line, int index, t_lexer_opt *opt)
@@ -53,16 +55,6 @@ int spec_scndry_prompt(char *line, int index, t_lexer_opt *opt)
 	char *line_read;
 	
 	spec_1_arg(line, index, opt);
-	line_read = readline(SECUNDARY_PROMPT_START);
-	while (line_read)
-	{
-		if (line_read && line_read[0])
-		{
-			printf("line_read : %s\n", line_read);
-		}
-		free(line_read);
-		line_read = readline(SECUNDARY_PROMPT_START);
-	}
-	free(line_read);
+	secundary_prompt(SECUNDARY_PROMPT_START, "a");
 	return (2);
 }
