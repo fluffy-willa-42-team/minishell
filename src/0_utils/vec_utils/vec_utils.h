@@ -17,6 +17,7 @@
 # include "vector_lib.h"
 
 t_vec 	*vec_add_char_ptr(t_vec *vec, char *str);
+t_vec 	*vec_add_int(t_vec *vec, int x);
 t_vec	*vec_add_instr(t_vec *vec, int type);
 
 char	vec_get_char(t_vec *vec, int index);
