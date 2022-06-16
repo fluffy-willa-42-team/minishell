@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   empty_instr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 09:38:39 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/27 09:55:29 by awillems         ###   ########.fr       */
+/*   Created: 2022/06/03 12:20:06 by awillems          #+#    #+#             */
+/*   Updated: 2022/06/10 08:56:20 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#include "minishell.h"
+#include "vec_utils.h"
 
-# ifndef MSH_DEBUG
-#  define MSH_DEBUG 0
-# endif
+int	change_str_to_int(char **input, int *output)
+{
+	(void) input;
+	*output = 0;
+	return (1);
+}
 
-# include <stdio.h>
+void	empty_g_data(void)
+{
+	size_t i = 0;
 
-#endif
+	vec_delete(get_line());
+	while (i < g_data.lexed_instr.content_len)
+	{
+		vec_cast(get_instr_arg(i), sizeof(int), change_str_to_int);
+		vec_delete(get_instr_arg(i));
+		get_instr(i)->type = 0;
+		i++;
+	}
+}

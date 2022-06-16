@@ -6,12 +6,11 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:08:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 13:20:41 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:40:16 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
-#include "libft.h"
+#include "minishell.h"
 
 # include <readline/readline.h>
 # include <readline/history.h>
