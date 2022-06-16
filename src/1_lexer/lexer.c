@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 13:07:02 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 14:12:19 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static	void	init_opt(t_lexer_opt *opt)
   11 |    ; | spec_0_arg
   12 |    < | spec_1_arg
   13 |    > | spec_1_arg
-  14 |   << | spec_scndry_prompt
+  14 |   << | spec_1_arg
   15 |   >> | spec_1_arg
 -----0------0----------
    DEFAULT  | dflt_char
@@ -56,8 +56,8 @@ t_lexer_param	lexer_param_func(char *str)
 	};
 	const t_lexer_param	func_link[] = {
 		bkslh, sglqot, dblqot, varsub, whtspc, whtspc, whtspc, whtspc, whtspc,
-		whtspc, spec_0_arg, spec_0_arg, spec_1_arg, spec_1_arg,
-		spec_scndry_prompt, spec_1_arg,
+		whtspc, spec_0_arg, spec_0_arg, spec_1_arg, spec_1_arg,	spec_1_arg,
+		spec_1_arg,
 	};
 	int					i;
 
