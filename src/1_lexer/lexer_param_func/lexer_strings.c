@@ -49,7 +49,7 @@ int sglqot(char *line, int index, t_lexer_opt *opt)
 		add_char(opt, &line[index + i]);
 	if (line[index + i] != '\"')
 	{
-		printf("/!\\ unclosed single quote\n");
+		printf("/!\\ unclosed single quote\n");//TODO
 		return (i);
 	}
 	return (i + 1);
@@ -99,7 +99,7 @@ int dblqot(char *line, int index, t_lexer_opt *opt)
 	}
 	if (line[index + i] != '\"')
 	{
-		printf("/!\\ unclosed double quote\n");
+		printf("/!\\ unclosed double quote\n");//TODO
 		return (i);
 	}
 	return (i + 1);
