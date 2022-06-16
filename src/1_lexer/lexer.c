@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 14:12:19 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/16 14:22:20 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,10 @@ void	line_lexer(char *line)
 	while (line[i] && ft_is_whitespace(line[i]))
 		i++;
 	while (line[i])
-	{
-		printf("[%d]\t\'%c\'\n", i, line[i]);
 		i += lexer_param_func(&line[i])(line, i, &opt);
-	}
 	vec_print(get_line());
+
+	//TODO
 	for (size_t j = 0; j < get_instr_list()->content_len; j++)
 	{
 		printf("Cast %lu\n", j);
