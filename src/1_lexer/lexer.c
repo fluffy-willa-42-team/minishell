@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 09:14:28 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 11:02:04 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,6 @@ void	line_lexer(char *line)
 		i++;
 	while (line[i])
 		i += lexer_param_func(&line[i])(line, i, &opt);
-	if (opt.nb_instr > 0 && get_instr(opt.nb_instr - 1)->type != 2
-		&& get_instr(opt.nb_instr - 1)->arg.content_len == 1)
-		add_cmd_path(&opt, opt.nb_instr - 1);
 	vec_print(get_line());
 	i = -1;
 	while (++i < get_instr_list()->content_len)

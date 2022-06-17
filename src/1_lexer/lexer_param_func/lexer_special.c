@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 09:20:33 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 11:01:26 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,3 @@ int	spec_1_arg(char *line, int index, t_lexer_opt *opt)
 	opt->index_instr = opt->nb_instr - 1;
 	return (len);
 }
-
-// /** << */
-// int spec_scndry_prompt(char *line, int index, t_lexer_opt *opt)
-// {
-// 	spec_1_arg(line, index, opt);
-// 	//TODO move to after delimitator is created
-// 	// secundary_prompt(SECUNDARY_PROMPT_START, "abc");
-// 	return (2);
-// }
