@@ -6,16 +6,16 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:08:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/08 13:40:16 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 11:25:57 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <errno.h>
-# include <signal.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <errno.h>
+#include <signal.h>
 
 /**
  * @brief Function call by `sigaction` when catch signals.
