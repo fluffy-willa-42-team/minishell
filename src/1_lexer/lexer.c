@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 19:42:36 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:14:28 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,8 @@ t_lexer_param	lexer_param_func(char *str)
 
 /**
  * @brief int => char *
- * 
  */
-int change_int_to_ptr(int *input, char **output)
+int	change_int_to_ptr(int *input, char **output)
 {
 	if (!(0 <= *input && *input <= (int) get_line()->len))
 		return (0);
@@ -91,22 +90,20 @@ int change_int_to_ptr(int *input, char **output)
 void	line_lexer(char *line)
 {
 	t_lexer_opt	opt;
-	int			i;
+	size_t		i;
 
 	init_opt(&opt);
 	i = 0;
 	while (line[i] && ft_is_whitespace(line[i]))
 		i++;
 	while (line[i])
-	{
-		// printf("[%d]\t\'%c\'\n", i, line[i]);
 		i += lexer_param_func(&line[i])(line, i, &opt);
-	}
 	if (opt.nb_instr > 0 && get_instr(opt.nb_instr - 1)->type != 2
-		 && get_instr(opt.nb_instr - 1)->arg.content_len == 1)
+		&& get_instr(opt.nb_instr - 1)->arg.content_len == 1)
 		add_cmd_path(&opt, opt.nb_instr - 1);
 	vec_print(get_line());
-	for (size_t j = 0; j < get_instr_list()->content_len; j++)
-		vec_cast(get_instr_arg(j), sizeof(char *), change_int_to_ptr);
+	i = -1;
+	while (++i < get_instr_list()->content_len)
+		vec_cast(get_instr_arg(i), sizeof(char *), change_int_to_ptr);
 	print_instr(opt.nb_instr);
 }

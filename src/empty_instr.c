@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:20:06 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/10 08:56:20 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:07:47 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ int	change_str_to_int(char **input, int *output)
 
 void	empty_g_data(void)
 {
-	size_t i = 0;
+	size_t	i;
 
+	i = 0;
 	vec_delete(get_line());
 	while (i < g_data.lexed_instr.content_len)
 	{

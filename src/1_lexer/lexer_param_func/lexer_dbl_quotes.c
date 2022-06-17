@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:19:03 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 11:35:16 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:19:47 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static int	add_dblqot(char *line, int index, t_lexer_opt *opt)
 	i = 0;
 	while (line[++i + index] && line[index + i] != '\"')
 	{
-		if (line[index + i] == '\\' && line[index + i] && line[index + i + 1] != '\\')
+		if (line[index + i] == '\\' && line[index + i]
+			&& line[index + i + 1] != '\\')
 		{
 			add_char(opt, &line[index + i + 1]);
 			if (line[index + i + 1])
@@ -41,7 +42,7 @@ static int	add_dblqot(char *line, int index, t_lexer_opt *opt)
 }
 
 /** " */
-int dblqot(char *line, int index, t_lexer_opt *opt)
+int	dblqot(char *line, int index, t_lexer_opt *opt)
 {
 	int	i;
 

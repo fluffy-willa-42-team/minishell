@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 13:35:01 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:21:10 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_data(void)
 /**
  * @brief Inits Data and Start the prompt
  */
-int	main()
+int	main(void)
 {
 	char	*line_read;
 

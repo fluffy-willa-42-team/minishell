@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/16 13:46:14 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:21:33 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,8 @@
 typedef struct s_minishell
 {
 	char	*env_path;
-	// Sanitize command.
 	t_vec	lexed_command;
-	// Lexed commad in struct format.
 	t_vec	lexed_instr;
-	// Always delete content before use !
 	t_vec	tmp;
 }				t_minishell;
 

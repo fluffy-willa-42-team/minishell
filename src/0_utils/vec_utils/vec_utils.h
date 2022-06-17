@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:12:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 13:03:32 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:10:13 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "minishell.h"
 # include "vector_lib.h"
 
-t_vec 	*vec_add_char_ptr(t_vec *vec, char *str);
-t_vec 	*vec_add_int(t_vec *vec, int x);
+t_vec	*vec_add_char_ptr(t_vec *vec, char *str);
+t_vec	*vec_add_int(t_vec *vec, int x);
 t_vec	*vec_add_instr(t_vec *vec, int type);
 
 char	vec_get_char(t_vec *vec, int index);

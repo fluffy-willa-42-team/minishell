@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 19:40:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:18:25 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	add_arg(t_lexer_opt *opt)
 {
 	if (opt->index_instr == -1)
 		vec_add_int(get_instr_arg(opt->nb_instr - 1), opt->index_line - 1);
-	else 
+	else
 		vec_add_int(get_instr_arg(opt->index_instr), opt->index_line - 1);
 	if (opt->change_instr == 1)
 	{
@@ -38,8 +38,8 @@ void	add_arg(t_lexer_opt *opt)
 
 void	new_instr(t_lexer_opt *opt, int type)
 {
-	t_instr new_instr;
-	
+	t_instr	new_instr;
+
 	new_instr.type = type;
 	if (opt->nb_instr >= get_instr_list()->content_len)
 	{
@@ -64,8 +64,8 @@ void	add_instr_or_arg(t_lexer_opt *opt)
 				add_cmd_path(opt, opt->nb_instr - 1);
 		}
 		else if (opt->nb_instr > 1
-				&& get_instr(opt->nb_instr - 2)->type != 2
-				&& get_instr(opt->nb_instr - 2)->arg.content_len == 1)
+			&& get_instr(opt->nb_instr - 2)->type != 2
+			&& get_instr(opt->nb_instr - 2)->arg.content_len == 1)
 			add_cmd_path(opt, opt->nb_instr - 2);
 	}
 	if (opt->new_instr == 1)

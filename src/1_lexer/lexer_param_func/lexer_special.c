@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 14:12:48 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:20:33 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	secundary_prompt(char *prompt_start, char *delimitor);
 
 /** | ; */
-int spec_0_arg(char *line, int index, t_lexer_opt *opt)
+int	spec_0_arg(char *line, int index, t_lexer_opt *opt)
 {
 	if (!opt->new_arg)
 		add_char(opt, "\0");
@@ -29,9 +29,9 @@ int spec_0_arg(char *line, int index, t_lexer_opt *opt)
 }
 
 /** << < > >> */
-int spec_1_arg(char *line, int index, t_lexer_opt *opt)
+int	spec_1_arg(char *line, int index, t_lexer_opt *opt)
 {
-	int len;	
+	int	len;	
 
 	len = 1;
 	opt->index_instr = opt->nb_instr;

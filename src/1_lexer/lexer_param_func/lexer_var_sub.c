@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 12:53:40 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:19:05 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	add_instr_or_arg(t_lexer_opt *opt);
 static int	get_var_len(char *line, int index)
 {
 	int	len;
-	
+
 	len = 0;
 	while (ft_isalpha(line[index + len]) || line[index + len] == '_'
 		|| (len != 0 && ft_isdigit(line[index + len])))
@@ -50,7 +50,7 @@ int	add_varsub(char *line, int index, t_lexer_opt *opt)
 }
 
 /** $VAR */
-int varsub(char *line, int index, t_lexer_opt *opt)
+int	varsub(char *line, int index, t_lexer_opt *opt)
 {
 	opt->index_line++;
 	add_instr_or_arg(opt);

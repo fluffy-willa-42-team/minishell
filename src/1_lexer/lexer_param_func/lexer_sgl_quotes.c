@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:19:07 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 11:34:44 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:20:18 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	add_sglqot(char *line, int index, t_lexer_opt *opt)
 }
 
 /** ' */
-int sglqot(char *line, int index, t_lexer_opt *opt)
+int	sglqot(char *line, int index, t_lexer_opt *opt)
 {
 	int	i;
 

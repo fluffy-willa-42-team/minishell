@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:24:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 11:37:22 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:18:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	add_instr_or_arg(t_lexer_opt *opt);
 
-int dflt_char(char *line, int index, t_lexer_opt *opt)
+int	dflt_char(char *line, int index, t_lexer_opt *opt)
 {
 	add_char(opt, &line[index]);
 	add_instr_or_arg(opt);
@@ -22,7 +22,7 @@ int dflt_char(char *line, int index, t_lexer_opt *opt)
 }
 
 /** / */
-int bkslh(char *line, int index, t_lexer_opt *opt)
+int	bkslh(char *line, int index, t_lexer_opt *opt)
 {
 	dflt_char(line, index + 1, opt);
 	if (!line[index + 1])
@@ -31,9 +31,9 @@ int bkslh(char *line, int index, t_lexer_opt *opt)
 }
 
 /**  " " \t \n \v \f \r */
-int whtspc(char *line, int index, t_lexer_opt *opt)
+int	whtspc(char *line, int index, t_lexer_opt *opt)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[index + i] && ft_is_whitespace(line[index + i]))
