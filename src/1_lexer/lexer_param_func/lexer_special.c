@@ -6,13 +6,11 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 11:01:26 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 11:04:34 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_lexer.h"
-
-void	secundary_prompt(char *prompt_start, char *delimitor);
 
 /** | ; */
 int	spec_0_arg(char *line, int index, t_lexer_opt *opt)

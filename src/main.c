@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 10:43:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 11:03:59 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_data(void)
 }
 
 /**
- * @brief Inits Data and Start the prompt
+ * @brief Inits Data and Start the lexed_command
  */
 int	main(void)
 {

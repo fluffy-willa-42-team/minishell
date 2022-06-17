@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 09:21:17 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/16 13:06:46 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 11:04:29 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int		varsub(char *line, int index, t_lexer_opt *opt);
 int		whtspc(char *line, int index, t_lexer_opt *opt);
 int		spec_0_arg(char *line, int index, t_lexer_opt *opt);
 int		spec_1_arg(char *line, int index, t_lexer_opt *opt);
-int		spec_scndry_prompt(char *line, int index, t_lexer_opt *opt);
 
 /* ************************************************************************** */
 
