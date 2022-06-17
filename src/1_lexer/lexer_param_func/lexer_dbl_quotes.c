@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:19:03 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 09:19:47 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:25:47 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,16 @@ static int	add_dblqot(char *line, int index, t_lexer_opt *opt)
 	return (i);
 }
 
-/** " */
+/**
+ * @brief Will add the string surrounded with double quotes ("str") in the
+ * buffer and add the it to a new instruction or argument if needed to.
+ * 
+ * @param line Line read by Readline
+ * @param index Index of the character inside the line read by Readline.
+ * @param opt Option of the line.
+ * @return Returns the number of character read inside the line read by
+ * Readline.
+ */
 int	dblqot(char *line, int index, t_lexer_opt *opt)
 {
 	int	i;

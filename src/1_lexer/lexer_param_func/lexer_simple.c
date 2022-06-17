@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:24:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 09:18:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:30:15 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 void	add_instr_or_arg(t_lexer_opt *opt);
 
+/**
+ * @brief Will add the character inside the buffer and add the it to a new
+ * instruction or argument if needed to.
+ * 
+ * @param line Line read by Readline
+ * @param index Index of the character inside the line read by Readline.
+ * @param opt Option of the line.
+ * @return Returns the number of character read inside the line read by
+ * Readline.
+ */
 int	dflt_char(char *line, int index, t_lexer_opt *opt)
 {
 	add_char(opt, &line[index]);
@@ -21,7 +31,16 @@ int	dflt_char(char *line, int index, t_lexer_opt *opt)
 	return (1);
 }
 
-/** / */
+/**
+ * @brief Will add the character next to the / in question inside the buffer
+ * and add the it to a new instruction or argument if needed to.
+ * 
+ * @param line Line read by Readline
+ * @param index Index of the character inside the line read by Readline.
+ * @param opt Option of the line.
+ * @return Returns the number of character read inside the line read by
+ * Readline.
+ */
 int	bkslh(char *line, int index, t_lexer_opt *opt)
 {
 	dflt_char(line, index + 1, opt);
@@ -30,7 +49,16 @@ int	bkslh(char *line, int index, t_lexer_opt *opt)
 	return (2);
 }
 
-/**  " " \t \n \v \f \r */
+/**
+ * @brief Will add \0 inside the buffer in the place of the whitespace character
+ * and change the option for creating a argument.
+ * 
+ * @param line Line read by Readline
+ * @param index Index of the character inside the line read by Readline.
+ * @param opt Option of the line.
+ * @return Returns the number of character read inside the line read by
+ * Readline.
+ */
 int	whtspc(char *line, int index, t_lexer_opt *opt)
 {
 	int	i;

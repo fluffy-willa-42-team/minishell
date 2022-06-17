@@ -6,13 +6,21 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 11:04:34 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:34:28 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_lexer.h"
 
-/** | ; */
+/**
+ * @brief Will create a new instruction with no argument. (alias ; and |)
+ * 
+ * @param line Line read by Readline
+ * @param index Index of the character inside the line read by Readline.
+ * @param opt Option of the line.
+ * @return Returns the number of character read inside the line read by
+ * Readline.
+ */
 int	spec_0_arg(char *line, int index, t_lexer_opt *opt)
 {
 	if (!opt->new_arg)
@@ -26,7 +34,16 @@ int	spec_0_arg(char *line, int index, t_lexer_opt *opt)
 	return (1);
 }
 
-/** << < > >> */
+/**
+ * @brief Will create a new instruction with one argument.
+ * (alias <<, <, > and >>)
+ * 
+ * @param line Line read by Readline
+ * @param index Index of the character inside the line read by Readline.
+ * @param opt Option of the line.
+ * @return Returns the number of character read inside the line read by
+ * Readline.
+ */
 int	spec_1_arg(char *line, int index, t_lexer_opt *opt)
 {
 	int	len;	

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 09:19:05 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:39:30 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,16 @@ int	add_varsub(char *line, int index, t_lexer_opt *opt)
 	return (len + 1);
 }
 
-/** $VAR */
+/**
+ * @brief Will add the a Variable or a $ if it is alone add the it to a new
+ * instruction or argument if needed to.
+ * 
+ * @param line Line read by Readline
+ * @param index Index of the character inside the line read by Readline.
+ * @param opt Option of the line.
+ * @return Returns the number of character read inside the line read by
+ * Readline.
+ */
 int	varsub(char *line, int index, t_lexer_opt *opt)
 {
 	opt->index_line++;
