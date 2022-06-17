@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 14:55:52 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/17 15:20:42 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,24 @@ int	add_char(t_lexer_opt *opt, char *arg)
 
 void	add_arg(t_lexer_opt *opt)
 {
-	int	i;
-
+	printf("New Arg %ld\n", opt->index_instr);
 	if (opt->index_instr == -1)
 		vec_add_int(get_instr_arg(opt->nb_instr - 1), opt->index_line - 1);
 	else
 		vec_add_int(get_instr_arg(opt->index_instr), opt->index_line - 1);
 	opt->new_instr = 0;
 	opt->new_arg = 0;
-	if (!opt->change_instr)
+	if (!opt->change_instr && opt->index_instr == -1)
 		return ;
-	i = 1;
-	while (i < opt->index_instr + 1
-		&& get_instr(opt->nb_instr - i)->type != 1)
+	while (opt->index_instr >= 0 && get_instr(opt->index_instr)->type != 1)
 	{
-		if (get_instr(opt->nb_instr - i)->type <= 3)
+		if (get_instr(opt->index_instr)->type <= 3)
 		{
 			opt->index_instr = -1;
-			opt->change_instr = 0;
-			opt->new_instr = 1;
-			return ;
+			break ;
 		}
-		i++;
+		opt->index_instr--;
 	}
-	opt->index_instr += 1 - i;
 	opt->change_instr = 0;
 }
 
@@ -66,18 +60,13 @@ void	new_instr(t_lexer_opt *opt, int type)
 	opt->nb_instr++;
 	add_arg(opt);
 	opt->index_instr = -1;
+	opt->new_instr = 0;
 }
 
 void	add_instr_or_arg(t_lexer_opt *opt)
 {
 	if (opt->new_instr == 1)
-	{
 		new_instr(opt, 1);
-		opt->new_instr = 0;
-	}
 	else if (opt->new_arg == 1)
-	{
 		add_arg(opt);
-		opt->new_arg = 0;
-	}
 }
