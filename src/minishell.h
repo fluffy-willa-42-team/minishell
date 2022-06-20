@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/20 14:54:42 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:15:58 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_instr
 {
 	int		type;
 	t_vec	arg;
-    int		file_descriptor[2];
+	int		file_descriptor[2];
 }			t_instr;
 
 typedef struct sigaction	t_sigaction;
