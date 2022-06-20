@@ -6,8 +6,13 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:58 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/20 15:07:15 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:18:43 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	file_manager(void)
+{
+	
+}
