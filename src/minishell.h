@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/20 15:15:58 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:54:12 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 
 # define PROMPT_START           "(o_O)> "
 # define SECUNDARY_PROMPT_START "0> "
+
+# define CMD_INSTR				1
+# define CMD_REDIRECT			2
+# define CMD_SEPARATOR			3
+# define REDIR_IN_FILE			4
+# define REDIR_IN_WRITE			5
+# define REDIR_OUT_FILE			6
+# define REDIR_OUT_CONCA		7
 
 /* ************************************************************************** */
 
