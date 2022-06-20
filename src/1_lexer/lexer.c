@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/20 15:10:38 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:22:58 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,4 @@ void	line_lexer(char *line)
 	vec_print(get_line());
 	printf("\e[0;36m0=====-----	STRUCTURE	-----=====0\n\e[0m");
 	print_instr(opt.nb_instr);
-	printf("\e[0;36m0=====-----	EXECUTION	-----=====0\n\e[0m");
 }
