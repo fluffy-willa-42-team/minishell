@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/17 09:21:33 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:59:23 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ typedef struct s_instr
 {
 	int		type;
 	t_vec	arg;
-}				t_instr;
+    int		input_fd;
+    int		output_fd;
+}			t_instr;
 
 typedef struct sigaction	t_sigaction;
 extern t_minishell			g_data;
