@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 11:02:04 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/20 11:48:38 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ void	add_cmd_path(t_lexer_opt *opt, int index);
 
 static	void	init_opt(t_lexer_opt *opt)
 {
-	opt->new_instr = 1;
-	opt->new_arg = 0;
 	opt->nb_instr = 0;
 	opt->index_line = 0;
 	opt->index_instr = -1;
-	opt->change_instr = 0;
+	opt->option = 1;
 }
 
 /**
