@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/20 11:48:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:19:31 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,12 @@ void	add_arg(t_lexer_opt *opt)
 	else
 		vec_add_int(get_instr_arg(opt->index_instr), opt->index_line - 1);
 	opt->option = ~(NEW_INSTR | NEW_ARG) & opt->option;
-	if (!(opt->option & CHANGE_INSTR) && opt->index_instr == -1)
+	if (!(opt->option & CHANGE_INSTR) || opt->index_instr == -1)
 		return ;
 	while (opt->index_instr >= 0 && get_instr(opt->index_instr)->type != 1)
 	{
-		if (get_instr(opt->index_instr)->type <= 3)
-		{
-			opt->index_instr = -1;
-			break ;
-		}
+		if (opt->index_instr == 0 || get_instr(opt->index_instr)->type <= 3)
+			opt->option |= NEW_CMD;
 		opt->index_instr--;
 	}
 	opt->option = ~(CHANGE_INSTR) & opt->option;
@@ -58,12 +55,18 @@ void	new_instr(t_lexer_opt *opt, int type)
 	opt->nb_instr++;
 	add_arg(opt);
 	opt->index_instr = -1;
-	opt->option = ~(NEW_INSTR) & opt->option;
+	opt->option = ~(NEW_INSTR | NEW_CMD) & opt->option;
 }
 
 void	add_instr_or_arg(t_lexer_opt *opt)
 {
-	if (opt->option & NEW_INSTR)
+	if (opt->option & NEW_ARG && opt->option & NEW_CMD)
+	{
+		opt->index_instr = -1;
+		new_instr(opt, 1);
+		opt->option = ~(NEW_CMD) & opt->option;
+	}
+	else if (opt->option & NEW_INSTR)
 		new_instr(opt, 1);
 	else if (opt->option & NEW_ARG)
 		add_arg(opt);
