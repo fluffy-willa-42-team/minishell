@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/20 11:48:38 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:33:48 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,12 @@ void	line_lexer(char *line)
 		i++;
 	while (line[i])
 		i += lexer_param_func(&line[i])(line, i, &opt);
-	vec_print(get_line());
 	i = -1;
 	while (++i < get_instr_list()->content_len)
 		vec_cast(get_instr_arg(i), sizeof(char *), change_int_to_ptr);
+	printf("0=====-----	BUFFER		-----=====0\n");
+	vec_print(get_line());
+	printf("0=====-----	STRUCTURE	-----=====0\n");
 	print_instr(opt.nb_instr);
+	printf("0=====-----	EXECUTION	-----=====0\n");
 }
