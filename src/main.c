@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/20 15:21:42 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:25:05 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 void	set_sigaction(void);
 void	line_lexer(char *line);
+void	line_file_manager(void);
+void	line_executor(void);
 
 void	init_data(void);
 void	empty_g_data(void);
@@ -42,6 +44,8 @@ int	main(void)
 		if (line_read && line_read[0])
 		{
 			line_lexer(line_read);
+			line_file_manager();
+			line_executor();
 			add_history(line_read);
 			empty_g_data();
 		}
