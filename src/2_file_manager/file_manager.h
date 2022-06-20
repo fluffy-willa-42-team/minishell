@@ -6,12 +6,14 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:11:26 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/20 16:12:54 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/20 16:13:28 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILE_MANAGER_H
 # define FILE_MANAGER_H
+
+/* ************************************************************************** */
 
 # include "minishell.h"
 # include "vec_utils.h"

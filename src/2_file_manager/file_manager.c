@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:58 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/20 16:12:59 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/20 16:13:53 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	line_file_manager(void)
 	printf("\e[0;36m0=====-----	FILE MANAGER	-----=====0\n\e[0m");
 	for (size_t i = 0; i < get_instr_list()->content_len; i++)
 	{
-		if (!cmd_found)
+		if (cmd_found)
+			printf("yolo\n");
 		get_func_file_manager(get_instr(i)->type)();
 	}
 }
