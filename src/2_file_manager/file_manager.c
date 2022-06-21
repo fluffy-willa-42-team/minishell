@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:58 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 10:05:14 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 10:26:57 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_fd_manager_param	get_func_file_manager(int type)
 
 void	line_file_manager(int nb_instr)
 {
-	int	fds[2] = {-1, -1};
+	int	fds[2] = {-2, -2};
 	int	(*pipe_ptr)[2]= &fds;
 
 	printf("\e[0;36m0=====-----	FILE MANAGER	-----=====0\n\e[0m");
