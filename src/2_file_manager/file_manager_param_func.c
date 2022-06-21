@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:11:01 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 11:10:46 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 11:14:22 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	cmd_separator(int (**pipe_ptr)[2], int instr_index, int (*pipe_temp)[2])
 int	redir_in_file(int (**pipe_ptr)[2], int instr_index)
 {
 	printf("REDIR IN FILE\n");
-	(void) instr_index;
+	printf("=> %s\n", get_instr_arg_elem(instr_index, 1));
 	(**pipe_ptr)[0] = 3;
 	return (1);
 }
@@ -66,7 +66,7 @@ int	redir_in_file(int (**pipe_ptr)[2], int instr_index)
 int	redir_in_write(int (**pipe_ptr)[2], int instr_index)
 {
 	printf("REDIR IN WRITE\n");
-	(void) instr_index;
+	printf("=> %s\n", get_instr_arg_elem(instr_index, 1));
 	(**pipe_ptr)[0] = 5;
 	return (1);
 }
@@ -74,7 +74,7 @@ int	redir_in_write(int (**pipe_ptr)[2], int instr_index)
 int	redir_out_file(int (**pipe_ptr)[2], int instr_index)
 {
 	printf("REDIR OUT FILE\n");
-	(void) instr_index;
+	printf("=> %s\n", get_instr_arg_elem(instr_index, 1));
 	(**pipe_ptr)[1] = 4;
 	return (1);
 }
@@ -82,7 +82,7 @@ int	redir_out_file(int (**pipe_ptr)[2], int instr_index)
 int	redir_out_conca(int (**pipe_ptr)[2], int instr_index)
 {
 	printf("REDIR OUT CONCA\n");
-	(void) instr_index;
+	printf("=> %s\n", get_instr_arg_elem(instr_index, 1));
 	(**pipe_ptr)[1] = 6;
 	return (1);
 }
