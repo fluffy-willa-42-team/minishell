@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 08:46:01 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 12:53:45 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_lexer.h"
 
-void	print_instr(size_t len);
+void	print_instr(size_t len, int type);
 void	add_cmd_path(t_lexer_opt *opt, int index);
 
 static	void	init_opt(t_lexer_opt *opt)
@@ -102,6 +102,6 @@ int	line_lexer(char *line)
 	printf("\e[0;36m0=====-----	BUFFER		-----=====0\n\e[0m");
 	vec_print(get_line());
 	printf("\e[0;36m0=====-----	STRUCTURE	-----=====0\n\e[0m");
-	print_instr(opt.nb_instr);
+	print_instr(opt.nb_instr, -1);
 	return (opt.nb_instr);
 }

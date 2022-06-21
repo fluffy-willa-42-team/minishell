@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:18:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 12:19:43 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/21 12:41:51 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,10 @@
 int	cmd_instr(int (**pipe_ptr)[2], int instr_index, int (*pipe_temp)[2])
 {
 	printf("CMD INSTR\n");
-	if ((**pipe_ptr)[0] != -2)
-	{
-		get_instr(instr_index)->file_descriptor[0] = (**pipe_ptr)[0];
-		(**pipe_ptr)[1] = -2;
-	}
-	if ((**pipe_ptr)[1] != -2)
-	{
-		get_instr(instr_index)->file_descriptor[1] = (**pipe_ptr)[1];
-		(**pipe_ptr)[1] = -2;
-	}
-	*pipe_ptr = &get_instr(instr_index)->file_descriptor;
 	(void) pipe_temp;
+	move_buf(pipe_ptr, 0, instr_index);
+	move_buf(pipe_ptr, 1, instr_index);
+	*pipe_ptr = &get_instr(instr_index)->file_descriptor;
 	return (1);
 }
 

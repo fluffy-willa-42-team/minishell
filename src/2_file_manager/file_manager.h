@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_manager.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:11:26 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 11:09:35 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 12:41:06 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 typedef int	(*t_fd_manager_param)();
 
 /* ************************************************************************** */
+
+void	close_fd(int (**pipe_ptr)[2], int index);
+void	move_buf(int (**pipe_ptr)[2], int index, int instr_index);
 
 int	cmd_instr(int (**pipe_ptr)[2], int instr_index, int (*p_ptr)[2]);
 int	cmd_redirect(int (**pipe_ptr)[2], int instr_index, int (*p_ptr)[2]);

@@ -6,13 +6,13 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:58 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 12:15:00 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/21 12:53:43 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_manager.h"
 
-void	print_instr(size_t len);
+void	print_instr(size_t len, int type);
 
 t_fd_manager_param	get_func_file_manager(int type)
 {
@@ -30,11 +30,19 @@ t_fd_manager_param	get_func_file_manager(int type)
 	return (cmd_instr);
 }
 
+/**
+ * @brief Set the `fds` to defaut value `-2`.
+ * 
+ * @param nb_instr 
+ */
 void	line_file_manager(int nb_instr)
 {
-	int	fds[2] = {-2, -2};
-	int	(*pipe_ptr)[2]= &fds;
+	int	fds[2];
+	int	(*pipe_ptr)[2];
 
+	fds[0] = -2;
+	fds[1] = -2;
+	pipe_ptr = &fds;
 	printf("\e[0;36m0=====-----	FILE MANAGER	-----=====0\n\e[0m");
 	for (size_t i = 0; i < get_instr_list()->content_len; i++)
 	{
@@ -42,5 +50,5 @@ void	line_file_manager(int nb_instr)
 		get_func_file_manager(get_instr(i)->type)(&pipe_ptr, i, &fds);
 	}
 	printf("\e[0;36m0=====-----	STRUCTURE	-----=====0\n\e[0m");
-	print_instr(nb_instr);
+	print_instr(nb_instr, -1);
 }
