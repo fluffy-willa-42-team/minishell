@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:58 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 12:53:43 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/21 13:14:37 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	line_file_manager(int nb_instr)
 	fds[1] = -2;
 	pipe_ptr = &fds;
 	printf("\e[0;36m0=====-----	FILE MANAGER	-----=====0\n\e[0m");
-	for (size_t i = 0; i < get_instr_list()->content_len; i++)
+	for (int i = 0; i < nb_instr; i++)
 	{
-		printf("[%zu] [%d, %d]\t", i, (*pipe_ptr)[0], (*pipe_ptr)[1]);
+		printf("[%d] [%d, %d]\t", i, (*pipe_ptr)[0], (*pipe_ptr)[1]);
 		get_func_file_manager(get_instr(i)->type)(&pipe_ptr, i, &fds);
 	}
 	printf("\e[0;36m0=====-----	STRUCTURE	-----=====0\n\e[0m");

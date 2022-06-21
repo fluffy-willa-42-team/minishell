@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 12:03:25 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 13:00:11 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	line_executor(void)
 		while (j < get_instr_arg(i)->content_len)
 			printf(", %s", get_instr_arg_elem(i, j++));
 		printf("] => %d\n", get_instr(i)->file_descriptor[1]);
-		if (get_instr(i)->file_descriptor[0] != 0)
+		if (get_instr(i)->file_descriptor[0] != STDIN_FILENO)
 			close(get_instr(i)->file_descriptor[0]);
-		if (get_instr(i)->file_descriptor[1] != 1)
+		if (get_instr(i)->file_descriptor[1] != STDOUT_FILENO)
 			close(get_instr(i)->file_descriptor[1]);
 	}
 	printf("\e[0;36m0=====-----	END		-----=====0\n\e[0m");
