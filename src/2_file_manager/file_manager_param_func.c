@@ -6,50 +6,50 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:11:01 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/20 16:14:56 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 08:12:28 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_manager.h"
 
-int	cmd_instr(void)
+int	cmd_instr(int (*pipe_ptr)[2])
 {
-	printf("CMD INSTR\n");
+	printf("[%d, %d] CMD INSTR\n", (*pipe_ptr)[0], (*pipe_ptr)[1]);
 	return (1);
 }
 
-int	cmd_redirect(void)
+int	cmd_redirect(int (*pipe_ptr)[2])
 {
-	printf("CMD REDIRECT\n");
+	printf("[%d, %d] CMD REDIRECT\n", (*pipe_ptr)[0], (*pipe_ptr)[1]);
 	return (1);
 }
 
-int	cmd_separator(void)
+int	cmd_separator(int (*pipe_ptr)[2])
 {
-	printf("CMD SEPARATOR\n");
+	printf("[%d, %d] CMD SEPARATOR\n", (*pipe_ptr)[0], (*pipe_ptr)[1]);
 	return (1);
 }
 
-int	redir_in_file(void)
+int	redir_in_file(int (*pipe_ptr)[2])
 {
-	printf("REDIR IN FILE\n");
+	printf("[%d, %d] REDIR IN FILE\n", (*pipe_ptr)[0], (*pipe_ptr)[1]);
 	return (1);
 }
 
-int	redir_in_write(void)
+int	redir_in_write(int (*pipe_ptr)[2])
 {
-	printf("REDIR IN WRITE\n");
+	printf("[%d, %d] REDIR IN WRITE\n", (*pipe_ptr)[0], (*pipe_ptr)[1]);
 	return (1);
 }
 
-int	redir_out_file(void)
+int	redir_out_file(int (*pipe_ptr)[2])
 {
-	printf("REDIR OUT FILE\n");
+	printf("[%d, %d] REDIR OUT FILE\n", (*pipe_ptr)[0], (*pipe_ptr)[1]);
 	return (1);
 }
 
-int	redir_out_conca(void)
+int	redir_out_conca(int (*pipe_ptr)[2])
 {
-	printf("REDIR OUT CONCA\n");
+	printf("[%d, %d] REDIR OUT CONCA\n", (*pipe_ptr)[0], (*pipe_ptr)[1]);
 	return (1);
 }
