@@ -11,41 +11,37 @@
 /* ************************************************************************** */
 
 #include "file_manager.h"
+#include <readline/readline.h>
 
-/**
- * @brief Will change the pipe_ptr to the pipe pointer in the command
- * instruction and move the value from the initial value of pipe_ptr.
- */
-int	cmd_instr(int (**pipe_ptr)[2], int instr_index, int (*pipe_temp)[2])
+void	secundary_prompt(int fd, const char *delimitor)
 {
-	printf("CMD INSTR\n");
-	(void) pipe_temp;
-	move_buf(pipe_ptr, 0, instr_index);
-	move_buf(pipe_ptr, 1, instr_index);
-	*pipe_ptr = &get_instr(instr_index)->file_descriptor;
-	return (1);
+	const size_t	len = ft_strlen(delimitor);
+	char			*line_read;
+
+	line_read = readline(SECUNDARY_PROMPT_START);
+	while (line_read)
+	{
+		if (line_read && line_read[0])
+		{
+			ft_putstr_fd(line_read, fd);
+			if (len == ft_strlen(line_read)
+				&& ft_strcmp(line_read, delimitor) == 0)
+				break ;
+		}
+		free(line_read);
+		line_read = readline(SECUNDARY_PROMPT_START);
+	}
+	free(line_read);
 }
 
-/**
- * @brief Will reset the pipe pointer back to the tempory pipe_temp.
- */
-int	cmd_redirect(int (**pipe_ptr)[2], int instr_index, int (*pipe_temp)[2])
+int	redir_in_write(int (**pipe_ptr)[2], int instr_index)
 {
-	printf("CMD REDIRECT\n");
+	const char	*delimitor = get_instr_arg_elem(instr_index, 1);
+
+	printf("REDIR IN WRITE\n");
 	pipe(get_instr(instr_index)->file_descriptor);
-	(**pipe_ptr)[1] = get_instr(instr_index)->file_descriptor[1];
-	*pipe_ptr = pipe_temp;
+	secundary_prompt(get_instr(instr_index)->file_descriptor[1], delimitor);
+	close(get_instr(instr_index)->file_descriptor[1]);
 	(**pipe_ptr)[0] = get_instr(instr_index)->file_descriptor[0];
-	return (1);
-}
-
-/**
- * @brief Will reset the pipe pointer back to the tempory pipe_temp.
- */
-int	cmd_separator(int (**pipe_ptr)[2], int instr_index, int (*pipe_temp)[2])
-{
-	printf("CMD SEPARATOR\n");
-	(void) instr_index;
-	*pipe_ptr = pipe_temp;
 	return (1);
 }

@@ -25,14 +25,6 @@ int	redir_in_file(int (**pipe_ptr)[2], int instr_index)
 	return (1);
 }
 
-int	redir_in_write(int (**pipe_ptr)[2], int instr_index)
-{
-	printf("REDIR IN WRITE\n");
-	(void) instr_index;
-	(**pipe_ptr)[0] = 0;
-	return (1);
-}
-
 /**
  * @brief Will set the `fd` for the out file. /!\  We dont check the return
  *        value of `open(2)`, the executor will handle bad `fd`.
