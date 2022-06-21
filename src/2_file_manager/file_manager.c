@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:58 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 10:26:57 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 11:09:47 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	line_file_manager(int nb_instr)
 	for (size_t i = 0; i < get_instr_list()->content_len; i++)
 	{
 		printf("[%zu] [%d, %d]\t", i, (*pipe_ptr)[0], (*pipe_ptr)[1]);
-		get_func_file_manager(get_instr(i)->type)(&pipe_ptr, &fds, i);
+		get_func_file_manager(get_instr(i)->type)(&pipe_ptr, i, &fds);
 	}
 	printf("\e[0;36m0=====-----	STRUCTURE	-----=====0\n\e[0m");
 	print_instr(nb_instr);
