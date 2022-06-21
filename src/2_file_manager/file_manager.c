@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:58 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 11:09:47 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 12:15:00 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	print_instr(size_t len);
 
 t_fd_manager_param	get_func_file_manager(int type)
 {
-	t_fd_manager_param func[7] = {
+	const t_fd_manager_param	func[7] = {
 		cmd_instr, cmd_redirect, cmd_separator,
 		redir_in_file, redir_in_write, redir_out_file, redir_out_conca
 	};
-	int	param[7] = {
+	const int					param[7] = {
 		CMD_INSTR, CMD_REDIRECT, CMD_SEPARATOR,
 		REDIR_IN_FILE, REDIR_IN_WRITE, REDIR_OUT_FILE, REDIR_OUT_CONCA
 	};
