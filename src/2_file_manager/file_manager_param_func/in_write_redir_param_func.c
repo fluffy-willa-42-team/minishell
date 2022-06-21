@@ -23,10 +23,11 @@ void	secundary_prompt(int fd, const char *delimitor)
 	{
 		if (line_read && line_read[0])
 		{
-			ft_putstr_fd(line_read, fd);
 			if (len == ft_strlen(line_read)
 				&& ft_strcmp(line_read, delimitor) == 0)
 				break ;
+			ft_putstr_fd(line_read, fd);
+			ft_putchar_fd('\n', fd);
 		}
 		free(line_read);
 		line_read = readline(SECUNDARY_PROMPT_START);
