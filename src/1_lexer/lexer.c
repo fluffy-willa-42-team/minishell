@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/20 15:22:58 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 08:46:01 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	change_int_to_ptr(int *input, char **output)
 	return (1);
 }
 
-void	line_lexer(char *line)
+int	line_lexer(char *line)
 {
 	t_lexer_opt	opt;
 	size_t		i;
@@ -103,4 +103,5 @@ void	line_lexer(char *line)
 	vec_print(get_line());
 	printf("\e[0;36m0=====-----	STRUCTURE	-----=====0\n\e[0m");
 	print_instr(opt.nb_instr);
+	return (opt.nb_instr);
 }

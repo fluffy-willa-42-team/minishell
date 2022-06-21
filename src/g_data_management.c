@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:20:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 08:33:00 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 08:45:17 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	empty_g_data(void)
 		vec_cast(get_instr_arg(i), sizeof(int), change_str_to_int);
 		vec_delete(get_instr_arg(i));
 		get_instr(i)->type = 0;
-		get_instr(i)->file_descriptor[0] = -1;
-		get_instr(i)->file_descriptor[1] = -1;
+		get_instr(i)->file_descriptor[0] = STDIN_FILENO;
+		get_instr(i)->file_descriptor[1] = STDOUT_FILENO;
 		i++;
 	}
 }

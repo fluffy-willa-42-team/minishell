@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 08:33:56 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 08:45:04 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	new_instr(t_lexer_opt *opt, int type)
 	t_instr	new_instr;
 
 	new_instr.type = type;
-	new_instr.file_descriptor[0] = -1;
-	new_instr.file_descriptor[1] = -1;
+	new_instr.file_descriptor[0] = STDIN_FILENO;
+	new_instr.file_descriptor[1] = STDOUT_FILENO;
 	if (opt->nb_instr >= get_instr_list()->content_len)
 	{
 		new_instr.arg = vec_init(sizeof(int));

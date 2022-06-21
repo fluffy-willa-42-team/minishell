@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/20 15:25:05 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 08:46:31 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 #include <readline/history.h>
 
 void	set_sigaction(void);
-void	line_lexer(char *line);
-void	line_file_manager(void);
+int		line_lexer(char *line);
+void	line_file_manager(int nb_instr);
 void	line_executor(void);
 
 void	init_data(void);
@@ -43,8 +43,8 @@ int	main(void)
 	{
 		if (line_read && line_read[0])
 		{
-			line_lexer(line_read);
-			line_file_manager();
+			int nb_instr = line_lexer(line_read);
+			line_file_manager(nb_instr);
 			line_executor();
 			add_history(line_read);
 			empty_g_data();
