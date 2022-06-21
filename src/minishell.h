@@ -16,7 +16,7 @@
 /* ************************************************************************** */
 
 # define PROMPT_START           "(o_O)> "
-# define SECUNDARY_PROMPT_START "0> "
+# define SECUNDARY_PROMPT_START "> "
 
 # define CMD_INSTR				1
 # define CMD_REDIRECT			2
