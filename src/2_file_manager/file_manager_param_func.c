@@ -6,12 +6,16 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:11:01 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 08:45:33 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 09:01:07 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_manager.h"
 
+/**
+ * @brief Will change the pipe_ptr to the pipe pointer in the command
+ * instruction and move the value from the initial value of pipe_ptr.
+ */
 int	cmd_instr(int (**pipe_ptr)[2], int instr_index, int (**pipe_temp)[2])
 {
 	(void) pipe_temp;
@@ -24,19 +28,25 @@ int	cmd_instr(int (**pipe_ptr)[2], int instr_index, int (**pipe_temp)[2])
 	return (1);
 }
 
+/**
+ * @brief Will reset the pipe pointer back to the tempory pipe_temp.
+ */
 int	cmd_redirect(int (**pipe_ptr)[2], int instr_index, int (**pipe_temp)[2])
 {
-	(**pipe_temp)[0] = -1;
-	(**pipe_temp)[1] = -1;
+	(**pipe_temp)[0] = (**pipe_temp)[1];
+	(**pipe_temp)[1] = STDOUT_FILENO;
 	pipe_ptr = pipe_temp;
 	printf("[%d] [%d, %d]\tCMD REDIRECT\n", instr_index, (**pipe_ptr)[0], (**pipe_ptr)[1]);
 	return (1);
 }
 
+/**
+ * @brief Will reset the pipe pointer back to the tempory pipe_temp.
+ */
 int	cmd_separator(int (**pipe_ptr)[2], int instr_index, int (**pipe_temp)[2])
 {
-	(**pipe_temp)[0] = -1;
-	(**pipe_temp)[1] = -1;
+	(**pipe_temp)[0] = STDIN_FILENO;
+	(**pipe_temp)[1] = STDOUT_FILENO;
 	pipe_ptr = pipe_temp;
 	printf("[%d] [%d, %d]\tCMD SEPARATOR\n", instr_index, (**pipe_ptr)[0], (**pipe_ptr)[1]);
 	return (1);
