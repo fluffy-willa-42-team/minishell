@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:58 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 08:46:44 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 09:26:46 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ t_fd_manager_param	get_func_file_manager(int type)
 void	line_file_manager(int nb_instr)
 {
 	int	fds[2] = {-1, -1};
-	int	(*pipe_temp)[2]= &fds;
-	int	(**pipe_ptr)[2] = &pipe_temp;
+	int	(*pipe_ptr)[2]= &fds;
 
 	printf("\e[0;36m0=====-----	FILE MANAGER	-----=====0\n\e[0m");
 	for (size_t i = 0; i < get_instr_list()->content_len; i++)
 	{
-		get_func_file_manager(get_instr(i)->type)(pipe_ptr, i, &pipe_temp);
+		get_func_file_manager(get_instr(i)->type)(&pipe_ptr, i, &fds);
 	}
 	printf("\e[0;36m0=====-----	STRUCTURE	-----=====0\n\e[0m");
 	print_instr(nb_instr);
