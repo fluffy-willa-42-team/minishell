@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:11:01 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 09:01:07 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/21 09:02:42 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	cmd_instr(int (**pipe_ptr)[2], int instr_index, int (**pipe_temp)[2])
 int	cmd_redirect(int (**pipe_ptr)[2], int instr_index, int (**pipe_temp)[2])
 {
 	(**pipe_temp)[0] = (**pipe_temp)[1];
+	// (**pipe_temp)[0] = STDIN_FILENO;
 	(**pipe_temp)[1] = STDOUT_FILENO;
 	pipe_ptr = pipe_temp;
 	printf("[%d] [%d, %d]\tCMD REDIRECT\n", instr_index, (**pipe_ptr)[0], (**pipe_ptr)[1]);
