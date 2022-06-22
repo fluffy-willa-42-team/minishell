@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_simple.c                                     :+:      :+:    :+:   */
+/*   parser_simple.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:24:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/20 11:46:23 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/22 14:02:45 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "msh_lexer.h"
+#include "msh_parser.h"
 
-void	add_instr_or_arg(t_lexer_opt *opt);
+void	add_instr_or_arg(t_parser_opt *opt);
 
 /**
  * @brief Will add the character inside the buffer and add the it to a new
@@ -24,7 +24,7 @@ void	add_instr_or_arg(t_lexer_opt *opt);
  * @return Returns the number of character read inside the line read by
  * Readline.
  */
-int	dflt_char(char *line, int index, t_lexer_opt *opt)
+int	dflt_char(char *line, int index, t_parser_opt *opt)
 {
 	add_char(opt, &line[index]);
 	add_instr_or_arg(opt);
@@ -41,7 +41,7 @@ int	dflt_char(char *line, int index, t_lexer_opt *opt)
  * @return Returns the number of character read inside the line read by
  * Readline.
  */
-int	bkslh(char *line, int index, t_lexer_opt *opt)
+int	bkslh(char *line, int index, t_parser_opt *opt)
 {
 	dflt_char(line, index + 1, opt);
 	if (!line[index + 1])
@@ -59,7 +59,7 @@ int	bkslh(char *line, int index, t_lexer_opt *opt)
  * @return Returns the number of character read inside the line read by
  * Readline.
  */
-int	whtspc(char *line, int index, t_lexer_opt *opt)
+int	whtspc(char *line, int index, t_parser_opt *opt)
 {
 	int	i;
 

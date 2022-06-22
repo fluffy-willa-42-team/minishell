@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 08:46:31 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/22 14:04:01 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include <readline/history.h>
 
 void	set_sigaction(void);
-int		line_lexer(char *line);
+int		line_parser(char *line);
+void	line_pars_check(int nb_instr);
 void	line_file_manager(int nb_instr);
 void	line_executor(void);
 
@@ -43,8 +44,9 @@ int	main(void)
 	{
 		if (line_read && line_read[0])
 		{
-			int nb_instr = line_lexer(line_read);
+			int nb_instr = line_parser(line_read);
 			line_file_manager(nb_instr);
+			line_pars_check(nb_instr);
 			line_executor();
 			add_history(line_read);
 			empty_g_data();

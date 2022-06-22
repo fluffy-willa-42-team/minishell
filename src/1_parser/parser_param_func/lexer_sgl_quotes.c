@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_sgl_quotes.c                                 :+:      :+:    :+:   */
+/*   parser_sgl_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:19:07 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 13:26:26 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/22 14:02:45 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "msh_lexer.h"
+#include "msh_parser.h"
 
-void	add_instr_or_arg(t_lexer_opt *opt);
+void	add_instr_or_arg(t_parser_opt *opt);
 
 /**
  * @brief Adds the string inside the line buffer.
  */
-int	add_sglqot(char *line, int index, t_lexer_opt *opt)
+int	add_sglqot(char *line, int index, t_parser_opt *opt)
 {
 	int	i;
 
@@ -39,7 +39,7 @@ int	add_sglqot(char *line, int index, t_lexer_opt *opt)
  * @return Returns the number of character read inside the line read by
  * Readline.
  */
-int	sglqot(char *line, int index, t_lexer_opt *opt)
+int	sglqot(char *line, int index, t_parser_opt *opt)
 {
 	int	i;
 

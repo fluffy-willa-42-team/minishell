@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_special.c                                    :+:      :+:    :+:   */
+/*   parser_special.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/20 11:46:47 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/22 14:02:45 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "msh_lexer.h"
+#include "msh_parser.h"
 
 int	return_type_for_spec(char *elem)
 {
@@ -43,7 +43,7 @@ int	return_type_for_spec(char *elem)
  * @return Returns the number of character read inside the line read by
  * Readline.
  */
-int	spec_0_arg(char *line, int index, t_lexer_opt *opt)
+int	spec_0_arg(char *line, int index, t_parser_opt *opt)
 {
 	if (!(opt->option & NEW_ARG))
 		add_char(opt, "\0");
@@ -65,7 +65,7 @@ int	spec_0_arg(char *line, int index, t_lexer_opt *opt)
  * @return Returns the number of character read inside the line read by
  * Readline.
  */
-int	spec_1_arg(char *line, int index, t_lexer_opt *opt)
+int	spec_1_arg(char *line, int index, t_parser_opt *opt)
 {
 	int	len;	
 

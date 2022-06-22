@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_var_sub.c                                    :+:      :+:    :+:   */
+/*   parser_var_sub.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 13:39:30 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/22 14:02:45 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "msh_lexer.h"
+#include "msh_parser.h"
 
-void	add_instr_or_arg(t_lexer_opt *opt);
+void	add_instr_or_arg(t_parser_opt *opt);
 
 /**
  * @brief Gets the length of the current variable.
@@ -31,7 +31,7 @@ static int	get_var_len(char *line, int index)
 /**
  * @brief Adds the variable inside the line buffer.
  */
-int	add_varsub(char *line, int index, t_lexer_opt *opt)
+int	add_varsub(char *line, int index, t_parser_opt *opt)
 {
 	const int	len = get_var_len(line, index + 1);
 	char		*value;
@@ -59,7 +59,7 @@ int	add_varsub(char *line, int index, t_lexer_opt *opt)
  * @return Returns the number of character read inside the line read by
  * Readline.
  */
-int	varsub(char *line, int index, t_lexer_opt *opt)
+int	varsub(char *line, int index, t_parser_opt *opt)
 {
 	opt->index_line++;
 	add_instr_or_arg(opt);

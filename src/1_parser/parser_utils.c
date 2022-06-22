@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_utils.c                                      :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 08:45:04 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/22 14:04:01 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "msh_lexer.h"
+#include "msh_parser.h"
 
-void	add_cmd_path(t_lexer_opt *opt, int index);
+void	add_cmd_path(t_parser_opt *opt, int index);
 
-int	add_char(t_lexer_opt *opt, char *arg)
+int	add_char(t_parser_opt *opt, char *arg)
 {
 	vec_add(get_line(), arg);
 	opt->index_line++;
 	return (1);
 }
 
-void	add_arg(t_lexer_opt *opt)
+void	add_arg(t_parser_opt *opt)
 {
 	if (opt->index_instr == -1)
 		vec_add_int(get_instr_arg(opt->nb_instr - 1), opt->index_line - 1);
@@ -39,7 +39,7 @@ void	add_arg(t_lexer_opt *opt)
 	opt->option = ~(CHANGE_INSTR) & opt->option;
 }
 
-void	new_instr(t_lexer_opt *opt, int type)
+void	new_instr(t_parser_opt *opt, int type)
 {
 	t_instr	new_instr;
 
@@ -60,7 +60,7 @@ void	new_instr(t_lexer_opt *opt, int type)
 	opt->option = ~(NEW_INSTR | NEW_CMD) & opt->option;
 }
 
-void	add_instr_or_arg(t_lexer_opt *opt)
+void	add_instr_or_arg(t_parser_opt *opt)
 {
 	if (opt->option & NEW_ARG && opt->option & NEW_CMD)
 	{

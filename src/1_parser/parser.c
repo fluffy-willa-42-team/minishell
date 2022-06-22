@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 12:53:45 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/22 14:05:08 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "msh_lexer.h"
+#include "msh_parser.h"
 
 void	print_instr(size_t len, int type);
-void	add_cmd_path(t_lexer_opt *opt, int index);
+void	add_cmd_path(t_parser_opt *opt, int index);
 
-static	void	init_opt(t_lexer_opt *opt)
+static	void	init_opt(t_parser_opt *opt)
 {
 	opt->nb_instr = 0;
 	opt->index_line = 0;
@@ -47,13 +47,13 @@ static	void	init_opt(t_lexer_opt *opt)
    DEFAULT  | dflt_char
 */
 
-t_lexer_param	lexer_param_func(char *str)
+t_parser_param	parser_param_func(char *str)
 {
 	const char			*spec_char[] = {
 		"\\", "\'", "\"", "$", " ", "\t", "\n", "\v", "\f", "\r", "|", ";", "<",
 		">", "<<", ">>",
 	};
-	const t_lexer_param	func_link[] = {
+	const t_parser_param	func_link[] = {
 		bkslh, sglqot, dblqot, varsub, whtspc, whtspc, whtspc, whtspc, whtspc,
 		whtspc, spec_0_arg, spec_0_arg, spec_1_arg, spec_1_arg,	spec_1_arg,
 		spec_1_arg,
@@ -85,9 +85,9 @@ int	change_int_to_ptr(int *input, char **output)
 	return (1);
 }
 
-int	line_lexer(char *line)
+int	line_parser(char *line)
 {
-	t_lexer_opt	opt;
+	t_parser_opt	opt;
 	size_t		i;
 
 	init_opt(&opt);
@@ -95,7 +95,7 @@ int	line_lexer(char *line)
 	while (line[i] && ft_is_whitespace(line[i]))
 		i++;
 	while (line[i])
-		i += lexer_param_func(&line[i])(line, i, &opt);
+		i += parser_param_func(&line[i])(line, i, &opt);
 	i = -1;
 	while (++i < get_instr_list()->content_len)
 		vec_cast(get_instr_arg(i), sizeof(char *), change_int_to_ptr);
