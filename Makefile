@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/06/08 12:20:47 by mahadad          ###   ########.fr        #
+#    Updated: 2022/06/22 14:27:10 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -209,6 +209,7 @@ update_lib:
 	@for path in $(ALL_LIB); do \
 		printf "    [%s]\n" $$path;\
 		if [ -f $$path/Makefile ]; then \
+		make -C $$path fclean ;\
 		branch=`git -C $$path symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'`;\
 		git -C $$path pull origin $$branch;\
 		git -C $$path checkout $$branch;\
