@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/21 13:06:13 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/22 10:29:49 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 /* ************************************************************************** */
 
-# define PROMPT_START           "(o_O)> "
+// # define PROMPT_START           "(o_O)> "
+# define PROMPT_START           "> "
 # define SECUNDARY_PROMPT_START "> "
 
 # define CMD_INSTR				1
