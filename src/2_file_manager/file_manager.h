@@ -17,6 +17,7 @@
 
 # include "minishell.h"
 # include "vec_utils.h"
+# include <fcntl.h>
 
 /* ************************************************************************** */
 
