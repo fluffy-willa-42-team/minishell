@@ -25,6 +25,7 @@ void	init_data(void)
 	g_data.lexed_instr.rate = 8;
 	g_data.tmp = vec_init(sizeof(char));
 	g_data.last_exit_code = 0;
+	g_data.cmd = NULL;
 }
 
 static int	change_str_to_int(char **input, int *output)
@@ -57,6 +58,7 @@ void	empty_g_data(void)
 		get_instr(i)->fds[1] = STDOUT_FILENO;
 		i++;
 	}
+	g_data.cmd = NULL;
 }
 
 /**

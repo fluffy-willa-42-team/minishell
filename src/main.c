@@ -44,6 +44,7 @@ int	main(void)
 	{
 		if (line_read && line_read[0])
 		{
+			g_data.cmd = line_read;
 			int nb_instr = line_parser(line_read);
 			line_pars_check(nb_instr);
 			line_file_manager(nb_instr);

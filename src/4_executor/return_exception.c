@@ -15,12 +15,11 @@
 # include <string.h>
 # include <errno.h>
 
-int	msh_exception(int code, char *message)
+int	msh_exception(int code)
 {
 	g_data.last_exit_code = code;
 	if (code == 0)
 		return (1);
-	strerror(errno);
-	ft_putendl_fd(message, 2);
+	printf("%s: %s\n", g_data.cmd, strerror(code));
 	return (0);
 }
