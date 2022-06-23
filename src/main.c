@@ -48,7 +48,7 @@ int	main(void)
 			int nb_instr = line_parser(line_read);
 			// line_pars_check(nb_instr);
 			line_file_manager(nb_instr);
-			// line_executor();
+			line_executor();
 			add_history(line_read);
 			empty_g_data();
 		}
