@@ -22,9 +22,10 @@ int	cmd_instr(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 	(void) code_ptr;
 	move_buf(pipe_ptr, 0, instr_index);
 	move_buf(pipe_ptr, 1, instr_index);
+	get_instr(instr_index)->err = **code_ptr;
+	**code_ptr = 0;
 	*pipe_ptr = &get_instr(instr_index)->fds;
-	// get_instr(instr_index)->err = **code_ptr;
-	// code_ptr = 
+	*code_ptr = &get_instr(instr_index)->err;
 	return (1);
 }
 
@@ -41,6 +42,7 @@ int	cmd_redirect(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 	else
 		close(get_instr(instr_index)->fds[1]);
 	*pipe_ptr = &g_data.pipe_buf;
+	*code_ptr = &g_data.code_buf;
 	(**pipe_ptr)[0] = get_instr(instr_index)->fds[0];
 	return (1);
 }
@@ -54,5 +56,6 @@ int	cmd_separator(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 	(void) code_ptr;
 	(void) instr_index;
 	*pipe_ptr = &g_data.pipe_buf;
+	*code_ptr = &g_data.code_buf;
 	return (1);
 }

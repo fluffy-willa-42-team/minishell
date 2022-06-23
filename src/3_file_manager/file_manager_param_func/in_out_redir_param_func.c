@@ -17,10 +17,14 @@
 */
 int	redir_in_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
-	const int	new_fd = open(get_instr_arg_elem(instr_index, 1), O_RDONLY);
-
+	int	new_fd;
+	
+	if (**code_ptr != 0)
+		return (1);
 	printf("REDIR IN FILE\n");
-	(void) code_ptr;
+	new_fd = open(get_instr_arg_elem(instr_index, 1), O_RDONLY);
+	if (new_fd == -1)
+		**code_ptr = errno;
 	close_fd(pipe_ptr, 0);
 	(**pipe_ptr)[0] = new_fd;
 	return (1);
@@ -34,11 +38,14 @@ int	redir_out_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	int	new_fd;
 
+	if (**code_ptr != 0)
+		return (1);
 	printf("REDIR OUT FILE\n");
-	(void) code_ptr;
 	new_fd = open(get_instr_arg_elem(instr_index, 1), O_WRONLY | O_TRUNC);
-	if (new_fd == -1)
+	if (new_fd == -1 && errno == ENOENT)
 		new_fd = open(get_instr_arg_elem(instr_index, 1), O_CREAT, 0666);
+	if (new_fd == -1)
+		**code_ptr = errno;
 	close_fd(pipe_ptr, 1);
 	(**pipe_ptr)[1] = new_fd;
 	return (1);
@@ -48,11 +55,14 @@ int	redir_out_conca(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	int	new_fd;
 
+	if (**code_ptr != 0)
+		return (1);
 	printf("REDIR OUT CONCA\n");
-	(void) code_ptr;
 	new_fd = open(get_instr_arg_elem(instr_index, 1), O_WRONLY | O_APPEND);
-	if (new_fd == -1)
+	if (new_fd == -1 && errno == ENOENT)
 		new_fd = open(get_instr_arg_elem(instr_index, 1), O_CREAT, 0666);
+	if (new_fd == -1)
+		**code_ptr = errno;
 	close_fd(pipe_ptr, 1);
 	(**pipe_ptr)[1] = new_fd;
 	return (1);

@@ -20,6 +20,7 @@
 # include "lib_str.h"
 # include "lib_put_fd.h"
 # include <fcntl.h>
+# include <errno.h>
 
 /* ************************************************************************** */
 
