@@ -40,11 +40,9 @@ void	line_file_manager(int nb_instr)
 	int	(*pipe_ptr)[2];
 	int	*code_ptr;
 
-	g_data.code_buf = 0;
-	g_data.pipe_buf[0] = -2;
-	g_data.pipe_buf[0] = -2;
 	code_ptr = &g_data.code_buf;
 	pipe_ptr = &g_data.pipe_buf;
+	printf("[%d, %d]\n", (*pipe_ptr)[0], (*pipe_ptr)[1]);
 	printf("\e[0;36m0=====-----	FILE MANAGER	-----=====0\n\e[0m");
 	for (int i = 0; i < nb_instr; i++)
 		get_func_file_manager(get_instr(i)->type)(i, &pipe_ptr, &code_ptr);

@@ -22,8 +22,8 @@ int	cmd_instr(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 	(void) code_ptr;
 	move_buf(pipe_ptr, 0, instr_index);
 	move_buf(pipe_ptr, 1, instr_index);
-	get_instr(instr_index)->err = **code_ptr;
 	*pipe_ptr = &get_instr(instr_index)->fds;
+	// get_instr(instr_index)->err = **code_ptr;
 	// code_ptr = 
 	return (1);
 }
@@ -35,7 +35,6 @@ int	cmd_redirect(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	printf("CMD REDIRECT\n");
 	(void) code_ptr;
-	printf("%d %d\n", (**pipe_ptr)[0], (**pipe_ptr)[1]);
 	pipe(get_instr(instr_index)->fds);
 	if (get_instr(instr_index)->fds[1] == 1)
 		(**pipe_ptr)[1] = get_instr(instr_index)->fds[1];

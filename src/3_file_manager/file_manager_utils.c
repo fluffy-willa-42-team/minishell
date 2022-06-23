@@ -20,6 +20,7 @@ void	close_fd(int (**pipe_ptr)[2], int index)
 
 void	move_buf(int (**pipe_ptr)[2], int index, int instr_index)
 {
+	printf("=> %d\n", (**pipe_ptr)[index]);
 	if ((**pipe_ptr)[index] != -2)
 	{
 		get_instr(instr_index)->fds[index] = (**pipe_ptr)[index];

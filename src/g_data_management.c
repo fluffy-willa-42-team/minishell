@@ -26,6 +26,9 @@ void	init_data(void)
 	g_data.tmp = vec_init(sizeof(char));
 	g_data.last_exit_code = 0;
 	g_data.cmd = NULL;
+	g_data.code_buf = 0;
+	g_data.pipe_buf[0] = -2;
+	g_data.pipe_buf[1] = -2;
 }
 
 static int	change_str_to_int(char **input, int *output)
