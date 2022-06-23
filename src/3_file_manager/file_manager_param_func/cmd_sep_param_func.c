@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_sep_param_func.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:18:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 13:27:18 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/23 09:39:30 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,14 @@ int	cmd_instr(int (**pipe_ptr)[2], int instr_index, int (*pipe_temp)[2])
 int	cmd_redirect(int (**pipe_ptr)[2], int instr_index, int (*pipe_temp)[2])
 {
 	printf("CMD REDIRECT\n");
-	pipe(get_instr(instr_index)->file_descriptor);
-	(**pipe_ptr)[1] = get_instr(instr_index)->file_descriptor[1];
-	*pipe_ptr = pipe_temp;
-	(**pipe_ptr)[0] = get_instr(instr_index)->file_descriptor[0];
+	// if ((**pipe_ptr)[1] == 1)
+	// {
+		printf("%d %d\n", (**pipe_ptr)[0], (**pipe_ptr)[1]);
+		pipe(get_instr(instr_index)->file_descriptor);
+		(**pipe_ptr)[1] = get_instr(instr_index)->file_descriptor[1];
+		*pipe_ptr = pipe_temp;
+		(**pipe_ptr)[0] = get_instr(instr_index)->file_descriptor[0];
+	// }
 	return (1);
 }
 

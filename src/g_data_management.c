@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   g_data_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:20:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/22 15:10:22 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/23 09:31:38 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ void	empty_g_data(void)
 		vec_cast(get_instr_arg(i), sizeof(int), change_str_to_int);
 		vec_delete(get_instr_arg(i));
 		get_instr(i)->type = 0;
+		if (get_instr(i)->file_descriptor[0] != 0)
+			close(get_instr(i)->file_descriptor[0]);
+		if (get_instr(i)->file_descriptor[1] != 1)
+			close(get_instr(i)->file_descriptor[1]);
 		get_instr(i)->file_descriptor[0] = STDIN_FILENO;
 		get_instr(i)->file_descriptor[1] = STDOUT_FILENO;
 		i++;
@@ -68,6 +72,10 @@ void	free_g_data(void)
 	vec_destroy(get_line());
 	while (i < g_data.lexed_instr.content_len)
 	{
+		if (get_instr(i)->file_descriptor[0] != 0)
+			close(get_instr(i)->file_descriptor[0]);
+		if (get_instr(i)->file_descriptor[1] != 1)
+			close(get_instr(i)->file_descriptor[1]);
 		vec_destroy(get_instr_arg(i));
 		i++;
 	}

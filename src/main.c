@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/22 14:04:01 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/23 09:37:26 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	main(void)
 		if (line_read && line_read[0])
 		{
 			int nb_instr = line_parser(line_read);
-			line_file_manager(nb_instr);
 			line_pars_check(nb_instr);
+			line_file_manager(nb_instr);
 			line_executor();
 			add_history(line_read);
 			empty_g_data();

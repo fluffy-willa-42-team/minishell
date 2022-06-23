@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:55:46 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/22 13:18:02 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/23 09:33:02 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@
 
 void	line_pars_check(int nb_instr)
 {
-	printf("\e[0;36m0=====-----	PARSER		-----=====0\n\e[0m");
+	printf("\e[0;36m0=====-----	PARSER CHECK	-----=====0\n\e[0m");
 	for (int i = 0; i < nb_instr; i++)
 	{
 		printf("[%d]\n", get_instr(i)->type);
 	}
-	printf("\e[0;36m0=====-----	PARSER		-----=====0\n\e[0m");
 }
