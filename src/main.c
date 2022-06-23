@@ -50,6 +50,7 @@ int	main(void)
 			line_executor();
 			add_history(line_read);
 			empty_g_data();
+			g_data.last_exit_code++;
 		}
 		free(line_read);
 		line_read = readline(PROMPT_START);

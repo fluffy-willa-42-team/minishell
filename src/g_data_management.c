@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   g_data_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:20:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/21 08:45:17 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:10:22 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_data(void)
 	g_data.lexed_instr = vec_init(sizeof(t_instr));
 	g_data.lexed_instr.rate = 8;
 	g_data.tmp = vec_init(sizeof(char));
+	g_data.last_exit_code = 0;
 }
 
 static int	change_str_to_int(char **input, int *output)
@@ -63,6 +64,7 @@ void	free_g_data(void)
 	size_t	i;
 
 	i = 0;
+	vec_destroy(&g_data.tmp);
 	vec_destroy(get_line());
 	while (i < g_data.lexed_instr.content_len)
 	{

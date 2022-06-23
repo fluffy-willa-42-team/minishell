@@ -37,7 +37,14 @@ int	add_varsub(char *line, int index, t_parser_opt *opt)
 	char		*value;
 
 	if (len == 0)
+	{
+		if (line[index + 1] && line[index + 1] == '?')
+		{
+			vec_fill(get_line(), DEFAULT, ft_itoa(g_data.last_exit_code));
+			return (2);
+		}
 		return (add_char(opt, "$"));
+	}
 	vec_fill(&g_data.tmp, FIXED_LEN, &line[index + 1], len);
 	value = getenv(vec_get_str(&g_data.tmp, 0));
 	vec_delete(&g_data.tmp);
