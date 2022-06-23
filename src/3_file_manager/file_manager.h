@@ -30,13 +30,13 @@ typedef int	(*t_fd_manager_param)();
 void	close_fd(int (**pipe_ptr)[2], int index);
 void	move_buf(int (**pipe_ptr)[2], int index, int instr_index);
 
-int	cmd_instr(int (**pipe_ptr)[2], int instr_index, int (*p_ptr)[2]);
-int	cmd_redirect(int (**pipe_ptr)[2], int instr_index, int (*p_ptr)[2]);
-int	cmd_separator(int (**pipe_ptr)[2], int instr_index, int (*p_ptr)[2]);
-int	redir_in_file(int (**pipe_ptr)[2], int instr_index);
-int	redir_in_write(int (**pipe_ptr)[2], int instr_index);
-int	redir_out_file(int (**pipe_ptr)[2], int instr_index);
-int	redir_out_conca(int (**pipe_ptr)[2], int instr_index);
+int	cmd_instr(int instr_index, int (**pipe_ptr)[2], int *code_ptr);
+int	cmd_redirect(int instr_index, int (**pipe_ptr)[2], int *code_ptr);
+int	cmd_separator(int instr_index, int (**pipe_ptr)[2], int *code_ptr);
+int	redir_in_file(int instr_index, int (**pipe_ptr)[2], int *code_ptr);
+int	redir_in_write(int instr_index, int (**pipe_ptr)[2], int *code_ptr);
+int	redir_out_file(int instr_index, int (**pipe_ptr)[2], int *code_ptr);
+int	redir_out_conca(int instr_index, int (**pipe_ptr)[2], int *code_ptr);
 
 /* ************************************************************************** */
 

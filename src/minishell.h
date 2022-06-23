@@ -42,6 +42,8 @@ typedef struct s_minishell
 	t_vec	lexed_instr;
 	t_vec	tmp;
     int     last_exit_code;
+    int 	pipe_buf[2];
+	int	 	code_buf;
 }				t_minishell;
 
 /**

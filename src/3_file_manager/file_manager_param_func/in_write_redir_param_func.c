@@ -34,11 +34,12 @@ void	secundary_prompt(int fd, const char *delimitor)
 	free(line_read);
 }
 
-int	redir_in_write(int (**pipe_ptr)[2], int instr_index)
+int	redir_in_write(int instr_index, int (**pipe_ptr)[2], int *code_ptr)
 {
 	const char	*delimitor = get_instr_arg_elem(instr_index, 1);
 
 	printf("REDIR IN WRITE\n");
+	(void) code_ptr;
 	pipe(get_instr(instr_index)->fds);
 	secundary_prompt(get_instr(instr_index)->fds[1], delimitor);
 	close(get_instr(instr_index)->fds[1]);

@@ -28,11 +28,9 @@ void	print_cmd(size_t i)
 
 int	execute_cmd(size_t i)
 {
-	const t_instr *instr = get_instr(i);
+	// const t_instr *instr = get_instr(i);
 	
 	print_cmd(i);
-	if (instr->fds[0] == -1 || instr->fds[1] == -1)
-		return (msh_exception(1, "No such file or directory"));
 	return (1);
 }
 

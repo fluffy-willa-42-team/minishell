@@ -29,6 +29,7 @@ void	print_instr(size_t len, int type)
 		printf("        fd: [%d, %d],\n",
 			get_instr(ind)->fds[0],
 			get_instr(ind)->fds[1]);
+		printf("        err: %d,\n", get_instr(ind)->err);
 		printf("        arg: [\n");
 		arg = -1;
 		while (++arg < get_instr_arg(ind)->content_len)
