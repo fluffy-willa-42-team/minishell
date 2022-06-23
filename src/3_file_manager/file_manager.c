@@ -51,5 +51,5 @@ void	line_file_manager(int nb_instr)
 		close_fd(&pipe_ptr, 1);
 	}
 	printf("\e[0;36m0=====-----	STRUCTURE	-----=====0\n\e[0m");
-	print_instr(nb_instr, -1);
+	print_instr(nb_instr, 1);
 }

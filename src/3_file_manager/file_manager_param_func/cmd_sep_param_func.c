@@ -34,10 +34,16 @@ void	cmd_redirect(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	printf("CMD REDIRECT\n");
 	pipe(get_instr(instr_index)->fds);
-	if (get_instr(instr_index)->fds[1] == 1)
+	if ((**pipe_ptr)[1] == 1)
+	{
+		printf("PIPE GO BRRR\n");
 		(**pipe_ptr)[1] = get_instr(instr_index)->fds[1];
+	}
 	else
+	{
+		printf("PIPE BLOCKED %d\n", get_instr(instr_index)->fds[1]);
 		close(get_instr(instr_index)->fds[1]);
+	}
 	*pipe_ptr = &g_data.pipe_buf;
 	*code_ptr = &g_data.code_buf;
 	(**pipe_ptr)[0] = get_instr(instr_index)->fds[0];
