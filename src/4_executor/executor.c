@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/23 10:59:46 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/23 11:14:14 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	exit_minishell(int code, char *message);
 void	print_cmd(size_t i)
 {
 	size_t j = 0;
-	printf("%d => [%s", get_instr(i)->file_descriptor[0], get_instr_arg_elem(i, j));
+	printf("%d => [%s", get_instr(i)->fds[0], get_instr_arg_elem(i, j));
 	j++;
 	while (j < get_instr_arg(i)->content_len)
 		printf(", %s", get_instr_arg_elem(i, j++));
-	printf("] => %d\n", get_instr(i)->file_descriptor[1]);
+	printf("] => %d\n", get_instr(i)->fds[1]);
 }
 
 void	execute_cmd(size_t i)
@@ -30,7 +30,7 @@ void	execute_cmd(size_t i)
 	const t_instr *instr = get_instr(i);
 	
 	print_cmd(i);
-	if (instr->file_descriptor[0] == -1 || instr->file_descriptor[1] == -1)
+	if (instr->fds[0] == -1 || instr->fds[1] == -1)
 		exit_minishell(1, "No such file or directory");
 }
 

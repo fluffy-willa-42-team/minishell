@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_instr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:20:44 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/22 14:24:48 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/23 11:14:14 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	print_instr(size_t len, int type)
 		printf("    {\n");
 		printf("        type: %d,\n", get_instr(ind)->type);
 		printf("        fd: [%d, %d],\n",
-			get_instr(ind)->file_descriptor[0],
-			get_instr(ind)->file_descriptor[1]);
+			get_instr(ind)->fds[0],
+			get_instr(ind)->fds[1]);
 		printf("        arg: [\n");
 		arg = -1;
 		while (++arg < get_instr_arg(ind)->content_len)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/22 14:04:01 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/23 11:14:14 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	new_instr(t_parser_opt *opt, int type)
 	t_instr	new_instr;
 
 	new_instr.type = type;
-	new_instr.file_descriptor[0] = STDIN_FILENO;
-	new_instr.file_descriptor[1] = STDOUT_FILENO;
+	new_instr.fds[0] = STDIN_FILENO;
+	new_instr.fds[1] = STDOUT_FILENO;
 	if (opt->nb_instr >= get_instr_list()->content_len)
 	{
 		new_instr.arg = vec_init(sizeof(int));

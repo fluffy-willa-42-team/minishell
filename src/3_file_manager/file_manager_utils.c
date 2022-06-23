@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_manager_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:28:39 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/21 12:42:50 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/23 11:14:14 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	move_buf(int (**pipe_ptr)[2], int index, int instr_index)
 {
 	if ((**pipe_ptr)[index] != -2)
 	{
-		get_instr(instr_index)->file_descriptor[index] = (**pipe_ptr)[index];
+		get_instr(instr_index)->fds[index] = (**pipe_ptr)[index];
 		(**pipe_ptr)[index] = -2;
 	}
 }
