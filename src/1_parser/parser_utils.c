@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/23 11:14:14 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:11:07 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	new_instr(t_parser_opt *opt, int type)
 	new_instr.type = type;
 	new_instr.fds[0] = STDIN_FILENO;
 	new_instr.fds[1] = STDOUT_FILENO;
+	new_instr.err = 0;
 	if (opt->nb_instr >= get_instr_list()->content_len)
 	{
 		new_instr.arg = vec_init(sizeof(int));
