@@ -6,12 +6,14 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/23 10:23:02 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/23 10:59:46 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "vec_utils.h"
+
+void	exit_minishell(int code, char *message);
 
 void	print_cmd(size_t i)
 {
@@ -25,7 +27,11 @@ void	print_cmd(size_t i)
 
 void	execute_cmd(size_t i)
 {
+	const t_instr *instr = get_instr(i);
+	
 	print_cmd(i);
+	if (instr->file_descriptor[0] == -1 || instr->file_descriptor[1] == -1)
+		exit_minishell(1, "No such file or directory");
 }
 
 void	line_executor(void)
