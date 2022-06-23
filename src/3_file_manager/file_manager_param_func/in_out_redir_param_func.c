@@ -15,7 +15,7 @@
 /**
  * @brief 
 */
-int	redir_in_file(int instr_index, int (**pipe_ptr)[2], int *code_ptr)
+int	redir_in_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	const int	new_fd = open(get_instr_arg_elem(instr_index, 1), O_RDONLY);
 
@@ -30,7 +30,7 @@ int	redir_in_file(int instr_index, int (**pipe_ptr)[2], int *code_ptr)
  * @brief Will set the `fd` for the out file. /!\  We dont check the return
  *        value of `open(2)`, the executor will handle bad `fd`.
  */
-int	redir_out_file(int instr_index, int (**pipe_ptr)[2], int *code_ptr)
+int	redir_out_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	int	new_fd;
 
@@ -44,7 +44,7 @@ int	redir_out_file(int instr_index, int (**pipe_ptr)[2], int *code_ptr)
 	return (1);
 }
 
-int	redir_out_conca(int instr_index, int (**pipe_ptr)[2], int *code_ptr)
+int	redir_out_conca(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	int	new_fd;
 
