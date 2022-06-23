@@ -20,24 +20,23 @@
 # include "lib_str.h"
 # include "lib_put_fd.h"
 # include <fcntl.h>
-# include <errno.h>
 
 /* ************************************************************************** */
 
-typedef int	(*t_fd_manager_param)();
+typedef void	(*t_fd_manager_param)();
 
 /* ************************************************************************** */
 
 void	close_fd(int (**pipe_ptr)[2], int index);
 void	move_buf(int (**pipe_ptr)[2], int index, int instr_index);
 
-int	cmd_instr(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
-int	cmd_redirect(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
-int	cmd_separator(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
-int	redir_in_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
-int	redir_in_write(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
-int	redir_out_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
-int	redir_out_conca(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
+void	cmd_instr(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
+void	cmd_redirect(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
+void	cmd_separator(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
+void	redir_in_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
+void	redir_in_write(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
+void	redir_out_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
+void	redir_out_conca(int instr_index, int (**pipe_ptr)[2], int **code_ptr);
 
 /* ************************************************************************** */
 

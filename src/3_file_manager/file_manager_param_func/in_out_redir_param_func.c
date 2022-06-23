@@ -11,35 +11,35 @@
 /* ************************************************************************** */
 
 #include "file_manager.h"
+#include <errno.h>
 
 /**
  * @brief 
 */
-int	redir_in_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
+void	redir_in_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	int	new_fd;
 	
 	if (**code_ptr != 0)
-		return (1);
+		return ;
 	printf("REDIR IN FILE\n");
 	new_fd = open(get_instr_arg_elem(instr_index, 1), O_RDONLY);
 	if (new_fd == -1)
 		**code_ptr = errno;
 	close_fd(pipe_ptr, 0);
 	(**pipe_ptr)[0] = new_fd;
-	return (1);
 }
 
 /**
  * @brief Will set the `fd` for the out file. /!\  We dont check the return
  *        value of `open(2)`, the executor will handle bad `fd`.
  */
-int	redir_out_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
+void	redir_out_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	int	new_fd;
 
 	if (**code_ptr != 0)
-		return (1);
+		return ;
 	printf("REDIR OUT FILE\n");
 	new_fd = open(get_instr_arg_elem(instr_index, 1), O_WRONLY | O_TRUNC);
 	if (new_fd == -1 && errno == ENOENT)
@@ -48,15 +48,14 @@ int	redir_out_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 		**code_ptr = errno;
 	close_fd(pipe_ptr, 1);
 	(**pipe_ptr)[1] = new_fd;
-	return (1);
 }
 
-int	redir_out_conca(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
+void	redir_out_conca(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	int	new_fd;
 
 	if (**code_ptr != 0)
-		return (1);
+		return ;
 	printf("REDIR OUT CONCA\n");
 	new_fd = open(get_instr_arg_elem(instr_index, 1), O_WRONLY | O_APPEND);
 	if (new_fd == -1 && errno == ENOENT)
@@ -65,5 +64,4 @@ int	redir_out_conca(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 		**code_ptr = errno;
 	close_fd(pipe_ptr, 1);
 	(**pipe_ptr)[1] = new_fd;
-	return (1);
 }
