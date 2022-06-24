@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/24 13:24:29 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/24 14:21:43 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ void	execute_cmd(size_t i)
 	if (pid == 0)
 	{
 		print_cmd(i);
-		set_fd_to_std(get_instr(i)->fds[0], STDIN_FILENO);
-		set_fd_to_std(get_instr(i)->fds[1], STDOUT_FILENO);
 		if (get_instr(i)->err != 0)
 		{
-			printf("Error: %s\n", strerror(get_instr(i)->err));
+			fprintf(stderr, "Error: %s\n", strerror(get_instr(i)->err));
 			exit(get_instr(i)->err);
 		}
+		set_fd_to_std(get_instr(i)->fds[0], STDIN_FILENO);
+		set_fd_to_std(get_instr(i)->fds[1], STDOUT_FILENO);
 		if (cmd[0] == '/' || cmd[0] == '.')
 			execve(cmd, args, envp);
 		else if (exe_build_in(cmd, args, envp))
 			exit(0);
 		else
 			exe_normal(cmd, args, envp);
-		printf("error: command not found\n");
+		fprintf(stderr, "error: command not found\n");
 		exit(EX_NOTFOUND);
 	}
 	waitpid(pid, &status, 0);

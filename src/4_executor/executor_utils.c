@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:45:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/24 13:20:51 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/24 14:18:58 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	set_fd_to_std(int fd, int output)
 {
 	if (fd != output)
 	{
-		printf("%d => %d\n", fd, output);
+		fprintf(stderr, "%d => %d\n", fd, output);;
 		dup2(fd, output);
 		close(fd);
 	}

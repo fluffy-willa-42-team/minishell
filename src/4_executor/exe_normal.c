@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:50:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/24 12:32:15 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/24 14:18:30 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	exe_normal(char *cmd, char **args, char **envp)
 {
 	char *path = find_path(cmd);
 
-	printf("%s => %s\n", cmd, path);
+	fprintf(stderr, "%s => %s\n", cmd, path);
 	args[0] = path;
 	execve(path, args, envp);
 }
