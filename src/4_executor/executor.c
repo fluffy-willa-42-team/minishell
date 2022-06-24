@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/23 13:03:23 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/24 10:43:55 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include <string.h>
-// #include <sys/types.h>
 #include <sys/wait.h>
 
-void	exit_minishell(int code, char *message);
+int		exe_build_in(char *cmd, char **args, char **envp);
 
 void	print_cmd(size_t i)
 {
@@ -31,7 +30,9 @@ void	execute_cmd(size_t i)
 {
 	pid_t	pid;
 	int		status;
-	// const t_instr *instr = get_instr(i);
+	char	**envp = NULL;
+	char	**args = get_instr_arg(i)->buffer;
+	char	*cmd = get_instr_arg_elem(i, 0);
 	
 	pid = fork();
 	if (pid == 0)
@@ -42,6 +43,14 @@ void	execute_cmd(size_t i)
 			printf("Error: %s\n", strerror(get_instr(i)->err));
 			exit(get_instr(i)->err);
 		}
+		if (cmd[0] == '/' || cmd[0] == '.')
+			execve(cmd, args, envp);
+		else if (exe_build_in(cmd, args, envp))
+			(void) cmd;
+		// else
+		// 	exec_normal(cmd, args, envp);
+
+		// printf("Mmmhh command not found (%s)\n", get_instr_arg_elem(i, 0));
 		exit(0);
 	}
 	waitpid(pid, &status, 0);
