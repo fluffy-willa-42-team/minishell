@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/24 10:43:55 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/24 11:31:27 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <sys/wait.h>
 
 int		exe_build_in(char *cmd, char **args, char **envp);
+void	exe_normal(char *cmd, char **args, char **envp);
 
 void	print_cmd(size_t i)
 {
@@ -47,8 +48,8 @@ void	execute_cmd(size_t i)
 			execve(cmd, args, envp);
 		else if (exe_build_in(cmd, args, envp))
 			(void) cmd;
-		// else
-		// 	exec_normal(cmd, args, envp);
+		else
+			exe_normal(cmd, args, envp);
 
 		// printf("Mmmhh command not found (%s)\n", get_instr_arg_elem(i, 0));
 		exit(0);
