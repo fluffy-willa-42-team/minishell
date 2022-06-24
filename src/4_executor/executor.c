@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/24 12:40:09 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/24 13:24:29 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int		exe_build_in(char *cmd, char **args, char **envp);
 void	exe_normal(char *cmd, char **args, char **envp);
+void	set_fd_to_std(int fd, int output);
 
 void	print_cmd(size_t i)
 {
@@ -40,6 +41,8 @@ void	execute_cmd(size_t i)
 	if (pid == 0)
 	{
 		print_cmd(i);
+		set_fd_to_std(get_instr(i)->fds[0], STDIN_FILENO);
+		set_fd_to_std(get_instr(i)->fds[1], STDOUT_FILENO);
 		if (get_instr(i)->err != 0)
 		{
 			printf("Error: %s\n", strerror(get_instr(i)->err));
@@ -52,7 +55,7 @@ void	execute_cmd(size_t i)
 		else
 			exe_normal(cmd, args, envp);
 		printf("error: command not found\n");
-		exit(EKEYEXPIRED);
+		exit(EX_NOTFOUND);
 	}
 	waitpid(pid, &status, 0);
 	vec_delete(&g_data.tmp);

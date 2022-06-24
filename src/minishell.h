@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/23 13:10:36 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/24 13:24:11 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define REDIR_IN_WRITE			5
 # define REDIR_OUT_FILE			6
 # define REDIR_OUT_CONCA		7
+
+// https://github.com/bminor/bash/blob/f3a35a2d601a55f337f8ca02a541f8c033682247/shell.h#L66
+# define EX_NOTFOUND            127
 
 /* ************************************************************************** */
 
