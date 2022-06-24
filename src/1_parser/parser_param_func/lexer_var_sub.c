@@ -40,7 +40,11 @@ int	add_varsub(char *line, int index, t_parser_opt *opt)
 	{
 		if (line[index + 1] && line[index + 1] == '?')
 		{
-			vec_fill(get_line(), DEFAULT, ft_itoa(g_data.last_exit_code));
+			value = ft_itoa(g_data.last_exit_code);
+			if (!value)
+				exit(1);//TODO
+			vec_fill(get_line(), DEFAULT, value);
+			free(value);
 			return (2);
 		}
 		return (add_char(opt, "$"));
