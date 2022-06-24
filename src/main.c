@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/24 13:22:51 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/24 14:28:28 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(void)
 		{
 			g_data.cmd = line_read;
 			int nb_instr = line_parser(line_read);
-			// line_pars_check(nb_instr);
+			// line_pars_check(nb_instr);//TODO
 			line_file_manager(nb_instr);
 			line_executor();
 			add_history(line_read);
@@ -57,5 +57,6 @@ int	main(void)
 	}
 	free(line_read);
 	free_g_data();
+	printf("\n");
 	return (0);
 }
