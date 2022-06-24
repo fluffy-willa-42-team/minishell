@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:50:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/24 12:26:12 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/24 12:32:15 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,10 @@ char *find_path(char *cmd)
 			vec_fill(vec, FIXED_LEN, path + i, get_path_len(path, i));
 			vec_fill(vec, MULTI, 2, "/", cmd);
 			if (access((char *) vec->buffer, X_OK) == 0)
-			{
-				printf("=> %s\n", (char *) vec->buffer);
-				break ;
-			}
+				return ((char *) vec->buffer);
 		}
 	}
-	
-
-	
 	vec_delete(vec);
-	
-	(void) cmd;
-	(void) vec;
-	(void) path;
 	return (NULL);
 }
 
@@ -59,8 +49,7 @@ void	exe_normal(char *cmd, char **args, char **envp)
 {
 	char *path = find_path(cmd);
 
-	(void) path;
-	(void) cmd;
-	(void) args;
-	(void) envp;
+	printf("%s => %s\n", cmd, path);
+	args[0] = path;
+	execve(path, args, envp);
 }

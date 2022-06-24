@@ -6,13 +6,14 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/24 11:31:27 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/24 12:40:09 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include <string.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 int		exe_build_in(char *cmd, char **args, char **envp);
 void	exe_normal(char *cmd, char **args, char **envp);
@@ -47,14 +48,14 @@ void	execute_cmd(size_t i)
 		if (cmd[0] == '/' || cmd[0] == '.')
 			execve(cmd, args, envp);
 		else if (exe_build_in(cmd, args, envp))
-			(void) cmd;
+			exit(0);
 		else
 			exe_normal(cmd, args, envp);
-
-		// printf("Mmmhh command not found (%s)\n", get_instr_arg_elem(i, 0));
-		exit(0);
+		printf("error: command not found\n");
+		exit(EKEYEXPIRED);
 	}
 	waitpid(pid, &status, 0);
+	vec_delete(&g_data.tmp);
 	g_data.last_exit_code = WEXITSTATUS(status);
 }
 
