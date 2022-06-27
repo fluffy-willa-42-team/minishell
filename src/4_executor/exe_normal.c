@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:50:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 09:27:01 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 09:58:16 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char *find_path(char *cmd)
 	t_vec *vec = &g_data.tmp;
 	int		len = ft_strlen(path);
 	
+	if (ft_strlen(cmd) == 0)
+		return (NULL);
 	for (int i = 0; i < len; i++)
 	{
 		if (get_path_len(path, i) != 0)
