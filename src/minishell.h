@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/27 10:54:53 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:33:00 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ typedef struct s_minishell
 	t_vec	lexed_command;
 	t_vec	lexed_instr;
 	t_vec	tmp;
-    int     last_exit_code;
-    char    *cmd;
-    int 	pipe_buf[2];
-	int	 	code_buf;
+	t_vec	env;
+	t_vec	env_s;
+	int		last_exit_code;
+	char	*cmd;
+	int		pipe_buf[2];
+	int		code_buf;
 }				t_minishell;
 
 /**
