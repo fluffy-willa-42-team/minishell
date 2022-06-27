@@ -6,11 +6,12 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:18:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 09:25:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 09:42:47 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_manager.h"
+#include <errno.h>
 
 /**
  * @brief Will change the pipe_ptr to the pipe pointer in the command
@@ -35,7 +36,12 @@ void	cmd_redirect(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	if (DEBUG_PRINT)
 		printf("CMD REDIRECT\n");
-	pipe(get_instr(instr_index)->fds);
+	int res = pipe(get_instr(instr_index)->fds);
+	if (res != 0)
+	{
+		get_instr(instr_index)->err = errno;
+		return ;
+	}
 	if ((**pipe_ptr)[1] == 1)
 		(**pipe_ptr)[1] = get_instr(instr_index)->fds[1];
 	else
