@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/27 14:47:30 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/27 14:55:37 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,14 @@ void	init_env(char **env)
 		vec_new_env_s(env[index]);
 		index++;
 	}
-	for (int i = 0; i < index; i++)
+	for (size_t i = 0; i < g_data.env_s.content_len; i++)
 	{
 		char *tmp = vec_get_env_str(&g_data.env_s, i);
 		if (tmp)
-			printf("%2d]{%2d}[%s]\n", i, vec_get_t_env(&g_data.env_s, i)->env_len, tmp);
+			printf("%2lu]{%2d}[%s]\n", i, vec_get_t_env(&g_data.env_s, i)->env_len, tmp);
 		else
 			printf("FUK!\n");
 	}
+	vec_pop(&g_data.env_s, 3);
+
 }
