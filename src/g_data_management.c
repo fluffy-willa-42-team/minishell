@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   g_data_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:20:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 10:08:27 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 14:38:19 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "vec_utils.h"
+#include "env_utils.h"
 
 /**
  * @brief Init the global var with all data.
  */
-void	init_data(void)
+void	init_data(char **env)
 {
 	g_data.env_path = NULL;
 	g_data.lexed_command = vec_init(sizeof(char));
@@ -29,6 +30,7 @@ void	init_data(void)
 	g_data.code_buf = 0;
 	g_data.pipe_buf[0] = -2;
 	g_data.pipe_buf[1] = -2;
+	init_env(env);
 }
 
 static int	change_str_to_int(char **input, int *output)

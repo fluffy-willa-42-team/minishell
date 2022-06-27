@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 10:48:06 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:55:57 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	line_pars_check(int nb_instr);
 void	line_file_manager(int nb_instr);
 void	line_executor(void);
 
-void	init_data(void);
+void	init_data(char **env);
 void	empty_g_data(void);
 void	free_g_data(void);
 
@@ -32,11 +32,13 @@ t_minishell	g_data;
 /**
  * @brief Inits Data and Start the lexed_command
  */
-int	main(void)
+int	main(int ac, char **av, char **env)
 {
 	char	*line_read;
 
-	init_data();
+	(void)ac;
+	(void)av;
+	init_data(env);
 	set_sigaction();
 	setbuf(stdout, NULL);
 	line_read = readline(PROMPT_START);
