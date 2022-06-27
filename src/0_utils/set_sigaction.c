@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:08:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 11:25:57 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 09:25:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ static void	msh_check_sigaction(int sigaction_return, char *name)
 	(void) name;
 	if (sigaction_return != -1)
 	{
-		// if (MSH_DEBUG) printf("%s Ok\n", name);
+		// if (DEBUG_PRINT) printf("%s Ok\n", name);
 		return ;
 	}
-	// if (MSH_DEBUG)
+	// if (DEBUG_PRINT)
 	// 	printf("%s [KO]: %d !!\n"
 	// 		"%s\n",
 	// 		name,

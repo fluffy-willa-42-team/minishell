@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:18:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/23 11:14:45 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 09:25:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
  */
 void	cmd_instr(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
-	printf("CMD INSTR\n");
+	if (DEBUG_PRINT)
+		printf("CMD INSTR\n");
 	move_buf(pipe_ptr, 0, instr_index);
 	move_buf(pipe_ptr, 1, instr_index);
 	get_instr(instr_index)->err = **code_ptr;
@@ -32,18 +33,13 @@ void	cmd_instr(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
  */
 void	cmd_redirect(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
-	printf("CMD REDIRECT\n");
+	if (DEBUG_PRINT)
+		printf("CMD REDIRECT\n");
 	pipe(get_instr(instr_index)->fds);
 	if ((**pipe_ptr)[1] == 1)
-	{
-		printf("PIPE GO BRRR\n");
 		(**pipe_ptr)[1] = get_instr(instr_index)->fds[1];
-	}
 	else
-	{
-		printf("PIPE BLOCKED %d\n", get_instr(instr_index)->fds[1]);
 		close(get_instr(instr_index)->fds[1]);
-	}
 	*pipe_ptr = &g_data.pipe_buf;
 	*code_ptr = &g_data.code_buf;
 	(**pipe_ptr)[0] = get_instr(instr_index)->fds[0];
@@ -54,7 +50,8 @@ void	cmd_redirect(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
  */
 void	cmd_separator(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
-	printf("CMD SEPARATOR\n");
+	if (DEBUG_PRINT)
+		printf("CMD SEPARATOR\n");
 	(void) instr_index;
 	*pipe_ptr = &g_data.pipe_buf;
 	*code_ptr = &g_data.code_buf;

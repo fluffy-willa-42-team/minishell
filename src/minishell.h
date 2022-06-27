@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/24 13:24:11 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 09:26:24 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 
 // https://github.com/bminor/bash/blob/f3a35a2d601a55f337f8ca02a541f8c033682247/shell.h#L66
 # define EX_NOTFOUND            127
+
+
+# ifndef DEBUG_PRINT
+#  define DEBUG_PRINT 0
+# endif
+
 
 /* ************************************************************************** */
 

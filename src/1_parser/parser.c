@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/22 14:05:08 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/27 09:25:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,12 @@ int	line_parser(char *line)
 	i = -1;
 	while (++i < get_instr_list()->content_len)
 		vec_cast(get_instr_arg(i), sizeof(char *), change_int_to_ptr);
-	printf("\e[0;36m0=====-----	BUFFER		-----=====0\n\e[0m");
-	vec_print(get_line());
-	printf("\e[0;36m0=====-----	STRUCTURE	-----=====0\n\e[0m");
-	print_instr(opt.nb_instr, -1);
+	if (DEBUG_PRINT)
+	{
+		printf("\e[0;36m0=====-----	BUFFER		-----=====0\n\e[0m");
+		vec_print(get_line());
+		printf("\e[0;36m0=====-----	STRUCTURE	-----=====0\n\e[0m");
+		print_instr(opt.nb_instr, -1);
+	}
 	return (opt.nb_instr);
 }

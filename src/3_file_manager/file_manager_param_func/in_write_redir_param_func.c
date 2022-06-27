@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:18:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/23 11:14:14 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 09:25:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	redir_in_write(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 	const char	*delimitor = get_instr_arg_elem(instr_index, 1);
 	int	safety;
 
-	printf("REDIR IN WRITE\n");
+	if (DEBUG_PRINT)
+		printf("REDIR IN WRITE\n");
 	(void) code_ptr;
 	safety = pipe(get_instr(instr_index)->fds);
 	if (safety == -1)
