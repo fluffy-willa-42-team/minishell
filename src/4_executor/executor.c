@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 12:55:42 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 13:04:47 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	execute_cmd(size_t i)
 		if (DEBUG_PRINT)
 			printf("Executable\n");
 		execve(cmd, args, envp);
+		printf("%d: %s\n", errno, strerror(errno));
 	}
 	else if (exe_build_in(cmd, args, envp))
 		exit(0);
