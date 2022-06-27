@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 10:08:21 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:19:02 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	execute_cmd(size_t i)
 		exit(0);
 	else
 		exe_normal(cmd, args, envp);
+	if (!cmd)
+		exit(0);
 	fprintf(stderr, "error: command not found\n");
 	exit(EX_NOTFOUND);
 }
