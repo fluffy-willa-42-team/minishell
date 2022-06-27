@@ -6,11 +6,11 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:50:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 09:58:16 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:56:00 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
+#include "minishell.h"
 #include "lib_str.h"
 
 int	get_path_len(char *cmd, int i)
@@ -30,6 +30,8 @@ char *find_path(char *cmd)
 	t_vec *vec = &g_data.tmp;
 	int		len = ft_strlen(path);
 	
+	if (DEBUG_PRINT)
+		printf("NORMAL\n");
 	if (ft_strlen(cmd) == 0)
 		return (NULL);
 	for (int i = 0; i < len; i++)

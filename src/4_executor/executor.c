@@ -6,11 +6,12 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 10:19:02 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:55:42 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
+#include "minishell.h"
+#include "vec_utils.h"
 #include <string.h>
 #include <sys/wait.h>
 #include <errno.h>
@@ -46,7 +47,11 @@ void	execute_cmd(size_t i)
 	set_fd_to_std(get_instr(i)->fds[0], STDIN_FILENO);
 	set_fd_to_std(get_instr(i)->fds[1], STDOUT_FILENO);
 	if (cmd && (cmd[0] == '/' || cmd[0] == '.'))
+	{
+		if (DEBUG_PRINT)
+			printf("Executable\n");
 		execve(cmd, args, envp);
+	}
 	else if (exe_build_in(cmd, args, envp))
 		exit(0);
 	else
