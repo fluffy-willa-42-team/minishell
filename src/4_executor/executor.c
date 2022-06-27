@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/24 14:21:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 09:14:08 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,46 +29,47 @@ void	print_cmd(size_t i)
 	printf("] => %d\n", get_instr(i)->fds[1]);
 }
 
-void	execute_cmd(size_t i)
+void	execute_cmd(size_t i, pid_t pid)
 {
-	pid_t	pid;
-	int		status;
 	char	**envp = NULL;
 	char	**args = get_instr_arg(i)->buffer;
 	char	*cmd = get_instr_arg_elem(i, 0);
-	
-	pid = fork();
-	if (pid == 0)
+
+	print_cmd(i);
+	if (get_instr(i)->err != 0)
 	{
-		print_cmd(i);
-		if (get_instr(i)->err != 0)
-		{
-			fprintf(stderr, "Error: %s\n", strerror(get_instr(i)->err));
-			exit(get_instr(i)->err);
-		}
-		set_fd_to_std(get_instr(i)->fds[0], STDIN_FILENO);
-		set_fd_to_std(get_instr(i)->fds[1], STDOUT_FILENO);
-		if (cmd[0] == '/' || cmd[0] == '.')
-			execve(cmd, args, envp);
-		else if (exe_build_in(cmd, args, envp))
-			exit(0);
-		else
-			exe_normal(cmd, args, envp);
-		fprintf(stderr, "error: command not found\n");
-		exit(EX_NOTFOUND);
+		fprintf(stderr, "Error: %s\n", strerror(get_instr(i)->err));
+		exit(get_instr(i)->err);
 	}
-	waitpid(pid, &status, 0);
-	vec_delete(&g_data.tmp);
-	g_data.last_exit_code = WEXITSTATUS(status);
+	set_fd_to_std(get_instr(i)->fds[0], STDIN_FILENO);
+	set_fd_to_std(get_instr(i)->fds[1], STDOUT_FILENO);
+	if (cmd[0] == '/' || cmd[0] == '.')
+		execve(cmd, args, envp);
+	else if (exe_build_in(cmd, args, envp))
+		exit(0);
+	else
+		exe_normal(cmd, args, envp);
+	fprintf(stderr, "error: command not found\n");
+	exit(EX_NOTFOUND);
 }
 
 void	line_executor(void)
 {
+	pid_t	pid;
+	int		status;
+
 	printf("\e[0;36m0=====-----	EXECUTION	-----=====0\n\e[0m");
 	for (size_t i = 0; i < get_instr_list()->content_len; i++)
 	{
 		if (get_instr(i)->type == 1)
-			execute_cmd(i);
+		{
+			pid = fork();
+			if (pid == 0)
+				execute_cmd(i, pid);
+			waitpid(pid, &status, 0);
+			vec_delete(&g_data.tmp);
+			g_data.last_exit_code = WEXITSTATUS(status);
+		}
 	}
 	printf("\e[0;36m0=====-----	END		-----=====0\n\e[0m");
 }
