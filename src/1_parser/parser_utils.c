@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/23 13:11:07 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 11:13:44 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	add_arg(t_parser_opt *opt)
 		vec_add_int(get_instr_arg(opt->nb_instr - 1), opt->index_line - 1);
 	else
 		vec_add_int(get_instr_arg(opt->index_instr), opt->index_line - 1);
-	opt->option = ~(NEW_INSTR | NEW_ARG) & opt->option;
+	opt->option &= ~(NEW_INSTR | NEW_ARG);
 	if (!(opt->option & CHANGE_INSTR) || opt->index_instr == -1)
 		return ;
 	while (opt->index_instr >= 0 && get_instr(opt->index_instr)->type != 1)
@@ -36,7 +36,7 @@ void	add_arg(t_parser_opt *opt)
 			opt->option |= NEW_CMD;
 		opt->index_instr--;
 	}
-	opt->option = ~(CHANGE_INSTR) & opt->option;
+	opt->option &= ~(CHANGE_INSTR);
 }
 
 void	new_instr(t_parser_opt *opt, int type)
@@ -58,7 +58,7 @@ void	new_instr(t_parser_opt *opt, int type)
 	opt->nb_instr++;
 	add_arg(opt);
 	opt->index_instr = -1;
-	opt->option = ~(NEW_INSTR | NEW_CMD) & opt->option;
+	opt->option &= ~(NEW_INSTR | NEW_CMD);
 }
 
 void	add_instr_or_arg(t_parser_opt *opt)
@@ -67,7 +67,7 @@ void	add_instr_or_arg(t_parser_opt *opt)
 	{
 		opt->index_instr = -1;
 		new_instr(opt, 1);
-		opt->option = ~(NEW_CMD) & opt->option;
+		opt->option &= ~(NEW_CMD);
 	}
 	else if (opt->option & NEW_INSTR)
 		new_instr(opt, 1);

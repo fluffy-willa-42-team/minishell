@@ -57,6 +57,8 @@ int	add_varsub(char *line, int index, t_parser_opt *opt)
 		vec_fill(get_line(), DEFAULT, value);
 		opt->index_line += ft_strlen(value);
 	}
+	else
+		opt->option |= EMPTY_VAR;
 	return (len + 1);
 }
 
@@ -72,8 +74,20 @@ int	add_varsub(char *line, int index, t_parser_opt *opt)
  */
 int	varsub(char *line, int index, t_parser_opt *opt)
 {
-	opt->index_line++;
+	int	temp1;
+	int	temp2;
+	int	len_to_skip;
+	
+	temp1 = opt->index_line + 1;
+	len_to_skip = add_varsub(line, index, opt);
+	if (opt->option & EMPTY_VAR)
+	{
+		opt->option &= ~(EMPTY_VAR);
+		return (len_to_skip);
+	}
+	temp2 = opt->index_line;
+	opt->index_line = temp1;
 	add_instr_or_arg(opt);
-	opt->index_line--;
-	return (add_varsub(line, index, opt));
+	opt->index_line = temp2;
+	return (len_to_skip);
 }
