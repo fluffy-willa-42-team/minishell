@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/27 14:55:37 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/27 16:15:10 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,48 @@ char	*vec_get_env_str(t_vec *vec, int index)
 	return ((char *)vec_get_t_env(vec, index)->content.buffer);
 }
 
+void	print_env(void)
+{
+	for (size_t i = 0; i < 10; i++)
+	{
+		char *tmp = vec_get_env_str(&g_data.env_s, i);
+		if (tmp)
+			printf("%2lu]{%2d}[%s]\n", i, vec_get_t_env(&g_data.env_s, i)->env_len, tmp);
+		else
+			printf("FUK!\n");
+	}
+	printf("\n");
+}
+
+/**
+ * @brief Will destroy the env vector and pop.
+ *        WARN! If the content dont exist will segfault !! //TODO check 
+ */
+t_vec	*env_pop(t_vec *vec, int index)
+{
+	vec_destroy(&vec_get_t_env(vec, index)->content);
+	return (vec_pop(vec, index));
+}
+
+/**
+ * @brief Will erase all content and set `token` and `env_len` to `0`.
+ */
+void	env_unset(int index)
+{
+	t_env *env;
+
+	env = vec_get_t_env(&g_data.env_s, index);
+	vec_delete(&env->content);
+	env->env_len = 0;
+	env->token = 0;
+}
+
+/**
+ * @brief If the `new_elem` exit will erase the content. If `new_elem` dont exist will
+ *        find a enmpty env_t or create a new one.
+ */
+// t_vec	*env_set(`new_elem`)
+
 void	init_env(char **env)
 {
 	int	index;
@@ -66,14 +108,9 @@ void	init_env(char **env)
 		vec_new_env_s(env[index]);
 		index++;
 	}
-	for (size_t i = 0; i < g_data.env_s.content_len; i++)
-	{
-		char *tmp = vec_get_env_str(&g_data.env_s, i);
-		if (tmp)
-			printf("%2lu]{%2d}[%s]\n", i, vec_get_t_env(&g_data.env_s, i)->env_len, tmp);
-		else
-			printf("FUK!\n");
-	}
-	vec_pop(&g_data.env_s, 3);
-
+	print_env();
+	env_pop(&g_data.env_s, 3);
+	env_unset(2);
+	env_unset(3);
+	print_env();
 }
