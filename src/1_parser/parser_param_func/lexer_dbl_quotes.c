@@ -34,7 +34,10 @@ static int	add_dblqot(char *line, int index, t_parser_opt *opt)
 				i++;
 		}
 		else if (line[index + i] == '$')
+		{
 			i += add_varsub(line, index + i, opt) - 1;
+			opt->option = opt->option & ~(EMPTY_VAR);
+		}
 		else
 			add_char(opt, &line[index + i]);
 	}

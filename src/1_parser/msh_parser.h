@@ -23,10 +23,11 @@
 
 /* ************************************************************************** */
 
-# define NEW_INSTR		0b0001
-# define NEW_ARG		0b0010
-# define CHANGE_INSTR	0b0100
-# define NEW_CMD		0b1000
+# define NEW_INSTR		0b00001
+# define NEW_ARG		0b00010
+# define CHANGE_INSTR	0b00100
+# define NEW_CMD		0b01000
+# define EMPTY_VAR		0b10000
 
 typedef struct s_parser_opt
 {
