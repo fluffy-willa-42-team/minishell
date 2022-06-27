@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:18:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 09:42:47 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 09:43:35 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	cmd_redirect(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 	int res = pipe(get_instr(instr_index)->fds);
 	if (res != 0)
 	{
-		get_instr(instr_index)->err = errno;
+		(**code_ptr) = errno;
 		return ;
 	}
 	if ((**pipe_ptr)[1] == 1)
