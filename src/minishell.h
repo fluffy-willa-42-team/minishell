@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/27 09:26:24 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/27 09:28:59 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 
 # ifndef DEBUG_PRINT
-#  define DEBUG_PRINT 0
+#  define DEBUG_PRINT 1
 # endif
 
 
