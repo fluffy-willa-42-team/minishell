@@ -6,12 +6,13 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/28 14:34:28 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/28 14:53:55 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec_utils.h"
 #include "env_utils.h"
+#include "lib_str.h"
 
 /**
  * this algorithm (k=33) was first reported by dan bernstein many years
@@ -39,6 +40,18 @@ unsigned long	djb2_hash(char *str, int len)
 	return (hash);
 }
 
+/**
+ * Convert unix env structure to t_env structure.
+ * First fill the vec with `str`, find the var name length and hash it.
+ * 
+ * EXEMPLE
+ *    unix -> TEST=UwU Be Gentle
+ *   t_env -> {
+ *              token:   6384537573UL,
+ *              env_len: 4,
+ *              t_vec { buff->"TEST=UwU Be Gentle" },
+ *            }
+ */
 void	sysenv_to_t_env(char *str)
 {
 	t_env	new_env;
@@ -61,6 +74,32 @@ void	sysenv_to_t_env(char *str)
 	if (!vec_add(&g_data.env_s, &new_env))
 	{
 		printf("sysenv_to_t_env fail to add new env");
+		exit (1);//TODO
+	}
+}
+
+void	vec_add_new_env(char *name, char *content)
+{
+	t_env	new_env;
+
+	if (!name || ft_strchr(name, 'c'))
+	{
+		printf ("vec_add_new_env NULL name OR `=`find in name\n");
+		exit(1);//TODO
+	}
+	new_env.content = vec_init(sizeof(char));
+	if (!vec_fill(&new_env.content, MULTI, 3, name, "=", content))
+	{
+		printf("vec_add_new_env fail to write new env");
+		exit (1);//TODO
+	}
+	new_env.env_len = 0;
+	while (name[new_env.env_len] && name[new_env.env_len] != '=')
+		new_env.env_len++;
+	new_env.token = djb2_hash(name, new_env.env_len);
+	if (!vec_add(&g_data.env_s, &new_env))
+	{
+		printf("vec_add_new_env fail to add new env");
 		exit (1);//TODO
 	}
 }
@@ -178,6 +217,11 @@ void	init_env(char **env)
 	print_env();
 	if (env_get("PWD"))
 		printf("%s\n", (char *)(env_get("PWD")->content.buffer));
+	else
+		printf("NULL!\n");
+	vec_add_new_env("UWU", "123");
+	if (env_get("UWU"))
+		printf("%s\n", (char *)(env_get("UWU")->content.buffer));
 	else
 		printf("NULL!\n");
 }
