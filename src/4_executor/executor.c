@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 13:04:47 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 09:12:38 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,32 @@ int		exe_build_in(char *cmd, char **args, char **envp);
 void	exe_normal(char *cmd, char **args, char **envp);
 void	set_fd_to_std(int fd, int output);
 
-void	print_cmd(size_t i)
+// void	print_cmd(size_t i)
+// {
+// 	if (!DEBUG_PRINT)
+// 		return ;
+// 	size_t j = 0;
+// 	printf("%d => [%s", get_instr(i)->fds[0], get_instr_arg_elem(i, j));
+// 	j++;
+// 	while (j < get_instr_arg(i)->content_len)
+// 		printf(", %s", get_instr_arg_elem(i, j++));
+// 	printf("] => %d\n", get_instr(i)->fds[1]);
+// }
+
+void	print_cmd(char *cmd, char **args)
 {
 	if (!DEBUG_PRINT)
 		return ;
-	size_t j = 0;
-	printf("%d => [%s", get_instr(i)->fds[0], get_instr_arg_elem(i, j));
-	j++;
-	while (j < get_instr_arg(i)->content_len)
-		printf(", %s", get_instr_arg_elem(i, j++));
-	printf("] => %d\n", get_instr(i)->fds[1]);
+	printf("%s: [", cmd);
+	int i = 0;
+	while (args[i])
+	{
+		printf("%s, ", args[i]);
+		i++;
+	}
+	printf("]\n");
 }
+
 
 void	execute_cmd(size_t i)
 {
@@ -38,29 +53,31 @@ void	execute_cmd(size_t i)
 	char	**args = get_instr_arg(i)->buffer;
 	char	*cmd = get_instr_arg_elem(i, 0);
 
-	print_cmd(i);
+	printf("%lu %lu\n", get_instr_arg(i)->content_len, get_instr_arg(i)->len);
+	vec_print(get_instr_arg(i));
+	print_cmd(cmd, args);
 	if (get_instr(i)->err != 0)
 	{
-		fprintf(stderr, "Error: %s\n", strerror(get_instr(i)->err));
+		fprintf(stderr, "%s: %s\n", g_data.cmd, strerror(get_instr(i)->err));
 		exit(get_instr(i)->err);
 	}
 	set_fd_to_std(get_instr(i)->fds[0], STDIN_FILENO);
 	set_fd_to_std(get_instr(i)->fds[1], STDOUT_FILENO);
 	if (cmd && (cmd[0] == '/' || cmd[0] == '.'))
 	{
-		if (DEBUG_PRINT)
-			printf("Executable\n");
 		execve(cmd, args, envp);
-		printf("%d: %s\n", errno, strerror(errno));
+		fprintf(stderr, "%s: %s\n", g_data.cmd, strerror(errno));
+		exit(EX_NOTFOUND);
 	}
 	else if (exe_build_in(cmd, args, envp))
 		exit(0);
 	else
+	{
 		exe_normal(cmd, args, envp);
-	if (!cmd)
-		exit(0);
-	fprintf(stderr, "error: command not found\n");
-	exit(EX_NOTFOUND);
+		fprintf(stderr, "%s: %s\n", g_data.cmd, "command not found");
+		exit(EX_NOTFOUND);
+	}
+	exit(0);
 }
 
 void	line_executor(void)
