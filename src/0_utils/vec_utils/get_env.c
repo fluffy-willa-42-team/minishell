@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.h                                        :+:      :+:    :+:   */
+/*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 11:17:09 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/28 13:22:30 by mahadad          ###   ########.fr       */
+/*   Created: 2022/06/28 14:30:07 by mahadad           #+#    #+#             */
+/*   Updated: 2022/06/28 14:30:20 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_UTILS_H
-# define ENV_UTILS_H
-
-#include "minishell.h"
 #include "vec_utils.h"
+#include "minishell.h"
 
-typedef struct s_env {
-	unsigned long	token;
-	int				env_len;
-	t_vec			content;
-}				t_env;
+t_env	*vec_get_t_env(int index)
+{
+	return ((t_env *)vec_get(&g_data.env_s, index));
+}
 
-void	init_env(char **env);
-
-#endif /* ENV_UTILS_H */
+char	*vec_get_env_str(int index)
+{
+	return ((char *)vec_get_t_env(index)->content.buffer);
+}
