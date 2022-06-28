@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/28 14:53:55 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/28 15:30:30 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,24 @@ void	sysenv_to_t_env(char *str)
 	}
 }
 
+/**
+ * Add new t_env structure.
+ * 
+ * WARN if there a `=` in the `name` will return error.
+ * 
+ * EXEMPLE
+ *   new("TEST", "UwU Be Gentle");
+ *   t_env -> {
+ *              token:   6384537573UL,
+ *              env_len: 4,
+ *              t_vec { buff->"TEST=UwU Be Gentle" },
+ *            }
+ */
 void	vec_add_new_env(char *name, char *content)
 {
 	t_env	new_env;
 
-	if (!name || ft_strchr(name, 'c'))
+	if (!name || ft_strchr(name, '='))
 	{
 		printf ("vec_add_new_env NULL name OR `=`find in name\n");
 		exit(1);//TODO
@@ -106,11 +119,22 @@ void	vec_add_new_env(char *name, char *content)
 
 void	print_env(void)
 {
-	for (size_t i = 0; i < 10; i++)
+	setbuf(stdout, NULL);
+	for (size_t i = 0; i < g_data.env_s.content_len; i++)
 	{
 		char *tmp = vec_get_env_str(i);
 		if (tmp)
-			printf("%2lu]{%2d}[%-20lu[%s]\n", i, vec_get_t_env(i)->env_len, vec_get_t_env(i)->token, tmp);
+		{
+			printf("[%2lu]{%2d}(%-20lu) ", i, vec_get_t_env(i)->env_len, vec_get_t_env(i)->token);
+			int tmp_len = ft_strlen(tmp);
+			int write_len = tmp_len;
+			if (tmp_len > 64)
+				write_len = 62;
+			write(1, tmp, write_len);
+			if (tmp_len > 64)
+				write(1, "..", 2);
+			write(1, "\n", 1);
+		}
 		else
 			printf("FUK!\n");
 	}
@@ -205,23 +229,54 @@ void	init_env(char **env)
 
 	index = 0;
 	g_data.env_s = vec_init(sizeof(t_env));
+	g_data.env_s.len = 32;
+	printf("INFO g_data [%lu][%lu]\n", g_data.env_s.size, g_data.env_s.len);
 
 	while (env[index])
 	{
 		sysenv_to_t_env(env[index]);
 		index++;
 	}
+	printf("\e[0;36m0=====-----	T_ENV	-----=====0\n\e[0m");
 	print_env();
 	env_pop(&g_data.env_s, 3);
 	env_unset(2);
+	printf("\e[0;36m0=====-----	POP UNSET TEST	-----=====0\n\e[0m");
 	print_env();
+	printf("\e[0;36m0=====-----	GET TEST	-----=====0\n\e[0m");
 	if (env_get("PWD"))
 		printf("%s\n", (char *)(env_get("PWD")->content.buffer));
 	else
 		printf("NULL!\n");
+	printf("\e[0;36m0=====-----	ADD TEST	-----=====0\n\e[0m");
 	vec_add_new_env("UWU", "123");
+	vec_add_new_env("UWU4", "123");
+	vec_add_new_env("UWU44", "123");
+	vec_add_new_env("UWU444", "123");
+	vec_add_new_env("UWU4443", "123");
+	vec_add_new_env("UWU44433", "123");
+	vec_add_new_env("UWU444333", "123");
+	vec_add_new_env("UWU4443332", "123");
+	vec_add_new_env("UWU44433322", "123");
+	vec_add_new_env("UWU444333222", "123");
+	vec_add_new_env("UWU4443332222", "123");
+	vec_add_new_env("UWU4443332222s", "123");
+	vec_add_new_env("UWU444333222s", "123");
+	vec_add_new_env("UWU44433322s", "123");
+	vec_add_new_env("UWU4443332s", "123");
+	vec_add_new_env("UWU444333s", "123");
+	vec_add_new_env("UWU44433s", "123");
+	vec_add_new_env("UWU4443s", "123");
+	vec_add_new_env("UWU444s", "123");
+	vec_add_new_env("UWU44s", "123");
+	vec_add_new_env("UWU4s", "123");
+	vec_add_new_env("UWUs", "123");
+	vec_add_new_env("UWs", "123");
+	vec_add_new_env("UW", "123");
+	vec_add_new_env("U", "123");
 	if (env_get("UWU"))
 		printf("%s\n", (char *)(env_get("UWU")->content.buffer));
 	else
 		printf("NULL!\n");
+	print_env();
 }

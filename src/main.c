@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 12:55:57 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/28 15:14:47 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	init_data(env);
 	set_sigaction();
-	setbuf(stdout, NULL);
 	line_read = readline(PROMPT_START);
 	while (line_read)
 	{
