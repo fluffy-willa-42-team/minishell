@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 09:25:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:58:37 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_parser_param	parser_param_func(char *str)
  */
 int	change_int_to_ptr(int *input, char **output)
 {
-	if (!(0 <= *input && *input <= (int) get_line()->len))
+	if (!(0 <= *input && *input <= (int) get_line()->alloc_len))
 		return (0);
 	*output = get_line()->buffer + *input;
 	return (1);
@@ -97,7 +97,7 @@ int	line_parser(char *line)
 	while (line[i])
 		i += parser_param_func(&line[i])(line, i, &opt);
 	i = -1;
-	while (++i < get_instr_list()->content_len)
+	while (++i < get_instr_list()->len)
 		vec_cast(get_instr_arg(i), sizeof(char *), change_int_to_ptr);
 	if (DEBUG_PRINT)
 	{

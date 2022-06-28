@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 12:39:36 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:58:37 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	line_executor(void)
 
 	if (DEBUG_PRINT)
 		printf("\e[0;36m0=====-----	EXECUTION	-----=====0\n\e[0m");
-	for (size_t i = 0; i < get_instr_list()->content_len; i++)
+	for (size_t i = 0; i < get_instr_list()->len; i++)
 	{
 		if (get_instr(i)->type == 1)
 		{
