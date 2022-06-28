@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 12:20:02 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:39:36 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,12 @@ void	execute_cmd(size_t i)
 	set_fd_to_std(get_instr(i)->fds[1], STDOUT_FILENO);
 	if (cmd && (cmd[0] == '/' || cmd[0] == '.'))
 	{
+		if (access(cmd, X_OK) == -1)
+		{
+			fprintf(stderr, "%s: %s\n", g_data.cmd, strerror(errno));
+			exit(EX_NOTFOUND);
+		}
 		execve(cmd, args, envp);
-		fprintf(stderr, "%s: %s\n", g_data.cmd, strerror(errno));
-		exit(EX_NOTFOUND);
 	}
 	else if (exe_build_in(cmd, args, envp))
 		exit(0);
