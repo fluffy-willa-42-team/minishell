@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 09:12:38 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:20:02 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,6 @@ int		exe_build_in(char *cmd, char **args, char **envp);
 void	exe_normal(char *cmd, char **args, char **envp);
 void	set_fd_to_std(int fd, int output);
 
-// void	print_cmd(size_t i)
-// {
-// 	if (!DEBUG_PRINT)
-// 		return ;
-// 	size_t j = 0;
-// 	printf("%d => [%s", get_instr(i)->fds[0], get_instr_arg_elem(i, j));
-// 	j++;
-// 	while (j < get_instr_arg(i)->content_len)
-// 		printf(", %s", get_instr_arg_elem(i, j++));
-// 	printf("] => %d\n", get_instr(i)->fds[1]);
-// }
-
 void	print_cmd(char *cmd, char **args)
 {
 	if (!DEBUG_PRINT)
@@ -39,10 +27,7 @@ void	print_cmd(char *cmd, char **args)
 	printf("%s: [", cmd);
 	int i = 0;
 	while (args[i])
-	{
-		printf("%s, ", args[i]);
-		i++;
-	}
+		printf("%s, ", args[i++]);
 	printf("]\n");
 }
 
@@ -53,8 +38,6 @@ void	execute_cmd(size_t i)
 	char	**args = get_instr_arg(i)->buffer;
 	char	*cmd = get_instr_arg_elem(i, 0);
 
-	printf("%lu %lu\n", get_instr_arg(i)->content_len, get_instr_arg(i)->len);
-	vec_print(get_instr_arg(i));
 	print_cmd(cmd, args);
 	if (get_instr(i)->err != 0)
 	{
