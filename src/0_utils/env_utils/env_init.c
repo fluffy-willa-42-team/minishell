@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/29 16:09:52 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/29 16:56:11 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,15 @@ void	init_env(char **env)
 		index++;
 	}
 	printf("\e[0;36m0=====-----	T_ENV	-----=====0\n\e[0m");
-	print_env();
+	print_env();(void)getchar();
+	env_set("UwU", "Ima new, be gentle with me!", 0);
+	print_env();(void)getchar();
+	env_set("UwU", "Try to kill", 0);
+	print_env();(void)getchar();
+	env_set("UwU", "AAAAAAAAAAAA w-why you try to kill me!", 1);
+	print_env();(void)getchar();
+	env_unset(env_get("UwU"));
+	print_env();(void)getchar();
+	env_set("OwO", "I take ur place buddy!", 0);
+	print_env();(void)getchar();
 }

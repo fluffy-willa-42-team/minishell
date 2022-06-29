@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:58 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/29 16:08:56 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/29 16:52:33 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,10 @@ t_vec	*env_pop(t_vec *vec, int index)
 
 /**
  * @brief Will erase all content and set `token` and `env_len` to `0`.
+ *        WARN! If the content dont exist will segfault !! //TODO check 
  */
-void	env_unset(int index)
+void	env_unset(t_env *env)
 {
-	t_env *env;
-
-	env = vec_get_t_env(index);
 	vec_delete(&env->content);
 	env->env_len = 0;
 	env->token = 0;
