@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/28 15:30:30 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/29 14:37:16 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,7 +229,7 @@ void	init_env(char **env)
 
 	index = 0;
 	g_data.env_s = vec_init(sizeof(t_env));
-	g_data.env_s.len = 32;
+	g_data.env_s.rate = 1;
 	printf("INFO g_data [%lu][%lu]\n", g_data.env_s.size, g_data.env_s.len);
 
 	while (env[index])
