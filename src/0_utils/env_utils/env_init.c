@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/29 16:56:11 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/29 18:10:37 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ void	print_env(void)
 	}
 	printf("\n");
 }
+
+//TODO
+//TODO
+//TODO set_env_tab() (name will change)
+//TODO will pars all t_env and find all element tath exit and take t_env->content address
+//TODO
 
 void	init_env(char **env)
 {
