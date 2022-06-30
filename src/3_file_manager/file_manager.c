@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:58 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 11:17:47 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 13:52:03 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	line_file_manager(int nb_instr)
 	code_ptr = &g_data.code_buf;
 	pipe_ptr = &g_data.pipe_buf;
 	print_debug_sep("FILE MANAGER");
+	i = 0;
 	while (i < nb_instr)
 	{
 		(get_func_file_manager(get_instr(i)->type))(i, &pipe_ptr, &code_ptr);
