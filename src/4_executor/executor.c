@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:41:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 11:16:05 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,23 @@ void	line_executor(void)
 	int		status;
 	size_t	i;
 
-	if (DEBUG_PRINT)
-		printf("\e[0;36m0=====-----	EXECUTION	-----=====0\n\e[0m");
+	print_debug_sep("EXECUTION");
+	i = 0;
 	while (i < get_instr_list()->len)
 	{
 		if (get_instr(i)->type == 1)
 		{
 			pid = fork();
 			if (pid == 0)
-				execute_cmd(i, get_instr_arg_elem(i, 0),
-					get_instr_arg(i)->buffer, NULL);
+				execute_cmd(i,
+					get_instr_arg_elem(i, 0),
+					get_instr_arg(i)->buffer,
+					NULL);
 			waitpid(pid, &status, 0);
 			vec_delete(&g_data.tmp);
 			g_data.last_exit_code = WEXITSTATUS(status);
 		}
 		i++;
 	}
-	if (DEBUG_PRINT)
-		printf("\e[0;36m0=====-----	END		-----=====0\n\e[0m");
+	print_debug_sep("END");
 }

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:20:44 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:45:01 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 11:17:36 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	print_instr(size_t len, int type)
 	size_t	ind;
 	size_t	arg;
 
+	if (!DEBUG_PRINT)
+		return ;
 	ind = -1;
 	printf("[\n");
 	while (++ind < len)

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 10:54:25 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 11:11:08 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,11 @@
 //f3a35a2d601a55f337f8ca02a541f8c033682247/shell.h#L66
 # define EX_NOTFOUND            127
 
-# ifndef DEBUG_PRINT
-#  define DEBUG_PRINT 0
-# endif
-
-/* ************************************************************************** */
-
 # include <stdio.h>
 # include <stdlib.h>
 # include "vector_lib.h"
+
+# include "msh_debug.h"
 
 /* ************************************************************************** */
 
@@ -77,10 +73,6 @@ typedef struct s_instr
 
 typedef struct sigaction	t_sigaction;
 extern t_minishell			g_data;
-
-/* ************************************************************************** */
-
-void	msh_exit(int exit_code, char *msg);
 
 /* ************************************************************************** */
 

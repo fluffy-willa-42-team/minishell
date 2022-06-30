@@ -32,8 +32,7 @@ int	line_parse_check(int nb_instr)
 {
 	int	i;
 
-	if (DEBUG_PRINT)
-		printf("\e[0;36m0=====-----	PARSER CHECK	-----=====0\n\e[0m");
+	print_debug_sep("PARSER CHECK");
 	i = 0;
 	while (i < nb_instr)
 	{
@@ -46,7 +45,6 @@ int	line_parse_check(int nb_instr)
 		}
 		i++;
 	}
-	if (DEBUG_PRINT)
-		printf("[OK]\n");
+	print_debug("[OK]");
 	return (1);
 }
