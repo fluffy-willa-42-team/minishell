@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 12:59:12 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 13:54:01 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	line_executor(void)
 				execute_cmd(i,
 					get_instr_arg_elem(i, 0),
 					get_instr_arg(i)->buffer,
-					NULL);
+					g_data.env.buffer);
 			close_fd_pipe(get_instr(i)->fds);
 			vec_delete(&g_data.tmp);
 		}
