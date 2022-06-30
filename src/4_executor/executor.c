@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 11:16:05 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 11:32:55 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ void	line_executor(void)
 					get_instr_arg_elem(i, 0),
 					get_instr_arg(i)->buffer,
 					NULL);
-			waitpid(pid, &status, 0);
 			vec_delete(&g_data.tmp);
-			g_data.last_exit_code = WEXITSTATUS(status);
 		}
 		i++;
 	}
+	waitpid(pid, &status, 0);
+	g_data.last_exit_code = WEXITSTATUS(status);
 	print_debug_sep("END");
 }
