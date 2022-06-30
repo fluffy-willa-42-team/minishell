@@ -30,16 +30,21 @@
 
 int	line_parse_check(int nb_instr)
 {
+	int	i;
+
 	if (DEBUG_PRINT)
 		printf("\e[0;36m0=====-----	PARSER CHECK	-----=====0\n\e[0m");
-	for (int i = 0; i < nb_instr; i++)
+	i = 0;
+	while (i < nb_instr)
 	{
-		if ((get_instr(i)->type == 2 || get_instr(i)->type == 3) && i + 1 < nb_instr
-				&& (get_instr(i + 1)->type == 2 || get_instr(i + 1)->type == 3))
+		if ((get_instr(i)->type == 2 || get_instr(i)->type == 3)
+			&& i + 1 < nb_instr
+			&& (get_instr(i + 1)->type == 2 || get_instr(i + 1)->type == 3))
 		{
 			printf("Parsing Error\n");
 			return (0);
 		}
+		i++;
 	}
 	if (DEBUG_PRINT)
 		printf("[OK]\n");
