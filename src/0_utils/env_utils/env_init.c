@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 12:01:26 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:27:51 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,16 +106,16 @@ void	init_env(char **env)
 		sysenv_to_t_env(env[index]);
 		index++;
 	}
-	printf("\e[0;36m0=====-----	T_ENV	-----=====0\n\e[0m");
-	print_env();(void)getchar();
-	env_set("UwU", "Ima new, be gentle with me!", 0);
-	print_env();(void)getchar();
-	env_set("UwU", "Try to kill", 0);
-	print_env();(void)getchar();
-	env_set("UwU", "AAAAAAAAAAAA w-why you try to kill me!", 1);
-	print_env();(void)getchar();
-	env_unset(env_get("UwU"));
-	print_env();(void)getchar();
-	env_set("OwO", "I take ur place buddy!", 0);
-	print_env();(void)getchar();
+	// printf("\e[0;36m0=====-----	T_ENV	-----=====0\n\e[0m");
+	// print_env();(void)getchar();
+	// env_set("UwU", "Ima new, be gentle with me!", 0);
+	// print_env();(void)getchar();
+	// env_set("UwU", "Try to kill", 0);
+	// print_env();(void)getchar();
+	// env_set("UwU", "AAAAAAAAAAAA w-why you try to kill me!", 1);
+	// print_env();(void)getchar();
+	// env_unset(env_get("UwU"));
+	// print_env();(void)getchar();
+	// env_set("OwO", "I take ur place buddy!", 0);
+	// print_env();(void)getchar();
 }
