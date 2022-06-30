@@ -41,6 +41,7 @@ int	line_parse_check(int nb_instr)
 			return (0);
 		}
 	}
-	printf("[OK]\n");
+	if (DEBUG_PRINT)
+		printf("[OK]\n");
 	return (1);
 }
