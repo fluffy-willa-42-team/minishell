@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:08:24 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 10:59:06 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ t_minishell	g_data;
 
 void	do_line(char *line_read)
 {
+	int	nb_instr;
+
 	g_data.cmd = line_read;
-	int nb_instr = line_parser(line_read);
-	if (nb_instr == 1 && (!get_instr_arg_elem(0, 0) || !get_instr_arg_elem(0, 0)[0]))
+	nb_instr = line_parser(line_read);
+	if (nb_instr == 1
+		&& (!get_instr_arg_elem(0, 0) || !get_instr_arg_elem(0, 0)[0]))
 		return ;
 	if (!line_parse_check(nb_instr))
 		return ;
