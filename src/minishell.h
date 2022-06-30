@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 11:11:08 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 11:47:17 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_minishell
 	t_vec	lexed_command;
 	t_vec	lexed_instr;
 	t_vec	tmp;
+	t_vec	env;
+	t_vec	env_s;
 	int		last_exit_code;
 	char	*cmd;
 	int		pipe_buf[2];

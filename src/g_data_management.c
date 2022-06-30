@@ -6,17 +6,18 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:20:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:59:56 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 11:46:58 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "vec_utils.h"
+#include "env_utils.h"
 
 /**
  * @brief Init the global var with all data.
  */
-void	init_data(void)
+void	init_data(char **env)
 {
 	g_data.env_path = NULL;
 	g_data.lexed_command = (t_vec) vec_init(char);
@@ -28,6 +29,7 @@ void	init_data(void)
 	g_data.code_buf = 0;
 	g_data.pipe_buf[0] = -2;
 	g_data.pipe_buf[1] = -2;
+	init_env(env);
 }
 
 static int	change_str_to_int(char **input, int *output)

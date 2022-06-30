@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:12:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/17 09:10:13 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/29 16:45:06 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "minishell.h"
 # include "vector_lib.h"
+# include "env_utils.h"
 
 t_vec	*vec_add_char_ptr(t_vec *vec, char *str);
 t_vec	*vec_add_int(t_vec *vec, int x);
@@ -38,5 +39,10 @@ char	*get_instr_arg_elem(int instr_index, int arg_index);
 t_instr	*get_raw_instr(int index);
 t_vec	*get_raw_instr_arg(int index);
 char	*get_raw_instr_arg_elem(int instr_index, int arg_index);
+
+t_env	*vec_get_t_env(int index);
+char	*vec_get_env_str(int index);
+
+t_env	*vec_add_new_env(char *name, char *content);
 
 #endif

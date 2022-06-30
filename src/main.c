@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:59:06 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 11:47:02 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		line_parse_check(int nb_instr);
 void	line_file_manager(int nb_instr);
 void	line_executor(void);
 
-void	init_data(void);
+void	init_data(char **env);
 void	empty_g_data(void);
 void	free_g_data(void);
 
@@ -47,13 +47,14 @@ void	do_line(char *line_read)
 /**
  * @brief Inits Data and Start the lexed_command
  */
-int	main(void)
+int	main(int ac, char **av, char **env)
 {
 	char	*line_read;
 
-	init_data();
+	(void)ac;
+	(void)av;
+	init_data(env);
 	set_sigaction();
-	setbuf(stdout, NULL);
 	line_read = readline(PROMPT_START);
 	while (line_read)
 	{

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: awillems <awillems@student.42.fr>          +#+  +:+       +#+         #
+#    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/06/27 10:55:58 by awillems         ###   ########.fr        #
+#    Updated: 2022/06/27 16:23:58 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -237,6 +237,13 @@ git:
 	@git commit -am "Makefile push `date +'%Y-%m-%d %H:%M:%S'`"
 	@-git push
 
+willa:
+	git config user.name "willaCS"
+	git config user.email "arthur.willems.prive@gmail.com"
+
+fluffy:
+	git config user.name "matthew-dreemurr"
+	git config user.email "hadadmat@gmail.com"
 # **************************************************************************** #
 
-.PHONY: remove_stuff, update_lib, update, ping, ping_lib, git
+.PHONY: remove_stuff, update_lib, update, ping, ping_lib, git, willa, fluffy

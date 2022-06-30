@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.h                                        :+:      :+:    :+:   */
+/*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 11:17:09 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/29 16:53:08 by mahadad          ###   ########.fr       */
+/*   Created: 2022/06/28 14:30:07 by mahadad           #+#    #+#             */
+/*   Updated: 2022/06/28 14:30:20 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_UTILS_H
-# define ENV_UTILS_H
-
-#include "minishell.h"
 #include "vec_utils.h"
+#include "minishell.h"
 
-typedef struct s_env {
-	unsigned long	token;
-	int				env_len;
-	t_vec			content;
-}				t_env;
+t_env	*vec_get_t_env(int index)
+{
+	return ((t_env *)vec_get(&g_data.env_s, index));
+}
 
-unsigned long	djb2_hash(char *str, int len);
-
-void			init_env(char **env);
-
-t_env			*env_get(char *name);
-void			env_unset(t_env *env);
-t_vec			*env_pop(t_vec *vec, int index);
-t_env			*env_set(char *name, char *value, int overwrite);
-
-#endif /* ENV_UTILS_H */
+char	*vec_get_env_str(int index)
+{
+	return ((char *)vec_get_t_env(index)->content.buffer);
+}
