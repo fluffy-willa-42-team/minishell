@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 12:52:58 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:59:12 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 int		exe_build_in(char *cmd, char **args, char **envp);
 void	exe_file(char *cmd, char **args, char **envp);
 void	exe_normal(char *cmd, char **args, char **envp);
+
 void	set_fd_to_std(int fd[2], int input, int output);
+void	close_fd_pipe(int fd[2]);
 
 void	print_cmd(char *cmd, char **args)
 {
@@ -74,6 +76,7 @@ void	line_executor(void)
 					get_instr_arg_elem(i, 0),
 					get_instr_arg(i)->buffer,
 					NULL);
+			close_fd_pipe(get_instr(i)->fds);
 			vec_delete(&g_data.tmp);
 		}
 		i++;
