@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:14 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/29 16:48:09 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:56:01 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include "lib_str.h"
 
 /**
- * [LOCAL] return the content_len of env_s.
+ * [LOCAL] return the len of env_s.
  * WARN!! cast size_t to int
  */
 static int	c_len(void)
 {
-	return ((int)g_data.env_s.content_len);
+	return ((int)g_data.env_s.len);
 }
 
 /**

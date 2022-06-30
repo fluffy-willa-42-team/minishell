@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:54:35 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/29 16:43:54 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:57:55 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_env	*vec_add_new_env(char *name, char *content)
 		printf ("vec_add_new_env NULL name OR `=`find in name\n");
 		return (NULL);//TODO
 	}
-	new_env.content = vec_init(sizeof(char));
+	new_env.content = (t_vec) vec_init(char);
 	if (!vec_fill(&new_env.content, MULTI, 3, name, "=", content))
 	{
 		printf("vec_add_new_env fail to write new env");

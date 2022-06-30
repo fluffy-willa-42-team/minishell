@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 11:53:32 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:57:24 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	sysenv_to_t_env(char *str)
 		printf ("sysenv_to_t_env NULL str\n");
 		exit(1);//TODO
 	}
-	new_env.content = vec_init(sizeof(char));
+	new_env.content = (t_vec) vec_init(char);
 	if (!vec_fill(&new_env.content, DEFAULT, str))
 	{
 		printf("sysenv_to_t_env fail to write new env");
@@ -56,7 +56,7 @@ static void	sysenv_to_t_env(char *str)
 void	print_env(void)
 {
 	setbuf(stdout, NULL);
-	for (size_t i = 0; i < g_data.env_s.content_len; i++)
+	for (size_t i = 0; i < g_data.env_s.len; i++)
 	{
 		char *tmp = vec_get_env_str(i);
 		if (tmp)
@@ -89,7 +89,7 @@ void	print_env(void)
 
 // 	vec_delete(&g_data.env.buffer);
 // 	i = 0;
-// 	while (i < g_data.env_s.content_len)
+// 	while (i < g_data.env_s.len)
 // 	{
 // 		vec_get_t_env(i)->content;
 // 		i++;
