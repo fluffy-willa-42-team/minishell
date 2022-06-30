@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 13:26:07 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 13:40:26 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	init_env(char **env)
 		sysenv_to_t_env(env[index]);
 		index++;
 	}
-	printf("\e[0;36m0=====-----	T_ENV	-----=====0\n\e[0m");
+	print_debug_sep("T_ENV");
 	updt_env();
 	print_env();
 }
