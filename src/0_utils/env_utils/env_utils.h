@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:17:09 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 13:17:22 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 16:43:43 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,9 @@ char			*env_get_content(char *name);
 void			env_unset(t_env *env);
 t_vec			*env_pop(t_vec *vec, int index);
 t_env			*env_set(char *name, char *value, int overwrite);
+t_vec			*updt_env(void);//TODO ENV changer l'emplacement et de nom
+
+
+void			print_env(void);//TODO ENV changer l'emplacement
 
 #endif /* ENV_UTILS_H */
