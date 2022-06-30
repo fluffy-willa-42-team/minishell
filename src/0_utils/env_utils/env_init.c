@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 11:57:24 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 13:20:35 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	sysenv_to_t_env(char *str)
 	}
 }
 
-void	print_env(void)
+void	print_env_s(void)
 {
 	setbuf(stdout, NULL);
 	for (size_t i = 0; i < g_data.env_s.len; i++)
@@ -77,24 +77,47 @@ void	print_env(void)
 	printf("\n");
 }
 
+void	print_env(void)
+{
+	setbuf(stdout, NULL);
+
+	size_t i = -1;
+	while (++i < g_data.env.len)
+	{
+		printf("[%lu] ", i);
+		char	*tmp = ((char **)g_data.env.buffer)[i];
+		size_t len = ft_strlen(tmp);
+		if (len > 32)
+		{
+			write(1, tmp, 60);
+			write(1, "...\n", 5);
+			continue;
+		}
+		write(1, tmp, len);
+		write(1, "\n", 2);
+	}
+}
+
 //TODO
 //TODO
 //TODO set_env_tab() (name will change)
 //TODO will pars all t_env and find all element tath exit and take t_env->content address
 //TODO
 
-// t_vec	*updt_env(void)
-// {
-// 	size_t i;
+t_vec	*updt_env(void)
+{
+	size_t i;
 
-// 	vec_delete(&g_data.env.buffer);
-// 	i = 0;
-// 	while (i < g_data.env_s.len)
-// 	{
-// 		vec_get_t_env(i)->content;
-// 		i++;
-// 	}
-// }
+	vec_delete(&g_data.env);
+	i = 0;
+	while (i < g_data.env_s.len)
+	{
+		if (vec_get_t_env(i)->token)
+			vec_add(&g_data.env, &vec_get_t_env(i)->content.buffer);
+		i++;
+	}
+	return (NULL);
+}
 
 void	init_env(char **env)
 {
@@ -107,15 +130,6 @@ void	init_env(char **env)
 		index++;
 	}
 	printf("\e[0;36m0=====-----	T_ENV	-----=====0\n\e[0m");
-	print_env();(void)getchar();
-	env_set("UwU", "Ima new, be gentle with me!", 0);
-	print_env();(void)getchar();
-	env_set("UwU", "Try to kill", 0);
-	print_env();(void)getchar();
-	env_set("UwU", "AAAAAAAAAAAA w-why you try to kill me!", 1);
-	print_env();(void)getchar();
-	env_unset(env_get("UwU"));
-	print_env();(void)getchar();
-	env_set("OwO", "I take ur place buddy!", 0);
-	print_env();(void)getchar();
+	updt_env();
+	print_env();
 }

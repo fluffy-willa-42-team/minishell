@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parser_var_sub.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:33:34 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 13:17:53 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_parser.h"
+#include "env_utils.h"
 
 void	add_instr_or_arg(t_parser_opt *opt);
 
@@ -48,7 +49,7 @@ int	add_varsub(char *line, int index, t_parser_opt *opt)
 		return (2);
 	}
 	vec_fill(&g_data.tmp, FIXED_LEN, &line[index + 1], len);
-	value = getenv(vec_get_str(&g_data.tmp, 0));
+	value = env_get_content(vec_get_str(&g_data.tmp, 0));
 	vec_delete(&g_data.tmp);
 	if (value)
 	{

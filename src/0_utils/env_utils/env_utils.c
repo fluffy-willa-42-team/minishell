@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:58 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 11:56:01 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 13:21:52 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,14 @@ t_env	*env_get(char *name)
 	if (i == c_len())
 		return (NULL);
 	return (vec_get_t_env(i));
+}
+
+char	*env_get_content(char *name)
+{
+	t_env	*tmp;
+
+	tmp = env_get(name);
+	if (tmp)
+		return ((char *) tmp->content.buffer + tmp->env_len + 1);
+	return (NULL);
 }
