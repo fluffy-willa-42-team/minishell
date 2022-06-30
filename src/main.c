@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 11:47:02 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:36:52 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	main(int ac, char **av, char **env)
 {
 	char	*line_read;
 
-	(void)ac;
-	(void)av;
+	(void) ac;
+	(void) av;
 	init_data(env);
 	set_sigaction();
 	line_read = readline(PROMPT_START);

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 11:32:55 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:37:17 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <errno.h>
 
 int		exe_build_in(char *cmd, char **args, char **envp);
+void	exe_file(char *cmd, char **args, char **envp);
 void	exe_normal(char *cmd, char **args, char **envp);
 void	set_fd_to_std(int fd, int output);
 
@@ -44,16 +45,9 @@ void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 	set_fd_to_std(get_instr(i)->fds[0], STDIN_FILENO);
 	set_fd_to_std(get_instr(i)->fds[1], STDOUT_FILENO);
 	if (cmd && (cmd[0] == '/' || cmd[0] == '.'))
-	{
-		if (access(cmd, X_OK) == -1)
-		{
-			fprintf(stderr, "%s: %s\n", g_data.cmd, strerror(errno));
-			exit(EX_NOTFOUND);
-		}
-		execve(cmd, args, envp);
-	}
+		exe_file(cmd, args, envp);
 	else if (exe_build_in(cmd, args, envp))
-		exit(0);
+		;
 	else
 	{
 		exe_normal(cmd, args, envp);
