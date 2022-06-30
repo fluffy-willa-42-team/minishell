@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:19:09 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 09:25:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 10:37:22 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 void	redir_in_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	int	new_fd;
-	
+
 	if (**code_ptr != 0)
 		return ;
 	if (DEBUG_PRINT)

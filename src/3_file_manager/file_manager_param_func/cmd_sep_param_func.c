@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:18:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 09:43:35 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 10:37:44 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ void	cmd_instr(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
  */
 void	cmd_redirect(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
+	int	res;
+
 	if (DEBUG_PRINT)
 		printf("CMD REDIRECT\n");
-	int res = pipe(get_instr(instr_index)->fds);
+	res = pipe(get_instr(instr_index)->fds);
 	if (res != 0)
 	{
 		(**code_ptr) = errno;
