@@ -6,19 +6,25 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:45:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:39:04 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:52:34 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 
-void	set_fd_to_std(int fd, int output)
+void	set_fd_to_std(int fd[2], int input, int output)
 {
-	if (fd != output)
+	if (fd[0] != input)
 	{
-		fprintf(stderr, "%d => %d\n", fd, output);
-		dup2(fd, output);
-		close(fd);
+		fprintf(stderr, "%d => %d\n", fd[0], input);
+		dup2(fd[0], input);
+		close(fd[0]);
+	}
+	if (fd[1] != output)
+	{
+		fprintf(stderr, "%d => %d\n", fd[1], output);
+		dup2(fd[1], output);
+		close(fd[1]);
 	}
 }

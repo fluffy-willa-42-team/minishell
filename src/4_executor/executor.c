@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 12:37:17 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:52:58 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int		exe_build_in(char *cmd, char **args, char **envp);
 void	exe_file(char *cmd, char **args, char **envp);
 void	exe_normal(char *cmd, char **args, char **envp);
-void	set_fd_to_std(int fd, int output);
+void	set_fd_to_std(int fd[2], int input, int output);
 
 void	print_cmd(char *cmd, char **args)
 {
@@ -42,8 +42,7 @@ void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 		fprintf(stderr, "%s: %s\n", g_data.cmd, strerror(get_instr(i)->err));
 		exit(get_instr(i)->err);
 	}
-	set_fd_to_std(get_instr(i)->fds[0], STDIN_FILENO);
-	set_fd_to_std(get_instr(i)->fds[1], STDOUT_FILENO);
+	set_fd_to_std(get_instr(i)->fds, STDIN_FILENO, STDOUT_FILENO);
 	if (cmd && (cmd[0] == '/' || cmd[0] == '.'))
 		exe_file(cmd, args, envp);
 	else if (exe_build_in(cmd, args, envp))
