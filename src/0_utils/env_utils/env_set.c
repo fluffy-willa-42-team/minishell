@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:14 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/29 16:48:09 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:49:27 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  */
 static int	c_len(void)
 {
-	return ((int)g_data.env_s.content_len);
+	return ((int)g_data.env_s.len);
 }
 
 /**

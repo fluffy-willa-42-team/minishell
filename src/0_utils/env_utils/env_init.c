@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/29 18:10:37 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:49:17 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	sysenv_to_t_env(char *str)
 		printf ("sysenv_to_t_env NULL str\n");
 		exit(1);//TODO
 	}
-	new_env.content = vec_init(sizeof(char));
+	new_env.content = (t_vec) vec_init(char);
 	if (!vec_fill(&new_env.content, DEFAULT, str))
 	{
 		printf("sysenv_to_t_env fail to write new env");
@@ -56,7 +56,7 @@ static void	sysenv_to_t_env(char *str)
 void	print_env(void)
 {
 	setbuf(stdout, NULL);
-	for (size_t i = 0; i < g_data.env_s.content_len; i++)
+	for (size_t i = 0; i < g_data.env_s.len; i++)
 	{
 		char *tmp = vec_get_env_str(i);
 		if (tmp)
@@ -88,7 +88,7 @@ void	init_env(char **env)
 	int	index;
 
 	index = 0;
-	g_data.env_s = vec_init(sizeof(t_env));
+	g_data.env_s = (t_vec) vec_init(t_env);
 	while (env[index])
 	{
 		sysenv_to_t_env(env[index]);
