@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 13:58:37 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 10:29:42 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static	void	init_opt(t_parser_opt *opt)
 
 t_parser_param	parser_param_func(char *str)
 {
-	const char			*spec_char[] = {
+	const char				*spec_char[] = {
 		"\\", "\'", "\"", "$", " ", "\t", "\n", "\v", "\f", "\r", "|", ";", "<",
 		">", "<<", ">>",
 	};
@@ -58,7 +58,7 @@ t_parser_param	parser_param_func(char *str)
 		whtspc, spec_0_arg, spec_0_arg, spec_1_arg, spec_1_arg,	spec_1_arg,
 		spec_1_arg,
 	};
-	int					i;
+	int						i;
 
 	i = 0;
 	while (i < 14)
@@ -88,7 +88,7 @@ int	change_int_to_ptr(int *input, char **output)
 int	line_parser(char *line)
 {
 	t_parser_opt	opt;
-	size_t		i;
+	size_t			i;
 
 	init_opt(&opt);
 	i = 0;

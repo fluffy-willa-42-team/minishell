@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 14:06:32 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 10:29:12 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	new_instr(t_parser_opt *opt, int type)
 	new_instr.err = 0;
 	if (opt->nb_instr >= get_instr_list()->len)
 	{
-		new_instr.arg = (t_vec) vec_init_r(int, 8);
+		new_instr.arg = (t_vec) vec_init(int);
+		new_instr.arg.rate = 8;
 		vec_add(get_instr_list(), &new_instr);
 	}
 	else if (get_instr(opt->nb_instr)->type == 0)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_var_sub.c                                    :+:      :+:    :+:   */
+/*   parser_var_sub.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/22 14:02:45 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:33:34 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,14 @@ int	add_varsub(char *line, int index, t_parser_opt *opt)
 
 	if (len == 0)
 	{
-		if (line[index + 1] && line[index + 1] == '?')
-		{
-			value = ft_itoa(g_data.last_exit_code);
-			if (!value)
-				exit(1);//TODO
-			vec_fill(get_line(), DEFAULT, value);
-			free(value);
-			return (2);
-		}
-		return (add_char(opt, "$"));
+		if (!(line[index + 1] && line[index + 1] == '?'))
+			return (add_char(opt, "$"));
+		value = ft_itoa(g_data.last_exit_code);
+		if (!value)
+			exit(1); //TODO
+		vec_fill(get_line(), DEFAULT, value);
+		free(value);
+		return (2);
 	}
 	vec_fill(&g_data.tmp, FIXED_LEN, &line[index + 1], len);
 	value = getenv(vec_get_str(&g_data.tmp, 0));
@@ -77,7 +75,7 @@ int	varsub(char *line, int index, t_parser_opt *opt)
 	int	temp1;
 	int	temp2;
 	int	len_to_skip;
-	
+
 	temp1 = opt->index_line + 1;
 	len_to_skip = add_varsub(line, index, opt);
 	if (opt->option & EMPTY_VAR)
