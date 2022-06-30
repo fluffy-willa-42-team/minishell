@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:20:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 11:54:28 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:58:26 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	init_data(char **env)
 	g_data.code_buf = 0;
 	g_data.pipe_buf[0] = -2;
 	g_data.pipe_buf[1] = -2;
-	g_data.env_s = vec_init(sizeof(t_env));
-	g_data.env = vec_init(sizeof(char *));
+	g_data.env_s = (t_vec) vec_init(t_env);
+	g_data.env = (t_vec) vec_init(char *);
 	init_env(env);
 }
 

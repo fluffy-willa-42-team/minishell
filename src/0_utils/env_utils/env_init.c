@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 12:00:41 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:01:26 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	print_env(void)
 
 // 	vec_delete(&g_data.env.buffer);
 // 	i = 0;
-// 	while (i < g_data.env_s.content_len)
+// 	while (i < g_data.env_s.len)
 // 	{
 // 		vec_get_t_env(i)->content;
 // 		i++;
