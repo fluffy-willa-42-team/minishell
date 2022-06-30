@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:03:34 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 12:53:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:56:26 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 void	print_debug_sep(char *str)
 {
 	if (DEBUG_PRINT)
-		printf("%s0=====-----	%s	-----=====0\n%s", "\e[0;36m", str, "\e[0m");
+		printf("%s0=====-----	%s	-----=====0%s\n", "\e[0;36m", str, "\e[0m");
 }
 
 void	print_debug(char *str)
 {
 	if (DEBUG_PRINT)
-		printf("%s%s\n%s", "\e[0;33m", str, "\e[0m");
+		printf("%s%s%s\n", "\e[0;33m", str, "\e[0m");
 }
