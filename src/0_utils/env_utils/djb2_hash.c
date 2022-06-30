@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:00:20 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/29 16:00:22 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:59:44 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@
  * 
  * NOTE : if strlen(`str`) == 0 will return 5381;
  * 
- * SOURCE : https://web.archive.org/web/20220610182409/http://www.cse.yorku.ca/~oz/hash.html
+ * SOURCE :
+ *   web.archive.org/web/20220610182409/http://www.cse.yorku.ca/~oz/hash.html
  */
 unsigned long	djb2_hash(char *str, int len)
 {
-	unsigned long hash = 5381;
-	int	index;
+	unsigned long	hash;
+	int				index;
 
 	index = 0;
+	hash = 5381;
 	while (str[index] && index < len)
 	{
 		hash = ((hash << 5) + hash) + (int)str[index];

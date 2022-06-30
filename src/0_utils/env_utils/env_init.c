@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 11:49:17 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:00:41 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,24 @@ void	print_env(void)
 //TODO will pars all t_env and find all element tath exit and take t_env->content address
 //TODO
 
+// t_vec	*updt_env(void)
+// {
+// 	size_t i;
+
+// 	vec_delete(&g_data.env.buffer);
+// 	i = 0;
+// 	while (i < g_data.env_s.content_len)
+// 	{
+// 		vec_get_t_env(i)->content;
+// 		i++;
+// 	}
+// }
+
 void	init_env(char **env)
 {
 	int	index;
 
 	index = 0;
-	g_data.env_s = (t_vec) vec_init(t_env);
 	while (env[index])
 	{
 		sysenv_to_t_env(env[index]);
