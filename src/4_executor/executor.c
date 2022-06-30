@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 13:58:37 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 10:41:43 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,19 @@ void	set_fd_to_std(int fd, int output);
 
 void	print_cmd(char *cmd, char **args)
 {
+	int	i;
+
 	if (!DEBUG_PRINT)
 		return ;
 	printf("%s: [", cmd);
-	int i = 0;
+	i = 0;
 	while (args[i])
 		printf("%s, ", args[i++]);
 	printf("]\n");
 }
 
-
-void	execute_cmd(size_t i)
+void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 {
-	char	**envp = NULL;
-	char	**args = get_instr_arg(i)->buffer;
-	char	*cmd = get_instr_arg_elem(i, 0);
-
 	print_cmd(cmd, args);
 	if (get_instr(i)->err != 0)
 	{
@@ -70,20 +67,23 @@ void	line_executor(void)
 {
 	pid_t	pid;
 	int		status;
+	size_t	i;
 
 	if (DEBUG_PRINT)
 		printf("\e[0;36m0=====-----	EXECUTION	-----=====0\n\e[0m");
-	for (size_t i = 0; i < get_instr_list()->len; i++)
+	while (i < get_instr_list()->len)
 	{
 		if (get_instr(i)->type == 1)
 		{
 			pid = fork();
 			if (pid == 0)
-				execute_cmd(i);
+				execute_cmd(i, get_instr_arg_elem(i, 0),
+					get_instr_arg(i)->buffer, NULL);
 			waitpid(pid, &status, 0);
 			vec_delete(&g_data.tmp);
 			g_data.last_exit_code = WEXITSTATUS(status);
 		}
+		i++;
 	}
 	if (DEBUG_PRINT)
 		printf("\e[0;36m0=====-----	END		-----=====0\n\e[0m");

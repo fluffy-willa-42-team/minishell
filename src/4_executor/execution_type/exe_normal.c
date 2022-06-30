@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:50:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 08:51:36 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 10:43:25 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	get_path_len(char *cmd, int i)
 {
-	int len = 0;
+	int	len = 0;
 
 	if (i != 0 && cmd[i - 1] != ':')
 		return (0);
@@ -24,10 +24,10 @@ int	get_path_len(char *cmd, int i)
 	return (len);
 }
 
-char *find_path(char *cmd)
+char	*find_path(char *cmd)
 {
-	char *path = getenv("PATH");
-	t_vec *vec = &g_data.tmp;
+	char	*path = getenv("PATH");
+	t_vec	*vec = &g_data.tmp;
 	int		len = ft_strlen(path);
 
 	if (ft_strlen(cmd) == 0)
@@ -49,7 +49,7 @@ char *find_path(char *cmd)
 
 void	exe_normal(char *cmd, char **args, char **envp)
 {
-	char *path = find_path(cmd);
+	char	*path = find_path(cmd);
 
 	if (DEBUG_PRINT)
 		fprintf(stderr, "%s => %s\n", cmd, path);
