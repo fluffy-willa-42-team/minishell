@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 15:14:47 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:47:02 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void	set_sigaction(void);
 int		line_parser(char *line);
-void	line_pars_check(int nb_instr);
+int		line_parse_check(int nb_instr);
 void	line_file_manager(int nb_instr);
 void	line_executor(void);
 
@@ -28,6 +28,21 @@ void	empty_g_data(void);
 void	free_g_data(void);
 
 t_minishell	g_data;
+
+void	do_line(char *line_read)
+{
+	int	nb_instr;
+
+	g_data.cmd = line_read;
+	nb_instr = line_parser(line_read);
+	if (nb_instr == 1
+		&& (!get_instr_arg_elem(0, 0) || !get_instr_arg_elem(0, 0)[0]))
+		return ;
+	if (!line_parse_check(nb_instr))
+		return ;
+	line_file_manager(nb_instr);
+	line_executor();
+}
 
 /**
  * @brief Inits Data and Start the lexed_command
@@ -45,14 +60,7 @@ int	main(int ac, char **av, char **env)
 	{
 		if (line_read && line_read[0])
 		{
-			g_data.cmd = line_read;
-			int nb_instr = line_parser(line_read);
-			if (!(nb_instr == 1 && (!get_instr_arg_elem(0, 0) || !get_instr_arg_elem(0, 0)[0])))
-			{
-				// line_pars_check(nb_instr);//TODO
-				line_file_manager(nb_instr);
-				line_executor();
-			}
+			do_line(line_read);
 			add_history(line_read);
 			empty_g_data();
 		}

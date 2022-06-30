@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:20:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:51:21 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:54:28 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@
 void	init_data(char **env)
 {
 	g_data.env_path = NULL;
-	g_data.lexed_command = vec_init(sizeof(char));
+	g_data.lexed_command = (t_vec) vec_init(char);
 	g_data.lexed_command.rate = 8;
-	g_data.lexed_instr = vec_init(sizeof(t_instr));
-	g_data.lexed_instr.rate = 8;
-	g_data.tmp = vec_init(sizeof(char));
+	g_data.lexed_instr = (t_vec) vec_init_r(t_instr, 8);
+	g_data.tmp = (t_vec) vec_init(char);
 	g_data.last_exit_code = 0;
 	g_data.cmd = NULL;
 	g_data.code_buf = 0;
@@ -52,7 +51,7 @@ void	empty_g_data(void)
 
 	i = 0;
 	vec_delete(get_line());
-	while (i < g_data.lexed_instr.content_len)
+	while (i < g_data.lexed_instr.len)
 	{
 		vec_cast(get_instr_arg(i), sizeof(int), change_str_to_int);
 		vec_delete(get_instr_arg(i));
@@ -79,7 +78,7 @@ void	free_g_data(void)
 	i = 0;
 	vec_destroy(&g_data.tmp);
 	vec_destroy(get_line());
-	while (i < g_data.lexed_instr.content_len)
+	while (i < g_data.lexed_instr.len)
 	{
 		if (get_instr(i)->fds[0] != 0)
 			close(get_instr(i)->fds[0]);
@@ -90,4 +89,3 @@ void	free_g_data(void)
 	}
 	vec_destroy(get_instr_list());
 }
-

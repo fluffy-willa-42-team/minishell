@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:18:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/27 09:25:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 10:37:07 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	secundary_prompt(int fd, const char *delimitor)
 void	redir_in_write(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 {
 	const char	*delimitor = get_instr_arg_elem(instr_index, 1);
-	int	safety;
+	int			safety;
 
 	if (DEBUG_PRINT)
 		printf("REDIR IN WRITE\n");

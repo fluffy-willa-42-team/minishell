@@ -1,12 +1,12 @@
 /* ************************************************************************** */
-/*                                                                            */
+/*                                                                          */
 /*                                                        :::      ::::::::   */
 /*   pars_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:55:46 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/27 09:25:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 09:50:26 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,23 @@
    DEFAULT  | dflt_char
 */
 
-void	line_pars_check(int nb_instr)
+int	line_parse_check(int nb_instr)
 {
-	if (!DEBUG_PRINT)
-      return ;
-   printf("\e[0;36m0=====-----	PARSER CHECK	-----=====0\n\e[0m");
-	for (int i = 0; i < nb_instr; i++)
+	int	i;
+
+	print_debug_sep("PARSER CHECK");
+	i = 0;
+	while (i < nb_instr)
 	{
-		printf("[%d]\n", get_instr(i)->type);
+		if ((get_instr(i)->type == 2 || get_instr(i)->type == 3)
+			&& i + 1 < nb_instr
+			&& (get_instr(i + 1)->type == 2 || get_instr(i + 1)->type == 3))
+		{
+			printf("Parsing Error\n");
+			return (0);
+		}
+		i++;
 	}
+	print_debug("[OK]");
+	return (1);
 }

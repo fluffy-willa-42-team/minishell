@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor.h                                         :+:      :+:    :+:   */
+/*   msh_debug.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 12:49:04 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/23 12:53:07 by mahadad          ###   ########.fr       */
+/*   Created: 2022/06/30 11:08:52 by awillems          #+#    #+#             */
+/*   Updated: 2022/06/30 11:09:51 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTOR_H
-# define EXECUTOR_H
+#ifndef MSH_DEBUG_H
+# define MSH_DEBUG_H
 
 /* ************************************************************************** */
 
-# include "minishell.h"
-# include "vec_utils.h"
+# ifndef DEBUG_PRINT
+#  define DEBUG_PRINT 0
+# endif
 
-/* ************************************************************************** */
-
-int	msh_exception(int code, char *message);
+void	print_debug_sep(char *str);
+void	print_debug(char *str);
 
 /* ************************************************************************** */
 

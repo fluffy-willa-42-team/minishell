@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor_utils.c                                   :+:      :+:    :+:   */
+/*   print_debug_str.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/24 12:45:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:39:04 by awillems         ###   ########.fr       */
+/*   Created: 2022/06/30 11:03:34 by awillems          #+#    #+#             */
+/*   Updated: 2022/06/30 11:13:17 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "msh_debug.h"
+#include "stdio.h"
 
-void	set_fd_to_std(int fd, int output)
+void	print_debug_sep(char *str)
 {
-	if (fd != output)
-	{
-		fprintf(stderr, "%d => %d\n", fd, output);
-		dup2(fd, output);
-		close(fd);
-	}
+	if (DEBUG_PRINT)
+		printf("%s0=====-----	%s	-----=====0\n%s", "\e[0;36m", str, "\e[0m");
+}
+
+void	print_debug(char *str)
+{
+	if (DEBUG_PRINT)
+		printf("%s%s\n%s", "\e[0;36m", str, "\e[0m");
 }

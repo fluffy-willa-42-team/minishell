@@ -6,30 +6,31 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:42:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/24 12:40:33 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 10:43:46 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include "lib_str.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 int	exe_build_in(char *cmd, char **args, char **envp)
 {
-	const char *buildins[7] = {
+	const char	*buildins[7] = {
 		"cd", "pwd", "echo", "export", "unset", "env", "exit"
 	};
-	
+	int			i;
+
 	(void) args;
 	(void) envp;
-	for (int i = 0; i < 7; i++)
+	while (i < 7)
 	{
 		if (ft_strlen(cmd) == ft_strlen(buildins[i])
-				&& ft_strcmp(cmd, buildins[i]) == 0)
+			&& ft_strcmp(cmd, buildins[i]) == 0)
 		{
 			printf("[BUILDIN] => %s\n", cmd);
 			return (1);
 		}
+		i++;
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/27 12:33:00 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:47:17 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,15 @@
 # define REDIR_OUT_FILE			6
 # define REDIR_OUT_CONCA		7
 
-// https://github.com/bminor/bash/blob/f3a35a2d601a55f337f8ca02a541f8c033682247/shell.h#L66
+//https://github.com/bminor/bash/blob/
+//f3a35a2d601a55f337f8ca02a541f8c033682247/shell.h#L66
 # define EX_NOTFOUND            127
-
-
-# ifndef DEBUG_PRINT
-#  define DEBUG_PRINT 0
-# endif
-
-
-/* ************************************************************************** */
 
 # include <stdio.h>
 # include <stdlib.h>
 # include "vector_lib.h"
+
+# include "msh_debug.h"
 
 /* ************************************************************************** */
 
@@ -75,15 +70,11 @@ typedef struct s_instr
 	int		type;
 	t_vec	arg;
 	int		fds[2];
-    int     err;
+	int		err;
 }			t_instr;
 
 typedef struct sigaction	t_sigaction;
 extern t_minishell			g_data;
-
-/* ************************************************************************** */
-
-void	msh_exit(int exit_code, char *msg);
 
 /* ************************************************************************** */
 
