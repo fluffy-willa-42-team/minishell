@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:58 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 13:26:14 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:52:56 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec_utils.h"
 #include "env_utils.h"
+#include "lib_str.h"
 
 /**
  * [LOCAL] return the len of env_s.
@@ -72,4 +73,28 @@ char	*env_get_content(char *name)
 	if (tmp)
 		return ((char *) tmp->content.buffer + tmp->env_len + 1);
 	return (NULL);
+}
+
+//TODO REMOVE DEBUG STUFF
+//TODO TO THE NORM
+//TODO REMOVE PRINT LIMIT
+void	print_env(void)
+{
+	setbuf(stdout, NULL);
+
+	size_t i = -1;
+	while (++i < g_data.env.len)
+	{
+		printf("[%lu] ", i);
+		char	*tmp = ((char **)g_data.env.buffer)[i];
+		size_t len = ft_strlen(tmp);
+		if (len > 32)
+		{
+			write(1, tmp, 60);
+			write(1, "...\n", 5);
+			continue;
+		}
+		write(1, tmp, len);
+		write(1, "\n", 2);
+	}
 }

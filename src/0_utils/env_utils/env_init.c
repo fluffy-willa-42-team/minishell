@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 13:41:04 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:45:40 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	sysenv_to_t_env(char *str)
 	}
 }
 
-void	print_env_s(void)
+void	print_env_s(void)//TODO DEBUG 
 {
 	setbuf(stdout, NULL);
 	for (size_t i = 0; i < g_data.env_s.len; i++)
@@ -76,33 +76,6 @@ void	print_env_s(void)
 	}
 	printf("\n");
 }
-
-void	print_env(void)
-{
-	setbuf(stdout, NULL);
-
-	size_t i = -1;
-	while (++i < g_data.env.len)
-	{
-		printf("[%lu] ", i);
-		char	*tmp = ((char **)g_data.env.buffer)[i];
-		size_t len = ft_strlen(tmp);
-		if (len > 32)
-		{
-			write(1, tmp, 60);
-			write(1, "...\n", 5);
-			continue;
-		}
-		write(1, tmp, len);
-		write(1, "\n", 2);
-	}
-}
-
-//TODO
-//TODO
-//TODO set_env_tab() (name will change)
-//TODO will pars all t_env and find all element tath exit and take t_env->content address
-//TODO
 
 t_vec	*updt_env(void)
 {

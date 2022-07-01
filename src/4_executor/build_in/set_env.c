@@ -6,25 +6,32 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:51:25 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 16:42:56 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/30 17:00:20 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec_utils.h"
 #include "env_utils.h"
 
-t_vec	*env(char **test)
+t_vec	*env(char **env)
 {
-	if (!test)
+	size_t	len;
+
+	if (!env)
 		return (NULL);
-	test++;
-	while (*test)
+	env++;
+	len = 0;
+	while (env[0][len] && env[0][len] != '=')
+		len++;
+	vec_delete(&g_data.tmp);
+	vec_fill(&g_data.tmp, FIXED_LEN, len, *env);
+	while (*env)
 	{
-		printf("env set [%s]\n", *test);
-		env_set("TEST", *test, 1);//TODO ENV mettre seulement le nom de la variable.
+		printf("env set [%s]\n", *env);
+		env_set((char *)g_data.tmp.buffer, *env, 1);//TODO ENV mettre seulement le nom de la variable.
 		updt_env();
 		print_env();
-		test++;
+		env++;
 	}
 	return NULL;
 }
