@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/01 10:41:15 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 12:04:51 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ typedef struct s_instr
 
 typedef struct sigaction	t_sigaction;
 extern t_minishell			g_data;
+
+/* ************************************************************************** */
+
+int	msh_exit(int return_value, int exit_code, char *message);
 
 /* ************************************************************************** */
 

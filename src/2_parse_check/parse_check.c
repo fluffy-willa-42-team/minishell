@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <errno.h>
 #include "vec_utils.h"
 
 /**
@@ -39,10 +40,7 @@ int	line_parse_check(int nb_instr)
 		if ((get_instr(i)->type == 2 || get_instr(i)->type == 3)
 			&& i + 1 < nb_instr
 			&& (get_instr(i + 1)->type == 2 || get_instr(i + 1)->type == 3))
-		{
-			printf("Parsing Error\n");
-			return (0);
-		}
+			return (msh_exit(0, 258, ERR_PARSE));
 		i++;
 	}
 	print_debug("[OK]");
