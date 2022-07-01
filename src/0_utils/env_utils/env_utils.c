@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:58 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 16:52:56 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/01 17:30:56 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,21 @@ t_env	*env_get(char *name)
 	while (name[i])
 		i++;
 	hash = djb2_hash(name, i);
+	printf("[INFO] env_get: check for [%s][%lu]\n", name, hash);//TODO REMOVE DEBUG
 	i = 0;
-	while (i < c_len() && vec_get_t_env(i)->token != hash)
+	while (i < c_len() && vec_get_t_env_raw(i)->token != hash)
+	{
+		printf("[INFO] env_get: cmp [%s][%s]\n", name, vec_get_t_env_str(i));//TODO REMOVE DEBUG
 		i++;
+	}
+	#error TODO CHECK why this if return NULL.
 	if (i == c_len())
+	{
+		printf("[INFO] env_get: return NULL\n");//TODO REMOVE DEBUG
 		return (NULL);
-	return (vec_get_t_env(i));
+	}
+	printf("[INFO] env_get: FOUND!\n");//TODO REMOVE DEBUG
+	return (vec_get_t_env_raw(i));
 }
 
 char	*env_get_content(char *name)
@@ -80,13 +89,15 @@ char	*env_get_content(char *name)
 //TODO REMOVE PRINT LIMIT
 void	print_env(void)
 {
-	setbuf(stdout, NULL);
-
 	size_t i = -1;
+	char	*tmp;
+
+	setbuf(stdout, NULL);//TODO remove
+	printf("ENV TAB SIZE[%lu]\n", g_data.env.len);
 	while (++i < g_data.env.len)
 	{
-		printf("[%lu] ", i);
-		char	*tmp = ((char **)g_data.env.buffer)[i];
+		printf("[%lu] ", i);//TODO remove
+		tmp = ((char **)g_data.env.buffer)[i];
 		size_t len = ft_strlen(tmp);
 		if (len > 32)
 		{
