@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:42:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 16:29:42 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/01 13:22:42 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 int	exe_build_in(char *cmd, char **args, char **envp)
 {
-	const char	*buildins[7] = {
+	const char			*buildins[7] = {
 		"cd", "pwd", "echo", "export", "unset", "env", "exit"
 	};
 	const t_build_in	f[7] = {
-		dummy, dummy, dummy, dummy, dummy, env, dummy
+		dummy, dummy, dummy, export, dummy, env, dummy
 	};
-	int			i;
+	int					i;
 
 	i = 0;
 	(void) args;
