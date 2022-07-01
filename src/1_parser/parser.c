@@ -6,16 +6,18 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 11:19:21 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 10:59:35 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_parser.h"
+#include <errno.h>
+#include <string.h>
 
-void	print_instr(size_t len, int type);
-void	add_cmd_path(t_parser_opt *opt, int index);
 
-static	void	init_opt(t_parser_opt *opt)
+void add_cmd_path(t_parser_opt *opt, int index);
+
+static void	init_opt(t_parser_opt *opt)
 {
 	opt->nb_instr = 0;
 	opt->index_line = 0;
@@ -94,15 +96,20 @@ int	line_parser(char *line)
 	i = 0;
 	while (line[i] && ft_is_whitespace(line[i]))
 		i++;
-	while (line[i])
+	while (line[i] && !(opt.option & ALLOC_FAIL))
 		i += parser_param_func(&line[i])(line, i, &opt);
+	if (opt.option & ALLOC_FAIL)
+	{
+		fprintf(stderr, "Error: %s\n", strerror(ENOMEM));
+		return (-1);
+	}
 	i = -1;
 	while (++i < get_instr_list()->len)
 		vec_cast(get_instr_arg(i), sizeof(char *), change_int_to_ptr);
-	print_debug_sep("BUFFER");
-	if (DEBUG_PRINT)
-		vec_print(get_line());
-	print_debug_sep("STRUCTURE");
-	print_instr(opt.nb_instr, -1);
+	if (opt.option & PARSING_ERROR)
+	{
+		fprintf(stderr, "Error: %s\n", ERR_PARSE);
+		return (-1);
+	}
 	return (opt.nb_instr);
 }

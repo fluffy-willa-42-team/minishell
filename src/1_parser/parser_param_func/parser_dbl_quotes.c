@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:19:03 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:33:31 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 10:27:57 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	add_dblqot(char *line, int index, t_parser_opt *opt)
 		else if (line[index + i] == '$')
 		{
 			i += add_varsub(line, index + i, opt) - 1;
-			opt->option = opt->option & ~(EMPTY_VAR);
+			opt->option &= ~(EMPTY_VAR);
 		}
 		else
 			add_char(opt, &line[index + i]);
@@ -64,7 +64,7 @@ int	dblqot(char *line, int index, t_parser_opt *opt)
 	i = add_dblqot(line, index, opt);
 	if (line[index + i] != '\"')
 	{
-		printf("/!\\ unclosed double quote\n");//TODO
+		opt->option |= PARSING_ERROR;
 		return (i);
 	}
 	return (i + 1);

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:19:07 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:33:29 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 10:35:19 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	sglqot(char *line, int index, t_parser_opt *opt)
 	i = add_sglqot(line, index, opt);
 	if (line[index + i] != '\'')
 	{
-		printf("/!\\ unclosed single quote\n");//TODO
+		opt->option |= PARSING_ERROR;
 		return (i);
 	}
 	return (i + 1);

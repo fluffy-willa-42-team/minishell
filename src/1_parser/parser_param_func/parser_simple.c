@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:24:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:33:27 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 10:53:44 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ void	add_instr_or_arg(t_parser_opt *opt);
  */
 int	dflt_char(char *line, int index, t_parser_opt *opt)
 {
-	add_char(opt, &line[index]);
+	if (!add_char(opt, &line[index]))
+	{
+		opt->option |= ALLOC_FAIL;
+		return (1);
+	}
 	add_instr_or_arg(opt);
 	return (1);
 }
@@ -68,7 +72,11 @@ int	whtspc(char *line, int index, t_parser_opt *opt)
 		i++;
 	if (!(opt->option & NEW_ARG))
 	{
-		add_char(opt, "\0");
+		if (!add_char(opt, "\0"))
+		{
+			opt->option |= ALLOC_FAIL;
+			return (i);
+		}
 		opt->option |= NEW_ARG;
 	}
 	return (i);

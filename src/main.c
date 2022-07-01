@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 12:36:52 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 11:00:15 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		line_parse_check(int nb_instr);
 void	line_file_manager(int nb_instr);
 void	line_executor(void);
 
+void	print_instr(size_t len, int type);
+
 void	init_data(char **env);
 void	empty_g_data(void);
 void	free_g_data(void);
@@ -35,6 +37,13 @@ void	do_line(char *line_read)
 
 	g_data.cmd = line_read;
 	nb_instr = line_parser(line_read);
+	if (nb_instr == -1)
+		return ;
+	print_debug_sep("BUFFER");
+	if (DEBUG_PRINT)
+		vec_print(get_line());
+	print_debug_sep("STRUCTURE");
+	print_instr(nb_instr, -1);
 	if (nb_instr == 1
 		&& (!get_instr_arg_elem(0, 0) || !get_instr_arg_elem(0, 0)[0]))
 		return ;
@@ -69,6 +78,5 @@ int	main(int ac, char **av, char **env)
 	}
 	free(line_read);
 	free_g_data();
-	printf("\n");
 	return (0);
 }

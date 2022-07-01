@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 09:21:17 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:55:15 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 10:41:09 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@
 
 /* ************************************************************************** */
 
-# define NEW_INSTR		0b00001
-# define NEW_ARG		0b00010
-# define CHANGE_INSTR	0b00100
-# define NEW_CMD		0b01000
+# define NEW_INSTR		0b1
+# define NEW_ARG		0b10
+# define CHANGE_INSTR	0b100
+# define NEW_CMD		0b1000
 # define EMPTY_VAR		0b10000
+# define PARSING_ERROR	0b100000
+# define ALLOC_FAIL		0b1000000
 
 typedef struct s_parser_opt
 {
