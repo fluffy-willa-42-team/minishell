@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 11:02:56 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:53:04 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <errno.h>
+#include <string.h>
 
 void	set_sigaction(void);
 int		line_parser(char *line);
@@ -30,6 +32,18 @@ void	empty_g_data(void);
 void	free_g_data(void);
 
 t_minishell	g_data;
+
+static int	setup_prompt_start(t_vec *vec, int ac, char **av)
+{
+	if (ac > 1)
+	{
+		if (!vec_fill(vec, MULTI, 3, "(", av[1], ")> "))
+			return (0);
+	}
+	else if (!vec_fill(vec, DEFAULT, PROMPT_START))
+		return (0);
+	return (1);
+}
 
 static void	parser_debug(int nb_instr)
 {
@@ -65,12 +79,14 @@ void	do_line(char *line_read)
 int	main(int ac, char **av, char **env)
 {
 	char	*line_read;
+	t_vec	prompt_start;
 
-	(void) ac;
-	(void) av;
+	prompt_start = (t_vec) vec_init(char);
+	if (!setup_prompt_start(&prompt_start, ac, av))
+		return (msh_exit(0, ENOMEM, strerror(ENOMEM)));
 	init_data(env);
 	set_sigaction();
-	line_read = readline(PROMPT_START);
+	line_read = readline(prompt_start.buffer);
 	while (line_read)
 	{
 		if (line_read && line_read[0])
@@ -80,7 +96,7 @@ int	main(int ac, char **av, char **env)
 			empty_g_data();
 		}
 		free(line_read);
-		line_read = readline(PROMPT_START);
+		line_read = readline(prompt_start.buffer);
 	}
 	free(line_read);
 	free_g_data();
