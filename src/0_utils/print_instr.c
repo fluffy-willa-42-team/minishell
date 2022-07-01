@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:20:44 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 11:17:36 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 14:58:20 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,15 @@ void	print_instr(size_t len, int type)
 	printf("[\n");
 	while (++ind < len)
 	{
-		if (type == -1 || get_instr(ind)->type == type)
-		{
-			printf("    {\n");
-			printf("        type: %d,\n", get_instr(ind)->type);
-			printf("        fd: [%d, %d],\n",
-				get_instr(ind)->fds[0],
-				get_instr(ind)->fds[1]);
-			printf("        err: %d,\n", get_instr(ind)->err);
-			printf("        arg: [\n");
-			arg = -1;
-			while (++arg < get_instr_arg(ind)->len)
-				printf("            \"%s\",\n", get_instr_arg_elem(ind, arg));
-			printf("        ],\n");
-			printf("    },\n");
-		}
+		if (!(type == -1 || get_instr(ind)->type == type))
+			continue ;
+		printf("  {\n    type: %d,\n    fd: [%d, %d],\n    err: %d,\n    arg: [\n",
+			get_instr(ind)->type, get_instr(ind)->fds[0],
+			get_instr(ind)->fds[1], get_instr(ind)->err);
+		arg = -1;
+		while (++arg < get_instr_arg(ind)->len)
+			printf("      \"%s\",\n", get_instr_arg_elem(ind, arg));
+		printf("    ],\n  },\n");
 	}
 	printf("]\n");
 }
