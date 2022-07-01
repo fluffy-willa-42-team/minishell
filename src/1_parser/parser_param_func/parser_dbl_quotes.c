@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:19:03 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 10:27:57 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 11:58:53 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	dblqot(char *line, int index, t_parser_opt *opt)
 
 	opt->index_line++;
 	add_instr_or_arg(opt);
+	if (opt->option & ALLOC_FAIL)
+		return (1);
 	opt->index_line--;
 	i = add_dblqot(line, index, opt);
 	if (line[index + i] != '\"')

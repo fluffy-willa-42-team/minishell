@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 11:41:52 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 12:00:14 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	spec_0_arg(char *line, int index, t_parser_opt *opt)
 		return (1);
 	opt->index_instr = -1;
 	new_instr(opt, return_type_for_spec(&line[index]));
-	if (!add_char(opt, "\0"))
+	if (opt->option & ALLOC_FAIL || !add_char(opt, "\0"))
 		return (1);
 	opt->option |= NEW_INSTR | NEW_ARG;
 	return (1);
@@ -80,6 +80,8 @@ int	spec_1_arg(char *line, int index, t_parser_opt *opt)
 	if (!add_char(opt, &line[index]))
 		return (1);
 	new_instr(opt, return_type_for_spec(&line[index]));
+	if (opt->option & ALLOC_FAIL)
+		return (1);
 	if (line[index + 1] && line[index] == line[index + 1])
 	{
 		if (!add_char(opt, &line[index]))

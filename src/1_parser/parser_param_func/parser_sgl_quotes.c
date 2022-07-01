@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:19:07 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 10:35:19 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 11:59:07 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	sglqot(char *line, int index, t_parser_opt *opt)
 
 	opt->index_line++;
 	add_instr_or_arg(opt);
+	if (opt->option & ALLOC_FAIL)
+		return (1);
 	opt->index_line--;
 	i = add_sglqot(line, index, opt);
 	if (line[index + i] != '\'')
