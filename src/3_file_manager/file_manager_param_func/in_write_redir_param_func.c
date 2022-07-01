@@ -6,12 +6,13 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:18:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:37:07 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:31:32 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_manager.h"
 #include <readline/readline.h>
+#include <errno.h>
 
 void	secundary_prompt(int fd, const char *delimitor)
 {
@@ -41,12 +42,9 @@ void	redir_in_write(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 
 	if (DEBUG_PRINT)
 		printf("REDIR IN WRITE\n");
-	(void) code_ptr;
 	safety = pipe(get_instr(instr_index)->fds);
 	if (safety == -1)
-	{
-		//exit_msh()//TODO
-	}
+		**code_ptr = errno;
 	secundary_prompt(get_instr(instr_index)->fds[1], delimitor);
 	close(get_instr(instr_index)->fds[1]);
 	(**pipe_ptr)[0] = get_instr(instr_index)->fds[0];
