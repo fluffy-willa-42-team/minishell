@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_var_sub.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 13:17:53 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/01 11:22:48 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,8 @@ int	add_varsub(char *line, int index, t_parser_opt *opt)
 	{
 		if (!(line[index + 1] && line[index + 1] == '?'))
 			return (add_char(opt, "$"));
-		value = ft_itoa(g_data.last_exit_code);
-		if (!value)
-			exit(1); //TODO
-		vec_fill(get_line(), DEFAULT, value);
-		free(value);
+		if (!vec_add_itoa(get_line(), g_data.last_exit_code))
+			opt->option |= ALLOC_FAIL;
 		return (2);
 	}
 	vec_fill(&g_data.tmp, FIXED_LEN, &line[index + 1], len);
@@ -53,7 +50,8 @@ int	add_varsub(char *line, int index, t_parser_opt *opt)
 	vec_delete(&g_data.tmp);
 	if (value)
 	{
-		vec_fill(get_line(), DEFAULT, value);
+		if (!vec_fill(get_line(), DEFAULT, value))
+			opt->option |= ALLOC_FAIL;
 		opt->index_line += ft_strlen(value);
 	}
 	else

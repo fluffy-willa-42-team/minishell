@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:29:12 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 11:38:33 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,28 @@ void	add_cmd_path(t_parser_opt *opt, int index);
 
 int	add_char(t_parser_opt *opt, char *arg)
 {
-	vec_add(get_line(), arg);
+	if (!vec_add(get_line(), arg))
+	{
+		opt->option |= ALLOC_FAIL;
+		return (0);
+	}
 	opt->index_line++;
 	return (1);
 }
 
 void	add_arg(t_parser_opt *opt)
 {
+	int	index;
+
 	if (opt->index_instr == -1)
-		vec_add_int(get_instr_arg(opt->nb_instr - 1), opt->index_line - 1);
+		index = opt->nb_instr - 1;
 	else
-		vec_add_int(get_instr_arg(opt->index_instr), opt->index_line - 1);
+		index = opt->index_instr;
+	if (!vec_add_int(get_instr_arg(index), opt->index_line - 1))
+	{
+		opt->option |= ALLOC_FAIL;
+		return ;
+	}
 	opt->option &= ~(NEW_INSTR | NEW_ARG);
 	if (!(opt->option & CHANGE_INSTR) || opt->index_instr == -1)
 		return ;
@@ -51,7 +62,11 @@ void	new_instr(t_parser_opt *opt, int type)
 	{
 		new_instr.arg = (t_vec) vec_init(int);
 		new_instr.arg.rate = 8;
-		vec_add(get_instr_list(), &new_instr);
+		if (!vec_add(get_instr_list(), &new_instr))
+		{
+			opt->option |= ALLOC_FAIL;
+			return ;
+		}
 	}
 	else if (get_instr(opt->nb_instr)->type == 0)
 		get_instr(opt->nb_instr)->type = type;

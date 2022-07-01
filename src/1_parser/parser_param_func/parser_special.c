@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:33:32 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 11:41:52 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,14 @@ int	return_type_for_spec(char *elem)
 int	spec_0_arg(char *line, int index, t_parser_opt *opt)
 {
 	if (!(opt->option & NEW_ARG))
-		add_char(opt, "\0");
-	add_char(opt, &line[index]);
+		if (!add_char(opt, "\0"))
+			return (1);
+	if (!add_char(opt, &line[index]))
+		return (1);
 	opt->index_instr = -1;
 	new_instr(opt, return_type_for_spec(&line[index]));
-	add_char(opt, "\0");
+	if (!add_char(opt, "\0"))
+		return (1);
 	opt->option |= NEW_INSTR | NEW_ARG;
 	return (1);
 }
@@ -72,12 +75,19 @@ int	spec_1_arg(char *line, int index, t_parser_opt *opt)
 	len = 1;
 	opt->index_instr = opt->nb_instr;
 	if (!(opt->option & NEW_ARG))
-		add_char(opt, "\0");
-	add_char(opt, &line[index]);
+		if (!add_char(opt, "\0"))
+			return (1);
+	if (!add_char(opt, &line[index]))
+		return (1);
 	new_instr(opt, return_type_for_spec(&line[index]));
 	if (line[index + 1] && line[index] == line[index + 1])
-		len += add_char(opt, &line[index]);
-	add_char(opt, "\0");
+	{
+		if (!add_char(opt, &line[index]))
+			return (1);
+		len++;
+	}
+	if (!add_char(opt, "\0"))
+		return (1);
 	opt->option |= CHANGE_INSTR | NEW_ARG;
 	opt->index_instr = opt->nb_instr - 1;
 	return (len);
