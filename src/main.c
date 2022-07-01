@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 11:00:15 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 11:02:56 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,25 @@ void	free_g_data(void);
 
 t_minishell	g_data;
 
-void	do_line(char *line_read)
+static void	parser_debug(int nb_instr)
 {
-	int	nb_instr;
-
-	g_data.cmd = line_read;
-	nb_instr = line_parser(line_read);
-	if (nb_instr == -1)
-		return ;
 	print_debug_sep("BUFFER");
 	if (DEBUG_PRINT)
 		vec_print(get_line());
 	print_debug_sep("STRUCTURE");
 	print_instr(nb_instr, -1);
+}
+
+void	do_line(char *line_read)
+{
+	int	nb_instr;
+
+	g_data.cmd = line_read;
+
+	nb_instr = line_parser(line_read);
+	if (nb_instr == -1)
+		return ;
+	parser_debug(nb_instr);
 	if (nb_instr == 1
 		&& (!get_instr_arg_elem(0, 0) || !get_instr_arg_elem(0, 0)[0]))
 		return ;

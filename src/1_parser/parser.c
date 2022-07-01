@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 10:59:35 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/01 11:11:40 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,14 @@
 #include <errno.h>
 #include <string.h>
 
+void	add_cmd_path(t_parser_opt *opt, int index);
 
-void add_cmd_path(t_parser_opt *opt, int index);
+static int	exit_parser(int exit_code, char *message)
+{
+	g_data.last_exit_code = exit_code;
+	fprintf(stderr, "Error: %s\n", message);
+	return (-1);
+}
 
 static void	init_opt(t_parser_opt *opt)
 {
@@ -99,17 +105,12 @@ int	line_parser(char *line)
 	while (line[i] && !(opt.option & ALLOC_FAIL))
 		i += parser_param_func(&line[i])(line, i, &opt);
 	if (opt.option & ALLOC_FAIL)
-	{
-		fprintf(stderr, "Error: %s\n", strerror(ENOMEM));
-		return (-1);
-	}
+		return (exit_parser(ENOMEM, strerror(ENOMEM)));
 	i = -1;
 	while (++i < get_instr_list()->len)
-		vec_cast(get_instr_arg(i), sizeof(char *), change_int_to_ptr);
+		if (!vec_cast(get_instr_arg(i), sizeof(char *), change_int_to_ptr))
+			return (exit_parser(ENOMEM, strerror(ENOMEM)));
 	if (opt.option & PARSING_ERROR)
-	{
-		fprintf(stderr, "Error: %s\n", ERR_PARSE);
-		return (-1);
-	}
+		return (exit_parser(EPERM, ERR_PARSE));
 	return (opt.nb_instr);
 }
