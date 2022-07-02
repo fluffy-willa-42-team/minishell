@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/01 17:26:40 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/02 10:28:45 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "env_utils.h"
 #include "lib_str.h"
 #include "msh_debug.h"
+#include <errno.h>
 
 /**
  * [LOCAL]
@@ -28,30 +29,22 @@
  *              t_vec { buff->"TEST=UwU Be Gentle" },
  *            }
  */
-static void	sysenv_to_t_env(char *str)
+static int	sysenv_to_t_env(char *str)
 {
 	t_env	new_env;
 
 	if (!str)
-	{
-		print_debug ("sysenv_to_t_env NULL str\n");
-		exit(1);//TODO
-	}
+		return (msh_exit(0, 1, "sysenv_to_t_env NULL str\n"));
 	new_env.content = (t_vec) vec_init(char);
 	if (!vec_fill(&new_env.content, DEFAULT, str))
-	{
-		print_debug("sysenv_to_t_env fail to write new env\n");
-		exit (1);//TODO
-	}
+		return (msh_exit(ENOMEM, ENOMEM, "sysenv_to_t_env fail to write new env\n"));
 	new_env.env_len = 0;
 	while (str[new_env.env_len] && str[new_env.env_len] != '=')
 		new_env.env_len++;
 	new_env.token = djb2_hash(str, new_env.env_len);
 	if (!vec_add(&g_data.env_s, &new_env))
-	{
-		print_debug("sysenv_to_t_env fail to add new env\n");
-		exit (1);//TODO
-	}
+		return (msh_exit(ENOMEM, ENOMEM, "sysenv_to_t_env fail to add new env\n"));
+	return (0);
 }
 
 void	print_env_s(void)//TODO DEBUG 
@@ -62,7 +55,8 @@ void	print_env_s(void)//TODO DEBUG
 		char *tmp = vec_get_t_env_str(i);
 		if (tmp)
 		{
-			printf("[%2lu]{%2d}(%-20lu) ", i, vec_get_t_env_raw(i)->env_len, vec_get_t_env_raw(i)->token);
+			printf("[%2lu]{%2d}(%-20lu) ", i,
+				vec_get_t_env_raw(i)->env_len, vec_get_t_env_raw(i)->token);
 			int tmp_len = ft_strlen(tmp);
 			int write_len = tmp_len;
 			if (tmp_len > 64)
@@ -83,19 +77,16 @@ t_vec	*updt_env(void)
 	size_t i;
 
 	vec_delete(&g_data.env);
-	i = 0;
-	while (i < g_data.env_s.len)
+	i = -1;
+	while (++i < g_data.env_s.len)
 	{
-		if (vec_get_t_env_raw(i)->token)
+		if (!vec_get_t_env_raw(i)->token)
+			continue ;
+		if (!vec_add(&g_data.env, &vec_get_t_env_raw(i)->content.buffer))
 		{
-			printf("[ADD] [%s]\n", (char *)vec_get_t_env_raw(i)->content.buffer);//TODO REMOVE DEBUG
-			if (!vec_add(&g_data.env, &vec_get_t_env_raw(i)->content.buffer))
-			{
-				print_debug("[ERROR] updt_env: vec_add: return NULL\n");
-				return (NULL);
-			}
+			print_debug("[ERROR] updt_env: vec_add: return NULL\n");
+			return (NULL);
 		}
-		i++;
 	}
 	return (&g_data.env);
 }
@@ -104,14 +95,17 @@ void	init_env(char **env)
 {
 	int	index;
 
-	index = 0;
-	while (env[index])
+	index = -1;
+	while (env[++index])
 	{
-		sysenv_to_t_env(env[index]);
-		index++;
+		int res = sysenv_to_t_env(env[index]);
+		if (res != 0)
+			exit(res);
 	}
+
 	print_debug_sep("T_ENV");
 	updt_env();
 	if (DEBUG_PRINT)
 		print_env();
+	print_debug_sep("T_ENV END");
 }

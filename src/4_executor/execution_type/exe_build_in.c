@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_build_in.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:42:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 13:22:42 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/02 10:09:17 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	exe_build_in(char *cmd, char **args, char **envp)
 		"cd", "pwd", "echo", "export", "unset", "env", "exit"
 	};
 	const t_build_in	f[7] = {
-		dummy, dummy, dummy, export, dummy, env, dummy
+		msh_cd, dummy, dummy, export, dummy, env, dummy
 	};
 	int					i;
 

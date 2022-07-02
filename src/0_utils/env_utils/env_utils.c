@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:58 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/01 17:30:56 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/02 10:04:16 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_env	*env_get(char *name)
 		printf("[INFO] env_get: cmp [%s][%s]\n", name, vec_get_t_env_str(i));//TODO REMOVE DEBUG
 		i++;
 	}
-	#error TODO CHECK why this if return NULL.
+	// #error TODO CHECK why this if return NULL.
 	if (i == c_len())
 	{
 		printf("[INFO] env_get: return NULL\n");//TODO REMOVE DEBUG

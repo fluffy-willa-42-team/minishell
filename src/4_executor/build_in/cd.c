@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_in.h                                         :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 13:18:27 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 10:09:27 by awillems         ###   ########.fr       */
+/*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
+/*   Updated: 2022/07/02 10:08:45 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILD_IN_H
-# define BUILD_IN_H
+#include "minishell.h"
 
-typedef int	(*t_build_in)();
+int	msh_cd(char **args)
+{
+	int	i;
 
-int	dummy(char **env);
-int	env(char **env);
-int	export(char **env);
-int	msh_cd(char **args);
-
-#endif /* BUILD_IN_H */
+	i = -1;
+	while (args[++i])
+	{
+		printf("%s\n", args[i]);
+	}
+	return (1);
+}
