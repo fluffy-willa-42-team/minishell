@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:12:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/29 16:45:06 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/01 17:26:40 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ t_vec	*get_raw_instr_arg(int index);
 char	*get_raw_instr_arg_elem(int instr_index, int arg_index);
 
 t_env	*vec_get_t_env(int index);
-char	*vec_get_env_str(int index);
+t_env	*vec_get_t_env_raw(int index);
+char	*vec_get_t_env_str(int index);
 
 t_env	*vec_add_new_env(char *name, char *content);
 
