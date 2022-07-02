@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:14 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 10:59:21 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 12:52:28 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static t_env	*set(t_env *env, char *name, char *value)
 			print_debug("[ERROR] env_set: set: vec_fill faild!\n");
 		return (NULL);
 	}
+	vec_print(&env->content);
 	return (env);
 }
 
