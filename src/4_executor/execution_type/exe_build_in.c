@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_build_in.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:42:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 11:18:37 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 18:23:05 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,18 @@
 int	exe_build_in(char *cmd, char **args, char **envp)
 {
 	int					i;
-	const char			*buildins[7] = {
+	const char			*buildins[] = {
 		"cd", "pwd", "echo",
 		"export", "unset", "env",
-		"exit"
+		"exit",
+		"e"//WIP TODO REMOVE used as shortcut for fast debug
 	};
-	const t_build_in	f[7] = {
+	const t_build_in	f[] = {
 		msh_cd, msh_pwd, msh_echo,
 		export, msh_unset, env,
-		msh_exit_cmd
+		msh_exit_cmd,
+		export//WIP TODO REMOVE used as shortcut for fast debug
+
 	};
 
 	i = -1;

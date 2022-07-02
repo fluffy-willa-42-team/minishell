@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:48:09 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 17:27:29 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/02 18:20:15 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,17 @@ void	print_env_s(void)
 	char	*tmp;
 
 	i = 0;
-	while (i < g_data.env_s.len)
+	while (i < g_data.env_s.alloc_len)
 	{
 		tmp = vec_get_t_env_str(i);
 		if (tmp)
 		{
 			printf("[%2lu]{%2d}(%-20lu)[%.32s]\n",
-				i, vec_get_t_env(i)->env_len, vec_get_t_env(i)->token, tmp);
+				i, vec_get_t_env_raw(i)->env_len, vec_get_t_env_raw(i)->token, tmp);
 		}
 		else
 			printf("FUK!\n");
+		i++;
 	}
 	printf("\n");
 }
