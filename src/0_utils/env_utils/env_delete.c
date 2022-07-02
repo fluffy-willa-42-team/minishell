@@ -6,15 +6,11 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:58 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 11:01:25 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 11:04:58 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec_utils.h"
 #include "env_utils.h"
-#include "lib_str.h"
-
-
 
 /**
  * @brief Will destroy the env vector and pop.
