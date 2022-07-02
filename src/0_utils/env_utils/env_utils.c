@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:58 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 10:55:59 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 10:57:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@
 
 /**
  * [LOCAL] return the len of env_s.
- * WARN!! cast size_t to int
  */
-static int	c_len(void)
+static size_t	c_len(void)
 {
-	return ((int)g_data.env_s.len);
+	return (g_data.env_s.len);
 }
 
 /**
@@ -51,7 +50,7 @@ void	env_unset(t_env *env)
 t_env	*env_get(char *name)
 {
 	unsigned long	hash;
-	int				i;
+	size_t			i;
 
 	i = 0;
 	while (name[i])
