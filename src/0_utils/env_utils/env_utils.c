@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:58 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 10:47:03 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 10:55:59 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,18 @@ t_env	*env_get(char *name)
 	while (name[i])
 		i++;
 	hash = djb2_hash(name, i);
-	printf("[INFO] env_get: check for [%s][%lu]\n", name, hash);//TODO REMOVE DEBUG
+	printf("[INFO] env_get: check for [%s][%lu] ", name, hash);//TODO REMOVE DEBUG
 	i = -1;
-	while (++i < c_len() && vec_get_t_env_raw(i)->token != hash)
-		printf("[INFO] env_get: cmp [%s][%s]\n", name, vec_get_t_env_str(i));//TODO REMOVE DEBUG
-	// #error TODO CHECK why this if return NULL.
-	if (i == c_len())
+	while (++i < c_len())
 	{
-		printf("[INFO] env_get: return NULL\n");//TODO REMOVE DEBUG
-		return (NULL);
+		if (vec_get_t_env_raw(i)->token == hash)
+		{
+			printf(" FOUND :D\n");//TODO REMOVE DEBUG
+			return (vec_get_t_env_raw(i));
+		}
 	}
-	printf("[INFO] env_get: FOUND!\n");//TODO REMOVE DEBUG
-	return (vec_get_t_env_raw(i));
+	printf("not FOUND :(\n");//TODO REMOVE DEBUG
+	return (NULL);
 }
 
 char	*env_get_content(char *name)
@@ -79,21 +79,4 @@ char	*env_get_content(char *name)
 	if (tmp)
 		return ((char *) tmp->content.buffer + tmp->env_len + 1);
 	return (NULL);
-}
-
-//TODO REMOVE DEBUG STUFF
-//TODO TO THE NORM
-//TODO REMOVE PRINT LIMIT
-void	print_env(char *start, char *sep, char *end)
-{
-	size_t i = -1;
-
-	setbuf(stdout, NULL);//TODO remove
-	while (++i < g_data.env.len)
-	{
-		t_env *elem = vec_get_t_env(i);
-		printf("%s%.*s%s%s%s\n",
-			start, elem->env_len, elem->content.buffer, sep,
-			elem->content.buffer + elem->env_len + 1, end);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:17:09 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 10:44:51 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 10:52:28 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 # define ENV_UTILS_H
 
 #include "minishell.h"
-#include "vec_utils.h"
 
 typedef struct s_env {
 	unsigned long	token;
 	int				env_len;
 	t_vec			content;
 }				t_env;
+
+#include "vec_utils.h"
 
 unsigned long	djb2_hash(char *str, int len);
 
