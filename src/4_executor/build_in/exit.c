@@ -6,13 +6,13 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 11:15:25 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 11:17:24 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	msh_exit(char **args)
+int	msh_exit_cmd(char **args)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:42:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 11:16:23 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 11:17:32 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	exe_build_in(char *cmd, char **args, char **envp)
 		"cd", "pwd", "echo", "export", "unset", "env", "exit"
 	};
 	const t_build_in	f[7] = {
-		msh_cd, msh_pwd, msh_echo, export, msh_unset, env, msh_exit
+		msh_cd, msh_pwd, msh_echo, export, msh_unset, env, msh_exit_cmd
 	};
 
 	i = 0;
