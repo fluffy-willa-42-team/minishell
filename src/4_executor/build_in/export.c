@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:51:25 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/01 17:02:40 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/02 10:45:15 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ int	export(char **arg)
 	arg++;
 	if (!*arg)
 	{
-		print_env();//TODO add stuff before
+		print_env("declare -x ", "=\"", "\"");
 		return (1);
+		//declare -x PWD="/Users/fluffy/Code/minishell/willa"
 	}
 	if (!env_manager(arg))
 	{

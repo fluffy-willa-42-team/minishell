@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:58 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 10:04:16 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 10:47:03 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,9 @@ t_env	*env_get(char *name)
 		i++;
 	hash = djb2_hash(name, i);
 	printf("[INFO] env_get: check for [%s][%lu]\n", name, hash);//TODO REMOVE DEBUG
-	i = 0;
-	while (i < c_len() && vec_get_t_env_raw(i)->token != hash)
-	{
+	i = -1;
+	while (++i < c_len() && vec_get_t_env_raw(i)->token != hash)
 		printf("[INFO] env_get: cmp [%s][%s]\n", name, vec_get_t_env_str(i));//TODO REMOVE DEBUG
-		i++;
-	}
 	// #error TODO CHECK why this if return NULL.
 	if (i == c_len())
 	{
@@ -87,25 +84,16 @@ char	*env_get_content(char *name)
 //TODO REMOVE DEBUG STUFF
 //TODO TO THE NORM
 //TODO REMOVE PRINT LIMIT
-void	print_env(void)
+void	print_env(char *start, char *sep, char *end)
 {
 	size_t i = -1;
-	char	*tmp;
 
 	setbuf(stdout, NULL);//TODO remove
-	printf("ENV TAB SIZE[%lu]\n", g_data.env.len);
 	while (++i < g_data.env.len)
 	{
-		printf("[%lu] ", i);//TODO remove
-		tmp = ((char **)g_data.env.buffer)[i];
-		size_t len = ft_strlen(tmp);
-		if (len > 32)
-		{
-			write(1, tmp, 60);
-			write(1, "...\n", 5);
-			continue;
-		}
-		write(1, tmp, len);
-		write(1, "\n", 2);
+		t_env *elem = vec_get_t_env(i);
+		printf("%s%.*s%s%s%s\n",
+			start, elem->env_len, elem->content.buffer, sep,
+			elem->content.buffer + elem->env_len + 1, end);
 	}
 }

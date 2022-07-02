@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 10:28:45 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 10:44:57 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,6 @@ void	init_env(char **env)
 	print_debug_sep("T_ENV");
 	updt_env();
 	if (DEBUG_PRINT)
-		print_env();
+		print_env("", "=", "");
 	print_debug_sep("T_ENV END");
 }
