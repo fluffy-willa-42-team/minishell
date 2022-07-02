@@ -3,25 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:17:09 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 11:03:09 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 18:05:24 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_UTILS_H
 # define ENV_UTILS_H
 
-#include "minishell.h"
+# include "vector_lib.h"
 
 typedef struct s_env {
 	unsigned long	token;
 	int				env_len;
 	t_vec			content;
 }				t_env;
-
-#include "vec_utils.h"
 
 unsigned long	djb2_hash(char *str, int len);
 
@@ -35,5 +33,11 @@ t_env			*env_set(char *name, char *value, int overwrite);
 t_vec			*updt_env(void);//TODO ENV changer l'emplacement et de nom
 
 void			print_env(char *start, char *sep, char *end);
+
+# ifdef DEBUG_PRINT
+
+void			print_env_s(void);
+# endif /* DEBUG_PRINT */
+
 
 #endif /* ENV_UTILS_H */

@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   in_out_redir_param_func.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:19:09 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:37:22 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:49:43 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_manager.h"
 #include <errno.h>
+#include "vec_utils.h"
+#include <fcntl.h>
 
 /**
  * @brief 

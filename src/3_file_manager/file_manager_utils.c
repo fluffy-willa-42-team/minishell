@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   file_manager_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:28:39 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/23 11:14:14 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:33:01 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_manager.h"
+#include "lib_str.h"
+#include "vec_utils.h"
+
 
 void	close_fd(int (**pipe_ptr)[2], int index)
 {

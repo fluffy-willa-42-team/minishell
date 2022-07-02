@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   file_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:58 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 13:52:03 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:33:15 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_manager.h"
+#include "vec_utils.h"
 
 void	print_instr(size_t len, int type);
 

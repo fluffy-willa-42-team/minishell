@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 12:07:56 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:42:04 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_parser.h"
 #include <errno.h>
 #include <string.h>
+#include "vec_utils.h"
+#include "lib_str.h"
+#include "lib_is_check.h"
 
 void	add_cmd_path(t_parser_opt *opt, int index);
 

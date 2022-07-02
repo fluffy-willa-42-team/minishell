@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 11:38:33 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:41:19 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_parser.h"
+#include "vec_utils.h"
 
 void	add_cmd_path(t_parser_opt *opt, int index);
 

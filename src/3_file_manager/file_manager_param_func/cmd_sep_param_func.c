@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_sep_param_func.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:18:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:37:44 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:34:33 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_manager.h"
 #include <errno.h>
+#include "vec_utils.h"
 
 /**
  * @brief Will change the pipe_ptr to the pipe pointer in the command

@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.c                                        :+:      :+:    :+:   */
+/*   env_delete.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:58 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 11:04:58 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:27:18 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_utils.h"
+#include "vec_utils.h"
 
 /**
  * @brief Will destroy the env vector and pop.

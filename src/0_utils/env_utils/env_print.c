@@ -6,11 +6,12 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:48:09 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 17:02:22 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/02 17:27:29 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_utils.h"
+#include "vec_utils.h"
 
 void	print_env(char *start, char *sep, char *end)
 {

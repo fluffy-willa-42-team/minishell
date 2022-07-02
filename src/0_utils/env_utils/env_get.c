@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   env_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:00:54 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 11:01:31 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:27:01 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_utils.h"
+#include "vec_utils.h"
 
 /**
  * [LOCAL] return the len of env_s.

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parser_special.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 12:00:14 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:38:45 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_parser.h"
+#include "lib_str.h"
 
 int	return_type_for_spec(char *elem)
 {

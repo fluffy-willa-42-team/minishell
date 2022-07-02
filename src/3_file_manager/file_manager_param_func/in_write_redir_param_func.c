@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   in_write_redir_param_func.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:18:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 13:31:32 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:49:02 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file_manager.h"
+#include <stdio.h>
 #include <readline/readline.h>
+#include "file_manager.h"
 #include <errno.h>
+#include "lib_str.h"
+#include "lib_put_fd.h"
+#include "vec_utils.h"
 
 void	secundary_prompt(int fd, const char *delimitor)
 {
