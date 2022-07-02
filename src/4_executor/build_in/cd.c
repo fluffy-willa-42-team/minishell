@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 12:46:49 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:42:56 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,7 @@ int	msh_cd(char **args)
 	
 	env_set("PWD", s, 1);
 	
-	printf("%s %d\n", new_dir, res);
 	if (res != 0)
 		return (msh_exit(0, errno, strerror(errno)));
 	return (1);
 }
-
-// DIR *dir = opendir(new_dir);
-// if (!dir)
-// 	return (msh_exit(0, errno, strerror(errno)));
-// closedir(dir);
-// env_set("PWD", "NEW PATH", 1);
