@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:14 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/01 17:00:55 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/02 10:59:21 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
  * [LOCAL] return the len of env_s.
  * WARN!! cast size_t to int
  */
-static int	c_len(void)
+static size_t	c_len(void)
 {
-	return ((int)g_data.env_s.len);
+	return (g_data.env_s.len);
 }
 
 /**
@@ -49,7 +49,7 @@ static t_env	*set(t_env *env, char *name, char *value)
  */
 static t_env	*set_new(char *name, char *value)
 {
-	int		i;
+	size_t	i;
 
 	i = 0;
 	printf("NOT FOUD %s\n", name);//TODO remove

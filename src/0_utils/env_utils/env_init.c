@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 10:44:57 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 11:03:04 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,31 +45,6 @@ static int	sysenv_to_t_env(char *str)
 	if (!vec_add(&g_data.env_s, &new_env))
 		return (msh_exit(ENOMEM, ENOMEM, "sysenv_to_t_env fail to add new env\n"));
 	return (0);
-}
-
-void	print_env_s(void)//TODO DEBUG 
-{
-	setbuf(stdout, NULL);
-	for (size_t i = 0; i < g_data.env_s.alloc_len; i++)
-	{
-		char *tmp = vec_get_t_env_str(i);
-		if (tmp)
-		{
-			printf("[%2lu]{%2d}(%-20lu) ", i,
-				vec_get_t_env_raw(i)->env_len, vec_get_t_env_raw(i)->token);
-			int tmp_len = ft_strlen(tmp);
-			int write_len = tmp_len;
-			if (tmp_len > 64)
-				write_len = 62;
-			write(1, tmp, write_len);
-			if (tmp_len > 64)
-				write(1, "..", 2);
-			write(1, "\n", 1);
-		}
-		else
-			printf("FUK!\n");
-	}
-	printf("\n");
 }
 
 t_vec	*updt_env(void)

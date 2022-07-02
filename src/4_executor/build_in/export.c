@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:51:25 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 10:45:15 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 11:03:21 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static int	new_env(char *arg)
 		print_debug("[ERROR] env_manager: new_env: updt_env: return NULL\n");
 		exit(1);//TODO update env tab fail
 	}
-	print_env_s();//TODO REMOVE DEBUG
 	return (1);
 }
 
