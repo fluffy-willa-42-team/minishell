@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:00:54 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 17:27:01 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/02 18:46:44 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,12 @@ char	*env_get_content(char *name)
 {
 	t_env	*tmp;
 
+	if (DEBUG_PRINT)
+		printf("[INFO] env_get_content: try to find [%s]\n", name);
 	tmp = env_get(name);
 	if (tmp)
 		return ((char *) tmp->content.buffer + tmp->env_len + 1);
+	if (DEBUG_PRINT)
+		printf("[INFO] env_get_content: [%s] not find, return NULL\n", name);
 	return (NULL);
 }

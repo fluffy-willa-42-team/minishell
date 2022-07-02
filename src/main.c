@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 13:53:04 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 19:02:34 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	main(int ac, char **av, char **env)
 	char	*line_read;
 	t_vec	prompt_start;
 
+	print_debug_sep("DEBUG ENABLE");
 	prompt_start = (t_vec) vec_init(char);
 	if (!setup_prompt_start(&prompt_start, ac, av))
 		return (msh_exit(0, ENOMEM, strerror(ENOMEM)));

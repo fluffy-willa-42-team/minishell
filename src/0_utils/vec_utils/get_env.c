@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:30:07 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 10:03:17 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 18:27:33 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,9 @@ t_env	*vec_get_t_env_raw(int index)
 char	*vec_get_t_env_str(int index)
 {
 	return ((char *)vec_get_t_env(index)->content.buffer);
+}
+
+char	*vec_get_t_env_str_raw(int index)
+{
+	return ((char *)vec_get_t_env_raw(index)->content.buffer);
 }

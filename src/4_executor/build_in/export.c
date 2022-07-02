@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:51:25 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 17:04:21 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/02 19:07:02 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	env_manager(char **arg)
 	g_data.last_exit_code = 0;
 	while (*arg)
 	{
-		printf("ENV SET:[%s]\n", *arg);
+		printf("[DEBUG] ENV SET:[%s]\n", *arg);
 		if (!new_env(*arg))
 		{
 			printf("minishell: export: `%s`: not a valid identifier\n", *arg);//TODO CHECK FOR THE FD
@@ -79,7 +79,8 @@ static int	env_manager(char **arg)
  */
 int	export(char **arg)
 {
-	print_env_s();
+	print_debug_sep("EXPORT");//TODO REMOVE
+	print_env_s();//TODO REMOVE
 
 	if (!arg || !*arg)
 		return (0);
@@ -91,8 +92,11 @@ int	export(char **arg)
 	}
 	if (!env_manager(arg))
 	{
-		printf("ERROR!!! env_manager\n");
+		printf("[DEBUG] ERROR!!! env_manager\n");//TODO
 		exit(1);//TODO malloc fail
 	}
+	print_debug_sep("EXPORT");//TODO REMOVE
+	print_env_s();//TODO REMOVE
+	print_debug_sep("EXPORT END");//TODO REMOVE
 	return (1);
 }

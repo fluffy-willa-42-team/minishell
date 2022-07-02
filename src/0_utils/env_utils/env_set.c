@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:53:14 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 12:52:28 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 19:09:43 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static size_t	c_len(void)
  */
 static t_env	*set(t_env *env, char *name, char *value)
 {
-	printf("EDIT %s\n", name);//TODO remove
+	printf("set_new: set: [%s]\n", name);//TODO remove
 	vec_delete(&env->content);
 	env->env_len = ft_strlen(name);
 	env->token = djb2_hash(name, env->env_len);
@@ -53,15 +53,15 @@ static t_env	*set_new(char *name, char *value)
 	size_t	i;
 
 	i = 0;
-	printf("NOT FOUD %s\n", name);//TODO remove
+	printf("NOT FOUD [%s]\n", name);//TODO remove
 	while (i < c_len() && vec_get_t_env(i)->token != 0UL)
 		i++;
 	if (i == c_len())
 	{
-		printf("NOT FOUD FREE SPACE %s\n", name);//TODO remove
+		printf("NOT FOUD FREE SPACE [%s], TRY TO CRATE ONE\n", name);//TODO remove
 		return (vec_add_new_env(name, value));
 	}
-	printf("FOUD SPACE %s, TRY TO CRATE ONE\n", name);//TODO remove
+	printf("FOUD SPACE [%s], TRY TO CRATE ONE\n", name);//TODO remove
 	return (set(vec_get_t_env(i), name, value));
 }
 

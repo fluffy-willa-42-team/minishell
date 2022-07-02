@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_in.h                                         :+:      :+:    :+:   */
+/*   dmsh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 13:18:27 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 18:34:43 by mahadad          ###   ########.fr       */
+/*   Created: 2022/07/02 18:34:48 by mahadad           #+#    #+#             */
+/*   Updated: 2022/07/02 18:37:59 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILD_IN_H
-# define BUILD_IN_H
+#include "msh_debug.h"
+#include "env_utils.h"
 
-typedef int	(*t_build_in)();
-
-int	dummy(char **env);
-int	env(char **env);
-int	export(char **env);
-int	msh_cd(char **args);
-int	msh_pwd(char **args);
-int	msh_echo(char **args);
-int	msh_exit_cmd(char **args);
-int	msh_unset(char **args);
-int	dmsh(char **args);//XXX debug tools for msh
-
-#endif /* BUILD_IN_H */
+int	dmsh(char **args)//XXX debug tools for msh
+{
+	(void)args;
+	print_debug_sep("DEBUG DEBUG DEBUG");
+	print_debug_sep("DEBUG DEBUG DEBUG");
+	print_debug_sep("env");
+	print_env("", "", "");
+	print_debug_sep("env s");
+	print_env_s();
+	print_debug_sep("DEBUG DEBUG DEBUG");
+	print_debug_sep("DEBUG DEBUG DEBUG");
+	return (1);
+}

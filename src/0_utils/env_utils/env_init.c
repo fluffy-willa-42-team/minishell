@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 11:03:04 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 18:47:01 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	init_env(char **env)
 			exit(res);
 	}
 
-	print_debug_sep("T_ENV");
+	print_debug_sep("T_ENV INIT");
 	updt_env();
 	if (DEBUG_PRINT)
 		print_env("", "=", "");
-	print_debug_sep("T_ENV END");
+	print_debug_sep("T_ENV INIT END");
 }
