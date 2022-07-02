@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 13:54:27 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 11:12:29 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	print_cmd(char *cmd, char **args)
 
 	if (!DEBUG_PRINT)
 		return ;
-	printf("%s: [", cmd);
-	i = 0;
+	printf("[%s", cmd);
+	i = 1;
 	while (args[i])
-		printf("%s, ", args[i++]);
+		printf(", %s", args[i++]);
 	printf("]\n");
 }
 
