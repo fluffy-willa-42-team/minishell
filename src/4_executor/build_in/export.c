@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:51:25 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 11:10:13 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:04:21 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ static int	env_manager(char **arg)
  */
 int	export(char **arg)
 {
+	print_env_s();
+
 	if (!arg || !*arg)
 		return (0);
 	arg++;

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   vec_add_new_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:54:35 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/30 12:01:10 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:13:51 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec_utils.h"
 #include "lib_str.h"
 #include "minishell.h"
+#include "msh_debug.h"
 
 /**
  * Add new t_env structure. If alloc fail will call the exit function.
@@ -34,13 +35,13 @@ t_env	*vec_add_new_env(char *name, char *content)
 
 	if (!name || ft_strchr(name, '='))
 	{
-		printf ("vec_add_new_env NULL name OR `=`find in name\n");
+		print_debug("[ERROR] vec_add_new_env NULL name OR `=`find in name\n");
 		return (NULL);//TODO
 	}
 	new_env.content = (t_vec) vec_init(char);
 	if (!vec_fill(&new_env.content, MULTI, 3, name, "=", content))
 	{
-		printf("vec_add_new_env fail to write new env");
+		print_debug("[ERROR] vec_add_new_env fail to write new env");
 		return (NULL);//TODO
 	}
 	new_env.env_len = 0;
@@ -50,7 +51,7 @@ t_env	*vec_add_new_env(char *name, char *content)
 	tmp = vec_add(&g_data.env_s, &new_env);
 	if (!tmp)
 	{
-		printf("vec_add_new_env fail to add new env");
+		print_debug("[ERROR] vec_add_new_env fail to add new env");
 		return (NULL);//TODO
 	}
 	return ((t_env *)&tmp->buffer);
