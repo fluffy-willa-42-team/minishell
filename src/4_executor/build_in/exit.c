@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dummy.c                                            :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 13:19:39 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/01 13:37:24 by mahadad          ###   ########.fr       */
+/*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
+/*   Updated: 2022/07/02 11:15:25 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec_utils.h"
+#include "minishell.h"
 
-int	dummy(char **arg)
+int	msh_exit(char **args)
 {
-	printf("UwU [%s]\n", arg[0]);
+	int	i;
+
+	i = -1;
+	while (args[++i])
+	{
+		printf("%s\n", args[i]);
+	}
 	return (1);
 }
