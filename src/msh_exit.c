@@ -27,7 +27,7 @@ int	msh_return(int return_value, int exit_code, char *message, const char *fct)
 	return (return_value);
 }
 
-void	msh_exit(int exit_code, char *message, const char *fct)
+int	msh_exit(int exit_code, char *message, const char *fct)
 {
 	if (DEBUG_PRINT)
 		printf("%s:\n", fct);
