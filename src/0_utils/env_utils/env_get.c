@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:00:54 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 18:46:44 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 15:59:54 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,16 @@ t_env	*env_get(char *name)
 	while (name[i])
 		i++;
 	hash = djb2_hash(name, i);
-	printf("[INFO] env_get: check for [%s][%lu] ", name, hash);//TODO REMOVE DEBUG
+	if (DEBUG_PRINT)
+		printf("[INFO] env_get: check for [%s][%lu]\n", name, hash);
 	i = -1;
 	while (++i < c_len())
 	{
 		if (vec_get_t_env_raw(i)->token == hash)
 		{
-			printf(" FOUND :D\n");//TODO REMOVE DEBUG
 			return (vec_get_t_env_raw(i));
 		}
 	}
-	printf("not FOUND :(\n");//TODO REMOVE DEBUG
 	return (NULL);
 }
 

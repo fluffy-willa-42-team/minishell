@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 12:26:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 17:40:46 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 16:03:23 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int	add_varsub(char *line, int index, t_parser_opt *opt)
 			opt->option |= ALLOC_FAIL;
 		return (2);
 	}
+	vec_delete(&g_data.tmp);
 	vec_fill(&g_data.tmp, FIXED_LEN, &line[index + 1], len);
 	value = env_get_content(vec_get_str(&g_data.tmp, 0));
-	vec_delete(&g_data.tmp);
 	if (value)
 	{
 		if (!vec_fill(get_line(), DEFAULT, value))

@@ -3,23 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 11:14:12 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:52:10 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "env_utils.h"
+#include <stdio.h>
 
 int	msh_pwd(char **args)
 {
-	int	i;
-
-	i = -1;
-	while (args[++i])
-	{
-		printf("%s\n", args[i]);
-	}
+	(void) args;
+	printf("%s\n", env_get_content("PWD"));
 	return (1);
 }

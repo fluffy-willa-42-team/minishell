@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 15:18:56 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 15:44:00 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 int	make_new_dir(char *new_dir)
 {
 	if (!g_data.tmp.alloc_len)
-		vec_resize(&g_data.tmp);
+		if (!vec_resize(&g_data.tmp))
+			msh_exit(errno, strerror(errno), __FUNCTION__);
 	new_dir = NULL;
 	while (new_dir == NULL)
 	{

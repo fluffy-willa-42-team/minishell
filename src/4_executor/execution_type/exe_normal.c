@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:50:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 12:03:03 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:54:41 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,5 @@ char	*find_path(char *cmd, char *path, t_vec *vec)
 void	exe_normal(char *cmd, char **args, char **envp)
 {
 	args[0] = find_path(cmd, env_get_content("PATH"), &g_data.tmp);
-	fprintf(stderr, "path: %s\n", args[0]);
 	execve(args[0], args, envp);
 }
