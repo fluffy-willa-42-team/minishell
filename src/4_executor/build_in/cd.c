@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 13:12:42 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 14:09:10 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ int	msh_cd(char **args)
 		new_dir = env_get_content("HOME");
 	res = chdir(new_dir);
 	if (res != 0)
-	{
-		printf("minishell: cd: %s\n", strerror(errno));
-		return (1);
-	}
+		return (msh_exit(0, 1, strerror(errno), __FUNCTION__));
 	if (!g_data.tmp.alloc_len)
 		vec_resize(&g_data.tmp);
 	new_dir = NULL;
@@ -54,11 +51,11 @@ int	msh_cd(char **args)
 			vec_resize(&g_data.tmp);
 		}
 		else if (new_dir == NULL)
-			msh_exit(errno, errno, strerror(errno), __FUNCTION__);//TODO return the good exit failure
+			return (msh_exit(0, 1, strerror(errno), __FUNCTION__));
 	}
 	if (DEBUG_PRINT)
 		printf("[INFO] msh_cd new dir [%s]\n", new_dir);
 	env_set("PWD", new_dir, 1);
 	updt_env();
-	return (1);
+	return (msh_exit(0, 0, NULL, __FUNCTION__));
 }
