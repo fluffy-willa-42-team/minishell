@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 11:38:13 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 14:12:25 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 
 void	line_executor(void)
 {
-	pid_t	pid;
+	pid_t	pid = 0;
 	int		status;
 	size_t	i;
 	int		index;
@@ -100,7 +100,10 @@ void	line_executor(void)
 			close_fd_pipe(get_instr(i)->fds);
 		}
 	}
-	waitpid(pid, &status, 0);//XXX note: étant donné que le parent continue son exe, il faudrai pas mettre le wait dans la boucle pour éviter qu'ils n'execute tout les enfant ?
-	g_data.last_exit_code = WEXITSTATUS(status);
+	if (pid != 0)
+	{
+		waitpid(pid, &status, 0);//XXX note: étant donné que le parent continue son exe, il faudrai pas mettre le wait dans la boucle pour éviter qu'ils n'execute tout les enfant ?
+		g_data.last_exit_code = WEXITSTATUS(status);
+	}
 	print_debug_sep("END");
 }
