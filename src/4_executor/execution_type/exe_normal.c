@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:50:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:43:25 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 09:35:14 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	exe_normal(char *cmd, char **args, char **envp)
 	char	*path = find_path(cmd);
 
 	if (DEBUG_PRINT)
-		fprintf(stderr, "%s => %s\n", cmd, path);
+		fprintf(stderr, "%s => %s\n", cmd, path);//TODO FIX function not allowd
 	args[0] = path;
 	execve(path, args, envp);
 }

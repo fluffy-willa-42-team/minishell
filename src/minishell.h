@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/01 12:04:51 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 09:36:22 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ extern t_minishell			g_data;
 
 /* ************************************************************************** */
 
-int	msh_exit(int return_value, int exit_code, char *message);
+int	msh_exit(int return_value, int exit_code, char *message, const char *fct);
 
 /* ************************************************************************** */
 

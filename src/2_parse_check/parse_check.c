@@ -40,7 +40,7 @@ int	line_parse_check(int nb_instr)
 		if ((get_instr(i)->type == 2 || get_instr(i)->type == 3)
 			&& i + 1 < nb_instr
 			&& (get_instr(i + 1)->type == 2 || get_instr(i + 1)->type == 3))
-			return (msh_exit(0, 258, ERR_PARSE));
+			return (msh_exit(0, 258, ERR_PARSE, __FUNCTION__));
 		i++;
 	}
 	print_debug("[OK]");

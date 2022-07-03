@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 19:02:34 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 09:28:45 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(int ac, char **av, char **env)
 	print_debug_sep("DEBUG ENABLE");
 	prompt_start = (t_vec) vec_init(char);
 	if (!setup_prompt_start(&prompt_start, ac, av))
-		return (msh_exit(0, ENOMEM, strerror(ENOMEM)));
+		return (msh_exit(0, ENOMEM, strerror(ENOMEM), __FUNCTION__));
 	init_data(env);
 	set_sigaction();
 	line_read = readline(prompt_start.buffer);

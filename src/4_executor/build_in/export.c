@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:51:25 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 19:07:02 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 09:31:12 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "lib_is_check.h"
 #include "msh_debug.h"
 
+#include <errno.h>
+#include <string.h>
 #include <stdio.h>
 
 static int	new_env(char *arg)
@@ -34,21 +36,19 @@ static int	new_env(char *arg)
 	if (!vec_fill(&g_data.tmp, FIXED_LEN, arg, len))
 	{
 		print_debug("[ERROR] env_manager: new_env: vec_fill: return NULL\n");
-		exit(1);//TODO exit handler for fail memory
+		msh_exit(errno, errno, strerror(errno), __FUNCTION__);
 	}
-	vec_print(&g_data.tmp);//TODO REMOVE
 	len++;
 	if (!env_set((char *)g_data.tmp.buffer, &arg[len], 1))
 	{
 		print_debug("[ERROR] env_manager: new_env: env_set: return NULL\n");
-		exit(1);//TODO exit handler for fail memory
+		msh_exit(errno, errno, strerror(errno), __FUNCTION__);
 	}
 	if (!updt_env())
 	{
 		print_debug("[ERROR] env_manager: new_env: updt_env: return NULL\n");
-		exit(1);//TODO update env tab fail
+		msh_exit(errno, errno, strerror(errno), __FUNCTION__);
 	}
-	print_env("", "=\"", "\"");
 	return (1);
 }
 

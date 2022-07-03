@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 14:42:56 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 09:34:54 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ int	msh_cd(char **args)
 	env_set("PWD", s, 1);
 	
 	if (res != 0)
-		return (msh_exit(0, errno, strerror(errno)));
+		return (msh_exit(0, errno, strerror(errno), __FUNCTION__));
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 08:56:40 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 09:03:17 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 	print_cmd(cmd, args);
 	if (get_instr(i)->err != 0)
 	{
-		fprintf(stderr, "%s: %s\n", g_data.cmd, strerror(get_instr(i)->err));
+		fprintf(stderr, "%s: %s\n", g_data.cmd, strerror(get_instr(i)->err));//TODO FIX function not allowd
 		exit(get_instr(i)->err);
 	}
 	set_fd_to_std(get_instr(i)->fds, STDIN_FILENO, STDOUT_FILENO);
@@ -71,7 +71,7 @@ void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 	else
 	{
 		exe_normal(cmd, args, envp);
-		fprintf(stderr, "%s: %s\n", g_data.cmd, "command not found");
+		fprintf(stderr, "%s: %s\n", g_data.cmd, "command not found");//TODO FIX function not allowd
 		exit(EX_NOTFOUND);
 	}
 	exit(0);

@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 13:14:02 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 17:42:04 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 09:37:05 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,12 @@ int	line_parser(char *line)
 	while (line[i] && !(opt.option & ALLOC_FAIL))
 		i += parser_param_func(&line[i])(line, i, &opt);
 	if (opt.option & ALLOC_FAIL)
-		return (msh_exit(-1, ENOMEM, strerror(ENOMEM)));
+		return (msh_exit(-1, errno, strerror(errno), __FUNCTION__));
 	i = -1;
 	while (++i < get_instr_list()->len)
 		if (!vec_cast(get_instr_arg(i), sizeof(char *), change_int_to_ptr))
-			return (msh_exit(-1, ENOMEM, strerror(ENOMEM)));
+			return (msh_exit(-1, errno, strerror(errno), __FUNCTION__));
 	if (opt.option & PARSING_ERROR)
-		return (msh_exit(-1, 258, ERR_PARSE));
+		return (msh_exit(-1, 258, ERR_PARSE, __FUNCTION__));
 	return (opt.nb_instr);
 }
