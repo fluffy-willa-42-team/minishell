@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 14:09:10 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 14:13:50 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,9 @@
 #include <errno.h>
 #include <string.h>
 
-// #include <sys/types.h>
 #include <sys/stat.h>
 #include "env_utils.h"
-// #include <unistd.h>
 
-//opendir, readdir, closedir,
-
-//CHANGE DIR
-//CHANGE PATH
 int	msh_cd(char **args)
 {
 	char *new_dir;
