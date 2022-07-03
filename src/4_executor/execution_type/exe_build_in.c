@@ -41,9 +41,8 @@ void	create_backup(int new_fd, int old_fd, int *backup)
 	if (new_fd != old_fd)
 	{
 		*backup = dup(old_fd);
-		dup2(old_fd, new_fd);
-		close(new_fd);
-		fprintf(stderr, "(%d => %d) [%d]\n", old_fd, new_fd, *backup);
+		int res = dup2(new_fd, old_fd);
+		fprintf(stderr, "%d (%d => %d) [%d]\n", res, old_fd, new_fd, *backup);
 	}
 }
 
@@ -51,9 +50,10 @@ void	use_backup(int new_fd, int old_fd, int backup)
 {
 	if (new_fd != old_fd)
 	{
-		dup2(old_fd, backup);
+		int res = dup2(backup, old_fd);
 		close(backup);
-		fprintf(stderr, "(%d => %d) [%d]\n", old_fd, backup, new_fd);
+		close(new_fd);
+		fprintf(stderr, "%d (%d <= %d) [%d]\n", res, old_fd, backup, new_fd);
 	}
 }
 
@@ -67,9 +67,8 @@ int	exe_build_in(char **args, int index, int fds[2])
 	};
 	int backup[2];
 
-	fprintf(stderr, "[%d, %d]\n", fds[0], fds[1]);
-	create_backup(fds[0], STDIN_FILENO, backup);
-	create_backup(fds[1], STDOUT_FILENO, backup + 1);
+	create_backup(fds[0], STDIN_FILENO, &backup[0]);
+	create_backup(fds[1], STDOUT_FILENO, &backup[1]);
 	build_in_func[index](args);
 	use_backup(fds[0], STDIN_FILENO, backup[0]);
 	use_backup(fds[1], STDOUT_FILENO, backup[1]);
