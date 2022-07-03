@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 09:03:17 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 11:38:13 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include <sys/wait.h>
 #include <errno.h>
 
-int		exe_build_in(char *cmd, char **args, char **envp);
+int		is_build_in(char *cmd);
+int		exe_build_in(char **args, int index, int fds[2]);
 void	exe_file(char *cmd, char **args, char **envp);
 void	exe_normal(char *cmd, char **args, char **envp);
 
@@ -66,8 +67,6 @@ void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 	set_fd_to_std(get_instr(i)->fds, STDIN_FILENO, STDOUT_FILENO);
 	if (cmd && (cmd[0] == '/' || cmd[0] == '.'))
 		exe_file(cmd, args, envp);
-	// else if (exe_build_in(cmd, args, envp))
-	// 	;//WIP moved to line_executor @willa check if this not affect your logic.
 	else
 	{
 		exe_normal(cmd, args, envp);
@@ -82,28 +81,24 @@ void	line_executor(void)
 	pid_t	pid;
 	int		status;
 	size_t	i;
+	int		index;
 
 	print_debug_sep("EXECUTION");
-	i = 0;
-	while (i < get_instr_list()->len)
+	i = -1;
+	while (++i < get_instr_list()->len)
 	{
-		if (get_instr(i)->type == 1)
+		if (get_instr(i)->type != 1)
+			continue ;
+		index = is_build_in(get_instr_arg_elem(i, 0));
+		if (index != -1)
+			exe_build_in(get_instr_arg(i)->buffer, index, get_instr(i)->fds);
+		else
 		{
-			if (!exe_build_in(get_instr_arg_elem(i, 0),
-					get_instr_arg(i)->buffer,
-					g_data.env.buffer))
-			{
-				pid = fork();
-				if (pid == 0)
-					execute_cmd(i,
-						get_instr_arg_elem(i, 0),
-						get_instr_arg(i)->buffer,
-						g_data.env.buffer);
-				close_fd_pipe(get_instr(i)->fds);
-				vec_delete(&g_data.tmp);
-			}
+			pid = fork();
+			if (pid == 0)
+				execute_cmd(i, get_instr_arg_elem(i, 0), get_instr_arg(i)->buffer, g_data.env.buffer);
+			close_fd_pipe(get_instr(i)->fds);
 		}
-		i++;
 	}
 	waitpid(pid, &status, 0);//XXX note: étant donné que le parent continue son exe, il faudrai pas mettre le wait dans la boucle pour éviter qu'ils n'execute tout les enfant ?
 	g_data.last_exit_code = WEXITSTATUS(status);

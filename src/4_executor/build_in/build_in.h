@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_in.h                                         :+:      :+:    :+:   */
+/*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:18:27 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 18:34:43 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 11:11:03 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILD_IN_H
 # define BUILD_IN_H
+
+# define NB_BUILD_IN 8
 
 typedef int	(*t_build_in)();
 
