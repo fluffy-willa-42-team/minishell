@@ -38,7 +38,7 @@ void	env_unset(t_env *env)
 		return ;
 	}
 	if (DEBUG_PRINT)
-		printf("[INFO] env_unset: delete [%s]\n", env->content.buffer);
+		printf("[INFO] env_unset: delete [%s]\n", (char *) env->content.buffer);
 	vec_delete(&env->content);
 	env->env_len = 0;
 	env->token = 0;

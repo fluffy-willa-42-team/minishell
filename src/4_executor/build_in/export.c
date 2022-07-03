@@ -49,9 +49,6 @@ static int	new_env(char *arg)
  */
 static int	env_manager(char **arg)
 {
-	int			i;
-
-	i = 0;
 	while (*arg)
 	{
 		if (DEBUG_PRINT)

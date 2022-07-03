@@ -39,9 +39,6 @@ static int	new_env(char *arg)
  */
 static int	env_manager(char **arg)
 {
-	int			i;
-
-	i = 0;
 	g_data.last_exit_code = 0;
 	while (*arg)
 	{

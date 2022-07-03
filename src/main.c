@@ -101,5 +101,6 @@ int	main(int ac, char **av, char **env)
 	}
 	free(line_read);
 	free_g_data();
+	vec_destroy(&prompt_start);
 	return (0);
 }

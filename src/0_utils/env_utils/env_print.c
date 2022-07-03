@@ -24,8 +24,8 @@ void	print_env(char *start, char *sep, char *end)
 		elem = vec_get_t_env_raw(i);
 		if (elem->token != 0)
 			printf("%s%.*s%s%s%s\n",
-				start, elem->env_len, elem->content.buffer, sep,
-				elem->content.buffer + elem->env_len + 1, end);
+				start, elem->env_len, (char *) elem->content.buffer, sep,
+				(char *) elem->content.buffer + elem->env_len + 1, end);
 	}
 }
 
@@ -39,7 +39,8 @@ void	print_env_s(void)
 	while (i < g_data.env_s.alloc_len)
 	{
 		printf("[%2lu]{%2d}(%-20lu)[%.32s]\n",
-			i, vec_get_t_env_raw(i)->env_len, vec_get_t_env_raw(i)->token,
+			i, vec_get_t_env_raw(i)->env_len, 
+			vec_get_t_env_raw(i)->token,
 			vec_get_t_env_str_raw(i));
 		i++;
 	}
