@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/03 09:32:15 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 12:49:59 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_vec	*updt_env(void)
 		if (!vec_add(&g_data.env, &vec_get_t_env_raw(i)->content.buffer))
 		{
 			print_debug("[ERROR] updt_env: vec_add: return NULL\n");
-			return (NULL);
+			msh_exit(errno, errno, strerror(errno), __FUNCTION__);
 		}
 	}
 	return (&g_data.env);
