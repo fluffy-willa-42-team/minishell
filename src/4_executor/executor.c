@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 12:25:12 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 14:44:42 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 	exit(0);
 }
 
-void	line_executor(pid_t pid, size_t i, int index, int status)
+void	line_executor(pid_t pid, int status, size_t i, int index)
 {
 	print_debug_sep("EXECUTION");
 	while (++i < get_instr_list()->len)
