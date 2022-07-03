@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exe_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:50:35 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 09:35:14 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 12:03:03 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lib_str.h"
+#include "env_utils.h"
 
 int	get_path_len(char *cmd, int i)
 {
@@ -24,24 +25,19 @@ int	get_path_len(char *cmd, int i)
 	return (len);
 }
 
-char	*find_path(char *cmd)
+char	*find_path(char *cmd, char *path, t_vec *vec)
 {
-	char	*path = getenv("PATH");
-	t_vec	*vec = &g_data.tmp;
 	int		len = ft_strlen(path);
 
-	if (ft_strlen(cmd) == 0)
-		return (NULL);
 	for (int i = 0; i < len; i++)
 	{
-		if (get_path_len(path, i) != 0)
-		{
-			vec_delete(vec);
-			vec_fill(vec, FIXED_LEN, path + i, get_path_len(path, i));
-			vec_fill(vec, MULTI, 2, "/", cmd);
-			if (access((char *) vec->buffer, X_OK) == 0)
-				return ((char *) vec->buffer);
-		}
+		if (get_path_len(path, i) == 0)
+			continue ;
+		vec_delete(vec);
+		vec_fill(vec, FIXED_LEN, path + i, get_path_len(path, i));
+		vec_fill(vec, MULTI, 2, "/", cmd);
+		if (access((char *) vec->buffer, X_OK) == 0)
+			return (vec->buffer);
 	}
 	vec_delete(vec);
 	return (NULL);
@@ -49,10 +45,7 @@ char	*find_path(char *cmd)
 
 void	exe_normal(char *cmd, char **args, char **envp)
 {
-	char	*path = find_path(cmd);
-
-	if (DEBUG_PRINT)
-		fprintf(stderr, "%s => %s\n", cmd, path);//TODO FIX function not allowd
-	args[0] = path;
-	execve(path, args, envp);
+	args[0] = find_path(cmd, env_get_content("PATH"), &g_data.tmp);
+	fprintf(stderr, "path: %s\n", args[0]);
+	execve(args[0], args, envp);
 }

@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 14:12:25 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 14:26:58 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,8 @@ void	close_fd_pipe(int fd[2])
 		close(fd[1]);
 }
 
-void	print_cmd(char *cmd, char **args)
-{
-	int	i;
-
-	if (!DEBUG_PRINT)
-		return ;
-	printf("[%s", cmd);
-	i = 1;
-	while (args[i])
-		printf(", %s", args[i++]);
-	printf("]\n");
-}
-
 void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 {
-	print_cmd(cmd, args);
 	if (get_instr(i)->err != 0)
 	{
 		fprintf(stderr, "%s: %s\n", g_data.cmd, strerror(get_instr(i)->err));//TODO FIX function not allowd
@@ -84,6 +70,7 @@ void	line_executor(void)
 	int		index;
 
 	print_debug_sep("EXECUTION");
+	pid = 0;
 	i = -1;
 	while (++i < get_instr_list()->len)
 	{
@@ -96,7 +83,8 @@ void	line_executor(void)
 		{
 			pid = fork();
 			if (pid == 0)
-				execute_cmd(i, get_instr_arg_elem(i, 0), get_instr_arg(i)->buffer, g_data.env.buffer);
+				execute_cmd(i, get_instr_arg_elem(i, 0),
+					get_instr_arg(i)->buffer, g_data.env.buffer);
 			close_fd_pipe(get_instr(i)->fds);
 		}
 	}
