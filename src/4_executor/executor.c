@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 14:26:58 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 14:44:42 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 {
 	if (get_instr(i)->err != 0)
 	{
-		fprintf(stderr, "%s: %s\n", g_data.cmd, strerror(get_instr(i)->err));//TODO FIX function not allowd
+		fprintf(stderr, "%s: %s\n", g_data.line_read, strerror(get_instr(i)->err));//TODO FIX function not allowd
 		exit(get_instr(i)->err);
 	}
 	set_fd_to_std(get_instr(i)->fds, STDIN_FILENO, STDOUT_FILENO);
@@ -56,22 +56,15 @@ void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 	else
 	{
 		exe_normal(cmd, args, envp);
-		fprintf(stderr, "%s: %s\n", g_data.cmd, "command not found");//TODO FIX function not allowd
+		fprintf(stderr, "%s: %s\n", g_data.line_read, "command not found");//TODO FIX function not allowd
 		exit(EX_NOTFOUND);
 	}
 	exit(0);
 }
 
-void	line_executor(void)
+void	line_executor(pid_t pid, int status, size_t i, int index)
 {
-	pid_t	pid = 0;
-	int		status;
-	size_t	i;
-	int		index;
-
 	print_debug_sep("EXECUTION");
-	pid = 0;
-	i = -1;
 	while (++i < get_instr_list()->len)
 	{
 		if (get_instr(i)->type != 1)

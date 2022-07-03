@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 09:28:45 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 14:44:31 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	set_sigaction(void);
 int		line_parser(char *line);
 int		line_parse_check(int nb_instr);
 void	line_file_manager(int nb_instr);
-void	line_executor(void);
+void	line_executor(pid_t pid, int status, size_t i, int index);
 
 void	print_instr(size_t len, int type);
 
@@ -58,8 +58,6 @@ void	do_line(char *line_read)
 {
 	int	nb_instr;
 
-	g_data.cmd = line_read;
-
 	nb_instr = line_parser(line_read);
 	if (nb_instr == -1)
 		return ;
@@ -70,7 +68,7 @@ void	do_line(char *line_read)
 	if (!line_parse_check(nb_instr))
 		return ;
 	line_file_manager(nb_instr);
-	line_executor();
+	line_executor(0, 0, -1, 0);
 }
 
 /**
@@ -78,29 +76,24 @@ void	do_line(char *line_read)
  */
 int	main(int ac, char **av, char **env)
 {
-	char	*line_read;
-	t_vec	prompt_start;
-
 	print_debug_sep("DEBUG ENABLE");
-	prompt_start = (t_vec) vec_init(char);
-	if (!setup_prompt_start(&prompt_start, ac, av))
-		return (msh_exit(0, ENOMEM, strerror(ENOMEM), __FUNCTION__));
+	g_data.prompt_start = (t_vec) vec_init(char);
+	if (!setup_prompt_start(&g_data.prompt_start, ac, av))
+		return (msh_return(0, ENOMEM, strerror(ENOMEM), __FUNCTION__));
 	init_data(env);
 	set_sigaction();
-	line_read = readline(prompt_start.buffer);
-	while (line_read)
+	g_data.line_read = readline(g_data.prompt_start.buffer);
+	while (g_data.line_read)
 	{
-		if (line_read && line_read[0])
+		if (g_data.line_read && g_data.line_read[0])
 		{
-			do_line(line_read);
-			add_history(line_read);
+			do_line(g_data.line_read);
+			add_history(g_data.line_read);
 			empty_g_data();
 		}
-		free(line_read);
-		line_read = readline(prompt_start.buffer);
+		free(g_data.line_read);
+		g_data.line_read = readline(g_data.prompt_start.buffer);
 	}
-	free(line_read);
 	free_g_data();
-	vec_destroy(&prompt_start);
 	return (0);
 }

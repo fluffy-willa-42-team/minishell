@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:51:25 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/03 12:50:13 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 14:33:41 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static int	new_env(char *arg)
 					[!arg[len] || !(ft_isalnum(arg[len]) || arg[len] == '_')]);
 	vec_delete(&g_data.tmp);
 	if (!vec_fill(&g_data.tmp, FIXED_LEN, arg, len))
-		msh_exit(errno, errno, strerror(errno), __FUNCTION__);
+		msh_return(errno, errno, strerror(errno), __FUNCTION__);
 	len++;
 	if (!env_set((char *)g_data.tmp.buffer, &arg[len], 1))
-		msh_exit(errno, errno, strerror(errno), __FUNCTION__);
+		msh_return(errno, errno, strerror(errno), __FUNCTION__);
 	vec_delete(&g_data.tmp);
 	updt_env();
 	return (1);

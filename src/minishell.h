@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 12:07:52 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/03 09:36:22 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 14:39:51 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,15 @@
 
 typedef struct s_minishell
 {
+	char	*line_read;
 	char	*env_path;
 	t_vec	lexed_command;
 	t_vec	lexed_instr;
 	t_vec	tmp;
 	t_vec	env;
 	t_vec	env_s;
+	t_vec	prompt_start;
 	int		last_exit_code;
-	char	*cmd;
 	int		pipe_buf[2];
 	int		code_buf;
 }				t_minishell;
@@ -84,7 +85,7 @@ extern t_minishell			g_data;
 
 /* ************************************************************************** */
 
-int	msh_exit(int return_value, int exit_code, char *message, const char *fct);
+int	msh_return(int return_value, int exit_code, char *message, const char *fct);
 
 /* ************************************************************************** */
 

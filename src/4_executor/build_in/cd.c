@@ -6,13 +6,11 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 14:13:50 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 14:49:03 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// #include <sys/types.h>
 
 #include <dirent.h>
 #include <errno.h>
@@ -20,6 +18,23 @@
 
 #include <sys/stat.h>
 #include "env_utils.h"
+
+/**
+ * [LOCAL]
+ */
+int	get_dir(char *new_dir)
+{
+	vec_delete(&g_data.tmp);
+	new_dir = getcwd(g_data.tmp.buffer, g_data.tmp.alloc_len);
+	if (new_dir == NULL && (errno == ENOMEM || errno == ERANGE))
+	{
+		print_debug("[INFO] msh_cd: resize buffer for getcwd\n");
+		vec_resize(&g_data.tmp);//TODO check malloc
+	}
+	else if (new_dir == NULL)
+		return (msh_return(0, 1, strerror(errno), __FUNCTION__));
+	return (1);
+}
 
 int	msh_cd(char **args)
 {
@@ -31,25 +46,16 @@ int	msh_cd(char **args)
 		new_dir = env_get_content("HOME");
 	res = chdir(new_dir);
 	if (res != 0)
-		return (msh_exit(0, 1, strerror(errno), __FUNCTION__));
+		return (msh_return(0, 1, strerror(errno), __FUNCTION__));
 	if (!g_data.tmp.alloc_len)
 		vec_resize(&g_data.tmp);
 	new_dir = NULL;
 	while (new_dir == NULL)
-	{
-		vec_delete(&g_data.tmp);
-		new_dir = getcwd(g_data.tmp.buffer, g_data.tmp.alloc_len);
-		if (new_dir == NULL && (errno == ENOMEM || errno == ERANGE))
-		{
-			print_debug("[INFO] msh_cd: resize buffer for getcwd\n");
-			vec_resize(&g_data.tmp);
-		}
-		else if (new_dir == NULL)
-			return (msh_exit(0, 1, strerror(errno), __FUNCTION__));
-	}
+		if (!get_dir(new_dir))
+			return (1);
 	if (DEBUG_PRINT)
 		printf("[INFO] msh_cd new dir [%s]\n", new_dir);
 	env_set("PWD", new_dir, 1);
 	updt_env();
-	return (msh_exit(0, 0, NULL, __FUNCTION__));
+	return (msh_return(0, 0, NULL, __FUNCTION__));
 }

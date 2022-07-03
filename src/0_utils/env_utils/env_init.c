@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/03 12:49:59 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 14:33:41 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ static int	sysenv_to_t_env(char *str)
 	t_env	new_env;
 
 	if (!str)
-		return (msh_exit(0, 1, "sysenv_to_t_env NULL str\n", __FUNCTION__));
+		return (msh_return(0, 1, "sysenv_to_t_env NULL str\n", __FUNCTION__));
 	new_env.content = (t_vec) vec_init(char);
 	if (!vec_fill(&new_env.content, DEFAULT, str))
-		return (msh_exit(errno, errno, strerror(errno), __FUNCTION__));
+		return (msh_return(errno, errno, strerror(errno), __FUNCTION__));
 	new_env.env_len = 0;
 	while (str[new_env.env_len] && str[new_env.env_len] != '=')
 		new_env.env_len++;
 	new_env.token = djb2_hash(str, new_env.env_len);
 	if (!vec_add(&g_data.env_s, &new_env))
-		return (msh_exit(errno, errno, strerror(errno), __FUNCTION__));
+		return (msh_return(errno, errno, strerror(errno), __FUNCTION__));
 	return (0);
 }
 
@@ -61,7 +61,7 @@ t_vec	*updt_env(void)
 		if (!vec_add(&g_data.env, &vec_get_t_env_raw(i)->content.buffer))
 		{
 			print_debug("[ERROR] updt_env: vec_add: return NULL\n");
-			msh_exit(errno, errno, strerror(errno), __FUNCTION__);
+			msh_return(errno, errno, strerror(errno), __FUNCTION__);
 		}
 	}
 	return (&g_data.env);
