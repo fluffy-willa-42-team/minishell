@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 11:44:14 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 12:13:51 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,13 @@ void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 
 void	line_executor(void)
 {
-	pid_t	pid;
+	pid_t	pid = 0;
 	int		status;
 	size_t	i;
 	int		index;
 
 	print_debug_sep("EXECUTION");
+	pid = 0;
 	i = -1;
 	while (++i < get_instr_list()->len)
 	{
@@ -82,11 +83,15 @@ void	line_executor(void)
 		{
 			pid = fork();
 			if (pid == 0)
-				execute_cmd(i, get_instr_arg_elem(i, 0), get_instr_arg(i)->buffer, g_data.env.buffer);
+				execute_cmd(i, get_instr_arg_elem(i, 0),
+					get_instr_arg(i)->buffer, g_data.env.buffer);
 			close_fd_pipe(get_instr(i)->fds);
 		}
 	}
-	waitpid(pid, &status, 0);//XXX note: étant donné que le parent continue son exe, il faudrai pas mettre le wait dans la boucle pour éviter qu'ils n'execute tout les enfant ?
-	g_data.last_exit_code = WEXITSTATUS(status);
+	if (pid != 0)
+	{
+		waitpid(pid, &status, 0);//XXX note: étant donné que le parent continue son exe, il faudrai pas mettre le wait dans la boucle pour éviter qu'ils n'execute tout les enfant ?
+		g_data.last_exit_code = WEXITSTATUS(status);
+	}
 	print_debug_sep("END");
 }
