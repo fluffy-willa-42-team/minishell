@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 21:36:55 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 08:56:40 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 	set_fd_to_std(get_instr(i)->fds, STDIN_FILENO, STDOUT_FILENO);
 	if (cmd && (cmd[0] == '/' || cmd[0] == '.'))
 		exe_file(cmd, args, envp);
-	else if (exe_build_in(cmd, args, envp))
-		;
+	// else if (exe_build_in(cmd, args, envp))
+	// 	;//WIP moved to line_executor @willa check if this not affect your logic.
 	else
 	{
 		exe_normal(cmd, args, envp);
@@ -89,14 +89,19 @@ void	line_executor(void)
 	{
 		if (get_instr(i)->type == 1)
 		{
-			pid = fork();
-			if (pid == 0)
-				execute_cmd(i,
-					get_instr_arg_elem(i, 0),
+			if (!exe_build_in(get_instr_arg_elem(i, 0),
 					get_instr_arg(i)->buffer,
-					g_data.env.buffer);
-			close_fd_pipe(get_instr(i)->fds);
-			vec_delete(&g_data.tmp);
+					g_data.env.buffer))
+			{
+				pid = fork();
+				if (pid == 0)
+					execute_cmd(i,
+						get_instr_arg_elem(i, 0),
+						get_instr_arg(i)->buffer,
+						g_data.env.buffer);
+				close_fd_pipe(get_instr(i)->fds);
+				vec_delete(&g_data.tmp);
+			}
 		}
 		i++;
 	}
