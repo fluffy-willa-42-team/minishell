@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 11:38:13 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 11:44:14 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,8 @@ void	close_fd_pipe(int fd[2])
 		close(fd[1]);
 }
 
-void	print_cmd(char *cmd, char **args)
-{
-	int	i;
-
-	if (!DEBUG_PRINT)
-		return ;
-	printf("[%s", cmd);
-	i = 1;
-	while (args[i])
-		printf(", %s", args[i++]);
-	printf("]\n");
-}
-
 void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 {
-	print_cmd(cmd, args);
 	if (get_instr(i)->err != 0)
 	{
 		fprintf(stderr, "%s: %s\n", g_data.cmd, strerror(get_instr(i)->err));//TODO FIX function not allowd
