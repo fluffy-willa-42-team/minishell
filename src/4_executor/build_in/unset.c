@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 10:19:56 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 17:04:16 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static int	new_env(char *arg)
  */
 static int	env_manager(char **arg)
 {
-	g_data.last_exit_code = 0;
 	while (*arg)
 	{
 		if (DEBUG_PRINT)
@@ -51,11 +50,11 @@ static int	env_manager(char **arg)
 	return (1);
 }
 
-int	msh_unset(char **args)
+void	msh_unset(char **args)
 {
+	g_data.last_exit_code = 0;
 	if (!*args)
-		return (0);
+		return ;
 	args++;
 	env_manager(args);
-	return (1);
 }

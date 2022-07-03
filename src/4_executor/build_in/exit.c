@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 11:17:24 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:03:52 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	msh_exit_cmd(char **args)
+void	msh_exit_cmd(char **args)
 {
 	int	i;
 
@@ -21,5 +21,4 @@ int	msh_exit_cmd(char **args)
 	{
 		printf("%s\n", args[i]);
 	}
-	return (1);
 }

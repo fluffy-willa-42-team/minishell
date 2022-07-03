@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_build_in.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:42:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 11:38:29 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:01:13 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,22 @@
 #include "vec_utils.h"
 #include "env_utils.h"
 #include "build_in.h"
+#include <errno.h>
+#include <string.h>
+
+static void	fd_check(int i)
+{
+	if (i == -1)
+		msh_exit(1, strerror(errno), __FUNCTION__);
+}
 
 void	create_backup(int new_fd, int old_fd, int *backup)
 {
 	if (new_fd != old_fd)
 	{
 		*backup = dup(old_fd);
-		int res = dup2(new_fd, old_fd);
-		fprintf(stderr, "%d (%d => %d) [%d]\n", res, old_fd, new_fd, *backup);
+		fd_check(*backup);
+		fd_check(dup2(new_fd, old_fd));
 	}
 }
 
@@ -30,10 +38,9 @@ void	use_backup(int new_fd, int old_fd, int backup)
 {
 	if (new_fd != old_fd)
 	{
-		int res = dup2(backup, old_fd);
-		close(backup);
-		close(new_fd);
-		fprintf(stderr, "%d (%d <= %d) [%d]\n", res, old_fd, backup, new_fd);
+		fd_check(dup2(backup, old_fd));
+		fd_check(close(backup));
+		fd_check(close(new_fd));
 	}
 }
 
@@ -61,7 +68,7 @@ int	exe_build_in(char **args, int index, int fds[2])
 {
 	const t_build_in	build_in_func[NB_BUILD_IN] = {
 		msh_cd, msh_pwd, msh_echo,
-		export, msh_unset, env,
+		msh_export, msh_unset, msh_env,
 		msh_exit_cmd,
 		dmsh
 	};

@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 15:39:07 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 17:04:12 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ static int	get_nb_args(char **args)
 	return (i);
 }
 
-int	msh_echo(char **args)
+void	msh_echo(char **args)
 {
 	const int nb_args = get_nb_args(args);
 	int	do_endl;
 	int	is_first;
 
 	if (nb_args < 1)
-		return (0);
+		return ;
 	int i = 0;
 	do_endl = 1;
 	if (ft_strlen(args[1]) == 2 && ft_strcmp(args[1], "-n") == 0)
@@ -49,5 +49,4 @@ int	msh_echo(char **args)
 		if (i < nb_args - 1)
 			ft_putchar_fd(' ', STDOUT_FILENO);
 	}
-	return (1);
 }

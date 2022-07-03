@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_dbl_quotes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:19:03 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/01 11:58:53 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 16:47:50 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,7 @@ static int	add_dblqot(char *line, int index, t_parser_opt *opt)
 	i = 0;
 	while (line[++i + index] && line[index + i] != '\"')
 	{
-		if (line[index + i] == '\\' && line[index + i]
-			&& line[index + i + 1] != '\\')
-		{
-			add_char(opt, &line[index + i + 1]);
-			if (line[index + i + 1])
-				i++;
-		}
-		else if (line[index + i] == '$')
+		if (line[index + i] == '$')
 		{
 			i += add_varsub(line, index + i, opt) - 1;
 			opt->option &= ~(EMPTY_VAR);

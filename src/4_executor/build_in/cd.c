@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 15:44:00 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 17:05:14 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	make_new_dir(char *new_dir)
 	return (msh_return(1, 0, NULL, __FUNCTION__));
 }
 
-int	msh_cd(char **args)
+void	msh_cd(char **args)
 {
 	char *new_dir;
 	int res;
@@ -56,6 +56,7 @@ int	msh_cd(char **args)
 		new_dir = env_get_content("HOME");
 	res = chdir(new_dir);
 	if (res != 0)
-		return (msh_return(0, 1, strerror(errno), __FUNCTION__));
-	return (make_new_dir(new_dir));
+		msh_return(0, 1, strerror(errno), __FUNCTION__);
+	else
+		make_new_dir(new_dir);
 }

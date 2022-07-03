@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 14:44:42 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 16:14:07 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,16 @@ void	close_fd_pipe(int fd[2])
 void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 {
 	if (get_instr(i)->err != 0)
-	{
-		fprintf(stderr, "%s: %s\n", g_data.line_read, strerror(get_instr(i)->err));//TODO FIX function not allowd
-		exit(get_instr(i)->err);
-	}
+		msh_exit(get_instr(i)->err, strerror(errno), __FUNCTION__);
 	set_fd_to_std(get_instr(i)->fds, STDIN_FILENO, STDOUT_FILENO);
 	if (cmd && (cmd[0] == '/' || cmd[0] == '.'))
 		exe_file(cmd, args, envp);
 	else
 	{
 		exe_normal(cmd, args, envp);
-		fprintf(stderr, "%s: %s\n", g_data.line_read, "command not found");//TODO FIX function not allowd
-		exit(EX_NOTFOUND);
+		msh_exit(EX_NOTFOUND, "command not found", __FUNCTION__);
 	}
-	exit(0);
+	msh_exit(0, NULL, __FUNCTION__);
 }
 
 void	line_executor(pid_t pid, int status, size_t i, int index)

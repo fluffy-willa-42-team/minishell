@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor.h                                         :+:      :+:    :+:   */
+/*   build_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:18:27 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/03 11:11:03 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:01:04 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 
 # define NB_BUILD_IN 8
 
-typedef int	(*t_build_in)();
+typedef void	(*t_build_in)();
 
-int	dummy(char **env);
-int	env(char **env);
-int	export(char **env);
-int	msh_cd(char **args);
-int	msh_pwd(char **args);
-int	msh_echo(char **args);
-int	msh_exit_cmd(char **args);
-int	msh_unset(char **args);
-int	dmsh(char **args);//XXX debug tools for msh
+void	msh_env(char **env);
+void	msh_export(char **env);
+void	msh_cd(char **args);
+void	msh_pwd(char **args);
+void	msh_echo(char **args);
+void	msh_exit_cmd(char **args);
+void	msh_unset(char **args);
+void	dmsh(char **args);//XXX debug tools for msh
 
 #endif /* BUILD_IN_H */

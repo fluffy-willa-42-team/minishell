@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:08:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 14:33:41 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 16:19:29 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <readline/history.h>
 #include <errno.h>
 #include <signal.h>
+#include <string.h>
 
 /**
  * @brief Function call by `sigaction` when catch signals.
@@ -39,13 +40,11 @@ static void	sighandler(int signum)
  */
 static void	msh_check_sigaction(int sigaction_return, char *name)
 {
-	(void) name;
 	if (sigaction_return != -1)
-	{
 		return ;
-	}
-//TODO make a clean exit function, like msh_return(EXIT_FAILURE, strerror(errno), <...>);
-	exit(EXIT_FAILURE);
+	if (DEBUG_PRINT)
+		printf("[ERROR] %s:%d %s fail\n", __FILE__, __LINE__, name);
+	msh_exit(errno, strerror(errno), __FUNCTION__);
 }
 
 /**

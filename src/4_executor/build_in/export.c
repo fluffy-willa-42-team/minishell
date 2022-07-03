@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:51:25 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/03 14:33:41 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 17:04:35 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ static int	env_manager(char **arg)
 /**
  * ^[aA][aA0-9]
  */
-int	export(char **arg)
+void	msh_export(char **arg)
 {
 	if (!arg || !*arg)
-		return (0);
+		return ;
 	arg++;
 	if (!*arg)
 	{
 		print_env("declare -x ", "=\"", "\"");
-		return (1);
+		return ;
 	}
 	env_manager(arg);
-	return (1);
+	return ;
 }
