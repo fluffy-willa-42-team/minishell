@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   g_data_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:20:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 11:58:26 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 12:24:17 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	init_data(char **env)
 	g_data.pipe_buf[1] = -2;
 	g_data.env_s = (t_vec) vec_init(t_env);
 	g_data.env = (t_vec) vec_init(char *);
+	g_data.line_read = NULL;
 	init_env(env);
 }
 
@@ -88,4 +89,5 @@ void	free_g_data(void)
 		i++;
 	}
 	vec_destroy(get_instr_list());
+	vec_destroy(g_data.prompt_start);
 }

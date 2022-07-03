@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 09:28:45 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 12:21:19 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	set_sigaction(void);
 int		line_parser(char *line);
 int		line_parse_check(int nb_instr);
 void	line_file_manager(int nb_instr);
-void	line_executor(void);
+void	line_executor(pid_t pid, size_t i, int index, int status);
 
 void	print_instr(size_t len, int type);
 
@@ -70,7 +70,7 @@ void	do_line(char *line_read)
 	if (!line_parse_check(nb_instr))
 		return ;
 	line_file_manager(nb_instr);
-	line_executor();
+	line_executor(0, -1, 0, 0);
 }
 
 /**
@@ -79,10 +79,9 @@ void	do_line(char *line_read)
 int	main(int ac, char **av, char **env)
 {
 	char	*line_read;
-	t_vec	prompt_start;
 
 	print_debug_sep("DEBUG ENABLE");
-	prompt_start = (t_vec) vec_init(char);
+	g_data.prompt_start = (t_vec) vec_init(char);
 	if (!setup_prompt_start(&prompt_start, ac, av))
 		return (msh_exit(0, ENOMEM, strerror(ENOMEM), __FUNCTION__));
 	init_data(env);
@@ -101,6 +100,5 @@ int	main(int ac, char **av, char **env)
 	}
 	free(line_read);
 	free_g_data();
-	vec_destroy(&prompt_start);
 	return (0);
 }
