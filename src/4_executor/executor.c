@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 16:14:07 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 18:12:11 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,9 @@ void	line_executor(pid_t pid, int status, size_t i, int index)
 				execute_cmd(i, get_instr_arg_elem(i, 0),
 					get_instr_arg(i)->buffer, g_data.env.buffer);
 			close_fd_pipe(get_instr(i)->fds);
+			waitpid(pid, &status, 0);
+			g_data.last_exit_code = WEXITSTATUS(status);
 		}
-	}
-	if (pid != 0)
-	{
-		waitpid(pid, &status, 0);//XXX note: étant donné que le parent continue son exe, il faudrai pas mettre le wait dans la boucle pour éviter qu'ils n'execute tout les enfant ?
-		g_data.last_exit_code = WEXITSTATUS(status);
 	}
 	print_debug_sep("END");
 }
