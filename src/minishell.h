@@ -55,7 +55,6 @@ typedef struct s_minishell
 	t_vec	env_s;
 	t_vec	prompt_start;
 	int		last_exit_code;
-	char	*cmd;
 	int		pipe_buf[2];
 	int		code_buf;
 }				t_minishell;
@@ -86,7 +85,7 @@ extern t_minishell			g_data;
 
 /* ************************************************************************** */
 
-int	msh_exit(int return_value, int exit_code, char *message, const char *fct);
+int	msh_return(int return_value, int exit_code, char *message, const char *fct);
 
 /* ************************************************************************** */
 

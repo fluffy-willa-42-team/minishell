@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:20:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 12:24:17 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 14:46:42 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
  */
 void	init_data(char **env)
 {
+	g_data.line_read = NULL;
 	g_data.env_path = NULL;
 	g_data.lexed_command = (t_vec) vec_init(char);
 	g_data.lexed_command.rate = 8;
 	g_data.lexed_instr = (t_vec) vec_init_r(t_instr, 8);
 	g_data.tmp = (t_vec) vec_init(char);
 	g_data.last_exit_code = 0;
-	g_data.cmd = NULL;
 	g_data.code_buf = 0;
 	g_data.pipe_buf[0] = -2;
 	g_data.pipe_buf[1] = -2;
@@ -65,7 +65,6 @@ void	empty_g_data(void)
 		get_instr(i)->fds[1] = STDOUT_FILENO;
 		i++;
 	}
-	g_data.cmd = NULL;
 }
 
 /**
@@ -89,5 +88,6 @@ void	free_g_data(void)
 		i++;
 	}
 	vec_destroy(get_instr_list());
-	vec_destroy(g_data.prompt_start);
+	free(g_data.line_read);
+	vec_destroy(&g_data.prompt_start);
 }

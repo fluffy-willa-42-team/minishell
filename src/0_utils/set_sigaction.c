@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_sigaction.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:08:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/30 10:52:05 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 14:33:41 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	msh_check_sigaction(int sigaction_return, char *name)
 	{
 		return ;
 	}
-//TODO make a clean exit function, like msh_exit(EXIT_FAILURE, strerror(errno), <...>);
+//TODO make a clean exit function, like msh_return(EXIT_FAILURE, strerror(errno), <...>);
 	exit(EXIT_FAILURE);
 }
 
