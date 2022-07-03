@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:51:25 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/03 09:31:12 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/03 10:19:51 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,13 @@ static int	new_env(char *arg)
 					[!arg[len] || !(ft_isalnum(arg[len]) || arg[len] == '_')]);
 	vec_delete(&g_data.tmp);
 	if (!vec_fill(&g_data.tmp, FIXED_LEN, arg, len))
-	{
-		print_debug("[ERROR] env_manager: new_env: vec_fill: return NULL\n");
 		msh_exit(errno, errno, strerror(errno), __FUNCTION__);
-	}
 	len++;
 	if (!env_set((char *)g_data.tmp.buffer, &arg[len], 1))
-	{
-		print_debug("[ERROR] env_manager: new_env: env_set: return NULL\n");
 		msh_exit(errno, errno, strerror(errno), __FUNCTION__);
-	}
+	vec_delete(&g_data.tmp);
 	if (!updt_env())
-	{
-		print_debug("[ERROR] env_manager: new_env: updt_env: return NULL\n");
 		msh_exit(errno, errno, strerror(errno), __FUNCTION__);
-	}
 	return (1);
 }
 
@@ -60,15 +52,12 @@ static int	env_manager(char **arg)
 	int			i;
 
 	i = 0;
-	g_data.last_exit_code = 0;
 	while (*arg)
 	{
-		printf("[DEBUG] ENV SET:[%s]\n", *arg);
+		if (DEBUG_PRINT)
+			printf("[INFO] ENV SET:[%s]\n", *arg);
 		if (!new_env(*arg))
-		{
-			printf("minishell: export: `%s`: not a valid identifier\n", *arg);//TODO CHECK FOR THE FD
-			g_data.last_exit_code = 1;
-		}
+			printf("minishell: export: `%s`: not a valid identifier\n", *arg);
 		arg++;
 	}
 	return (1);
@@ -79,9 +68,6 @@ static int	env_manager(char **arg)
  */
 int	export(char **arg)
 {
-	print_debug_sep("EXPORT");//TODO REMOVE
-	print_env_s();//TODO REMOVE
-
 	if (!arg || !*arg)
 		return (0);
 	arg++;
@@ -90,13 +76,6 @@ int	export(char **arg)
 		print_env("declare -x ", "=\"", "\"");
 		return (1);
 	}
-	if (!env_manager(arg))
-	{
-		printf("[DEBUG] ERROR!!! env_manager\n");//TODO
-		exit(1);//TODO malloc fail
-	}
-	print_debug_sep("EXPORT");//TODO REMOVE
-	print_env_s();//TODO REMOVE
-	print_debug_sep("EXPORT END");//TODO REMOVE
+	env_manager(arg);
 	return (1);
 }
