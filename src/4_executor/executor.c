@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 12:13:51 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 12:14:32 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 
 void	line_executor(void)
 {
-	pid_t	pid = 0;
+	pid_t	pid;
 	int		status;
 	size_t	i;
 	int		index;
