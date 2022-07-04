@@ -94,7 +94,7 @@ int	main(int ac, char **av, char **env)
 		free_g_data(0);
 		exit(g_data.last_exit_code);
 	}
-	g_data.prompt_start = (t_vec) vec_init(char);
+	g_data.prompt_start = vec_init(sizeof(char));
 	if (!setup_prompt_start(&g_data.prompt_start, ac, av))
 		return (msh_return(0, ENOMEM, strerror(ENOMEM), __FUNCTION__));
 	init_data(env);

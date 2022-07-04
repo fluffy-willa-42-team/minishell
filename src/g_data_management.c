@@ -21,16 +21,16 @@ void	init_data(char **env)
 {
 	g_data.line_read = NULL;
 	g_data.env_path = NULL;
-	g_data.lexed_command = (t_vec) vec_init(char);
+	g_data.lexed_command = vec_init(sizeof(char));
 	g_data.lexed_command.rate = 8;
-	g_data.lexed_instr = (t_vec) vec_init_r(t_instr, 8);
-	g_data.tmp = (t_vec) vec_init(char);
+	g_data.lexed_instr = vec_init_r(sizeof(t_instr), 8);
+	g_data.tmp = vec_init(sizeof(char));
 	g_data.last_exit_code = 0;
 	g_data.code_buf = 0;
 	g_data.pipe_buf[0] = -2;
 	g_data.pipe_buf[1] = -2;
-	g_data.env_s = (t_vec) vec_init(t_env);
-	g_data.env = (t_vec) vec_init(char *);
+	g_data.env_s = vec_init(sizeof(t_env));
+	g_data.env = vec_init(sizeof(char *));
 	g_data.line_read = NULL;
 	g_data.parsing_index = 0;
 	init_env(env);

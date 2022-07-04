@@ -61,7 +61,7 @@ void	new_instr(t_parser_opt *opt, int type)
 	new_instr.err = 0;
 	if (opt->nb_instr >= get_instr_list()->len)
 	{
-		new_instr.arg = (t_vec) vec_init(int);
+		new_instr.arg = vec_init(sizeof(int));
 		new_instr.arg.rate = 8;
 		if (!vec_add(get_instr_list(), &new_instr))
 		{
