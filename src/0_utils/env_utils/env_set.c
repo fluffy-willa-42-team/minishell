@@ -81,7 +81,6 @@ t_env	*env_set(char *name, char *value, int overwrite)
 			(char *[]){name, "NULL"}[!name],
 			(char *[]){value, "NULL"}[!value],
 			overwrite);
-
 	env = env_get(name);
 	if (!env)
 		return (set_new(name, value));

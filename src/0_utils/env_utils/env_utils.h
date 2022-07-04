@@ -39,5 +39,4 @@ void			print_env(char *start, char *sep, char *end);
 void			print_env_s(void);
 # endif /* DEBUG_PRINT */
 
-
 #endif /* ENV_UTILS_H */

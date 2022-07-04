@@ -43,8 +43,19 @@ void	close_fd_pipe(int fd[2])
 		close(fd[1]);
 }
 
+void	close_all_next_fds(size_t i)
+{
+	while (++i < get_instr_list()->len)
+	{
+		if (get_instr(i)->type != 1)
+			continue ;
+		close_fd_pipe(get_instr(i)->fds);
+	}
+}
+
 void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 {
+	close_all_next_fds(i);
 	if (get_instr(i)->err != 0)
 		msh_exit(get_instr(i)->err, strerror(errno), __FUNCTION__);
 	set_fd_to_std(get_instr(i)->fds, STDIN_FILENO, STDOUT_FILENO);
@@ -75,9 +86,10 @@ void	line_executor(pid_t pid, int status, size_t i, int index)
 				execute_cmd(i, get_instr_arg_elem(i, 0),
 					get_instr_arg(i)->buffer, g_data.env.buffer);
 			close_fd_pipe(get_instr(i)->fds);
-			waitpid(pid, &status, 0);
-			g_data.last_exit_code = WEXITSTATUS(status);
+			waitpid(pid, &status, WNOHANG);
 		}
 	}
+	waitpid(pid, &status, 0);
+	g_data.last_exit_code = WEXITSTATUS(status);
 	print_debug_sep("END");
 }

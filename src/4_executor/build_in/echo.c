@@ -26,20 +26,19 @@ static int	get_nb_args(char **args)
 
 void	msh_echo(char **args)
 {
-	const int nb_args = get_nb_args(args);
-	int	do_endl;
-	int	is_first;
+	const int	nb_args = get_nb_args(args);
+	int			do_endl;
+	int			i;
 
 	if (nb_args < 1)
 		return ;
-	int i = 0;
+	i = 0;
 	do_endl = 1;
 	if (ft_strlen(args[1]) == 2 && ft_strcmp(args[1], "-n") == 0)
 	{
 		do_endl = 0;
 		i++;
 	}
-	is_first = 1;
 	while (++i < nb_args)
 	{
 		if (i == nb_args - 1 && do_endl)

@@ -46,8 +46,8 @@ void	use_backup(int new_fd, int old_fd, int backup)
 
 int	is_build_in(char *cmd)
 {
-	int					i;
-	const char			*buildins[NB_BUILD_IN] = {
+	int			i;
+	const char	*buildins[NB_BUILD_IN] = {
 		"cd", "pwd", "echo",
 		"export", "unset", "env",
 		"exit",
@@ -66,13 +66,13 @@ int	is_build_in(char *cmd)
 
 int	exe_build_in(char **args, int index, int fds[2])
 {
+	int					backup[2];
 	const t_build_in	build_in_func[NB_BUILD_IN] = {
 		msh_cd, msh_pwd, msh_echo,
 		msh_export, msh_unset, msh_env,
 		msh_exit_cmd,
 		dmsh
 	};
-	int backup[2];
 
 	create_backup(fds[0], STDIN_FILENO, &backup[0]);
 	create_backup(fds[1], STDOUT_FILENO, &backup[1]);
