@@ -14,10 +14,9 @@
 #include "env_utils.h"
 
 //TODO debug tools for msh
-void	dmsh(char **args, int fds[2])
+void	dmsh(char **args)
 {
 	(void)args;
-	(void)fds;
 	print_debug_sep("DEBUG DEBUG DEBUG");
 	print_debug_sep("DEBUG DEBUG DEBUG");
 	print_debug_sep("env");
