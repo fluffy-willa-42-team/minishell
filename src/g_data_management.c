@@ -32,6 +32,7 @@ void	init_data(char **env)
 	g_data.env_s = (t_vec) vec_init(t_env);
 	g_data.env = (t_vec) vec_init(char *);
 	g_data.line_read = NULL;
+	g_data.parsing_index = 0;
 	init_env(env);
 }
 

@@ -88,8 +88,13 @@ int	main(int ac, char **av, char **env)
 		if (g_data.line_read && g_data.line_read[0])
 		{
 			do_line(g_data.line_read);
-			add_history(g_data.line_read);
 			empty_g_data();
+			while (g_data.parsing_index++ != 0)
+			{
+				do_line(g_data.line_read);
+				empty_g_data();
+			}
+			add_history(g_data.line_read);
 		}
 		free(g_data.line_read);
 		g_data.line_read = readline(g_data.prompt_start.buffer);

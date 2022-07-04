@@ -57,6 +57,7 @@ typedef struct s_minishell
 	int		last_exit_code;
 	int		pipe_buf[2];
 	int		code_buf;
+	size_t	parsing_index;
 }				t_minishell;
 
 /**

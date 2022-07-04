@@ -95,11 +95,12 @@ int	line_parser(char *line)
 	size_t			i;
 
 	init_opt(&opt);
-	i = 0;
-	while (line[i] && ft_is_whitespace(line[i]))
-		i++;
-	while (line[i] && !(opt.option & ALLOC_FAIL))
-		i += parser_param_func(&line[i])(line, i, &opt);
+	while (line[g_data.parsing_index] && ft_is_whitespace(line[g_data.parsing_index]))
+		g_data.parsing_index++;
+	while (line[g_data.parsing_index] && line[g_data.parsing_index] != ';' && !(opt.option & ALLOC_FAIL))
+		g_data.parsing_index += parser_param_func(&line[g_data.parsing_index])(line, g_data.parsing_index, &opt);
+	if (!line[g_data.parsing_index])
+		g_data.parsing_index = 0;
 	if (opt.option & ALLOC_FAIL)
 		return (msh_return(-1, errno, strerror(errno), __FUNCTION__));
 	i = -1;
