@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/04 14:35:08 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/04 16:01:41 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,30 +77,36 @@ int	local_ft_atoi(char *str, char *backup)
 	return ((int []){nbr, -nbr}[isneg]);
 }
 
+static void	not_a_digit(char *args)
+{
+	ft_putstr_fd("exit\nminishell: exit: ", STDERR_FILENO);
+	ft_putstr_fd(args, STDERR_FILENO);
+	ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
+	msh_exit(255, NULL, __FUNCTION__);
+}
+
 void	msh_exit_cmd(char **args)
 {
-	int	i;
+	int	tmp;
 
-	i = 0;
+	tmp = 0;
 	if (!args || !args[0])
 		msh_exit(1, "[ERROR] msh_exit_cmd: args NULL", __FUNCTION__);
 	if (!args[1])
 		msh_exit(0, "exit", __FUNCTION__);
-	while (args[1][i])
+	while (args[1][tmp])
 	{
-		if (!ft_isdigit(args[1][i]) && args[1][0] != '-')
-		{
-			ft_putstr_fd("exit\nminishell: exit: ", STDERR_FILENO);
-			ft_putstr_fd(args[1], STDERR_FILENO);
-			ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
-			msh_exit(255, NULL, __FUNCTION__);
-		}
-		i++;
+		if (!tmp && (args[1][tmp] == '+' || args[1][tmp] == '-'))
+			;
+		else if (!ft_isdigit(args[1][tmp]))
+			not_a_digit(args[1]);
+		tmp++;
 	}
 	if (!args[2])
 	{
-		ft_putstr_fd("exit\n", STDOUT_FILENO);
-		msh_exit(local_ft_atoi(args[1], args[1]), NULL, __FUNCTION__);
+		tmp = local_ft_atoi(args[1], args[1]);
+		ft_putstr_fd("exit\n", (int []){STDERR_FILENO, STDOUT_FILENO}[!tmp]);
+		msh_exit(tmp, NULL, __FUNCTION__);
 	}
 	ft_putstr_fd("exit\n", STDERR_FILENO);
 	msh_return(1, 1, "exit: too many arguments", __FUNCTION__);

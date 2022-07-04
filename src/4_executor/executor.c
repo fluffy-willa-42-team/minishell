@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 18:12:11 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/04 15:27:41 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	line_executor(pid_t pid, int status, size_t i, int index)
 			exe_build_in(get_instr_arg(i)->buffer, index, get_instr(i)->fds);
 		else
 		{
+			pid = 0;
 			pid = fork();
 			if (pid == 0)
 				execute_cmd(i, get_instr_arg_elem(i, 0),
@@ -89,7 +90,10 @@ void	line_executor(pid_t pid, int status, size_t i, int index)
 			waitpid(pid, &status, WNOHANG);
 		}
 	}
-	waitpid(pid, &status, 0);
-	g_data.last_exit_code = WEXITSTATUS(status);
+	if (index == -1)
+	{
+		waitpid(pid, &status, 0);
+		g_data.last_exit_code = WEXITSTATUS(status);
+	}
 	print_debug_sep("END");
 }
