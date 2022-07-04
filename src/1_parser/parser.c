@@ -91,16 +91,21 @@ int	change_int_to_ptr(int *input, char **output)
 
 int	line_parser(char *line)
 {
+	size_t			*x;
 	t_parser_opt	opt;
 	size_t			i;
 
+	x = &g_data.parsing_index;
 	init_opt(&opt);
-	while (line[g_data.parsing_index] && ft_is_whitespace(line[g_data.parsing_index]))
-		g_data.parsing_index++;
-	while (line[g_data.parsing_index] && line[g_data.parsing_index] != ';' && !(opt.option & ALLOC_FAIL))
-		g_data.parsing_index += parser_param_func(&line[g_data.parsing_index])(line, g_data.parsing_index, &opt);
-	if (!line[g_data.parsing_index])
-		g_data.parsing_index = 0;
+	while (line[*x] && ft_is_whitespace(line[*x]))
+		(*x)++;
+	while (line[*x] && line[*x] != ';' && !(opt.option & ALLOC_FAIL))
+	{
+		printf("%zu:[%c]\n", *x, line[*x]);
+		*x += parser_param_func(&line[*x])(line, *x, &opt);
+	}
+	if (!line[*x])
+		*x = 0;
 	if (opt.option & ALLOC_FAIL)
 		return (msh_return(-1, errno, strerror(errno), __FUNCTION__));
 	i = -1;
