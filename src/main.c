@@ -89,8 +89,9 @@ int	main(int ac, char **av, char **env)
 		{
 			do_line(g_data.line_read);
 			empty_g_data();
-			while (g_data.parsing_index++ != 0)
+			while (g_data.parsing_index != 0)
 			{
+				g_data.parsing_index++;
 				do_line(g_data.line_read);
 				empty_g_data();
 			}
