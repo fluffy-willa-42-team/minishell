@@ -34,25 +34,16 @@ t_env	*vec_add_new_env(char *name, char *content)
 	t_vec	*tmp;
 
 	if (!name || ft_strchr(name, '='))
-	{
-		print_debug("[ERROR] vec_add_new_env NULL name OR `=`find in name\n");
-		return (NULL);//TODO
-	}
+		return (NULL);
 	new_env.content = vec_init(sizeof(char));
 	if (!vec_fill(&new_env.content, MULTI, 3, name, "=", content))
-	{
-		print_debug("[ERROR] vec_add_new_env fail to write new env");
-		return (NULL);//TODO
-	}
+		return (NULL);
 	new_env.env_len = 0;
 	while (name[new_env.env_len] && name[new_env.env_len] != '=')
 		new_env.env_len++;
 	new_env.token = djb2_hash(name, new_env.env_len);
 	tmp = vec_add(&g_data.env_s, &new_env);
 	if (!tmp)
-	{
-		print_debug("[ERROR] vec_add_new_env fail to add new env");
 		return (NULL);//TODO
-	}
 	return ((t_env *)&tmp->buffer);
 }
