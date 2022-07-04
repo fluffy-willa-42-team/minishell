@@ -74,7 +74,6 @@ void	line_executor(pid_t pid, int status, size_t i, int index)
 	print_debug_sep("EXECUTION");
 	while (++i < get_instr_list()->len)
 	{
-		fprintf(stderr, "Here %lu\n", i);
 		if (get_instr(i)->type != 1)
 			continue ;
 		index = is_build_in(get_instr_arg_elem(i, 0));
@@ -88,8 +87,9 @@ void	line_executor(pid_t pid, int status, size_t i, int index)
 					get_instr_arg(i)->buffer, g_data.env.buffer);
 			close_fd_pipe(get_instr(i)->fds);
 			waitpid(pid, &status, WNOHANG);
-			g_data.last_exit_code = WEXITSTATUS(status);
 		}
 	}
+	waitpid(pid, &status, 0);
+	g_data.last_exit_code = WEXITSTATUS(status);
 	print_debug_sep("END");
 }
