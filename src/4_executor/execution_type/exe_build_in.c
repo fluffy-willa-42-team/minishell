@@ -76,7 +76,7 @@ int	exe_build_in(char **args, int index, int fds[2])
 
 	create_backup(fds[0], STDIN_FILENO, &backup[0]);
 	create_backup(fds[1], STDOUT_FILENO, &backup[1]);
-	build_in_func[index](args);
+	build_in_func[index](args, fds);
 	use_backup(fds[0], STDIN_FILENO, backup[0]);
 	use_backup(fds[1], STDOUT_FILENO, backup[1]);
 	return (1);

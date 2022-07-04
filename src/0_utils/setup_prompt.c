@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_in.h                                         :+:      :+:    :+:   */
+/*   set_sigaction.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 13:18:27 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/03 17:01:04 by mahadad          ###   ########.fr       */
+/*   Created: 2022/05/25 11:08:41 by awillems          #+#    #+#             */
+/*   Updated: 2022/07/03 16:19:29 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILD_IN_H
-# define BUILD_IN_H
+#include "minishell.h"
 
-# define NB_BUILD_IN 8
-
-typedef void	(*t_build_in)();
-
-void	msh_env(char **args);
-void	msh_export(char **args);
-void	msh_cd(char **args);
-void	msh_pwd(char **args);
-void	msh_echo(char **args);
-void	msh_exit_cmd(char **args);
-void	msh_unset(char **args);
-void	dmsh(char **args);//XXX debug tools for msh
-
-#endif /* BUILD_IN_H */
+int	setup_prompt_start(t_vec *vec, int ac, char **av)
+{
+	if (ac > 1)
+	{
+		if (!vec_fill(vec, MULTI, 3, "(", av[1], ")> "))
+			return (0);
+	}
+	else if (!vec_fill(vec, DEFAULT, PROMPT_START))
+		return (0);
+	return (1);
+}

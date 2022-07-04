@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_in.h                                         :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 13:18:27 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/03 17:01:04 by mahadad          ###   ########.fr       */
+/*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
+/*   Updated: 2022/07/02 17:41:19 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILD_IN_H
-# define BUILD_IN_H
+#include "minishell.h"
+#include "vec_utils.h"
 
-# define NB_BUILD_IN 8
+void	print_instr(size_t len, int type);
 
-typedef void	(*t_build_in)();
-
-void	msh_env(char **args);
-void	msh_export(char **args);
-void	msh_cd(char **args);
-void	msh_pwd(char **args);
-void	msh_echo(char **args);
-void	msh_exit_cmd(char **args);
-void	msh_unset(char **args);
-void	dmsh(char **args);//XXX debug tools for msh
-
-#endif /* BUILD_IN_H */
+void	parser_debug(int nb_instr)
+{
+	print_debug_sep("BUFFER");
+	if (DEBUG_PRINT)
+		vec_print(get_line());
+	print_debug_sep("STRUCTURE");
+	print_instr(nb_instr, -1);
+}

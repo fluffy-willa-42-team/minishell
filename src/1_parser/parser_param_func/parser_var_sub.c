@@ -12,6 +12,7 @@
 
 #include "msh_parser.h"
 #include "env_utils.h"
+#include "lib_atoi.h"
 #include "lib_is_check.h"
 #include "vec_utils.h"
 #include "lib_str.h"
@@ -46,6 +47,7 @@ int	add_varsub(char *line, int index, t_parser_opt *opt)
 			return (add_char(opt, "$"));
 		if (!vec_add_itoa(get_line(), g_data.last_exit_code))
 			opt->option |= ALLOC_FAIL;
+		opt->index_line += ft_itoa_len(g_data.last_exit_code);
 		return (2);
 	}
 	vec_delete(&g_data.tmp);
