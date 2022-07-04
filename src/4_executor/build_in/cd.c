@@ -48,8 +48,8 @@ int	make_new_dir(char *new_dir)
 
 void	msh_cd(char **args)
 {
-	char *new_dir;
-	int res;
+	char	*new_dir;
+	int		res;
 
 	new_dir = args[1];
 	if (!new_dir)

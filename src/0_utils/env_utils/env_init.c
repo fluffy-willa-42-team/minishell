@@ -50,7 +50,7 @@ static int	sysenv_to_t_env(char *str)
 
 t_vec	*updt_env(void)
 {
-	size_t i;
+	size_t	i;
 
 	vec_delete(&g_data.env);
 	i = -1;
@@ -70,15 +70,15 @@ t_vec	*updt_env(void)
 void	init_env(char **env)
 {
 	int	index;
+	int	res;
 
 	index = -1;
 	while (env[++index])
 	{
-		int res = sysenv_to_t_env(env[index]);
+		res = sysenv_to_t_env(env[index]);
 		if (res != 0)
 			exit(res);
 	}
-
 	print_debug_sep("T_ENV INIT");
 	updt_env();
 	if (DEBUG_PRINT)

@@ -13,7 +13,8 @@
 #include "msh_debug.h"
 #include "env_utils.h"
 
-void	dmsh(char **args)//XXX debug tools for msh
+//TODO debug tools for msh
+void	dmsh(char **args)
 {
 	(void)args;
 	print_debug_sep("DEBUG DEBUG DEBUG");

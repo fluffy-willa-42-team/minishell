@@ -16,8 +16,9 @@
 
 int	get_path_len(char *cmd, int i)
 {
-	int	len = 0;
+	int	len;
 
+	len = 0;
 	if (i != 0 && cmd[i - 1] != ':')
 		return (0);
 	while (cmd[i + len] && cmd[i + len] != ':')
@@ -27,9 +28,11 @@ int	get_path_len(char *cmd, int i)
 
 char	*find_path(char *cmd, char *path, t_vec *vec)
 {
-	int		len = ft_strlen(path);
+	const int	len = ft_strlen(path);
+	int			i;
 
-	for (int i = 0; i < len; i++)
+	i = -1;
+	while (++i < len)
 	{
 		if (get_path_len(path, i) == 0)
 			continue ;

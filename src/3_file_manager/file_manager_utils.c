@@ -14,7 +14,6 @@
 #include "lib_str.h"
 #include "vec_utils.h"
 
-
 void	close_fd(int (**pipe_ptr)[2], int index)
 {
 	if ((**pipe_ptr)[index] != index)

@@ -43,4 +43,3 @@ void	env_unset(t_env *env)
 	env->env_len = 0;
 	env->token = 0;
 }
-

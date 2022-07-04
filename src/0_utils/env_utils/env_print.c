@@ -39,7 +39,7 @@ void	print_env_s(void)
 	while (i < g_data.env_s.alloc_len)
 	{
 		printf("[%2lu]{%2d}(%-20lu)[%.32s]\n",
-			i, vec_get_t_env_raw(i)->env_len, 
+			i, vec_get_t_env_raw(i)->env_len,
 			vec_get_t_env_raw(i)->token,
 			vec_get_t_env_str_raw(i));
 		i++;
