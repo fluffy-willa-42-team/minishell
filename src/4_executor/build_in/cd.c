@@ -46,7 +46,7 @@ int	make_new_dir(char *new_dir)
 	return (msh_return(1, 0, NULL, __FUNCTION__));
 }
 
-void	msh_cd(char **args)
+void	msh_cd(char **args, int fds[2])
 {
 	char	*new_dir;
 	int		res;

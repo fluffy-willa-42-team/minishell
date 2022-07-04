@@ -66,6 +66,7 @@ int	is_build_in(char *cmd)
 
 int	exe_build_in(char **args, int index, int fds[2])
 {
+	int					backup[2];
 	const t_build_in	build_in_func[NB_BUILD_IN] = {
 		msh_cd, msh_pwd, msh_echo,
 		msh_export, msh_unset, msh_env,
@@ -73,13 +74,10 @@ int	exe_build_in(char **args, int index, int fds[2])
 		dmsh
 	};
 
-	if (fds[1] != STDOUT_FILENO)
-		return (0);
-	if (fds[0] != STDIN_FILENO
-		&& index != 1 && index != 2 && index != 3 && index != 5)
-		return (0);
-	if (index == 3 && args[1])
-		return (0);
-	build_in_func[index](args);
+	// create_backup(fds[0], STDIN_FILENO, &backup[0]);
+	// create_backup(fds[1], STDOUT_FILENO, &backup[1]);
+	build_in_func[index](args, fds);
+	// use_backup(fds[0], STDIN_FILENO, backup[0]);
+	// use_backup(fds[1], STDOUT_FILENO, backup[1]);
 	return (1);
 }

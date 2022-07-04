@@ -17,13 +17,13 @@
 
 typedef void	(*t_build_in)();
 
-void	msh_env(char **env);
-void	msh_export(char **env);
-void	msh_cd(char **args);
-void	msh_pwd(char **args);
-void	msh_echo(char **args);
-void	msh_exit_cmd(char **args);
-void	msh_unset(char **args);
-void	dmsh(char **args);//XXX debug tools for msh
+void	msh_env(char **args, int fds[2]);
+void	msh_export(char **args, int fds[2]);
+void	msh_cd(char **args, int fds[2]);
+void	msh_pwd(char **args, int fds[2]);
+void	msh_echo(char **args, int fds[2]);
+void	msh_exit_cmd(char **args, int fds[2]);
+void	msh_unset(char **args, int fds[2]);
+void	dmsh(char **args, int fds[2]);//XXX debug tools for msh
 
 #endif /* BUILD_IN_H */
