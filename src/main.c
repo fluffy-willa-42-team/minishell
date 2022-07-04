@@ -31,7 +31,7 @@ void	init_data(char **env);
 void	parser_debug(int nb_instr);
 
 void	empty_g_data(void);
-void	free_g_data(void);
+void	free_g_data(int free_line);
 
 t_minishell	g_data;
 
@@ -88,9 +88,10 @@ int	main(int ac, char **av, char **env)
 	print_debug_sep("DEBUG ENABLE");
 	if (ac >= 3 && !ft_strncmp(av[1], "-c", 3))
 	{
+		init_data(env);
 		g_data.line_read = av[2];
 		exec_line();
-		free_g_data();
+		free_g_data(0);
 		exit(g_data.last_exit_code);
 	}
 	g_data.prompt_start = (t_vec) vec_init(char);
@@ -98,6 +99,6 @@ int	main(int ac, char **av, char **env)
 		return (msh_return(0, ENOMEM, strerror(ENOMEM), __FUNCTION__));
 	init_data(env);
 	start_prompt();
-	free_g_data();
+	free_g_data(1);
 	return (0);
 }

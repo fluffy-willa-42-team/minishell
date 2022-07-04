@@ -72,7 +72,7 @@ void	empty_g_data(void)
  * @brief Frees
  * 
  */
-void	free_g_data(void)
+void	free_g_data(int free_line)
 {
 	size_t	i;
 
@@ -89,6 +89,7 @@ void	free_g_data(void)
 		i++;
 	}
 	vec_destroy(get_instr_list());
-	free(g_data.line_read);
+	if (free_line)
+		free(g_data.line_read);
 	vec_destroy(&g_data.prompt_start);
 }
