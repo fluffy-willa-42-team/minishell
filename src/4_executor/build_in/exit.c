@@ -15,7 +15,7 @@
 #include "lib_put_fd.h"
 #include <limits.h>
 
-void static	long_explosion(char *nbr)
+static void	long_explosion(char *nbr)
 {
 	ft_putstr_fd("exit\nminishell: exit: ", STDERR_FILENO);
 	ft_putstr_fd(nbr, STDERR_FILENO);
