@@ -86,7 +86,7 @@ void	start_prompt(void)
 int	main(int ac, char **av, char **env)
 {
 	print_debug_sep("DEBUG ENABLE");
-	if (ac >= 3 && !ft_strncmp(av[1], "-c", 3))
+	if (ac >= 3 && !ft_strncmp(av[1], "-c", 3))//TODO REMOVE
 	{
 		init_data(env);
 		g_data.line_read = av[2];
