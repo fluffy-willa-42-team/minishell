@@ -100,10 +100,7 @@ int	line_parser(char *line)
 	while (line[*x] && ft_is_whitespace(line[*x]))
 		(*x)++;
 	while (line[*x] && line[*x] != ';' && !(opt.option & ALLOC_FAIL))
-	{
-		printf("%zu:[%c]\n", *x, line[*x]);
 		*x += parser_param_func(&line[*x])(line, *x, &opt);
-	}
 	if (!line[*x])
 		*x = 0;
 	if (opt.option & ALLOC_FAIL)
