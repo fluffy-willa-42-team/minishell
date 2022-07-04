@@ -66,7 +66,6 @@ int	is_build_in(char *cmd)
 
 int	exe_build_in(char **args, int index, int fds[2])
 {
-	// int					backup[2];
 	const t_build_in	build_in_func[NB_BUILD_IN] = {
 		msh_cd, msh_pwd, msh_echo,
 		msh_export, msh_unset, msh_env,
