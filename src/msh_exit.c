@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 12:03:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/04 13:31:57 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/04 14:43:32 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,13 @@ int	msh_return(int return_value, int exit_code, char *message, const char *fct)
 	return (return_value);
 }
 
+void	empty_g_data(void);
+void	free_g_data(int free_line);
+
 int	msh_exit(unsigned char exit_code, char *message, const char *fct)
 {
+	empty_g_data();
+	free_g_data(0);
 	if (DEBUG_PRINT)
 		printf("%s:\n", fct);
 	if (exit_code && message)
