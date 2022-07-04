@@ -86,7 +86,7 @@ void	start_prompt(void)
 int	main(int ac, char **av, char **env)
 {
 	print_debug_sep("DEBUG ENABLE");
-	if (ac >= 3 && !ft_strncmp(av[1], "-c", 3))
+	if (ac >= 3 && !ft_strncmp(av[1], "-c", 3))//TODO REMOVE
 	{
 		init_data(env);
 		g_data.line_read = av[2];
@@ -94,7 +94,7 @@ int	main(int ac, char **av, char **env)
 		free_g_data(0);
 		exit(g_data.last_exit_code);
 	}
-	g_data.prompt_start = (t_vec) vec_init(char);
+	g_data.prompt_start = vec_init(sizeof(char));
 	if (!setup_prompt_start(&g_data.prompt_start, ac, av))
 		return (msh_return(0, ENOMEM, strerror(ENOMEM), __FUNCTION__));
 	init_data(env);

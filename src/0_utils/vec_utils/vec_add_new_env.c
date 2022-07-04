@@ -38,7 +38,7 @@ t_env	*vec_add_new_env(char *name, char *content)
 		print_debug("[ERROR] vec_add_new_env NULL name OR `=`find in name\n");
 		return (NULL);//TODO
 	}
-	new_env.content = (t_vec) vec_init(char);
+	new_env.content = vec_init(sizeof(char));
 	if (!vec_fill(&new_env.content, MULTI, 3, name, "=", content))
 	{
 		print_debug("[ERROR] vec_add_new_env fail to write new env");
