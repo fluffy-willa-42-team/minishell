@@ -28,7 +28,6 @@ void	msh_echo(char **args)
 {
 	const int	nb_args = get_nb_args(args);
 	int			do_endl;
-	int			is_first;
 	int			i;
 
 	if (nb_args < 1)
@@ -40,7 +39,6 @@ void	msh_echo(char **args)
 		do_endl = 0;
 		i++;
 	}
-	is_first = 1;
 	while (++i < nb_args)
 	{
 		if (i == nb_args - 1 && do_endl)
