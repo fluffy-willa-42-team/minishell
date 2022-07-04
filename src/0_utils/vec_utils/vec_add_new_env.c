@@ -44,6 +44,6 @@ t_env	*vec_add_new_env(char *name, char *content)
 	new_env.token = djb2_hash(name, new_env.env_len);
 	tmp = vec_add(&g_data.env_s, &new_env);
 	if (!tmp)
-		return (NULL);//TODO
+		return (NULL);
 	return ((t_env *)&tmp->buffer);
 }
