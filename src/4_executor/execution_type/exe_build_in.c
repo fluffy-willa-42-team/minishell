@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:42:12 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 17:01:13 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/05 10:41:39 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 static void	fd_check(int i)
 {
 	if (i == -1)
-		msh_exit(1, strerror(errno), __FUNCTION__);
+		msh_return(1, 1, strerror(errno), __FUNCTION__);
 }
 
 void	create_backup(int new_fd, int old_fd, int *backup)

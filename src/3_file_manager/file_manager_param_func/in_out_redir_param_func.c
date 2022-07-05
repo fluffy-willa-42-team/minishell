@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:19:09 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 17:49:43 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/05 10:45:24 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	redir_out_file(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 		printf("REDIR OUT FILE\n");
 	new_fd = open(get_instr_arg_elem(instr_index, 1), O_WRONLY | O_TRUNC);
 	if (new_fd == -1 && errno == ENOENT)
-		new_fd = open(get_instr_arg_elem(instr_index, 1), O_CREAT, 0666);
+		new_fd = open(get_instr_arg_elem(instr_index, 1),
+				O_CREAT | O_WRONLY | O_TRUNC, 0666);
 	if (new_fd == -1)
 		**code_ptr = errno;
 	close_fd(pipe_ptr, 1);
@@ -64,7 +65,8 @@ void	redir_out_conca(int instr_index, int (**pipe_ptr)[2], int **code_ptr)
 		printf("REDIR OUT CONCA\n");
 	new_fd = open(get_instr_arg_elem(instr_index, 1), O_WRONLY | O_APPEND);
 	if (new_fd == -1 && errno == ENOENT)
-		new_fd = open(get_instr_arg_elem(instr_index, 1), O_CREAT, 0666);
+		new_fd = open(get_instr_arg_elem(instr_index, 1),
+				O_CREAT | O_WRONLY | O_APPEND, 0666);
 	if (new_fd == -1)
 		**code_ptr = errno;
 	close_fd(pipe_ptr, 1);
