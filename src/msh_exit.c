@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 12:03:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/04 16:04:36 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/04 16:24:57 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ int	msh_exit(unsigned char exit_code, char *message, const char *fct)
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
 		ft_putstr_fd(message, STDERR_FILENO);
 		ft_putstr_fd("\n", STDERR_FILENO);
+	}
+	else if (message)
+	{
+		ft_putstr_fd(message, STDOUT_FILENO);
+		ft_putstr_fd("\n", STDOUT_FILENO);
 	}
 	exit (exit_code);
 }

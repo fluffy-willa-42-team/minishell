@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/04 16:01:41 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/04 16:36:01 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	msh_exit_cmd(char **args)
 	if (!args[2])
 	{
 		tmp = local_ft_atoi(args[1], args[1]);
-		ft_putstr_fd("exit\n", (int []){STDERR_FILENO, STDOUT_FILENO}[!tmp]);
+		ft_putstr_fd("exit\n", STDERR_FILENO);
 		msh_exit(tmp, NULL, __FUNCTION__);
 	}
 	ft_putstr_fd("exit\n", STDERR_FILENO);
