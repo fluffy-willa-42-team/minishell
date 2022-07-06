@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:07:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/04 15:27:41 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/06 11:16:36 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,11 @@ void	close_all_next_fds(size_t i)
 	}
 }
 
+void	set_sigaction(int is_child);
+
 void	execute_cmd(size_t i, char *cmd, char **args, char **envp)
 {
+	set_sigaction(1);
 	close_all_next_fds(i);
 	if (get_instr(i)->err != 0)
 		msh_exit(get_instr(i)->err, strerror(errno), __FUNCTION__);

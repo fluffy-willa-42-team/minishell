@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/05 11:38:33 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/06 11:15:22 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	line_file_manager(int nb_instr);
 void	line_executor(pid_t pid, int status, size_t i, int index);
 
 int		setup_prompt_start(t_vec *vec, int ac, char **av);
-void	set_sigaction(void);
+void	set_sigaction(int is_child);
 void	init_data(char **env);
 void	parser_debug(int nb_instr);
 
@@ -66,7 +66,7 @@ void	exec_line(void)
 
 void	start_prompt(void)
 {
-	set_sigaction();
+	set_sigaction(0);
 	g_data.line_read = readline(g_data.prompt_start.buffer);
 	while (g_data.line_read)
 	{

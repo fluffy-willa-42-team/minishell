@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 11:08:41 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 16:19:29 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/06 11:14:11 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static void	msh_check_sigaction(int sigaction_return, char *name)
 /**
  * @brief Set sigaction. For `C-c` (SIGINT) will clear the readline buff and 
  *          show up a new prompt.   Will ignore `C-\` (SIGQUIT).
- *
+ * @param is_child if true will unlock sigquit, if false block sigquit
  */
-void	set_sigaction(void)
+void	set_sigaction(int is_child)
 {
 	struct sigaction	sigint;
 	struct sigaction	sigquit;
@@ -63,7 +63,10 @@ void	set_sigaction(void)
 	sigaddset(&sig_set, SIGQUIT);
 	sigint.sa_handler = sighandler;
 	sigint.sa_mask = sig_set;
-	sigquit.sa_handler = SIG_IGN;
+	if (is_child)
+		sigquit.sa_handler = SIG_DFL;
+	else
+		sigquit.sa_handler = SIG_IGN;
 	sigquit.sa_mask = sig_set;
 	msh_check_sigaction(sigaction(SIGINT, &sigint, NULL), "SIGINT");
 	msh_check_sigaction(sigaction(SIGQUIT, &sigquit, NULL), "SIGQUIT");
