@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 11:12:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 18:27:41 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/05 11:33:02 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ char	*vec_get_t_env_str(int index);
 char	*vec_get_t_env_str_raw(int index);
 
 t_env	*vec_add_new_env(char *name, char *content);
+void	vec_exit_func(void);
 
 #endif

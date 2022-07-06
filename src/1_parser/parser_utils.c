@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:40:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/02 17:41:19 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/05 11:39:27 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	new_instr(t_parser_opt *opt, int type)
 	if (opt->nb_instr >= get_instr_list()->len)
 	{
 		new_instr.arg = vec_init(sizeof(int));
+		new_instr.arg.exit_func = vec_exit_func;
 		new_instr.arg.rate = 8;
 		if (!vec_add(get_instr_list(), &new_instr))
 		{

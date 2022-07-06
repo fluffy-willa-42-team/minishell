@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:18:27 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/03 17:01:04 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/05 11:11:53 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ void	msh_pwd(char **args);
 void	msh_echo(char **args);
 void	msh_exit_cmd(char **args);
 void	msh_unset(char **args);
-void	dmsh(char **args);//XXX debug tools for msh
-
+void	dmsh(char **args);
 #endif /* BUILD_IN_H */

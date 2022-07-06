@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:54:35 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/02 17:13:51 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/05 11:39:12 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_env	*vec_add_new_env(char *name, char *content)
 	if (!name || ft_strchr(name, '='))
 		return (NULL);
 	new_env.content = vec_init(sizeof(char));
+	new_env.content.exit_func = vec_exit_func;
 	if (!vec_fill(&new_env.content, MULTI, 3, name, "=", content))
 		return (NULL);
 	new_env.env_len = 0;

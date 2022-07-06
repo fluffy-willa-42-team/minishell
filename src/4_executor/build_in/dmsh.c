@@ -6,14 +6,16 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 18:34:48 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/03 17:04:49 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/05 11:09:26 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh_debug.h"
 #include "env_utils.h"
 
-//TODO debug tools for msh
+/**
+ * Custom build-in debugger.
+ */
 void	dmsh(char **args)
 {
 	(void)args;

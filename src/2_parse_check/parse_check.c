@@ -34,11 +34,11 @@ int	line_parse_check(int nb_instr)
 	int	i;
 
 	print_debug_sep("PARSER CHECK");
-	if (get_instr(0)->type == 2)
-		return (msh_return(0, 258, ERR_PARSE, __FUNCTION__));
 	i = 0;
 	while (i < nb_instr)
 	{
+		if (get_instr(0) && get_instr(0)->type == 2)
+			return (msh_return(0, 258, ERR_PARSE, __FUNCTION__));
 		if ((get_instr(i)->type == 2 || get_instr(i)->type == 3)
 			&& i + 1 < nb_instr
 			&& (get_instr(i + 1)->type == 2 || get_instr(i + 1)->type == 3))

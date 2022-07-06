@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   g_data_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:20:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 14:46:42 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/05 11:36:30 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "vec_utils.h"
 #include "env_utils.h"
+
+void	vec_exit_func(void)
+{
+	msh_exit(1, "[ERROR] vector-lib .exit_func(): malloc fail!\n", __FUNCTION__);
+}
 
 /**
  * @brief Init the global var with all data.
@@ -22,15 +27,20 @@ void	init_data(char **env)
 	g_data.line_read = NULL;
 	g_data.env_path = NULL;
 	g_data.lexed_command = vec_init(sizeof(char));
+	g_data.lexed_command.exit_func = vec_exit_func;
 	g_data.lexed_command.rate = 8;
 	g_data.lexed_instr = vec_init_r(sizeof(t_instr), 8);
+	g_data.lexed_instr.exit_func = vec_exit_func;
 	g_data.tmp = vec_init(sizeof(char));
+	g_data.tmp.exit_func = vec_exit_func;
 	g_data.last_exit_code = 0;
 	g_data.code_buf = 0;
 	g_data.pipe_buf[0] = -2;
 	g_data.pipe_buf[1] = -2;
 	g_data.env_s = vec_init(sizeof(t_env));
+	g_data.env_s.exit_func = vec_exit_func;
 	g_data.env = vec_init(sizeof(char *));
+	g_data.env.exit_func = vec_exit_func;
 	g_data.line_read = NULL;
 	g_data.parsing_index = 0;
 	init_env(env);

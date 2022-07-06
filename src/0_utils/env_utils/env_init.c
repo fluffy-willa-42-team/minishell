@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:25:38 by mahadad           #+#    #+#             */
-/*   Updated: 2022/07/03 14:33:41 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/05 11:38:59 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int	sysenv_to_t_env(char *str)
 	if (!str)
 		return (msh_return(0, 1, "sysenv_to_t_env NULL str\n", __FUNCTION__));
 	new_env.content = vec_init(sizeof(char));
+	new_env.content.exit_func = vec_exit_func;
 	if (!vec_fill(&new_env.content, DEFAULT, str))
 		return (msh_return(errno, errno, strerror(errno), __FUNCTION__));
 	new_env.env_len = 0;

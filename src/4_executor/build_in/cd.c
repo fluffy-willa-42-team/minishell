@@ -6,14 +6,11 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:06:29 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 17:05:14 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/05 11:43:49 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// #include <sys/types.h>
-
 #include <dirent.h>
 #include <errno.h>
 #include <string.h>

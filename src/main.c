@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 14:44:31 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/05 11:38:33 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,8 @@ void	start_prompt(void)
 int	main(int ac, char **av, char **env)
 {
 	print_debug_sep("DEBUG ENABLE");
-	if (ac >= 3 && !ft_strncmp(av[1], "-c", 3))//TODO REMOVE
-	{
-		init_data(env);
-		g_data.line_read = av[2];
-		exec_line();
-		free_g_data(0);
-		exit(g_data.last_exit_code);
-	}
 	g_data.prompt_start = vec_init(sizeof(char));
+	g_data.prompt_start.exit_func = vec_exit_func;
 	if (!setup_prompt_start(&g_data.prompt_start, ac, av))
 		return (msh_return(0, ENOMEM, strerror(ENOMEM), __FUNCTION__));
 	init_data(env);
