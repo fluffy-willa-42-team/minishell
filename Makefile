@@ -6,7 +6,7 @@
 #    By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 08:35:24 by awillems          #+#    #+#              #
-#    Updated: 2022/07/04 10:39:49 by mahadad          ###   ########.fr        #
+#    Updated: 2022/07/05 11:20:26 by mahadad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,53 @@ NAME		= minishell
 
 # SRCS		=	
 
-SRCS		= $(SRCS_FIND)
+SRCS		= \
+djb2_hash.c \
+env_delete.c \
+env_get.c \
+env_init.c \
+env_print.c \
+env_set.c \
+print_debug_str.c \
+print_instr.c \
+set_sigaction.c \
+setup_prompt.c \
+get_env.c \
+get_global.c \
+get_global_cmd.c \
+get_global_instr.c \
+get_raw_global.c \
+vec_add.c \
+vec_add_new_env.c \
+parser.c \
+parser_debug.c \
+parser_dbl_quotes.c \
+parser_sgl_quotes.c \
+parser_simple.c \
+parser_special.c \
+parser_var_sub.c \
+parser_utils.c \
+parse_check.c \
+file_manager.c \
+cmd_sep_param_func.c \
+in_out_redir_param_func.c \
+in_write_redir_param_func.c \
+file_manager_utils.c \
+cd.c \
+dmsh.c \
+echo.c \
+env.c \
+exit.c \
+export.c \
+pwd.c \
+unset.c \
+exe_build_in.c \
+exe_file.c \
+exe_normal.c \
+executor.c \
+g_data_management.c \
+main.c \
+msh_exit.c
 
 # **************************************************************************** #
 
@@ -169,7 +215,6 @@ fc:
 
 print_src:
 	@for elem in $(SRCS_FIND); do \
-		printf "[%s]\n" $$path;\
 		echo $$elem;\
 	done
 
