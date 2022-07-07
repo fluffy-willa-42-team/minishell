@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 09:36:24 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/06 11:15:22 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/07/07 12:55:21 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	exec_line(void)
 
 void	start_prompt(void)
 {
-	set_sigaction(0);
 	g_data.line_read = readline(g_data.prompt_start.buffer);
 	while (g_data.line_read)
 	{
@@ -78,6 +77,7 @@ void	start_prompt(void)
 		free(g_data.line_read);
 		g_data.line_read = readline(g_data.prompt_start.buffer);
 	}
+	set_sigaction(0);
 }
 
 /**
@@ -85,6 +85,7 @@ void	start_prompt(void)
  */
 int	main(int ac, char **av, char **env)
 {
+	set_sigaction(0);
 	print_debug_sep("DEBUG ENABLE");
 	g_data.prompt_start = vec_init(sizeof(char));
 	g_data.prompt_start.exit_func = vec_exit_func;
